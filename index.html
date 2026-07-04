@@ -345,9 +345,15 @@ const LS = {
 const CACHE_TTL = 30 * 60 * 1000;      // 30 minutes
 const MAX_ITEMS = 20;
 const APIS = ['newsdata', 'gnews', 'currents', 'guardian'];
-const CORS_PROXIES = [                  // tried in order for RSS
-  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+// CORS proxies tried in order for RSS. All free proxies are flaky/rate-limited
+// (allorigins often 503/520s; corsproxy.io & cors.sh now need paid keys), so we
+// keep several anonymous fallbacks and move to the next on any failure.
+// `json:true` means the proxy wraps the body in JSON under a `contents` field.
+const CORS_PROXIES = [
+  { build: (u) => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`, json: false },
+  { build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,        json: false },
+  { build: (u) => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,        json: true  },
+  { build: (u) => `https://thingproxy.freeboard.io/fetch/${u}`,                          json: false },
 ];
 
 const state = {
@@ -454,17 +460,27 @@ function rssFeedsFor(sector) {
     `https://news.google.com/rss/search?q=${q}%20when:2d&hl=en-IN&gl=IN&ceid=IN:en`,
   ];
 }
+// fetch with a timeout so a hung proxy can't stall the whole sector load
+async function fetchWithTimeout(url, ms = 8000) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try { return await fetch(url, { signal: ctrl.signal }); }
+  finally { clearTimeout(t); }
+}
 async function fetchRSS(feedUrl) {
   let xml = null, lastErr;
-  for (const wrap of CORS_PROXIES) {
+  for (const proxy of CORS_PROXIES) {
     try {
-      const r = await fetch(wrap(feedUrl));
+      const r = await fetchWithTimeout(proxy.build(feedUrl));
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      xml = await r.text();
-      if (xml && xml.includes('<item')) break;
-    } catch (e) { lastErr = e; }
+      let text = await r.text();
+      if (proxy.json) { try { text = JSON.parse(text).contents || ''; } catch {} }
+      // A working proxy returns the raw RSS; error pages won't contain <item>.
+      if (text && text.includes('<item')) { xml = text; break; }
+      throw new Error('no items');
+    } catch (e) { lastErr = e; }   // try the next proxy
   }
-  if (!xml) throw lastErr || new Error('RSS unreachable');
+  if (!xml) throw lastErr || new Error('all proxies failed');
   const doc = new DOMParser().parseFromString(xml, 'text/xml');
   return [...doc.querySelectorAll('item')].slice(0, 12).map(it => {
     const g = (t) => (it.querySelector(t)?.textContent || '').trim();
@@ -660,7 +676,13 @@ function renderCards() {
   const items = visibleItems();
   gridEl.innerHTML = '';
   if (!items.length) {
-    gridEl.innerHTML = `<div class="notice">No stories yet. Add API keys in ⚙️ Settings, or hit 🔄 Refresh to pull RSS headlines.</div>`;
+    gridEl.innerHTML = `<div class="notice">
+      <p style="font-size:15px;color:var(--text)"><b>No stories loaded.</b></p>
+      <p>Free RSS proxies can be down or rate-limited. For <b>reliable</b> results, add a
+      free <b>Guardian API key</b> in ⚙️ Settings — it works directly with no proxy.</p>
+      <p><button class="btn primary" onclick="document.getElementById('settingsBtn').click()">⚙️ Add API key</button>
+      &nbsp; <button class="btn" onclick="loadSector(state.sector,{force:true})">🔄 Retry RSS</button></p>
+    </div>`;
     return;
   }
   items.forEach(a => {
