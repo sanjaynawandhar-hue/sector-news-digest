@@ -1,0 +1,13 @@
+# Netlify configuration for Global Sector News Digest
+# Static site at the repo root + serverless function in netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Optional: nicer path (frontend uses /.netlify/functions/news by default,
+# which works without this redirect — kept here as a convenience alias).
+[[redirects]]
+  from = "/api/news"
+  to = "/.netlify/functions/news"
+  status = 200

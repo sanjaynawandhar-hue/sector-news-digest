@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Sector News Digest</title>
+<meta name="description" content="Browse the latest global news by sector and export a LinkedIn-ready PDF digest.">
+<!-- CDNs (allowed): html2pdf bundles html2canvas + jsPDF; Chart.js for the digest visual -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef1f8;
+    --text: #1a2233;
+    --text-dim: #667089;
+    --border: #e2e7f0;
+    --accent: #2563eb;          /* overridden per-sector via JS */
+    --accent-soft: #dbe6ff;
+    --danger: #d64560;
+    --shadow: 0 2px 14px rgba(20,30,60,0.08);
+    --radius: 14px;
+  }
+  body.dark {
+    --bg: #10131c;
+    --surface: #1a1f2e;
+    --surface-2: #232a3d;
+    --text: #e8ecf6;
+    --text-dim: #9aa4bf;
+    --border: #2a3145;
+    --accent-soft: #24304f;
+    --shadow: 0 2px 16px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.45;
+    transition: background-color .25s, color .25s;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+  .brand .logo {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    display: grid; place-items: center; color: #fff; font-size: 20px; font-weight: 800;
+  }
+  .brand h1 { font-size: 18px; margin: 0; font-weight: 800; letter-spacing: .2px; }
+  .brand p { margin: 0; font-size: 11px; color: var(--text-dim); }
+
+  .icon-btn {
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 17px;
+    display: grid; place-items: center; transition: background .15s, transform .05s;
+  }
+  .icon-btn:hover { background: var(--accent-soft); }
+  .icon-btn:active { transform: scale(.94); }
+
+  /* ---------- Sector pills ---------- */
+  .pills {
+    max-width: 1200px; margin: 0 auto; padding: 12px 18px 4px;
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin;
+  }
+  .pill {
+    flex: 0 0 auto; padding: 9px 15px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface);
+    font-size: 13.5px; font-weight: 600; color: var(--text-dim);
+    white-space: nowrap; transition: all .15s; display: flex; align-items: center; gap: 7px;
+  }
+  .pill:hover { color: var(--text); }
+  .pill.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+  /* ---------- Toolbar (status + actions) ---------- */
+  .toolbar {
+    max-width: 1200px; margin: 0 auto; padding: 10px 18px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .updated { font-size: 12.5px; color: var(--text-dim); }
+  .toolbar .spacer { margin-left: auto; }
+  .btn {
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    padding: 8px 13px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px; transition: background .15s, transform .05s;
+  }
+  .btn:hover { background: var(--accent-soft); }
+  .btn:active { transform: scale(.97); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+  /* ---------- Source filter chips ---------- */
+  .chips {
+    max-width: 1200px; margin: 0 auto; padding: 2px 18px 6px;
+    display: flex; gap: 7px; flex-wrap: wrap;
+  }
+  .chip {
+    font-size: 12px; padding: 5px 11px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim);
+    transition: all .12s;
+  }
+  .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* ---------- News grid ---------- */
+  main { max-width: 1200px; margin: 0 auto; padding: 8px 18px 60px; }
+  .grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(20,30,60,.14); }
+  .card .thumb {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--surface-2);
+    display: block;
+  }
+  .card .thumb.placeholder {
+    display: grid; place-items: center; color: var(--text-dim); font-size: 30px;
+  }
+  .card .body { padding: 13px 14px 14px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .card .headline { font-size: 15px; font-weight: 700; line-height: 1.32; }
+  .card .meta { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-dim); flex-wrap: wrap; }
+  .source-badge {
+    background: var(--accent-soft); color: var(--accent); font-weight: 700;
+    padding: 2px 8px; border-radius: 999px; font-size: 11px;
+  }
+  body.dark .source-badge { color: #a9c2ff; }
+
+  /* ---------- Skeleton ---------- */
+  .skeleton .thumb, .skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; }
+  .skeleton .line { height: 12px; border-radius: 6px; margin: 6px 0; }
+  .skeleton .line.short { width: 55%; }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+  /* ---------- Empty / error ---------- */
+  .notice {
+    text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 14px;
+    grid-column: 1 / -1;
+  }
+  .source-errors { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
+  .src-err {
+    font-size: 12px; color: var(--danger); background: rgba(214,69,96,.09);
+    border: 1px solid rgba(214,69,96,.25); border-radius: 8px; padding: 6px 10px; margin-bottom: 6px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; padding: 26px 18px 40px; color: var(--text-dim); font-size: 13px;
+    border-top: 1px solid var(--border); margin-top: 20px;
+  }
+  footer b { color: var(--accent); }
+
+  /* ---------- Modal (settings) ---------- */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(10,14,24,.6); backdrop-filter: blur(3px);
+    display: none; align-items: center; justify-content: center; z-index: 50; padding: 16px;
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: var(--surface); border-radius: 16px; width: min(520px, 100%);
+    max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 70px rgba(0,0,0,.4); padding: 24px;
+  }
+  .modal h2 { margin: 0 0 4px; font-size: 20px; }
+  .modal .sub { color: var(--text-dim); font-size: 13px; margin-bottom: 16px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+  .field .hint { font-size: 11.5px; color: var(--text-dim); font-weight: 400; }
+  .field input {
+    width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface-2); color: var(--text); font-size: 13.5px;
+  }
+  .field a { color: var(--accent); font-weight: 600; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 8px; }
+  .badge-mode {
+    display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+
+  /* Hidden render stage for PDF templates (kept off-screen, not display:none so html2canvas can measure) */
+  #pdfStage { position: fixed; left: -10000px; top: 0; }
+
+  /* ---------- Toast ---------- */
+  .toast {
+    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    padding: 11px 18px; border-radius: 10px; font-size: 13.5px; box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 60; max-width: 90vw;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 560px) {
+    .brand p { display: none; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">📰</div>
+        <div>
+          <h1>Global Sector News Digest</h1>
+          <p>Latest news by sector · LinkedIn-ready PDFs</p>
+        </div>
+      </div>
+      <span class="badge-mode" id="modeBadge" title="Data source mode">…</span>
+      <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+      <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
+    </div>
+    <div class="pills" id="pills"></div>
+  </header>
+
+  <div class="toolbar">
+    <span class="updated" id="updated">—</span>
+    <div class="spacer"></div>
+    <button class="btn" id="refreshBtn" title="Fetch fresh news (uses API quota)">🔄 Refresh</button>
+    <button class="btn primary" id="pdfBtn" title="Download 1-page LinkedIn digest">⬇️ Digest PDF</button>
+    <button class="btn" id="carouselBtn" title="Download multi-page LinkedIn carousel">🎠 Carousel PDF</button>
+  </div>
+
+  <div class="chips" id="chips"></div>
+  <div class="source-errors" id="sourceErrors"></div>
+
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer>
+    Curated by <b>Sanjay</b> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/professorSK" target="_blank" rel="noopener">@professorSK</a>
+  </footer>
+
+  <!-- Settings modal -->
+  <div class="overlay" id="settingsOverlay">
+    <div class="modal">
+      <h2>⚙️ API Keys</h2>
+      <p class="sub">Paste your free API keys below. They're stored only in your browser's localStorage.
+        Leave all blank to run in <b>RSS-only mode</b>. If you deploy on Netlify with server-side keys, the app uses those automatically and ignores these.</p>
+
+      <div class="field">
+        <label>NewsData.io <span class="hint">— <a href="https://newsdata.io/register" target="_blank" rel="noopener">get key</a> · 200/day</span></label>
+        <input type="password" id="key_newsdata" placeholder="pub_xxxxxxxx">
+      </div>
+      <div class="field">
+        <label>GNews.io <span class="hint">— <a href="https://gnews.io/register" target="_blank" rel="noopener">get key</a> · 100/day</span></label>
+        <input type="password" id="key_gnews" placeholder="xxxxxxxxxxxxxxxx">
+      </div>
+      <div class="field">
+        <label>Currents API <span class="hint">— <a href="https://currentsapi.services/en/register" target="_blank" rel="noopener">get key</a> · ~600/day</span></label>
+        <input type="password" id="key_currents" placeholder="xxxxxxxxxxxxxxxx">
+      </div>
+      <div class="field">
+        <label>The Guardian <span class="hint">— <a href="https://open-platform.theguardian.com/access/" target="_blank" rel="noopener">get key</a> · free & generous</span></label>
+        <input type="password" id="key_guardian" placeholder="xxxxxxxx-xxxx-xxxx">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn primary" id="saveKeys" style="flex:1">Save keys</button>
+        <button class="btn" id="clearKeys">Clear all</button>
+        <button class="btn" id="closeSettings">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pdfStage"></div>
+  <div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ============================================================================
+   GLOBAL SECTOR NEWS DIGEST
+   Vanilla JS. Layered data strategy with graceful degradation:
+     Layer 1: free News APIs (NewsData, GNews, Currents, Guardian)
+              — via Netlify function if deployed, else via localStorage keys
+     Layer 2: RSS fallback (Google News RSS etc.) through a CORS proxy
+   Every source is wrapped so one failure never breaks the page.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   1. SECTOR CONFIG
+   Each sector maps to the right query/category per API + RSS search terms,
+   plus an emoji icon and accent color used across the UI and the PDF.
+   --------------------------------------------------------------------------- */
+const SECTORS = [
+  { id:'tech',      name:'Technology',           icon:'💻', color:'#2563eb',
+    newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'},
+    rssQuery:'technology' },
+  { id:'finance',   name:'Finance & Markets',    icon:'📈', color:'#0f9d58',
+    newsdata:{category:'business'}, gnews:{category:'business'}, currents:{category:'finance'}, guardian:{section:'business'},
+    rssQuery:'stock market OR finance' },
+  { id:'health',    name:'Healthcare & Pharma',  icon:'🏥', color:'#e11d48',
+    newsdata:{category:'health'}, gnews:{category:'health'}, currents:{category:'health'}, guardian:{q:'health OR pharma'},
+    rssQuery:'healthcare OR pharma' },
+  { id:'energy',    name:'Energy & Oil',         icon:'⚡', color:'#f59e0b',
+    newsdata:{q:'energy OR oil'}, gnews:{q:'energy OR oil'}, currents:{q:'energy OR oil'}, guardian:{q:'energy OR oil'},
+    rssQuery:'energy OR oil OR gas' },
+  { id:'auto',      name:'Automobiles & EV',     icon:'🚗', color:'#7c3aed',
+    newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'},
+    rssQuery:'electric vehicle OR automobile' },
+  { id:'realestate',name:'Real Estate',          icon:'🏢', color:'#0891b2',
+    newsdata:{q:'real estate OR housing'}, gnews:{q:'real estate OR housing'}, currents:{q:'real estate OR property'}, guardian:{q:'real estate OR housing'},
+    rssQuery:'real estate OR property' },
+  { id:'agri',      name:'Agriculture',          icon:'🌾', color:'#65a30d',
+    newsdata:{q:'agriculture OR farming'}, gnews:{q:'agriculture OR farming'}, currents:{q:'agriculture OR farming'}, guardian:{q:'agriculture OR farming'},
+    rssQuery:'agriculture OR farming' },
+  { id:'defence',   name:'Defence & Aerospace',  icon:'✈️', color:'#475569',
+    newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'}, currents:{q:'defense OR aerospace'}, guardian:{q:'defence OR aerospace'},
+    rssQuery:'defence OR aerospace OR military' },
+  { id:'retail',    name:'Retail & Consumer',    icon:'🛍️', color:'#db2777',
+    newsdata:{q:'retail OR consumer'}, gnews:{q:'retail OR consumer'}, currents:{q:'retail OR consumer'}, guardian:{q:'retail OR consumer'},
+    rssQuery:'retail OR consumer' },
+  { id:'telecom',   name:'Telecom',              icon:'📡', color:'#4f46e5',
+    newsdata:{q:'telecom OR 5G'}, gnews:{q:'telecom OR 5G'}, currents:{q:'telecom OR 5G'}, guardian:{q:'telecom OR 5G'},
+    rssQuery:'telecom OR 5G' },
+];
+
+/* ---------------------------------------------------------------------------
+   2. CONSTANTS & STATE
+   --------------------------------------------------------------------------- */
+const LS = {
+  keys: 'gsnd_keys',
+  theme: 'gsnd_theme',
+  cache: (sid) => `gsnd_cache_${sid}`,
+  rotation: 'gsnd_rotation',
+};
+const CACHE_TTL = 30 * 60 * 1000;      // 30 minutes
+const MAX_ITEMS = 20;
+const APIS = ['newsdata', 'gnews', 'currents', 'guardian'];
+const CORS_PROXIES = [                  // tried in order for RSS
+  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+];
+
+const state = {
+  sector: SECTORS[0],
+  items: [],                 // current sector's rendered items
+  activeSources: new Set(),  // source-filter chips currently ON (empty = all)
+  backend: false,            // true if a Netlify function is available
+  loading: false,
+};
+
+/* ---------------------------------------------------------------------------
+   3. DOM refs & tiny helpers
+   --------------------------------------------------------------------------- */
+const $ = (id) => document.getElementById(id);
+const gridEl = $('grid'), pillsEl = $('pills'), chipsEl = $('chips'),
+      updatedEl = $('updated'), modeBadge = $('modeBadge'), errBox = $('sourceErrors');
+
+function getKeys() { try { return JSON.parse(localStorage.getItem(LS.keys)) || {}; } catch { return {}; } }
+function hasAnyKey() { const k = getKeys(); return APIS.some(a => k[a]); }
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function escapeHtml(s='') { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// Relative "x hours ago"
+function timeAgo(dateStr) {
+  const d = new Date(dateStr); if (isNaN(d)) return '';
+  const s = Math.floor((Date.now() - d.getTime()) / 1000);
+  if (s < 60) return 'just now';
+  const m = Math.floor(s/60); if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m/60); if (h < 24) return `${h}h ago`;
+  const dd = Math.floor(h/24); return `${dd}d ago`;
+}
+
+/* ---------------------------------------------------------------------------
+   4. NORMALIZERS — every API returns a different shape; convert to a common
+   article object: { title, url, source, image, publishedAt, description }
+   --------------------------------------------------------------------------- */
+const normalize = {
+  newsdata: (j) => (j.results || []).map(a => ({
+    title: a.title, url: a.link, source: a.source_id || a.source_name || 'NewsData',
+    image: a.image_url || null, publishedAt: a.pubDate, description: a.description || '' })),
+  gnews: (j) => (j.articles || []).map(a => ({
+    title: a.title, url: a.url, source: (a.source && a.source.name) || 'GNews',
+    image: a.image || null, publishedAt: a.publishedAt, description: a.description || '' })),
+  currents: (j) => (j.news || []).map(a => ({
+    title: a.title, url: a.url, source: a.author || 'Currents',
+    image: a.image && a.image !== 'None' ? a.image : null, publishedAt: a.published, description: a.description || '' })),
+  guardian: (j) => ((j.response && j.response.results) || []).map(a => ({
+    title: a.webTitle, url: a.webUrl, source: 'The Guardian',
+    image: (a.fields && a.fields.thumbnail) || null, publishedAt: a.webPublicationDate,
+    description: (a.fields && a.fields.trailText) || '' })),
+};
+
+/* ---------------------------------------------------------------------------
+   5. CLIENT-SIDE API FETCHERS (used when NOT on Netlify).
+   Each builds the correct URL from the sector config + user's key, fetches,
+   and normalizes. Any failure throws and is caught by the caller.
+   --------------------------------------------------------------------------- */
+async function fetchJSON(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+const clientFetch = {
+  async newsdata(sector, key) {
+    const c = sector.newsdata, p = new URLSearchParams({ apikey:key, language:'en', image:1 });
+    if (c.category) p.set('category', c.category);
+    if (c.q) p.set('q', c.q);
+    return normalize.newsdata(await fetchJSON(`https://newsdata.io/api/1/latest?${p}`));
+  },
+  async gnews(sector, key) {
+    const c = sector.gnews;
+    let url;
+    if (c.category) url = `https://gnews.io/api/v4/top-headlines?category=${c.category}&lang=en&max=10&token=${key}`;
+    else url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(c.q)}&lang=en&max=10&token=${key}`;
+    return normalize.gnews(await fetchJSON(url));
+  },
+  async currents(sector, key) {
+    const c = sector.currents;
+    let url;
+    if (c.category) url = `https://api.currentsapi.services/v1/latest-news?category=${c.category}&language=en&apiKey=${key}`;
+    else url = `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(c.q)}&language=en&apiKey=${key}`;
+    return normalize.currents(await fetchJSON(url));
+  },
+  async guardian(sector, key) {
+    const c = sector.guardian, p = new URLSearchParams({ 'api-key':key, 'show-fields':'thumbnail,trailText', 'order-by':'newest', 'page-size':'12' });
+    if (c.section) p.set('section', c.section);
+    if (c.q) p.set('q', c.q);
+    return normalize.guardian(await fetchJSON(`https://content.guardianapis.com/search?${p}`));
+  },
+};
+
+/* ---------------------------------------------------------------------------
+   6. RSS FALLBACK (Layer 2). No key needed. Fetched through a CORS proxy and
+   parsed from XML. We use Google News RSS search per sector plus a couple of
+   sector-agnostic quality feeds.
+   --------------------------------------------------------------------------- */
+function rssFeedsFor(sector) {
+  const q = encodeURIComponent(sector.rssQuery);
+  return [
+    `https://news.google.com/rss/search?q=${q}&hl=en-US&gl=US&ceid=US:en`,
+    `https://news.google.com/rss/search?q=${q}%20when:2d&hl=en-IN&gl=IN&ceid=IN:en`,
+  ];
+}
+async function fetchRSS(feedUrl) {
+  let xml = null, lastErr;
+  for (const wrap of CORS_PROXIES) {
+    try {
+      const r = await fetch(wrap(feedUrl));
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      xml = await r.text();
+      if (xml && xml.includes('<item')) break;
+    } catch (e) { lastErr = e; }
+  }
+  if (!xml) throw lastErr || new Error('RSS unreachable');
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  return [...doc.querySelectorAll('item')].slice(0, 12).map(it => {
+    const g = (t) => (it.querySelector(t)?.textContent || '').trim();
+    // Google News titles look like "Headline - Source"; split the source out.
+    let title = g('title'), source = g('source') || 'RSS';
+    const dash = title.lastIndexOf(' - ');
+    if (!g('source') && dash > 0) { source = title.slice(dash + 3); title = title.slice(0, dash); }
+    // try to dig an image out of media/enclosure/description
+    let image = it.querySelector('enclosure')?.getAttribute('url')
+             || it.getElementsByTagName('media:content')[0]?.getAttribute('url') || null;
+    if (!image) { const m = g('description').match(/<img[^>]+src="([^"]+)"/i); if (m) image = m[1]; }
+    return { title, url: g('link'), source, image, publishedAt: g('pubDate'), description: '' };
+  });
+}
+
+/* ---------------------------------------------------------------------------
+   7. BACKEND (Netlify function) detection + fetch.
+   If /.netlify/functions/news responds, keys live safely server-side.
+   --------------------------------------------------------------------------- */
+async function detectBackend() {
+  try {
+    const r = await fetch('/.netlify/functions/news?probe=1', { method:'GET' });
+    if (!r.ok) return false;
+    const j = await r.json();
+    return !!(j && j.ok);
+  } catch { return false; }
+}
+async function backendFetch(sector, sources) {
+  const j = await fetchJSON(`/.netlify/functions/news?sector=${sector.id}&sources=${sources.join(',')}`);
+  return { items: j.items || [], errors: j.errors || {} };
+}
+
+/* ---------------------------------------------------------------------------
+   8. DEDUPE + MERGE + SORT
+   --------------------------------------------------------------------------- */
+function keyOf(a) {
+  // normalized title used to detect duplicates across sources
+  return (a.title || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
+}
+function mergeItems(...lists) {
+  const seen = new Set(), out = [];
+  for (const list of lists) for (const a of list) {
+    if (!a || !a.title || !a.url) continue;
+    const k = keyOf(a);
+    if (k.length < 6 || seen.has(k)) continue;
+    seen.add(k); out.push(a);
+  }
+  out.sort((x, y) => new Date(y.publishedAt || 0) - new Date(x.publishedAt || 0));
+  return out.slice(0, MAX_ITEMS);
+}
+
+/* ---------------------------------------------------------------------------
+   9. ROTATION — spread quota: call only 2 APIs per refresh, cycling which two.
+   --------------------------------------------------------------------------- */
+function pickTwoApis(available) {
+  if (available.length <= 2) return available;
+  let rot = parseInt(localStorage.getItem(LS.rotation) || '0', 10);
+  const pick = [available[rot % available.length], available[(rot + 1) % available.length]];
+  localStorage.setItem(LS.rotation, String((rot + 2) % available.length));
+  return [...new Set(pick)];
+}
+
+/* ---------------------------------------------------------------------------
+   10. LOAD A SECTOR — orchestrates cache → APIs (2, rotated) → RSS fallback.
+   --------------------------------------------------------------------------- */
+function readCache(sid) {
+  try { const c = JSON.parse(localStorage.getItem(LS.cache(sid))); return c && c.items ? c : null; } catch { return null; }
+}
+function writeCache(sid, items) {
+  try { localStorage.setItem(LS.cache(sid), JSON.stringify({ ts: Date.now(), items })); } catch {}
+}
+
+async function loadSector(sector, { force = false } = {}) {
+  state.loading = true;
+  errBox.innerHTML = '';
+  const cached = readCache(sector.id);
+  const fresh = cached && (Date.now() - cached.ts) < CACHE_TTL;
+
+  // Use cache immediately when fresh and not forced.
+  if (fresh && !force) {
+    state.items = cached.items;
+    renderSector(cached.ts);
+    state.loading = false;
+    return;
+  }
+
+  renderSkeletons();
+
+  const errors = {};
+  let apiItems = [], rssItems = [];
+
+  // ---- Layer 1: APIs (backend or client), 2 rotated sources ----
+  if (state.backend) {
+    const two = pickTwoApis(APIS);
+    try {
+      const res = await backendFetch(sector, two);
+      apiItems = res.items;
+      Object.assign(errors, res.errors);
+    } catch (e) { errors.backend = e.message; }
+  } else {
+    const keys = getKeys();
+    const available = APIS.filter(a => keys[a]);
+    const two = pickTwoApis(available);
+    await Promise.all(two.map(async (api) => {
+      try { apiItems = apiItems.concat(await clientFetch[api](sector, keys[api])); }
+      catch (e) { errors[api] = e.message; }
+    }));
+  }
+
+  // ---- Layer 2: RSS — always used to backfill (and as sole source in RSS-only mode) ----
+  if (apiItems.length < 12) {
+    const feeds = rssFeedsFor(sector);
+    const results = await Promise.allSettled(feeds.map(fetchRSS));
+    results.forEach((r, i) => {
+      if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
+      else errors[`rss${i+1}`] = r.reason?.message || 'failed';
+    });
+  }
+
+  // Merge new results with any prior cache (so we accumulate across rotations).
+  const prior = cached ? cached.items : [];
+  const merged = mergeItems(apiItems, rssItems, prior);
+
+  if (merged.length) { writeCache(sector.id, merged); state.items = merged; }
+  else { state.items = prior; }
+
+  renderSourceErrors(errors);
+  renderSector(Date.now());
+  state.loading = false;
+}
+
+/* ---------------------------------------------------------------------------
+   11. RENDERING
+   --------------------------------------------------------------------------- */
+function applyAccent(color) {
+  document.documentElement.style.setProperty('--accent', color);
+  document.documentElement.style.setProperty('--accent-soft', hexToSoft(color));
+}
+function hexToSoft(hex) {
+  const n = parseInt(hex.slice(1), 16), r = n>>16, g = (n>>8)&255, b = n&255;
+  return document.body.classList.contains('dark')
+    ? `rgba(${r},${g},${b},0.22)` : `rgba(${r},${g},${b},0.14)`;
+}
+
+function renderPills() {
+  pillsEl.innerHTML = '';
+  SECTORS.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'pill' + (s.id === state.sector.id ? ' active' : '');
+    el.innerHTML = `<span>${s.icon}</span>${escapeHtml(s.name)}`;
+    el.onclick = () => selectSector(s);
+    pillsEl.appendChild(el);
+  });
+}
+
+function renderSkeletons() {
+  gridEl.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const c = document.createElement('div');
+    c.className = 'card skeleton';
+    c.innerHTML = `<div class="thumb"></div><div class="body"><div class="line"></div><div class="line short"></div></div>`;
+    gridEl.appendChild(c);
+  }
+}
+
+function renderSourceErrors(errors) {
+  const entries = Object.entries(errors || {});
+  errBox.innerHTML = entries.map(([k, v]) =>
+    `<div class="src-err">⚠️ ${escapeHtml(k)}: ${escapeHtml(String(v))} — other sources still shown.</div>`).join('');
+}
+
+function visibleItems() {
+  if (state.activeSources.size === 0) return state.items;
+  return state.items.filter(a => state.activeSources.has(a.source));
+}
+
+function renderChips() {
+  const sources = [...new Set(state.items.map(a => a.source))].filter(Boolean);
+  chipsEl.innerHTML = '';
+  sources.forEach(src => {
+    const el = document.createElement('div');
+    el.className = 'chip' + (state.activeSources.has(src) ? ' active' : '');
+    el.textContent = src;
+    el.onclick = () => {
+      state.activeSources.has(src) ? state.activeSources.delete(src) : state.activeSources.add(src);
+      renderChips(); renderCards();
+    };
+    chipsEl.appendChild(el);
+  });
+}
+
+function renderCards() {
+  const items = visibleItems();
+  gridEl.innerHTML = '';
+  if (!items.length) {
+    gridEl.innerHTML = `<div class="notice">No stories yet. Add API keys in ⚙️ Settings, or hit 🔄 Refresh to pull RSS headlines.</div>`;
+    return;
+  }
+  items.forEach(a => {
+    const card = document.createElement('a');
+    card.className = 'card'; card.href = a.url; card.target = '_blank'; card.rel = 'noopener';
+    const thumb = a.image
+      ? `<img class="thumb" src="${escapeHtml(a.image)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb placeholder',textContent:'${state.sector.icon}'}))">`
+      : `<div class="thumb placeholder">${state.sector.icon}</div>`;
+    card.innerHTML = `${thumb}
+      <div class="body">
+        <div class="headline">${escapeHtml(a.title)}</div>
+        <div class="meta">
+          <span class="source-badge">${escapeHtml(a.source)}</span>
+          <span>${escapeHtml(timeAgo(a.publishedAt))}</span>
+        </div>
+      </div>`;
+    gridEl.appendChild(card);
+  });
+}
+
+function renderSector(ts) {
+  renderChips();
+  renderCards();
+  const mins = Math.round((Date.now() - ts) / 60000);
+  updatedEl.textContent = state.items.length
+    ? `${state.items.length} stories · Last updated ${mins <= 0 ? 'just now' : mins + ' min ago'}`
+    : 'No data yet';
+}
+
+function selectSector(s) {
+  state.sector = s;
+  state.activeSources.clear();
+  applyAccent(s.color);
+  renderPills();
+  loadSector(s);
+}
+
+/* ---------------------------------------------------------------------------
+   12. IMAGE DOWNSCALING for PDFs — shrink to a max dimension and re-encode as
+   JPEG q0.6 so the exported file stays small (< 1 MB target). Returns a data
+   URL, or null on CORS/parse failure (caller then uses a colored placeholder).
+   --------------------------------------------------------------------------- */
+function downscaleImage(url, maxDim = 120, quality = 0.6) {
+  return new Promise((resolve) => {
+    if (!url) return resolve(null);
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    const done = (v) => resolve(v);
+    const timer = setTimeout(() => done(null), 5000);
+    img.onload = () => {
+      clearTimeout(timer);
+      try {
+        const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        const w = Math.max(1, Math.round(img.width * scale)), h = Math.max(1, Math.round(img.height * scale));
+        const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(img, 0, 0, w, h);
+        done(cv.toDataURL('image/jpeg', quality));
+      } catch { done(null); }   // tainted canvas (no CORS headers)
+    };
+    img.onerror = () => { clearTimeout(timer); done(null); };
+    img.src = url;
+  });
+}
+
+/* ---------------------------------------------------------------------------
+   13. AUTO-VISUAL helpers for the digest: a "stories by source" donut (Chart.js)
+   rendered off-screen to a data URL, and a top-keywords list.
+   --------------------------------------------------------------------------- */
+function sourceCounts(items) {
+  const m = {};
+  items.forEach(a => { m[a.source] = (m[a.source] || 0) + 1; });
+  return Object.entries(m).sort((a,b) => b[1]-a[1]).slice(0, 6);
+}
+async function makeDonut(items, accent) {
+  const counts = sourceCounts(items);
+  if (!counts.length) return null;
+  const cv = document.createElement('canvas'); cv.width = 360; cv.height = 260;
+  $('pdfStage').appendChild(cv);
+  const palette = [accent, '#7c3aed', '#0f9d58', '#f59e0b', '#e11d48', '#0891b2'];
+  const chart = new Chart(cv.getContext('2d'), {
+    type: 'doughnut',
+    data: { labels: counts.map(c => c[0]), datasets: [{ data: counts.map(c => c[1]), backgroundColor: palette, borderWidth: 0 }] },
+    options: { responsive:false, animation:false, cutout:'58%',
+      plugins:{ legend:{ position:'right', labels:{ font:{ size:12 }, boxWidth:12 } } } }
+  });
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const data = chart.toBase64Image('image/png');
+  chart.destroy(); cv.remove();
+  return data;
+}
+const STOPWORDS = new Set(('the a an and or of to in for on at by with from as is are be this that after over into new says will amid up down out '
+  + 'his her its their our your you we they it he she what how why who not no more most less than about across can could would should may').split(' '));
+function topKeywords(items, n = 5) {
+  const freq = {};
+  items.forEach(a => (a.title || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).forEach(w => {
+    if (w.length > 3 && !STOPWORDS.has(w)) freq[w] = (freq[w] || 0) + 1;
+  }));
+  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0, n).map(x => x[0]);
+}
+
+/* ---------------------------------------------------------------------------
+   14. DIGEST PDF (A4 portrait, one page) — the flagship export.
+   Builds a styled hidden template, pre-downscaling the top-5 thumbnails and
+   embedding the donut, then renders with html2pdf.
+   --------------------------------------------------------------------------- */
+async function downloadDigestPDF() {
+  const sector = state.sector, items = visibleItems();
+  if (!items.length) return toast('Nothing to export yet — load some news first.');
+  toast('Building digest PDF…');
+
+  const top5 = items.slice(0, 5);
+  const thumbs = await Promise.all(top5.map(a => downscaleImage(a.image, 120, 0.6)));
+  const donut = await makeDonut(items, sector.color);
+  const keywords = topKeywords(items, 5);
+  const dateStr = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  const sources = [...new Set(items.map(a => a.source))];
+
+  const rows = top5.map((a, i) => `
+    <div class="d-row">
+      <div class="d-num">${i+1}</div>
+      ${thumbs[i] ? `<img class="d-th" src="${thumbs[i]}">` : `<div class="d-th d-ph">${sector.icon}</div>`}
+      <div class="d-tx">
+        <div class="d-hl">${escapeHtml(a.title)}</div>
+        <div class="d-mt">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>
+      </div>
+    </div>`).join('');
+
+  const kw = keywords.map(k => `<span class="d-kw">#${escapeHtml(k)}</span>`).join('');
+
+  const el = document.createElement('div');
+  el.className = 'digest';
+  el.innerHTML = `
+    <style>
+      .digest{width:794px;min-height:1123px;background:#fff;color:#101828;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;}
+      .d-head{background:linear-gradient(135deg,${sector.color},${sector.color}cc);color:#fff;padding:34px 40px;}
+      .d-head .ic{font-size:40px;}
+      .d-head h1{margin:8px 0 2px;font-size:34px;font-weight:800;letter-spacing:.3px;}
+      .d-head .dt{font-size:15px;opacity:.9;}
+      .d-body{padding:26px 40px;flex:1;}
+      .d-sec{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:${sector.color};margin:0 0 14px;}
+      .d-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #eef0f5;}
+      .d-num{flex:0 0 30px;height:30px;border-radius:8px;background:${sector.color};color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;}
+      .d-th{width:76px;height:56px;border-radius:8px;object-fit:cover;flex:0 0 76px;background:#f0f2f7;}
+      .d-ph{display:flex;align-items:center;justify-content:center;font-size:26px;}
+      .d-hl{font-size:16px;font-weight:700;line-height:1.3;}
+      .d-mt{font-size:12px;color:#667;margin-top:3px;}
+      .d-grid{display:flex;gap:22px;margin-top:22px;align-items:center;}
+      .d-card{flex:1;background:#f7f9fc;border-radius:14px;padding:16px 18px;}
+      .d-card h3{margin:0 0 10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#667;}
+      .d-donut{max-width:100%;height:auto;}
+      .d-kw{display:inline-block;background:${sector.color}1a;color:${sector.color};font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin:4px 4px 0 0;}
+      .d-stats{display:flex;gap:12px;margin-top:22px;}
+      .d-stat{flex:1;text-align:center;background:${sector.color}0f;border-radius:12px;padding:14px 8px;}
+      .d-stat .n{font-size:26px;font-weight:800;color:${sector.color};}
+      .d-stat .l{font-size:11px;color:#667;text-transform:uppercase;letter-spacing:.5px;}
+      .d-foot{background:#101828;color:#fff;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+      .d-foot b{color:#fff;}
+      .d-foot .tag{background:${sector.color};padding:6px 14px;border-radius:999px;font-weight:700;}
+    </style>
+    <div class="d-head">
+      <div class="ic">${sector.icon}</div>
+      <h1>${escapeHtml(sector.name)}</h1>
+      <div class="dt">News Digest · ${dateStr}</div>
+    </div>
+    <div class="d-body">
+      <p class="d-sec">Top 5 Headlines</p>
+      ${rows}
+      <div class="d-grid">
+        <div class="d-card">
+          <h3>Stories by Source</h3>
+          ${donut ? `<img class="d-donut" src="${donut}">` : '<p style="color:#889;font-size:13px">—</p>'}
+        </div>
+        <div class="d-card">
+          <h3>Trending Keywords</h3>
+          <div>${kw || '<span style="color:#889">—</span>'}</div>
+        </div>
+      </div>
+      <div class="d-stats">
+        <div class="d-stat"><div class="n">${items.length}</div><div class="l">Stories Tracked</div></div>
+        <div class="d-stat"><div class="n">${sources.length}</div><div class="l">Sources Used</div></div>
+        <div class="d-stat"><div class="n">${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}</div><div class="l">Generated At</div></div>
+      </div>
+    </div>
+    <div class="d-foot">
+      <span>Curated by <b>Sanjay</b></span>
+      <span class="tag">Follow @professorSK</span>
+    </div>`;
+
+  $('pdfStage').appendChild(el);
+  const filename = `${sector.name.replace(/[^A-Za-z0-9]+/g,'_')}_Digest_${new Date().toISOString().slice(0,10)}.pdf`;
+  try {
+    await html2pdf().set({
+      margin: 0, filename,
+      image: { type:'jpeg', quality:0.85 },
+      html2canvas: { scale:2, useCORS:true, backgroundColor:'#ffffff' },
+      jsPDF: { unit:'pt', format:'a4', orientation:'portrait' },
+    }).from(el).save();
+    toast('Digest PDF downloaded ✅');
+  } catch (e) { toast('PDF failed: ' + e.message); }
+  finally { el.remove(); }
+}
+
+/* ---------------------------------------------------------------------------
+   15. CAROUSEL PDF (1080×1080 pages) — cover + one headline per square page
+   + closing "Follow @professorSK" page.
+   --------------------------------------------------------------------------- */
+async function downloadCarouselPDF() {
+  const sector = state.sector, items = visibleItems().slice(0, 6);
+  if (!items.length) return toast('Nothing to export yet — load some news first.');
+  toast('Building carousel PDF…');
+
+  const imgs = await Promise.all(items.map(a => downscaleImage(a.image, 600, 0.7)));
+  const dateStr = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+
+  const cover = `
+    <div class="cpage cover">
+      <div class="c-ic">${sector.icon}</div>
+      <div class="c-kicker">SECTOR NEWS DIGEST</div>
+      <div class="c-title">${escapeHtml(sector.name)}</div>
+      <div class="c-date">${dateStr}</div>
+      <div class="c-swipe">Swipe →</div>
+    </div>`;
+
+  const pages = items.map((a, i) => `
+    <div class="cpage">
+      ${imgs[i] ? `<div class="c-photo" style="background-image:url('${imgs[i]}')"></div>` : `<div class="c-photo c-noimg">${sector.icon}</div>`}
+      <div class="c-overlay">
+        <div class="c-index">${i+1} / ${items.length}</div>
+        <div class="c-headline">${escapeHtml(a.title)}</div>
+        <div class="c-src">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>
+      </div>
+    </div>`).join('');
+
+  const closing = `
+    <div class="cpage closing">
+      <div class="c-ic">🙌</div>
+      <div class="c-title">Thanks for reading</div>
+      <div class="c-follow">Follow <b>@professorSK</b><br>for daily sector digests</div>
+      <div class="c-by">Curated by Sanjay</div>
+    </div>`;
+
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <style>
+      .cpage{width:1080px;height:1080px;position:relative;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#0f1420;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+      .cover,.closing{background:linear-gradient(150deg,${sector.color},#0f1420);}
+      .c-ic{font-size:130px;margin-bottom:20px;}
+      .c-kicker{font-size:30px;letter-spacing:6px;opacity:.85;font-weight:600;}
+      .c-title{font-size:88px;font-weight:900;line-height:1.05;margin:18px 60px;}
+      .c-date{font-size:34px;opacity:.9;margin-top:10px;}
+      .c-swipe{position:absolute;bottom:70px;font-size:32px;font-weight:700;opacity:.85;}
+      .c-photo{position:absolute;inset:0;background-size:cover;background-position:center;}
+      .c-noimg{display:flex;align-items:center;justify-content:center;font-size:200px;background:${sector.color};}
+      .c-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,18,.92) 42%,rgba(6,10,18,.25));display:flex;flex-direction:column;justify-content:flex-end;padding:80px 70px;text-align:left;}
+      .c-index{font-size:30px;font-weight:800;color:${sector.color};background:#fff;display:inline-block;align-self:flex-start;padding:8px 20px;border-radius:999px;margin-bottom:26px;}
+      .c-headline{font-size:64px;font-weight:800;line-height:1.14;}
+      .c-src{font-size:32px;opacity:.85;margin-top:24px;}
+      .c-follow{font-size:46px;margin:20px 60px;line-height:1.3;}
+      .c-follow b{color:${sector.color};}
+      .c-by{position:absolute;bottom:70px;font-size:30px;opacity:.8;}
+    </style>
+    ${cover}${pages}${closing}`;
+
+  $('pdfStage').appendChild(wrap);
+  const filename = `${sector.name.replace(/[^A-Za-z0-9]+/g,'_')}_Carousel_${new Date().toISOString().slice(0,10)}.pdf`;
+  try {
+    await html2pdf().set({
+      margin: 0, filename,
+      image: { type:'jpeg', quality:0.82 },
+      html2canvas: { scale:1, useCORS:true, backgroundColor:'#0f1420' },
+      jsPDF: { unit:'px', format:[1080,1080], orientation:'portrait' },
+      pagebreak: { mode:['css','legacy'], before:'.cpage' },
+    }).from(wrap).save();
+    toast('Carousel PDF downloaded ✅');
+  } catch (e) { toast('Carousel failed: ' + e.message); }
+  finally { wrap.remove(); }
+}
+
+/* ---------------------------------------------------------------------------
+   16. SETTINGS + THEME + wiring
+   --------------------------------------------------------------------------- */
+function openSettings() {
+  const k = getKeys();
+  $('key_newsdata').value = k.newsdata || '';
+  $('key_gnews').value = k.gnews || '';
+  $('key_currents').value = k.currents || '';
+  $('key_guardian').value = k.guardian || '';
+  $('settingsOverlay').classList.add('show');
+}
+function saveKeys() {
+  const k = {
+    newsdata: $('key_newsdata').value.trim(),
+    gnews: $('key_gnews').value.trim(),
+    currents: $('key_currents').value.trim(),
+    guardian: $('key_guardian').value.trim(),
+  };
+  Object.keys(k).forEach(x => { if (!k[x]) delete k[x]; });
+  localStorage.setItem(LS.keys, JSON.stringify(k));
+  $('settingsOverlay').classList.remove('show');
+  updateModeBadge();
+  toast('Keys saved — refreshing sector…');
+  loadSector(state.sector, { force: true });
+}
+function updateModeBadge() {
+  if (state.backend) modeBadge.textContent = '☁️ Server keys';
+  else if (hasAnyKey()) modeBadge.textContent = '🔑 API + RSS';
+  else modeBadge.textContent = '📡 RSS-only';
+}
+function setTheme(dark) {
+  document.body.classList.toggle('dark', dark);
+  $('themeBtn').textContent = dark ? '☀️' : '🌙';
+  localStorage.setItem(LS.theme, dark ? 'dark' : 'light');
+  applyAccent(state.sector.color);   // refresh accent-soft alpha for the theme
+}
+
+function wire() {
+  $('themeBtn').onclick = () => setTheme(!document.body.classList.contains('dark'));
+  $('settingsBtn').onclick = openSettings;
+  $('closeSettings').onclick = () => $('settingsOverlay').classList.remove('show');
+  $('settingsOverlay').onclick = (e) => { if (e.target === $('settingsOverlay')) $('settingsOverlay').classList.remove('show'); };
+  $('saveKeys').onclick = saveKeys;
+  $('clearKeys').onclick = () => { localStorage.removeItem(LS.keys); openSettings(); updateModeBadge(); toast('Keys cleared'); };
+  $('refreshBtn').onclick = () => {
+    const heavy = state.backend || hasAnyKey();
+    if (heavy && !confirm('Refresh will call your news APIs and use daily quota. Continue?')) return;
+    loadSector(state.sector, { force: true });
+  };
+  $('pdfBtn').onclick = downloadDigestPDF;
+  $('carouselBtn').onclick = downloadCarouselPDF;
+}
+
+/* ---------------------------------------------------------------------------
+   17. INIT
+   --------------------------------------------------------------------------- */
+async function init() {
+  setTheme(localStorage.getItem(LS.theme) === 'dark');
+  applyAccent(state.sector.color);
+  renderPills();
+  wire();
+  state.backend = await detectBackend();
+  updateModeBadge();
+  loadSector(state.sector);
+}
+init();
+</script>
+</body>
+</html>

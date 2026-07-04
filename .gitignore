@@ -1,0 +1,21 @@
+# Claude Code — machine-specific local settings
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+
+# Secrets / env — NEVER commit real API keys
+.env
+.env.*
+
+# Netlify
+.netlify/
+
+# Dependencies
+node_modules/

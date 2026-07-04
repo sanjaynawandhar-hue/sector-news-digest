@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "digest",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/Users/suhani/Documents/sector-news-digest/.claude/serve.py"],
+      "port": 8770
+    }
+  ]
+}
