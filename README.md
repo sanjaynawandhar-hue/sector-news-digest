@@ -5,7 +5,7 @@ multiple free news APIs + RSS feeds, de-duplicates and sorts it, and lets you
 export each sector as a **LinkedIn-ready PDF** (a one-page infographic digest
 _and_ a multi-page 1080×1080 carousel).
 
-**Curated by Sanjay · [@professorSK](https://www.linkedin.com/in/professorSK)**
+**Curated by Sanjay · ProfessorSK · [@iam_sanjay_navandar](https://www.instagram.com/iam_sanjay_navandar)** (Instagram)
 
 ---
 
@@ -27,7 +27,7 @@ _and_ a multi-page 1080×1080 carousel).
   error states, thumbnails, source badges, and "x hours ago" timestamps.
 - **PDF export** with html2pdf.js + Chart.js: header banner with per-sector accent,
   Top-5 headlines with thumbnails, a "stories by source" donut, trending-keyword chips,
-  a quick-stats row, and a branded footer. Images are downscaled to ~120px JPEG q0.6 so
+  a quick-stats row, and a branded footer (Instagram @iam_sanjay_navandar). Images are downscaled to ~120px JPEG q0.6 so
   the file stays **under ~1 MB**.
 
 ---
@@ -132,7 +132,7 @@ failing never breaks the page**; it just shows a small per-source notice.
   chips, quick-stats row, branded footer.
   Filename: `SectorName_Digest_YYYY-MM-DD.pdf`.
 - **LinkedIn Carousel PDF** — multi-page, 1080×1080 squares: a cover page, one headline
-  per page (photo + overlay), and a closing "Follow @professorSK" page.
+  per page (photo + overlay), and a closing "Follow ProfessorSK · @iam_sanjay_navandar" page.
   Filename: `SectorName_Carousel_YYYY-MM-DD.pdf`.
 
 > Image note: thumbnails are re-encoded through a `<canvas>`. If an image host doesn't
@@ -158,4 +158,4 @@ README.md                    # this file
 
 ---
 
-Curated by **Sanjay** · Follow **[@professorSK](https://www.linkedin.com/in/professorSK)**
+Curated by **Sanjay** · Follow **ProfessorSK** on Instagram → **[@iam_sanjay_navandar](https://www.instagram.com/iam_sanjay_navandar)**
