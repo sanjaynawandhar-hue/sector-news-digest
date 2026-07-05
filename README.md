@@ -14,9 +14,12 @@ _and_ a multi-page 1080×1080 carousel).
 - **10 sectors**: Technology, Finance & Markets, Healthcare & Pharma, Energy & Oil,
   Automobiles & EV, Real Estate, Agriculture, Defence & Aerospace, Retail & Consumer, Telecom.
 - **Layered data strategy** (all free tiers):
-  - **Layer 1 — APIs:** NewsData.io, GNews.io, Currents API, The Guardian.
-  - **Layer 2 — RSS fallback:** Google News RSS via CORS proxy (used when a key is
-    missing or a quota is exhausted). The app **works with zero keys** in RSS-only mode.
+  - **Layer 1 — APIs:** NewsData.io, GNews.io, Currents API, The Guardian, New York Times.
+  - **Layer 2 — RSS fallback (no key):** Google News + Bing keyword feeds plus named
+    feeds — BBC, CNBC, TechCrunch, The Verge, Ars Technica, Al Jazeera, Economic Times,
+    Mint, Moneycontrol, The Hindu BusinessLine — all in one editable `RSS_FEEDS` config
+    at the top of `index.html`. Used when a key is missing or a quota is exhausted, so
+    the app **works with zero keys** in RSS-only mode.
 - **Quota safety:** 30-minute localStorage cache per sector, only **2 APIs called per
   refresh** (rotated), and a refresh confirmation when it would spend quota.
 - **Two key-handling modes:**
@@ -52,6 +55,7 @@ You only need the ones you want — the app blends whatever is available.
 | **GNews.io** | 100 requests/day, keyword + topic, images | <https://gnews.io/register> → Dashboard → API token |
 | **Currents API** | ~600 requests/day, category filtering | <https://currentsapi.services/en/register> → API key |
 | **The Guardian** | Free & generous, section filtering, high quality | <https://open-platform.theguardian.com/access/> → request a **developer** key (emailed) |
+| **New York Times** | Free developer tier, ~500 requests/day | <https://developer.nytimes.com/get-started> → create an app, enable **Top Stories** + **Article Search** |
 
 ### Add them in the browser (Settings)
 1. Click **⚙️** (top-right).
@@ -88,6 +92,7 @@ Netlify environment variables instead of the browser.
    GNEWS_KEY      = xxxxxxxxxxxxxxxx
    CURRENTS_KEY   = xxxxxxxxxxxxxxxx
    GUARDIAN_KEY   = xxxxxxxx-xxxx-xxxx
+   NYT_KEY        = xxxxxxxxxxxxxxxx
    ```
 
 4. **Deploy.** Visit the site — the header badge should read **☁️ Server keys** and the

@@ -16,16 +16,16 @@
 
 // Sector config MUST mirror the SECTORS map in index.html (ids + per-API params).
 const SECTORS = {
-  tech:       { newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'} },
-  finance:    { newsdata:{category:'business'},   gnews:{category:'business'},   currents:{category:'finance'},    guardian:{section:'business'} },
-  health:     { newsdata:{category:'health'},     gnews:{category:'health'},     currents:{category:'health'},     guardian:{q:'health OR pharma'} },
-  energy:     { newsdata:{q:'energy OR oil'},                gnews:{q:'energy OR oil'},                currents:{q:'energy OR oil'},                guardian:{q:'energy OR oil'} },
-  auto:       { newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'} },
-  realestate: { newsdata:{q:'real estate OR housing'},      gnews:{q:'real estate OR housing'},      currents:{q:'real estate OR property'},      guardian:{q:'real estate OR housing'} },
-  agri:       { newsdata:{q:'agriculture OR farming'},      gnews:{q:'agriculture OR farming'},      currents:{q:'agriculture OR farming'},      guardian:{q:'agriculture OR farming'} },
-  defence:    { newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'},    currents:{q:'defense OR aerospace'},         guardian:{q:'defence OR aerospace'} },
-  retail:     { newsdata:{q:'retail OR consumer'},          gnews:{q:'retail OR consumer'},          currents:{q:'retail OR consumer'},          guardian:{q:'retail OR consumer'} },
-  telecom:    { newsdata:{q:'telecom OR 5G'},               gnews:{q:'telecom OR 5G'},               currents:{q:'telecom OR 5G'},               guardian:{q:'telecom OR 5G'} },
+  tech:       { newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'}, nyt:{section:'technology'} },
+  finance:    { newsdata:{category:'business'},   gnews:{category:'business'},   currents:{category:'finance'},    guardian:{section:'business'},   nyt:{section:'business'} },
+  health:     { newsdata:{category:'health'},     gnews:{category:'health'},     currents:{category:'health'},     guardian:{q:'health OR pharma'},  nyt:{section:'health'} },
+  energy:     { newsdata:{q:'energy OR oil'},                gnews:{q:'energy OR oil'},                currents:{q:'energy OR oil'},                guardian:{q:'energy OR oil'},                nyt:{q:'energy oil'} },
+  auto:       { newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'}, nyt:{section:'automobiles'} },
+  realestate: { newsdata:{q:'real estate OR housing'},      gnews:{q:'real estate OR housing'},      currents:{q:'real estate OR property'},      guardian:{q:'real estate OR housing'},      nyt:{section:'realestate'} },
+  agri:       { newsdata:{q:'agriculture OR farming'},      gnews:{q:'agriculture OR farming'},      currents:{q:'agriculture OR farming'},      guardian:{q:'agriculture OR farming'},      nyt:{q:'agriculture farming'} },
+  defence:    { newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'},    currents:{q:'defense OR aerospace'},         guardian:{q:'defence OR aerospace'},        nyt:{q:'defense aerospace military'} },
+  retail:     { newsdata:{q:'retail OR consumer'},          gnews:{q:'retail OR consumer'},          currents:{q:'retail OR consumer'},          guardian:{q:'retail OR consumer'},          nyt:{q:'retail consumer'} },
+  telecom:    { newsdata:{q:'telecom OR 5G'},               gnews:{q:'telecom OR 5G'},               currents:{q:'telecom OR 5G'},               guardian:{q:'telecom OR 5G'},               nyt:{q:'telecom 5G wireless'} },
 };
 
 const KEYS = {
@@ -33,6 +33,7 @@ const KEYS = {
   gnews:    process.env.GNEWS_KEY,
   currents: process.env.CURRENTS_KEY,
   guardian: process.env.GUARDIAN_KEY,
+  nyt:      process.env.NYT_KEY,
 };
 
 // ---- Normalizers: convert each API's shape into a common article object ----
@@ -50,6 +51,21 @@ const normalize = {
     title: a.webTitle, url: a.webUrl, source: 'The Guardian',
     image: (a.fields && a.fields.thumbnail) || null, publishedAt: a.webPublicationDate,
     description: (a.fields && a.fields.trailText) || '' })),
+  nyt: (j) => {
+    const img = (mm) => {
+      if (!mm || !mm.length) return null;
+      let u = (mm.find(m => m && m.url) || {}).url || null;
+      if (u && !/^https?:/.test(u)) u = 'https://www.nytimes.com/' + u.replace(/^\/+/, '');
+      return u;
+    };
+    if (j.results) return j.results.map(a => ({
+      title: a.title, url: a.url, source: 'The New York Times',
+      image: img(a.multimedia), publishedAt: a.published_date, description: a.abstract || '' }));
+    if (j.response && j.response.docs) return j.response.docs.map(a => ({
+      title: (a.headline && a.headline.main) || '', url: a.web_url, source: 'The New York Times',
+      image: img(a.multimedia), publishedAt: a.pub_date, description: a.abstract || '' }));
+    return [];
+  },
 };
 
 // ---- Build the request URL for one API/sector ----
@@ -75,6 +91,10 @@ function buildUrl(api, cfg) {
       if (cfg.q) p.set('q', cfg.q);
       return `https://content.guardianapis.com/search?${p}`;
     }
+    case 'nyt':
+      return cfg.section
+        ? `https://api.nytimes.com/svc/topstories/v2/${cfg.section}.json?api-key=${KEYS.nyt}`
+        : `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(cfg.q)}&sort=newest&api-key=${KEYS.nyt}`;
   }
 }
 
@@ -103,7 +123,7 @@ exports.handler = async (event) => {
   if (qs.probe) {
     return { statusCode: 200, headers, body: JSON.stringify({
       ok: true,
-      hasKeys: { newsdata: !!KEYS.newsdata, gnews: !!KEYS.gnews, currents: !!KEYS.currents, guardian: !!KEYS.guardian },
+      hasKeys: { newsdata: !!KEYS.newsdata, gnews: !!KEYS.gnews, currents: !!KEYS.currents, guardian: !!KEYS.guardian, nyt: !!KEYS.nyt },
     }) };
   }
 

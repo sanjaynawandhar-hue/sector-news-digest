@@ -319,6 +319,13 @@
         <label>The Guardian <span class="hint">— <a href="https://open-platform.theguardian.com/access/" target="_blank" rel="noopener">get key</a> · free & generous</span></label>
         <input type="password" id="key_guardian" placeholder="xxxxxxxx-xxxx-xxxx">
       </div>
+      <div class="field">
+        <label>New York Times <span class="hint">— <a href="https://developer.nytimes.com/get-started" target="_blank" rel="noopener">get key</a> · ~500/day</span></label>
+        <input type="password" id="key_nyt" placeholder="xxxxxxxxxxxxxxxx">
+      </div>
+
+      <p class="sub" style="margin-top:4px">Even with no keys, the app pulls live headlines from 12+ free RSS feeds
+        (BBC, CNBC, TechCrunch, The Verge, Economic Times, Mint, Google News…).</p>
 
       <div class="modal-actions">
         <button class="btn primary" id="saveKeys" style="flex:1">Save keys</button>
@@ -349,36 +356,70 @@
    --------------------------------------------------------------------------- */
 const SECTORS = [
   { id:'tech',      name:'Technology',           icon:'💻', color:'#2563eb',
-    newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'},
+    newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'}, nyt:{section:'technology'},
     rssQuery:'technology' },
   { id:'finance',   name:'Finance & Markets',    icon:'📈', color:'#0f9d58',
-    newsdata:{category:'business'}, gnews:{category:'business'}, currents:{category:'finance'}, guardian:{section:'business'},
+    newsdata:{category:'business'}, gnews:{category:'business'}, currents:{category:'finance'}, guardian:{section:'business'}, nyt:{section:'business'},
     rssQuery:'stock market OR finance' },
   { id:'health',    name:'Healthcare & Pharma',  icon:'🏥', color:'#e11d48',
-    newsdata:{category:'health'}, gnews:{category:'health'}, currents:{category:'health'}, guardian:{q:'health OR pharma'},
+    newsdata:{category:'health'}, gnews:{category:'health'}, currents:{category:'health'}, guardian:{q:'health OR pharma'}, nyt:{section:'health'},
     rssQuery:'healthcare OR pharma' },
   { id:'energy',    name:'Energy & Oil',         icon:'⚡', color:'#f59e0b',
-    newsdata:{q:'energy OR oil'}, gnews:{q:'energy OR oil'}, currents:{q:'energy OR oil'}, guardian:{q:'energy OR oil'},
+    newsdata:{q:'energy OR oil'}, gnews:{q:'energy OR oil'}, currents:{q:'energy OR oil'}, guardian:{q:'energy OR oil'}, nyt:{q:'energy oil'},
     rssQuery:'energy OR oil OR gas' },
   { id:'auto',      name:'Automobiles & EV',     icon:'🚗', color:'#7c3aed',
-    newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'},
+    newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'}, nyt:{section:'automobiles'},
     rssQuery:'electric vehicle OR automobile' },
   { id:'realestate',name:'Real Estate',          icon:'🏢', color:'#0891b2',
-    newsdata:{q:'real estate OR housing'}, gnews:{q:'real estate OR housing'}, currents:{q:'real estate OR property'}, guardian:{q:'real estate OR housing'},
+    newsdata:{q:'real estate OR housing'}, gnews:{q:'real estate OR housing'}, currents:{q:'real estate OR property'}, guardian:{q:'real estate OR housing'}, nyt:{section:'realestate'},
     rssQuery:'real estate OR property' },
   { id:'agri',      name:'Agriculture',          icon:'🌾', color:'#65a30d',
-    newsdata:{q:'agriculture OR farming'}, gnews:{q:'agriculture OR farming'}, currents:{q:'agriculture OR farming'}, guardian:{q:'agriculture OR farming'},
+    newsdata:{q:'agriculture OR farming'}, gnews:{q:'agriculture OR farming'}, currents:{q:'agriculture OR farming'}, guardian:{q:'agriculture OR farming'}, nyt:{q:'agriculture farming'},
     rssQuery:'agriculture OR farming' },
   { id:'defence',   name:'Defence & Aerospace',  icon:'✈️', color:'#475569',
-    newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'}, currents:{q:'defense OR aerospace'}, guardian:{q:'defence OR aerospace'},
+    newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'}, currents:{q:'defense OR aerospace'}, guardian:{q:'defence OR aerospace'}, nyt:{q:'defense aerospace military'},
     rssQuery:'defence OR aerospace OR military' },
   { id:'retail',    name:'Retail & Consumer',    icon:'🛍️', color:'#db2777',
-    newsdata:{q:'retail OR consumer'}, gnews:{q:'retail OR consumer'}, currents:{q:'retail OR consumer'}, guardian:{q:'retail OR consumer'},
+    newsdata:{q:'retail OR consumer'}, gnews:{q:'retail OR consumer'}, currents:{q:'retail OR consumer'}, guardian:{q:'retail OR consumer'}, nyt:{q:'retail consumer'},
     rssQuery:'retail OR consumer' },
   { id:'telecom',   name:'Telecom',              icon:'📡', color:'#4f46e5',
-    newsdata:{q:'telecom OR 5G'}, gnews:{q:'telecom OR 5G'}, currents:{q:'telecom OR 5G'}, guardian:{q:'telecom OR 5G'},
+    newsdata:{q:'telecom OR 5G'}, gnews:{q:'telecom OR 5G'}, currents:{q:'telecom OR 5G'}, guardian:{q:'telecom OR 5G'}, nyt:{q:'telecom 5G wireless'},
     rssQuery:'telecom OR 5G' },
 ];
+
+/* ---------------------------------------------------------------------------
+   1b. RSS FEED CONFIG — all no-key feeds in ONE place, mapped per sector.
+   Fixing a dead feed is a one-line edit here. Google News + Bing keyword feeds
+   are appended automatically (see rssFeedsFor) for broad + India coverage.
+   --------------------------------------------------------------------------- */
+const RSS_FEEDS = {
+  tech: [
+    'https://techcrunch.com/feed/',
+    'https://www.theverge.com/rss/index.xml',
+    'https://feeds.arstechnica.com/arstechnica/index',
+    'http://feeds.bbci.co.uk/news/technology/rss.xml',
+  ],
+  finance: [
+    'http://feeds.bbci.co.uk/news/business/rss.xml',
+    'https://www.cnbc.com/id/10001147/device/rss/rss.html',   // CNBC markets
+    'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms',
+    'https://www.livemint.com/rss/markets',
+    'https://www.thehindubusinessline.com/feeder/default.rss',
+    'https://www.moneycontrol.com/rss/latestnews.xml',
+  ],
+  health: [
+    'http://feeds.bbci.co.uk/news/health/rss.xml',
+  ],
+  energy: [],
+  auto: [],
+  realestate: [],
+  agri: [],
+  defence: [
+    'https://www.aljazeera.com/xml/rss/all.xml',
+  ],
+  retail: [],
+  telecom: [],
+};
 
 /* ---------------------------------------------------------------------------
    2. CONSTANTS & STATE
@@ -391,7 +432,7 @@ const LS = {
 };
 const CACHE_TTL = 30 * 60 * 1000;      // 30 minutes
 const MAX_ITEMS = 20;
-const APIS = ['newsdata', 'gnews', 'currents', 'guardian'];
+const APIS = ['newsdata', 'gnews', 'currents', 'guardian', 'nyt'];
 // CORS proxies tried in order for RSS. All free proxies are flaky/rate-limited
 // (allorigins often 503/520s; corsproxy.io & cors.sh now need paid keys), so we
 // keep several anonymous fallbacks and move to the next on any failure.
@@ -459,6 +500,22 @@ const normalize = {
     title: a.webTitle, url: a.webUrl, source: 'The Guardian',
     image: (a.fields && a.fields.thumbnail) || null, publishedAt: a.webPublicationDate,
     description: (a.fields && a.fields.trailText) || '' })),
+  // NYT has two shapes: Top Stories (results[]) and Article Search (response.docs[]).
+  nyt: (j) => {
+    const nytImg = (mm) => {
+      if (!mm || !mm.length) return null;
+      let u = (mm.find(m => m && m.url) || {}).url || null;
+      if (u && !/^https?:/.test(u)) u = 'https://www.nytimes.com/' + u.replace(/^\/+/, '');
+      return u;
+    };
+    if (j.results) return j.results.map(a => ({
+      title: a.title, url: a.url, source: 'The New York Times',
+      image: nytImg(a.multimedia), publishedAt: a.published_date, description: a.abstract || '' }));
+    if (j.response && j.response.docs) return j.response.docs.map(a => ({
+      title: (a.headline && a.headline.main) || '', url: a.web_url, source: 'The New York Times',
+      image: nytImg(a.multimedia), publishedAt: a.pub_date, description: a.abstract || '' }));
+    return [];
+  },
 };
 
 /* ---------------------------------------------------------------------------
@@ -498,6 +555,14 @@ const clientFetch = {
     if (c.q) p.set('q', c.q);
     return normalize.guardian(await fetchJSON(`https://content.guardianapis.com/search?${p}`));
   },
+  async nyt(sector, key) {
+    const c = sector.nyt;
+    // Section → Top Stories; keyword → Article Search.
+    const url = c.section
+      ? `https://api.nytimes.com/svc/topstories/v2/${c.section}.json?api-key=${key}`
+      : `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(c.q)}&sort=newest&api-key=${key}`;
+    return normalize.nyt(await fetchJSON(url));
+  },
 };
 
 /* ---------------------------------------------------------------------------
@@ -507,9 +572,12 @@ const clientFetch = {
    --------------------------------------------------------------------------- */
 function rssFeedsFor(sector) {
   const q = encodeURIComponent(sector.rssQuery);
+  // Google News (India-weighted) + Bing are keyword-targeted and reliable, so
+  // they lead; the sector's named feeds (BBC, CNBC, ET, TechCrunch…) follow.
   return [
-    `https://news.google.com/rss/search?q=${q}&hl=en-US&gl=US&ceid=US:en`,
-    `https://news.google.com/rss/search?q=${q}%20when:2d&hl=en-IN&gl=IN&ceid=IN:en`,
+    `https://news.google.com/rss/search?q=${q}&hl=en-IN&gl=IN&ceid=IN:en`,
+    ...(RSS_FEEDS[sector.id] || []),
+    `https://www.bing.com/news/search?q=${q}&format=rss`,
   ];
 }
 // fetch with a timeout so a hung proxy can't stall the whole sector load
@@ -653,9 +721,10 @@ async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
     }
   }
 
-  // ---- Layer 2: RSS backfill only if the APIs came up short (or RSS-only mode) ----
+  // ---- Layer 2: RSS backfill only if the APIs came up short (or RSS-only mode).
+  // Pulls up to 3 named feeds so RSS-only mode still gets diverse sources. ----
   if (apiItems.length < 4) {
-    const results = await Promise.allSettled(rssFeedsFor(sector).slice(0, 1).map(fetchRSS));
+    const results = await Promise.allSettled(rssFeedsFor(sector).slice(0, 3).map(fetchRSS));
     results.forEach((r, i) => {
       if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
       else errors[`rss${i+1}`] = r.reason?.message || 'failed';
@@ -1040,6 +1109,7 @@ function openSettings() {
   $('key_gnews').value = k.gnews || '';
   $('key_currents').value = k.currents || '';
   $('key_guardian').value = k.guardian || '';
+  $('key_nyt').value = k.nyt || '';
   $('settingsOverlay').classList.add('show');
 }
 function saveKeys() {
@@ -1048,6 +1118,7 @@ function saveKeys() {
     gnews: $('key_gnews').value.trim(),
     currents: $('key_currents').value.trim(),
     guardian: $('key_guardian').value.trim(),
+    nyt: $('key_nyt').value.trim(),
   };
   Object.keys(k).forEach(x => { if (!k[x]) delete k[x]; });
   localStorage.setItem(LS.keys, JSON.stringify(k));
