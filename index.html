@@ -73,15 +73,12 @@
   .brand-ig { color: var(--accent); font-weight: 700; }
   .brand-ig:hover { text-decoration: underline; }
 
-  /* ---------- Live world clocks ---------- */
-  .clockbar {
-    max-width: 1280px; margin: 0 auto; padding: 2px 18px 12px;
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
+  /* ---------- Live world clocks (under the byline) ---------- */
+  .clockbar { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
   .clock {
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 6px;
     background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: 9px; padding: 5px 11px; font-size: 12.5px;
+    border-radius: 8px; padding: 3px 9px; font-size: 11px;
   }
   .clk-city { color: var(--text-dim); font-weight: 600; }
   .clk-time { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .3px; }
@@ -327,6 +324,7 @@
           <p>by <b>Sanjay Navandar</b> ·
             <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener" class="brand-ig">📸 ProfessorSK</a>
             · <span id="updated">loading…</span></p>
+          <div class="clockbar" id="clocks"></div>
         </div>
       </div>
       <span class="badge-mode" id="modeBadge" title="Data source mode">…</span>
@@ -334,7 +332,6 @@
       <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
       <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
     </div>
-    <div class="clockbar" id="clocks"></div>
   </header>
 
   <main>
