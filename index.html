@@ -73,6 +73,19 @@
   .brand-ig { color: var(--accent); font-weight: 700; }
   .brand-ig:hover { text-decoration: underline; }
 
+  /* ---------- Live world clocks ---------- */
+  .clockbar {
+    max-width: 1280px; margin: 0 auto; padding: 2px 18px 12px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .clock {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 9px; padding: 5px 11px; font-size: 12.5px;
+  }
+  .clk-city { color: var(--text-dim); font-weight: 600; }
+  .clk-time { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .3px; }
+
   .icon-btn {
     border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
     width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 17px;
@@ -321,6 +334,7 @@
       <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
       <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
     </div>
+    <div class="clockbar" id="clocks"></div>
   </header>
 
   <main>
@@ -493,7 +507,29 @@ const state = {
    --------------------------------------------------------------------------- */
 const $ = (id) => document.getElementById(id);
 const dashEl = $('dash'), topMainEl = $('topMain'), marketsEl = $('markets'),
-      updatedEl = $('updated'), modeBadge = $('modeBadge');
+      updatedEl = $('updated'), modeBadge = $('modeBadge'), clocksEl = $('clocks');
+
+// Live world clocks shown in the header, updated every second.
+const CLOCKS = [
+  { city: 'India',    flag: '🇮🇳', tz: 'Asia/Kolkata' },
+  { city: 'Dubai',    flag: '🇦🇪', tz: 'Asia/Dubai' },
+  { city: 'New York', flag: '🇺🇸', tz: 'America/New_York' },
+  { city: 'London',   flag: '🇬🇧', tz: 'Europe/London' },
+];
+function startClocks() {
+  clocksEl.innerHTML = CLOCKS.map((c, i) =>
+    `<div class="clock"><span class="clk-city">${c.flag} ${c.city}</span><span class="clk-time" id="clk-${i}">--:--:--</span></div>`
+  ).join('');
+  const tick = () => {
+    const now = new Date();
+    CLOCKS.forEach((c, i) => {
+      const el = document.getElementById('clk-' + i);
+      if (el) el.textContent = now.toLocaleTimeString('en-GB', { timeZone: c.tz, hour12: false });
+    });
+  };
+  tick();
+  setInterval(tick, 1000);
+}
 
 // Route thumbnails through the free wsrv.nl image proxy: upgrades http→https,
 // resizes small (faster + smaller), sets CORS headers (also fixes PDF canvas),
@@ -1365,6 +1401,7 @@ function wire() {
 async function init() {
   setTheme(localStorage.getItem(LS.theme) === 'dark');
   applyAccent(BRAND);
+  startClocks();
   buildDashboard();
   wire();
   state.backend = await detectBackend();
