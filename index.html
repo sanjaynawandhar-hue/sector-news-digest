@@ -286,7 +286,6 @@
       <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
       <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
     </div>
-    <div class="pills" id="pills"></div>
   </header>
 
   <main>
@@ -413,8 +412,16 @@ const state = {
    3. DOM refs & tiny helpers
    --------------------------------------------------------------------------- */
 const $ = (id) => document.getElementById(id);
-const dashEl = $('dash'), pillsEl = $('pills'),
+const dashEl = $('dash'),
       updatedEl = $('updated'), modeBadge = $('modeBadge');
+
+// Route thumbnails through the free wsrv.nl image proxy: upgrades http→https,
+// resizes small (faster + smaller), sets CORS headers (also fixes PDF canvas),
+// and sidesteps hotlink blocking. `params` are wsrv query options.
+function weserv(url, params) {
+  const clean = String(url).replace(/^https?:\/\//, '');
+  return `https://images.weserv.nl/?url=${encodeURIComponent(clean)}&${params}`;
+}
 
 function getKeys() { try { return JSON.parse(localStorage.getItem(LS.keys)) || {}; } catch { return {}; } }
 function hasAnyKey() { const k = getKeys(); return APIS.some(a => k[a]); }
@@ -716,18 +723,6 @@ function buildDashboard() {
   });
 }
 
-// Quick-jump pills scroll to a sector box (they no longer switch views).
-function renderPills() {
-  pillsEl.innerHTML = '';
-  SECTORS.forEach(s => {
-    const el = document.createElement('div');
-    el.className = 'pill';
-    el.innerHTML = `<span>${s.icon}</span>${escapeHtml(s.name)}`;
-    el.onclick = () => document.getElementById('box-' + s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    pillsEl.appendChild(el);
-  });
-}
-
 // Render one sector's list of small news rows (thumbnail + headline + meta).
 function renderBox(sector) {
   const listEl = document.getElementById('list-' + sector.id);
@@ -769,18 +764,40 @@ function renderBox(sector) {
   items.forEach(a => {
     const row = document.createElement('a');
     row.className = 's-item'; row.href = a.url; row.target = '_blank'; row.rel = 'noopener'; row.title = a.title;
-    const thumb = a.image
-      ? `<div class="s-thumb" style="background-image:url('${escapeHtml(a.image)}')"></div>`
-      : `<div class="s-thumb ph" style="background:${sector.color}">${sector.icon}</div>`;
-    row.innerHTML = `${thumb}
-      <div class="s-main">
-        <div class="s-hl">${escapeHtml(a.title)}</div>
-        <div class="s-meta"><b>${escapeHtml(a.source)}</b><span>${escapeHtml(timeAgo(a.publishedAt))}</span></div>
-      </div>`;
+
+    // Thumbnail: real image via proxy, falling back to a colored icon tile.
+    let thumb;
+    if (a.image) {
+      thumb = document.createElement('img');
+      thumb.className = 's-thumb';
+      thumb.loading = 'lazy'; thumb.decoding = 'async'; thumb.alt = '';
+      thumb.src = weserv(a.image, 'w=104&h=104&fit=cover&output=jpg&q=72');
+      thumb.onerror = () => thumb.replaceWith(makeThumbPlaceholder(sector));
+    } else {
+      thumb = makeThumbPlaceholder(sector);
+    }
+
+    const main = document.createElement('div');
+    main.className = 's-main';
+    main.innerHTML = `
+      <div class="s-hl">${escapeHtml(a.title)}</div>
+      <div class="s-meta"><b>${escapeHtml(a.source)}</b><span>${escapeHtml(timeAgo(a.publishedAt))}</span></div>`;
+
+    row.appendChild(thumb);
+    row.appendChild(main);
     frag.appendChild(row);
   });
   listEl.innerHTML = '';
   listEl.appendChild(frag);
+}
+
+// A colored tile with the sector icon, shown when there's no image (or it fails).
+function makeThumbPlaceholder(sector) {
+  const d = document.createElement('div');
+  d.className = 's-thumb ph';
+  d.style.background = sector.color;
+  d.textContent = sector.icon;
+  return d;
 }
 
 /* ---------------------------------------------------------------------------
@@ -806,7 +823,9 @@ function downscaleImage(url, maxDim = 120, quality = 0.6) {
       } catch { done(null); }   // tainted canvas (no CORS headers)
     };
     img.onerror = () => { clearTimeout(timer); done(null); };
-    img.src = url;
+    // Load through the wsrv.nl proxy: sends CORS headers (so the canvas isn't
+    // tainted) and pre-resizes, making PDF thumbnails reliable and small.
+    img.src = weserv(url, `w=${maxDim * 2}&output=jpg&q=75`);
   });
 }
 
@@ -1070,7 +1089,6 @@ async function init() {
   setTheme(localStorage.getItem(LS.theme) === 'dark');
   applyAccent(BRAND);
   buildDashboard();
-  renderPills();
   wire();
   state.backend = await detectBackend();
   updateModeBadge();
