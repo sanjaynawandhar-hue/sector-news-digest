@@ -435,6 +435,12 @@ const SECTORS = [
   { id:'telecom',   name:'Telecom',              icon:'📡', color:'#4f46e5',
     newsdata:{q:'telecom OR 5G'}, gnews:{q:'telecom OR 5G'}, currents:{q:'telecom OR 5G'}, guardian:{q:'telecom OR 5G'}, nyt:{q:'telecom 5G wireless'},
     rssQuery:'telecom OR 5G' },
+  { id:'crypto',    name:'Crypto News',          icon:'🪙', color:'#f7931a',
+    newsdata:{q:'cryptocurrency OR bitcoin OR ethereum'}, gnews:{q:'cryptocurrency OR bitcoin'}, currents:{q:'cryptocurrency OR bitcoin'}, guardian:{q:'cryptocurrency OR bitcoin'}, nyt:{q:'cryptocurrency bitcoin'},
+    rssQuery:'cryptocurrency OR bitcoin OR ethereum' },
+  { id:'entertainment', name:'Bollywood & Hollywood', icon:'🎬', color:'#c026d3',
+    newsdata:{category:'entertainment'}, gnews:{category:'entertainment'}, currents:{category:'entertainment'}, guardian:{q:'Bollywood OR Hollywood'}, nyt:{section:'movies'},
+    rssQuery:'Bollywood OR Hollywood' },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -469,6 +475,14 @@ const RSS_FEEDS = {
   ],
   retail: [],
   telecom: [],
+  crypto: [
+    'https://www.coindesk.com/arc/outboundfeeds/rss/',
+    'https://cointelegraph.com/rss',
+  ],
+  entertainment: [
+    'https://variety.com/feed/',
+    'https://www.bollywoodhungama.com/rss/news.xml',
+  ],
 };
 
 /* ---------------------------------------------------------------------------
