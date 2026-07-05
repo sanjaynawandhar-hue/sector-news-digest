@@ -117,38 +117,43 @@
   }
   .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ---------- News grid ---------- */
+  /* ---------- Compact news list ---------- */
   main { max-width: 1200px; margin: 0 auto; padding: 8px 18px 60px; }
   .grid {
-    display: grid; gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: grid; gap: 8px 20px;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   }
-  .card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
-    transition: transform .12s, box-shadow .12s;
+  .item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: 10px;
+    border: 1px solid transparent; border-bottom: 1px solid var(--border);
+    transition: background .1s, border-color .1s;
   }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(20,30,60,.14); }
-  .card .thumb {
-    width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--surface-2);
-    display: block;
+  .item:hover { background: var(--surface); border-color: var(--border); }
+  .item .dot {
+    flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent);
   }
-  .card .thumb.placeholder {
-    display: grid; place-items: center; color: var(--text-dim); font-size: 30px;
+  .item .main { min-width: 0; flex: 1; }
+  .item .headline {
+    font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--text);
+    /* clamp to 2 lines so rows stay compact */
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .card .body { padding: 13px 14px 14px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
-  .card .headline { font-size: 15px; font-weight: 700; line-height: 1.32; }
-  .card .meta { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-dim); flex-wrap: wrap; }
+  .item:hover .headline { color: var(--accent); }
+  .item .meta { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
+  .item .arrow { flex: 0 0 auto; color: var(--text-dim); font-size: 14px; opacity: .5; }
+  .item:hover .arrow { opacity: 1; color: var(--accent); }
   .source-badge {
     background: var(--accent-soft); color: var(--accent); font-weight: 700;
-    padding: 2px 8px; border-radius: 999px; font-size: 11px;
+    padding: 1px 8px; border-radius: 999px; font-size: 10.5px; white-space: nowrap;
   }
   body.dark .source-badge { color: #a9c2ff; }
 
   /* ---------- Skeleton ---------- */
-  .skeleton .thumb, .skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; }
-  .skeleton .line { height: 12px; border-radius: 6px; margin: 6px 0; }
-  .skeleton .line.short { width: 55%; }
+  .skeleton { pointer-events: none; }
+  .skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; height: 12px; border-radius: 6px; margin: 5px 0; }
+  .skeleton .line.short { width: 45%; }
   @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
   /* ---------- Empty / error ---------- */
@@ -461,7 +466,7 @@ function rssFeedsFor(sector) {
   ];
 }
 // fetch with a timeout so a hung proxy can't stall the whole sector load
-async function fetchWithTimeout(url, ms = 8000) {
+async function fetchWithTimeout(url, ms = 5000) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try { return await fetch(url, { signal: ctrl.signal }); }
@@ -502,7 +507,8 @@ async function fetchRSS(feedUrl) {
    --------------------------------------------------------------------------- */
 async function detectBackend() {
   try {
-    const r = await fetch('/.netlify/functions/news?probe=1', { method:'GET' });
+    // Short timeout so a non-Netlify host (e.g. GitHub Pages 404) never stalls startup.
+    const r = await fetchWithTimeout('/.netlify/functions/news?probe=1', 3000);
     if (!r.ok) return false;
     const j = await r.json();
     return !!(j && j.ok);
@@ -590,9 +596,11 @@ async function loadSector(sector, { force = false } = {}) {
     }));
   }
 
-  // ---- Layer 2: RSS — always used to backfill (and as sole source in RSS-only mode) ----
-  if (apiItems.length < 12) {
-    const feeds = rssFeedsFor(sector);
+  // ---- Layer 2: RSS — only as a backfill when the APIs came up short (or in
+  // RSS-only mode). The proxies are slow, so we skip them when APIs delivered
+  // enough, and use just one feed to keep it fast. ----
+  if (apiItems.length < 6) {
+    const feeds = rssFeedsFor(sector).slice(0, 1);
     const results = await Promise.allSettled(feeds.map(fetchRSS));
     results.forEach((r, i) => {
       if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
@@ -638,10 +646,10 @@ function renderPills() {
 
 function renderSkeletons() {
   gridEl.innerHTML = '';
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 10; i++) {
     const c = document.createElement('div');
-    c.className = 'card skeleton';
-    c.innerHTML = `<div class="thumb"></div><div class="body"><div class="line"></div><div class="line short"></div></div>`;
+    c.className = 'item skeleton';
+    c.innerHTML = `<span class="dot"></span><div class="main"><div class="line"></div><div class="line short"></div></div>`;
     gridEl.appendChild(c);
   }
 }
@@ -685,22 +693,26 @@ function renderCards() {
     </div>`;
     return;
   }
+  // Compact list: each headline is a link that opens the full article in a new
+  // tab. No large images in the feed = far faster render.
+  const frag = document.createDocumentFragment();
   items.forEach(a => {
-    const card = document.createElement('a');
-    card.className = 'card'; card.href = a.url; card.target = '_blank'; card.rel = 'noopener';
-    const thumb = a.image
-      ? `<img class="thumb" src="${escapeHtml(a.image)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb placeholder',textContent:'${state.sector.icon}'}))">`
-      : `<div class="thumb placeholder">${state.sector.icon}</div>`;
-    card.innerHTML = `${thumb}
-      <div class="body">
+    const row = document.createElement('a');
+    row.className = 'item'; row.href = a.url; row.target = '_blank'; row.rel = 'noopener';
+    row.title = a.title;
+    row.innerHTML = `
+      <span class="dot"></span>
+      <div class="main">
         <div class="headline">${escapeHtml(a.title)}</div>
         <div class="meta">
           <span class="source-badge">${escapeHtml(a.source)}</span>
           <span>${escapeHtml(timeAgo(a.publishedAt))}</span>
         </div>
-      </div>`;
-    gridEl.appendChild(card);
+      </div>
+      <span class="arrow">↗</span>`;
+    frag.appendChild(row);
   });
+  gridEl.appendChild(frag);
 }
 
 function renderSector(ts) {
