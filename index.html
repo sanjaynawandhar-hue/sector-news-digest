@@ -200,23 +200,41 @@
   /* Hidden render stage for PDF templates (kept off-screen, not display:none so html2canvas can measure) */
   #pdfStage { position: fixed; left: -10000px; top: 0; }
 
-  /* ---------- Top Stories (featured hero) ---------- */
-  .top { max-width: 1280px; margin: 0 auto; padding: 14px 18px 0; }
-  .top:empty { display: none; }
-  .top h2 { font-size: 16px; font-weight: 800; margin: 4px 0 12px; display: flex; align-items: center; gap: 8px; }
-  .top-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  /* ---------- Top area: stories (left) + markets (right) ---------- */
+  .topwrap { max-width: 1280px; margin: 0 auto; padding: 14px 18px 0; display: flex; gap: 18px; align-items: flex-start; }
+  .topmain { flex: 1; min-width: 0; }
+  .topmain h2 { font-size: 15px; font-weight: 800; margin: 2px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .top-grid { display: grid; gap: 11px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   .feat {
-    position: relative; height: 184px; border-radius: 14px; overflow: hidden;
+    position: relative; height: 132px; border-radius: 12px; overflow: hidden;
     display: block; box-shadow: var(--shadow); background: var(--sc);
     transition: transform .12s, box-shadow .12s;
   }
   .feat:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(20,30,60,.22); }
   .feat-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .feat-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,12,20,.92) 32%, rgba(8,12,20,.12)); }
-  .feat-body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; color: #fff; }
-  .feat-badge { align-self: flex-start; background: var(--sc); font-size: 11px; font-weight: 800; padding: 3px 11px; border-radius: 999px; margin-bottom: 8px; }
-  .feat-hl { font-size: 15.5px; font-weight: 800; line-height: 1.28; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .feat-meta { font-size: 11px; opacity: .88; margin-top: 6px; }
+  .feat-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,12,20,.93) 34%, rgba(8,12,20,.1)); }
+  .feat-body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; color: #fff; }
+  .feat-badge { align-self: flex-start; background: var(--sc); font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+  .feat-hl { font-size: 12.5px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .feat-meta { font-size: 10px; opacity: .85; margin-top: 4px; }
+
+  /* ---------- Markets panel (right) ---------- */
+  .markets { flex: 0 0 296px; }
+  .mkt { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  .mkt-head { font-size: 14px; font-weight: 800; padding: 11px 14px; color: #fff; background: linear-gradient(120deg, #0f9d58, rgba(0,0,0,.3)), #0f9d58; display: flex; align-items: center; gap: 7px; }
+  .mkt-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 9px 14px; border-top: 1px solid var(--border); font-size: 13px; }
+  .mkt-row.grp { background: var(--surface-2); }
+  .mkt-name { color: var(--text-dim); font-weight: 600; }
+  .mkt-val { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .mkt-chg { font-size: 10.5px; font-weight: 700; margin-left: 6px; }
+  .mkt-chg.up { color: #16a34a; }
+  .mkt-chg.down { color: #dc2626; }
+  .mkt-foot { font-size: 10px; color: var(--text-dim); padding: 7px 14px; text-align: right; border-top: 1px solid var(--border); }
+
+  @media (max-width: 860px) {
+    .topwrap { flex-direction: column; }
+    .markets { flex: 1 1 auto; width: 100%; }
+  }
 
   /* ---------- Dashboard: all sectors as boxes on one screen ---------- */
   .dash {
@@ -306,7 +324,10 @@
   </header>
 
   <main>
-    <div class="top" id="top"></div>
+    <div class="topwrap">
+      <div class="topmain" id="topMain"></div>
+      <aside class="markets" id="markets"></aside>
+    </div>
     <div class="dash" id="dash"></div>
   </main>
 
@@ -471,7 +492,7 @@ const state = {
    3. DOM refs & tiny helpers
    --------------------------------------------------------------------------- */
 const $ = (id) => document.getElementById(id);
-const dashEl = $('dash'), topEl = $('top'),
+const dashEl = $('dash'), topMainEl = $('topMain'), marketsEl = $('markets'),
       updatedEl = $('updated'), modeBadge = $('modeBadge');
 
 // Route thumbnails through the free wsrv.nl image proxy: upgrades http→https,
@@ -855,7 +876,7 @@ function renderTopStories() {
   picks.sort((x, y) => new Date(y.a.publishedAt || 0) - new Date(x.a.publishedAt || 0));
   const top = picks.slice(0, 6);
 
-  topEl.innerHTML = '';
+  topMainEl.innerHTML = '';
   if (!top.length) return;
 
   const h = document.createElement('h2');
@@ -884,8 +905,82 @@ function renderTopStories() {
     grid.appendChild(card);
   });
 
-  topEl.appendChild(h);
-  topEl.appendChild(grid);
+  topMainEl.appendChild(h);
+  topMainEl.appendChild(grid);
+}
+
+/* ---------------------------------------------------------------------------
+   MARKETS PANEL — live indices + forex + crypto, all free / no key:
+     • Bitcoin  → CoinGecko (direct CORS)
+     • USD/INR  → open.er-api.com (direct CORS)
+     • Indices  → Yahoo Finance chart endpoint via CORS proxy (raced)
+   Every source is wrapped so one failure never breaks the panel.
+   --------------------------------------------------------------------------- */
+const MARKETS = [
+  { name: 'Sensex',      symbol: '^BSESN' },
+  { name: 'Nifty 50',    symbol: '^NSEI'  },
+  { name: 'Dow Jones',   symbol: '^DJI'   },
+  { name: 'Nikkei 225',  symbol: '^N225'  },
+];
+
+// Race the CORS proxies for a JSON endpoint; each attempt must parse or it's
+// rejected, so a proxy that returns an error page never wins.
+async function proxyJSON(url) {
+  const attempt = async (proxy) => {
+    const r = await fetchWithTimeout(proxy.build(url), 6000);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    let t = await r.text();
+    if (proxy.json) t = JSON.parse(t).contents || '';
+    return JSON.parse(t);
+  };
+  return Promise.any(CORS_PROXIES.map(attempt));
+}
+
+function fmtNum(v, prefix = '') {
+  if (v == null || isNaN(v)) return '—';
+  const dec = Math.abs(v) < 1000 ? 2 : 0;
+  return prefix + Number(v).toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+function chgHtml(chg) {
+  if (chg == null || isNaN(chg)) return '';
+  const up = chg >= 0;
+  return `<span class="mkt-chg ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${Math.abs(chg).toFixed(2)}%</span>`;
+}
+function mktRow(name, valHtml, grp = false) {
+  return `<div class="mkt-row${grp ? ' grp' : ''}"><span class="mkt-name">${name}</span><span class="mkt-val">${valHtml}</span></div>`;
+}
+
+async function loadMarkets() {
+  marketsEl.innerHTML = `<div class="mkt"><div class="mkt-head">📊 Markets</div>
+    <div class="mkt-row"><span class="mkt-name">Loading live data…</span><span class="mkt-val">⏳</span></div></div>`;
+
+  // Indices (Yahoo via proxy) + forex + crypto, all in parallel.
+  const idx = await Promise.all(MARKETS.map(async (m) => {
+    try {
+      const j = await proxyJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?interval=1d&range=2d`);
+      const meta = j.chart.result[0].meta;
+      const price = meta.regularMarketPrice;
+      const prev = meta.chartPreviousClose ?? meta.previousClose;
+      return { name: m.name, price, chg: prev ? ((price - prev) / prev) * 100 : null };
+    } catch { return { name: m.name, price: null, chg: null }; }
+  }));
+
+  let usdinr = null, btc = null, btcChg = null;
+  try { const j = await fetchJSON('https://open.er-api.com/v6/latest/USD'); usdinr = j.rates && j.rates.INR; } catch {}
+  try {
+    const j = await fetchJSON('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
+    btc = j.bitcoin.usd; btcChg = j.bitcoin.usd_24h_change;
+  } catch {}
+
+  const rows = idx.map(m => mktRow(m.name, `${fmtNum(m.price)} ${chgHtml(m.chg)}`)).join('')
+    + mktRow('USD / INR', fmtNum(usdinr, '₹'), true)
+    + mktRow('Bitcoin', `${fmtNum(btc, '$')} ${chgHtml(btcChg)}`, true);
+
+  marketsEl.innerHTML = `<div class="mkt">
+      <div class="mkt-head">📊 Markets</div>
+      ${rows}
+      <div class="mkt-foot">Updated ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+    </div>`;
 }
 
 // Render one sector's list of small news rows (thumbnail + headline + meta).
@@ -1252,6 +1347,7 @@ function wire() {
   $('refreshBtn').onclick = () => {
     const heavy = state.backend || hasAnyKey();
     if (heavy && !confirm('Refresh all sectors will call your news APIs and use daily quota. Continue?')) return;
+    loadMarkets();
     loadAllSectors({ force: true });
   };
 }
@@ -1266,6 +1362,7 @@ async function init() {
   wire();
   state.backend = await detectBackend();
   updateModeBadge();
+  loadMarkets();          // markets load independently of the news sectors
   loadAllSectors();
 }
 init();
