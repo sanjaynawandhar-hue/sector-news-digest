@@ -105,8 +105,10 @@ const BLOCKED_SOURCES = [
   'quora.com', 'medium.com', 'substack.com', 'blogspot.', 'wordpress.com',
 ];
 const isBlocked = (a) => {
-  const hay = ((a.url || '') + ' ' + (a.source || '')).toLowerCase();
-  return BLOCKED_SOURCES.some(d => hay.includes(d));
+  const url = (a.url || '').toLowerCase();
+  const src = (a.source || '').toLowerCase().trim();
+  if (/^\/(u|r)\//.test(src) || src === 'reddit') return true;   // reddit author/subreddit
+  return BLOCKED_SOURCES.some(d => (url + ' ' + src).includes(d));
 };
 
 // Title-based de-duplication + recency sort, dropping social/aggregator noise.

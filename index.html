@@ -663,8 +663,12 @@ const BLOCKED_SOURCES = [
   'quora.com', 'medium.com', 'substack.com', 'blogspot.', 'wordpress.com',
 ];
 function isBlocked(a) {
-  const hay = ((a.url || '') + ' ' + (a.source || '')).toLowerCase();
-  return BLOCKED_SOURCES.some(d => hay.includes(d));
+  const url = (a.url || '').toLowerCase();
+  const src = (a.source || '').toLowerCase().trim();
+  // Reddit items often surface with a username/subreddit as the "source"
+  // (e.g. "/u/chromate", "/r/technology") rather than a reddit.com URL.
+  if (/^\/(u|r)\//.test(src) || src === 'reddit') return true;
+  return BLOCKED_SOURCES.some(d => (url + ' ' + src).includes(d));
 }
 
 function mergeItems(...lists) {
@@ -704,7 +708,12 @@ function pickApis(available, n) {
    10. LOAD A SECTOR — orchestrates cache → APIs (2, rotated) → RSS fallback.
    --------------------------------------------------------------------------- */
 function readCache(sid) {
-  try { const c = JSON.parse(localStorage.getItem(LS.cache(sid))); return c && c.items ? c : null; } catch { return null; }
+  try {
+    const c = JSON.parse(localStorage.getItem(LS.cache(sid)));
+    if (!c || !c.items) return null;
+    c.items = c.items.filter(a => !isBlocked(a));   // re-filter old cached items
+    return c;
+  } catch { return null; }
 }
 function writeCache(sid, items) {
   try { localStorage.setItem(LS.cache(sid), JSON.stringify({ ts: Date.now(), items })); } catch {}
