@@ -629,11 +629,21 @@ async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
     } catch (e) { errors.backend = e.message; }
   } else {
     const keys = getKeys();
-    const apis = pickApis(APIS.filter(a => keys[a]), apiCount);
+    const available = APIS.filter(a => keys[a]);
+    const apis = pickApis(available, apiCount);
     await Promise.all(apis.map(async (api) => {
       try { apiItems = apiItems.concat(await clientFetch[api](sector, keys[api])); }
       catch (e) { errors[api] = e.message; }
     }));
+    // Resilience: if the assigned API returned nothing (empty query result or a
+    // transient error), try one more distinct API before falling back to RSS.
+    if (apiItems.length === 0) {
+      const extra = available.find(a => !apis.includes(a));
+      if (extra) {
+        try { apiItems = apiItems.concat(await clientFetch[extra](sector, keys[extra])); }
+        catch (e) { errors[extra] = e.message; }
+      }
+    }
   }
 
   // ---- Layer 2: RSS backfill only if the APIs came up short (or RSS-only mode) ----
@@ -736,7 +746,22 @@ function renderBox(sector) {
     return;
   }
   if (!items.length) {
-    listEl.innerHTML = `<div class="sbox-empty">No stories yet. Add a free API key in ⚙️ Settings for reliable results.</div>`;
+    // Key-aware: only nudge for a key when there genuinely isn't one.
+    const msg = (state.backend || hasAnyKey())
+      ? 'No stories returned for this sector right now.'
+      : 'No stories. Add a free API key in ⚙️ Settings for reliable results.';
+    listEl.innerHTML = '';
+    const box = document.createElement('div');
+    box.className = 'sbox-empty';
+    box.textContent = msg;
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = '🔄 Retry';
+    btn.style.cssText = 'margin-top:10px;padding:6px 14px;font-size:12px';
+    btn.onclick = () => loadSector(sector, { force: true });
+    box.appendChild(document.createElement('br'));
+    box.appendChild(btn);
+    listEl.appendChild(box);
     return;
   }
 
