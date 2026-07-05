@@ -64,6 +64,9 @@
   }
   .brand h1 { font-size: 18px; margin: 0; font-weight: 800; letter-spacing: .2px; }
   .brand p { margin: 0; font-size: 11px; color: var(--text-dim); }
+  .brand p b { color: var(--text); font-weight: 700; }
+  .brand-ig { color: var(--accent); font-weight: 700; }
+  .brand-ig:hover { text-decoration: underline; }
 
   .icon-btn {
     border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
@@ -285,7 +288,9 @@
         <div class="logo">📰</div>
         <div>
           <h1>Global Sector News Digest</h1>
-          <p>All sectors, one screen · <span id="updated">loading…</span></p>
+          <p>by <b>Sanjay Navandar</b> ·
+            <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener" class="brand-ig">📸 ProfessorSK</a>
+            · <span id="updated">loading…</span></p>
         </div>
       </div>
       <span class="badge-mode" id="modeBadge" title="Data source mode">…</span>
@@ -301,7 +306,7 @@
   </main>
 
   <footer>
-    Curated by <b>Sanjay</b> &nbsp;|&nbsp; <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener">📸 ProfessorSK</a>
+    Curated by <b>Sanjay Navandar</b> &nbsp;|&nbsp; <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener">📸 Follow ProfessorSK · @iam_sanjay_navandar</a>
   </footer>
 
   <!-- Settings modal -->
@@ -1075,14 +1080,14 @@ async function downloadDigestPDF(sector) {
     </style>
     <div class="ig">
       <div class="ig-head">
-        <div class="by">Curated by<br>Sanjay</div>
+        <div class="by">Curated by<br>Sanjay Navandar</div>
         <div class="ic">${sector.icon}</div>
         <h1>Top ${escapeHtml(sector.name)} News</h1>
         <div class="date">${dateStr}</div>
       </div>
       <div class="ig-body">${cards}</div>
       <div class="ig-foot">
-        <div class="l">Follow <span>ProfessorSK</span> for daily sector digests</div>
+        <div class="l">Curated by <span>Sanjay Navandar</span> · Follow ProfessorSK</div>
         <div class="r">📸 @iam_sanjay_navandar</div>
       </div>
     </div>`;
@@ -1137,7 +1142,7 @@ async function downloadCarouselPDF(sector) {
       <div class="c-ic">🙌</div>
       <div class="c-title">Thanks for reading</div>
       <div class="c-follow">Follow <b>ProfessorSK</b> on Instagram<br>@iam_sanjay_navandar</div>
-      <div class="c-by">Curated by Sanjay</div>
+      <div class="c-by">Curated by Sanjay Navandar</div>
     </div>`;
 
   const wrap = document.createElement('div');
