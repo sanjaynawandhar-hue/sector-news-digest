@@ -98,11 +98,22 @@ function buildUrl(api, cfg) {
   }
 }
 
-// Simple title-based de-duplication + recency sort.
+// Social / aggregator / non-news domains to drop (mirror of index.html).
+const BLOCKED_SOURCES = [
+  'reddit.com', 'redd.it', 'twitter.com', 'x.com', 't.co', 'facebook.com',
+  'youtube.com', 'youtu.be', 'tiktok.com', 'instagram.com', 'pinterest.',
+  'quora.com', 'medium.com', 'substack.com', 'blogspot.', 'wordpress.com',
+];
+const isBlocked = (a) => {
+  const hay = ((a.url || '') + ' ' + (a.source || '')).toLowerCase();
+  return BLOCKED_SOURCES.some(d => hay.includes(d));
+};
+
+// Title-based de-duplication + recency sort, dropping social/aggregator noise.
 function mergeItems(lists) {
   const seen = new Set(), out = [];
   for (const list of lists) for (const a of list) {
-    if (!a || !a.title || !a.url) continue;
+    if (!a || !a.title || !a.url || isBlocked(a)) continue;
     const k = a.title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
     if (k.length < 6 || seen.has(k)) continue;
     seen.add(k); out.push(a);

@@ -649,15 +649,35 @@ function keyOf(a) {
   // normalized title used to detect duplicates across sources
   return (a.title || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
 }
+
+// Social / aggregator / non-news domains to drop — they clutter a professional
+// digest and rarely carry usable images (e.g. Reddit posts like /u/username).
+const BLOCKED_SOURCES = [
+  'reddit.com', 'redd.it', 'twitter.com', 'x.com', 't.co', 'facebook.com',
+  'youtube.com', 'youtu.be', 'tiktok.com', 'instagram.com', 'pinterest.',
+  'quora.com', 'medium.com', 'substack.com', 'blogspot.', 'wordpress.com',
+];
+function isBlocked(a) {
+  const hay = ((a.url || '') + ' ' + (a.source || '')).toLowerCase();
+  return BLOCKED_SOURCES.some(d => hay.includes(d));
+}
+
 function mergeItems(...lists) {
   const seen = new Set(), out = [];
   for (const list of lists) for (const a of list) {
     if (!a || !a.title || !a.url) continue;
+    if (isBlocked(a)) continue;                 // drop social/aggregator noise
     const k = keyOf(a);
     if (k.length < 6 || seen.has(k)) continue;
     seen.add(k); out.push(a);
   }
-  out.sort((x, y) => new Date(y.publishedAt || 0) - new Date(x.publishedAt || 0));
+  // Recency first, but nudge items that have an image slightly ahead when they
+  // were published within the same ~3-hour window (nicer visual feed + digests).
+  out.sort((x, y) => {
+    const dt = new Date(y.publishedAt || 0) - new Date(x.publishedAt || 0);
+    if (Math.abs(dt) < 3 * 3600 * 1000) return (y.image ? 1 : 0) - (x.image ? 1 : 0) || dt;
+    return dt;
+  });
   return out.slice(0, MAX_ITEMS);
 }
 
