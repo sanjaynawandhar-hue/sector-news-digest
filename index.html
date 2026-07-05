@@ -795,92 +795,80 @@ function topKeywords(items, n = 5) {
   return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0, n).map(x => x[0]);
 }
 
+// Strip HTML/entities from an API description and truncate for the card summary.
+function cleanText(s = '', max = 150) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = s;
+  let t = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+  if (t.length > max) t = t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
+  return t;
+}
+
 /* ---------------------------------------------------------------------------
-   14. DIGEST PDF (A4 portrait, one page) — the flagship export.
-   Builds a styled hidden template, pre-downscaling the top-5 thumbnails and
-   embedding the donut, then renders with html2pdf.
+   14. DIGEST PDF — social-media infographic (1080×1350 portrait).
+   Styled like a "Top News" grid: themed header banner + a 2×3 grid of six
+   numbered news cards (thumbnail + headline + short summary) + branded footer.
+   Sized for LinkedIn / Instagram. Thumbnails are pre-downscaled to data URLs
+   so html2canvas never taints, and missing images fall back to a gradient.
    --------------------------------------------------------------------------- */
 async function downloadDigestPDF() {
-  const sector = state.sector, items = visibleItems();
+  const sector = state.sector, items = visibleItems().slice(0, 6);
   if (!items.length) return toast('Nothing to export yet — load some news first.');
-  toast('Building digest PDF…');
+  toast('Building infographic PDF…');
 
-  const top5 = items.slice(0, 5);
-  const thumbs = await Promise.all(top5.map(a => downscaleImage(a.image, 120, 0.6)));
-  const donut = await makeDonut(items, sector.color);
-  const keywords = topKeywords(items, 5);
-  const dateStr = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-  const sources = [...new Set(items.map(a => a.source))];
+  const thumbs = await Promise.all(items.map(a => downscaleImage(a.image, 320, 0.72)));
+  const dateStr = new Date().toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
 
-  const rows = top5.map((a, i) => `
-    <div class="d-row">
-      <div class="d-num">${i+1}</div>
-      ${thumbs[i] ? `<img class="d-th" src="${thumbs[i]}">` : `<div class="d-th d-ph">${sector.icon}</div>`}
-      <div class="d-tx">
-        <div class="d-hl">${escapeHtml(a.title)}</div>
-        <div class="d-mt">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>
-      </div>
-    </div>`).join('');
-
-  const kw = keywords.map(k => `<span class="d-kw">#${escapeHtml(k)}</span>`).join('');
+  const cards = items.map((a, i) => {
+    const summary = cleanText(a.description, 150) || 'Tap the card in the app to read the full story.';
+    const media = thumbs[i]
+      ? `<div class="g-img" style="background-image:url('${thumbs[i]}')"></div>`
+      : `<div class="g-img g-ph" style="background:linear-gradient(135deg,${sector.color},${sector.color}99)">${sector.icon}</div>`;
+    return `
+      <div class="g-card">
+        <div class="g-top"><span class="g-num">${i+1}</span><span class="g-title">${escapeHtml(a.title)}</span></div>
+        ${media}
+        <div class="g-desc">${escapeHtml(summary)}</div>
+        <div class="g-src"><b>${escapeHtml(a.source)}</b> · ${escapeHtml(timeAgo(a.publishedAt))}</div>
+      </div>`;
+  }).join('');
 
   const el = document.createElement('div');
-  el.className = 'digest';
   el.innerHTML = `
     <style>
-      .digest{width:794px;min-height:1123px;background:#fff;color:#101828;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;}
-      .d-head{background:linear-gradient(135deg,${sector.color},${sector.color}cc);color:#fff;padding:34px 40px;}
-      .d-head .ic{font-size:40px;}
-      .d-head h1{margin:8px 0 2px;font-size:34px;font-weight:800;letter-spacing:.3px;}
-      .d-head .dt{font-size:15px;opacity:.9;}
-      .d-body{padding:26px 40px;flex:1;}
-      .d-sec{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:${sector.color};margin:0 0 14px;}
-      .d-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #eef0f5;}
-      .d-num{flex:0 0 30px;height:30px;border-radius:8px;background:${sector.color};color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;}
-      .d-th{width:76px;height:56px;border-radius:8px;object-fit:cover;flex:0 0 76px;background:#f0f2f7;}
-      .d-ph{display:flex;align-items:center;justify-content:center;font-size:26px;}
-      .d-hl{font-size:16px;font-weight:700;line-height:1.3;}
-      .d-mt{font-size:12px;color:#667;margin-top:3px;}
-      .d-grid{display:flex;gap:22px;margin-top:22px;align-items:center;}
-      .d-card{flex:1;background:#f7f9fc;border-radius:14px;padding:16px 18px;}
-      .d-card h3{margin:0 0 10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#667;}
-      .d-donut{max-width:100%;height:auto;}
-      .d-kw{display:inline-block;background:${sector.color}1a;color:${sector.color};font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin:4px 4px 0 0;}
-      .d-stats{display:flex;gap:12px;margin-top:22px;}
-      .d-stat{flex:1;text-align:center;background:${sector.color}0f;border-radius:12px;padding:14px 8px;}
-      .d-stat .n{font-size:26px;font-weight:800;color:${sector.color};}
-      .d-stat .l{font-size:11px;color:#667;text-transform:uppercase;letter-spacing:.5px;}
-      .d-foot{background:#101828;color:#fff;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;font-size:13px;}
-      .d-foot b{color:#fff;}
-      .d-foot .tag{background:${sector.color};padding:6px 14px;border-radius:999px;font-weight:700;}
+      .ig{width:1080px;height:1350px;background:#0f1626;color:#fff;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;overflow:hidden;}
+      .ig-head{background:linear-gradient(120deg,${sector.color},${sector.color}bb);padding:40px 48px 34px;position:relative;}
+      .ig-head .ic{font-size:64px;line-height:1;}
+      .ig-head h1{margin:6px 0 0;font-size:66px;font-weight:900;letter-spacing:.5px;line-height:1.02;text-transform:uppercase;}
+      .ig-head .date{display:inline-block;margin-top:14px;background:rgba(0,0,0,.28);padding:9px 20px;border-radius:999px;font-size:22px;font-weight:600;}
+      .ig-head .by{position:absolute;top:44px;right:48px;text-align:right;font-size:20px;font-weight:700;opacity:.95;}
+      .ig-body{flex:1;padding:30px 48px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:22px;}
+      .g-card{background:#1a2438;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;overflow:hidden;border:1px solid #263248;}
+      .g-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+      .g-num{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:${sector.color};color:#fff;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;}
+      .g-title{font-size:23px;font-weight:800;line-height:1.18;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .g-img{width:100%;height:150px;border-radius:12px;background-size:cover;background-position:center;flex:0 0 auto;}
+      .g-ph{display:flex;align-items:center;justify-content:center;font-size:70px;}
+      .g-desc{font-size:17px;line-height:1.4;color:#c7d0e0;margin-top:12px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+      .g-src{font-size:15px;color:${sector.color};margin-top:10px;font-weight:600;}
+      .g-src b{color:#fff;}
+      .ig-foot{background:#0a1020;padding:22px 48px;display:flex;justify-content:space-between;align-items:center;}
+      .ig-foot .l{font-size:22px;font-weight:700;}
+      .ig-foot .l span{color:${sector.color};}
+      .ig-foot .r{background:${sector.color};padding:12px 22px;border-radius:999px;font-size:20px;font-weight:800;}
     </style>
-    <div class="d-head">
-      <div class="ic">${sector.icon}</div>
-      <h1>${escapeHtml(sector.name)}</h1>
-      <div class="dt">News Digest · ${dateStr}</div>
-    </div>
-    <div class="d-body">
-      <p class="d-sec">Top 5 Headlines</p>
-      ${rows}
-      <div class="d-grid">
-        <div class="d-card">
-          <h3>Stories by Source</h3>
-          ${donut ? `<img class="d-donut" src="${donut}">` : '<p style="color:#889;font-size:13px">—</p>'}
-        </div>
-        <div class="d-card">
-          <h3>Trending Keywords</h3>
-          <div>${kw || '<span style="color:#889">—</span>'}</div>
-        </div>
+    <div class="ig">
+      <div class="ig-head">
+        <div class="by">Curated by<br>Sanjay</div>
+        <div class="ic">${sector.icon}</div>
+        <h1>Top ${escapeHtml(sector.name)} News</h1>
+        <div class="date">${dateStr}</div>
       </div>
-      <div class="d-stats">
-        <div class="d-stat"><div class="n">${items.length}</div><div class="l">Stories Tracked</div></div>
-        <div class="d-stat"><div class="n">${sources.length}</div><div class="l">Sources Used</div></div>
-        <div class="d-stat"><div class="n">${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}</div><div class="l">Generated At</div></div>
+      <div class="ig-body">${cards}</div>
+      <div class="ig-foot">
+        <div class="l">Follow <span>ProfessorSK</span> for daily sector digests</div>
+        <div class="r">📸 @iam_sanjay_navandar</div>
       </div>
-    </div>
-    <div class="d-foot">
-      <span>Curated by <b>Sanjay</b></span>
-      <span class="tag">📸 Follow @iam_sanjay_navandar</span>
     </div>`;
 
   $('pdfStage').appendChild(el);
@@ -888,11 +876,11 @@ async function downloadDigestPDF() {
   try {
     await html2pdf().set({
       margin: 0, filename,
-      image: { type:'jpeg', quality:0.85 },
-      html2canvas: { scale:2, useCORS:true, backgroundColor:'#ffffff' },
-      jsPDF: { unit:'pt', format:'a4', orientation:'portrait' },
+      image: { type:'jpeg', quality:0.72 },       // keep the file small for social upload
+      html2canvas: { scale:1.8, useCORS:true, backgroundColor:'#0f1626' },
+      jsPDF: { unit:'px', format:[1080,1350], orientation:'portrait' },
     }).from(el).save();
-    toast('Digest PDF downloaded ✅');
+    toast('Infographic PDF downloaded ✅');
   } catch (e) { toast('PDF failed: ' + e.message); }
   finally { el.remove(); }
 }
