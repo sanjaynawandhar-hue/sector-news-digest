@@ -954,16 +954,23 @@ async function loadMarkets() {
   marketsEl.innerHTML = `<div class="mkt"><div class="mkt-head">📊 Markets</div>
     <div class="mkt-row"><span class="mkt-name">Loading live data…</span><span class="mkt-val">⏳</span></div></div>`;
 
-  // Indices (Yahoo via proxy) + forex + crypto, all in parallel.
-  const idx = await Promise.all(MARKETS.map(async (m) => {
-    try {
-      const j = await proxyJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?interval=1d&range=2d`);
-      const meta = j.chart.result[0].meta;
-      const price = meta.regularMarketPrice;
-      const prev = meta.chartPreviousClose ?? meta.previousClose;
-      return { name: m.name, price, chg: prev ? ((price - prev) / prev) * 100 : null };
-    } catch { return { name: m.name, price: null, chg: null }; }
-  }));
+  // Indices: prefer the Netlify function (server-side Yahoo fetch, reliable);
+  // fall back to the public CORS proxy when there's no backend (GitHub Pages).
+  let idx = null;
+  if (state.backend) {
+    try { const j = await fetchJSON('/.netlify/functions/news?markets=1'); idx = j.indices; } catch {}
+  }
+  if (!idx) {
+    idx = await Promise.all(MARKETS.map(async (m) => {
+      try {
+        const j = await proxyJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?interval=1d&range=2d`);
+        const meta = j.chart.result[0].meta;
+        const price = meta.regularMarketPrice;
+        const prev = meta.chartPreviousClose ?? meta.previousClose;
+        return { name: m.name, price, chg: prev ? ((price - prev) / prev) * 100 : null };
+      } catch { return { name: m.name, price: null, chg: null }; }
+    }));
+  }
 
   let usdinr = null, btc = null, btcChg = null;
   try { const j = await fetchJSON('https://open.er-api.com/v6/latest/USD'); usdinr = j.rates && j.rates.INR; } catch {}

@@ -140,6 +140,24 @@ exports.handler = async (event) => {
     }) };
   }
 
+  // Market indices via Yahoo Finance, fetched SERVER-SIDE (no CORS / no flaky
+  // public proxy) — far more reliable than fetching Yahoo from the browser.
+  if (qs.markets) {
+    const SYMBOLS = [['Sensex', '^BSESN'], ['Nifty 50', '^NSEI'], ['Dow Jones', '^DJI'], ['Nikkei 225', '^N225']];
+    const indices = await Promise.all(SYMBOLS.map(async ([name, sym]) => {
+      try {
+        const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=2d`,
+          { headers: { 'User-Agent': 'Mozilla/5.0' } });
+        const j = await r.json();
+        const m = j.chart.result[0].meta;
+        const price = m.regularMarketPrice;
+        const prev = m.chartPreviousClose != null ? m.chartPreviousClose : m.previousClose;
+        return { name, price, chg: prev ? ((price - prev) / prev) * 100 : null };
+      } catch { return { name, price: null, chg: null }; }
+    }));
+    return { statusCode: 200, headers, body: JSON.stringify({ indices }) };
+  }
+
   const sector = SECTORS[qs.sector];
   if (!sector) return { statusCode: 400, headers, body: JSON.stringify({ error: 'unknown sector' }) };
 
