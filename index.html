@@ -596,19 +596,19 @@ async function fetchWithTimeout(url, ms = 5000) {
   finally { clearTimeout(t); }
 }
 async function fetchRSS(feedUrl) {
-  let xml = null, lastErr;
-  for (const proxy of CORS_PROXIES) {
-    try {
-      const r = await fetchWithTimeout(proxy.build(feedUrl));
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      let text = await r.text();
-      if (proxy.json) { try { text = JSON.parse(text).contents || ''; } catch {} }
-      // A working proxy returns the raw RSS; error pages won't contain <item>.
-      if (text && text.includes('<item')) { xml = text; break; }
-      throw new Error('no items');
-    } catch (e) { lastErr = e; }   // try the next proxy
-  }
-  if (!xml) throw lastErr || new Error('all proxies failed');
+  // Race ALL proxies at once and take the first that returns valid RSS. This
+  // makes latency ≈ the fastest proxy instead of the sum of the slow ones.
+  const attempt = async (proxy) => {
+    const r = await fetchWithTimeout(proxy.build(feedUrl), 6000);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    let text = await r.text();
+    if (proxy.json) { try { text = JSON.parse(text).contents || ''; } catch {} }
+    if (!text || !text.includes('<item')) throw new Error('no items');
+    return text;
+  };
+  let xml;
+  try { xml = await Promise.any(CORS_PROXIES.map(attempt)); }
+  catch { throw new Error('all proxies failed'); }
   const doc = new DOMParser().parseFromString(xml, 'text/xml');
   return [...doc.querySelectorAll('item')].slice(0, 12).map(it => {
     const g = (t) => (it.querySelector(t)?.textContent || '').trim();
@@ -736,7 +736,7 @@ async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
   // When the APIs deliver, we skip RSS entirely — that's what keeps it fast. ----
   const rssOnly = !state.backend && !hasAnyKey();
   if (rssOnly || apiItems.length === 0) {
-    const feeds = rssFeedsFor(sector).slice(0, rssOnly ? 3 : 1);
+    const feeds = rssFeedsFor(sector).slice(0, rssOnly ? 2 : 1);
     const results = await Promise.allSettled(feeds.map(fetchRSS));
     results.forEach((r, i) => {
       if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
