@@ -1219,9 +1219,16 @@ function saveKeys() {
   loadAllSectors({ force: true });
 }
 function updateModeBadge() {
-  if (state.backend) modeBadge.textContent = '☁️ Server keys';
-  else if (hasAnyKey()) modeBadge.textContent = '🔑 API + RSS';
-  else modeBadge.textContent = '📡 RSS-only';
+  // In server-keys (Netlify) mode there's nothing for a visitor to configure,
+  // so hide the mode badge AND the settings button for a clean shared site.
+  if (state.backend) {
+    modeBadge.style.display = 'none';
+    $('settingsBtn').style.display = 'none';
+    return;
+  }
+  modeBadge.style.display = '';
+  $('settingsBtn').style.display = '';
+  modeBadge.textContent = hasAnyKey() ? '🔑 API + RSS' : '📡 RSS-only';
 }
 function setTheme(dark) {
   document.body.classList.toggle('dark', dark);
