@@ -156,17 +156,6 @@
   .skeleton .line.short { width: 45%; }
   @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
-  /* ---------- Empty / error ---------- */
-  .notice {
-    text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 14px;
-    grid-column: 1 / -1;
-  }
-  .source-errors { max-width: 1200px; margin: 0 auto; padding: 0 18px; }
-  .src-err {
-    font-size: 12px; color: var(--danger); background: rgba(214,69,96,.09);
-    border: 1px solid rgba(214,69,96,.25); border-radius: 8px; padding: 6px 10px; margin-bottom: 6px;
-  }
-
   /* ---------- Footer ---------- */
   footer {
     text-align: center; padding: 26px 18px 40px; color: var(--text-dim); font-size: 13px;
@@ -202,6 +191,24 @@
 
   /* Hidden render stage for PDF templates (kept off-screen, not display:none so html2canvas can measure) */
   #pdfStage { position: fixed; left: -10000px; top: 0; }
+
+  /* ---------- Top Stories (featured hero) ---------- */
+  .top { max-width: 1280px; margin: 0 auto; padding: 14px 18px 0; }
+  .top:empty { display: none; }
+  .top h2 { font-size: 16px; font-weight: 800; margin: 4px 0 12px; display: flex; align-items: center; gap: 8px; }
+  .top-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .feat {
+    position: relative; height: 184px; border-radius: 14px; overflow: hidden;
+    display: block; box-shadow: var(--shadow); background: var(--sc);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .feat:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(20,30,60,.22); }
+  .feat-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .feat-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,12,20,.92) 32%, rgba(8,12,20,.12)); }
+  .feat-body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; color: #fff; }
+  .feat-badge { align-self: flex-start; background: var(--sc); font-size: 11px; font-weight: 800; padding: 3px 11px; border-radius: 999px; margin-bottom: 8px; }
+  .feat-hl { font-size: 15.5px; font-weight: 800; line-height: 1.28; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .feat-meta { font-size: 11px; opacity: .88; margin-top: 6px; }
 
   /* ---------- Dashboard: all sectors as boxes on one screen ---------- */
   .dash {
@@ -289,6 +296,7 @@
   </header>
 
   <main>
+    <div class="top" id="top"></div>
     <div class="dash" id="dash"></div>
   </main>
 
@@ -453,7 +461,7 @@ const state = {
    3. DOM refs & tiny helpers
    --------------------------------------------------------------------------- */
 const $ = (id) => document.getElementById(id);
-const dashEl = $('dash'),
+const dashEl = $('dash'), topEl = $('top'),
       updatedEl = $('updated'), modeBadge = $('modeBadge');
 
 // Route thumbnails through the free wsrv.nl image proxy: upgrades http→https,
@@ -747,6 +755,7 @@ async function loadAllSectors({ force = false } = {}) {
   for (let i = 0; i < SECTORS.length; i += batchSize) {
     const batch = SECTORS.slice(i, i + batchSize);
     await Promise.all(batch.map(s => loadSector(s, { force, apiCount: 1 })));
+    renderTopStories();   // refresh the hero as each batch lands
   }
   updateFooterStatus();
 }
@@ -790,6 +799,51 @@ function buildDashboard() {
     box.querySelector('.sbox-dl').onclick = () => downloadDigestPDF(s);
     dashEl.appendChild(box);
   });
+}
+
+// Featured "Top Stories" hero: the newest image-backed story from each sector,
+// then the 6 most recent of those — so it's fresh, diverse, and visual.
+function renderTopStories() {
+  const picks = [];
+  SECTORS.forEach(s => {
+    const items = (state.data[s.id] && state.data[s.id].items) || [];
+    const best = items.find(a => a.image) || items[0];
+    if (best) picks.push({ a: best, sector: s });
+  });
+  picks.sort((x, y) => new Date(y.a.publishedAt || 0) - new Date(x.a.publishedAt || 0));
+  const top = picks.slice(0, 6);
+
+  topEl.innerHTML = '';
+  if (!top.length) return;
+
+  const h = document.createElement('h2');
+  h.textContent = '🔥 Top Stories Right Now';
+  const grid = document.createElement('div');
+  grid.className = 'top-grid';
+
+  top.forEach(({ a, sector }) => {
+    const card = document.createElement('a');
+    card.className = 'feat'; card.href = a.url; card.target = '_blank'; card.rel = 'noopener';
+    card.title = a.title; card.style.setProperty('--sc', sector.color);
+    if (a.image) {
+      const img = document.createElement('img');
+      img.className = 'feat-img'; img.loading = 'lazy'; img.decoding = 'async'; img.alt = '';
+      img.src = weserv(a.image, 'w=520&h=360&fit=cover&output=jpg&q=72');
+      img.onerror = () => img.remove();   // fall back to sector-color background
+      card.appendChild(img);
+    }
+    const shade = document.createElement('div'); shade.className = 'feat-shade';
+    const body = document.createElement('div'); body.className = 'feat-body';
+    body.innerHTML = `
+      <span class="feat-badge">${sector.icon} ${escapeHtml(sector.name)}</span>
+      <div class="feat-hl">${escapeHtml(a.title)}</div>
+      <div class="feat-meta">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>`;
+    card.appendChild(shade); card.appendChild(body);
+    grid.appendChild(card);
+  });
+
+  topEl.appendChild(h);
+  topEl.appendChild(grid);
 }
 
 // Render one sector's list of small news rows (thumbnail + headline + meta).
