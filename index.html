@@ -729,10 +729,15 @@ async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
     }
   }
 
-  // ---- Layer 2: RSS backfill only if the APIs came up short (or RSS-only mode).
-  // Pulls up to 3 named feeds so RSS-only mode still gets diverse sources. ----
-  if (apiItems.length < 4) {
-    const results = await Promise.allSettled(rssFeedsFor(sector).slice(0, 3).map(fetchRSS));
+  // ---- Layer 2: RSS. The CORS proxies are SLOW (each feed can take many
+  // seconds), so we only touch RSS when we truly need it:
+  //   • RSS-only mode (no API keys)         → pull 3 named feeds for diversity
+  //   • have keys but a sector got 0 items  → one feed as a last resort
+  // When the APIs deliver, we skip RSS entirely — that's what keeps it fast. ----
+  const rssOnly = !state.backend && !hasAnyKey();
+  if (rssOnly || apiItems.length === 0) {
+    const feeds = rssFeedsFor(sector).slice(0, rssOnly ? 3 : 1);
+    const results = await Promise.allSettled(feeds.map(fetchRSS));
     results.forEach((r, i) => {
       if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
       else errors[`rss${i+1}`] = r.reason?.message || 'failed';
@@ -748,15 +753,13 @@ async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
   renderBox(sector);
 }
 
-// Load ALL sectors for the dashboard, in small concurrent batches so we neither
-// hammer the APIs nor block the UI. Boxes fill in as each sector resolves.
+// Load ALL sectors for the dashboard fully in parallel. Each box fills in as its
+// own request resolves (renderBox inside loadSector), and the hero refreshes as
+// each sector lands — so one slow sector never blocks the others.
 async function loadAllSectors({ force = false } = {}) {
-  const batchSize = 3;
-  for (let i = 0; i < SECTORS.length; i += batchSize) {
-    const batch = SECTORS.slice(i, i + batchSize);
-    await Promise.all(batch.map(s => loadSector(s, { force, apiCount: 1 })));
-    renderTopStories();   // refresh the hero as each batch lands
-  }
+  await Promise.all(SECTORS.map(s =>
+    loadSector(s, { force, apiCount: 1 }).then(renderTopStories)
+  ));
   updateFooterStatus();
 }
 
