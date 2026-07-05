@@ -203,6 +203,59 @@
   /* Hidden render stage for PDF templates (kept off-screen, not display:none so html2canvas can measure) */
   #pdfStage { position: fixed; left: -10000px; top: 0; }
 
+  /* ---------- Dashboard: all sectors as boxes on one screen ---------- */
+  .dash {
+    max-width: 1280px; margin: 0 auto; padding: 14px 18px 60px;
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    align-items: start;
+  }
+  .sbox {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+    scroll-margin-top: 130px;
+  }
+  .sbox-head {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+    color: #fff; background: linear-gradient(120deg, var(--sc), rgba(0,0,0,.32)), var(--sc);
+  }
+  .sbox-ic { font-size: 20px; }
+  .sbox-name { font-size: 15px; font-weight: 800; letter-spacing: .3px; flex: 1; }
+  .sbox-dl {
+    border: none; background: rgba(255,255,255,.22); color: #fff; cursor: pointer;
+    width: 30px; height: 30px; border-radius: 8px; font-size: 14px; display: grid; place-items: center;
+    transition: background .12s, transform .05s;
+  }
+  .sbox-dl:hover { background: rgba(255,255,255,.4); }
+  .sbox-dl:active { transform: scale(.9); }
+  .sbox-list { padding: 6px 6px 8px; display: flex; flex-direction: column; }
+
+  .s-item {
+    display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 10px;
+    transition: background .1s;
+  }
+  .s-item:hover { background: var(--surface-2); }
+  .s-item + .s-item { border-top: 1px solid var(--border); }
+  .s-thumb {
+    flex: 0 0 auto; width: 52px; height: 52px; border-radius: 9px; object-fit: cover;
+    background: var(--surface-2); background-size: cover; background-position: center;
+  }
+  .s-thumb.ph { display: grid; place-items: center; font-size: 22px; color: #fff; }
+  .s-main { min-width: 0; flex: 1; }
+  .s-hl {
+    font-size: 13.5px; font-weight: 600; line-height: 1.3; color: var(--text);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .s-item:hover .s-hl { color: var(--sc); }
+  .s-meta { font-size: 11px; color: var(--text-dim); margin-top: 3px; display: flex; gap: 7px; }
+  .s-meta b { color: var(--sc); font-weight: 700; }
+  .sbox-empty { padding: 20px 14px; font-size: 12.5px; color: var(--text-dim); text-align: center; }
+
+  /* skeleton rows inside a box */
+  .s-item.skeleton .s-thumb { animation: shimmer 1.3s infinite; background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; }
+  .s-item.skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; height: 11px; border-radius: 5px; margin: 4px 0; }
+  .s-item.skeleton .line.short { width: 50%; }
+
   /* ---------- Toast ---------- */
   .toast {
     position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px);
@@ -225,29 +278,19 @@
         <div class="logo">📰</div>
         <div>
           <h1>Global Sector News Digest</h1>
-          <p>Latest news by sector · LinkedIn-ready PDFs</p>
+          <p>All sectors, one screen · <span id="updated">loading…</span></p>
         </div>
       </div>
       <span class="badge-mode" id="modeBadge" title="Data source mode">…</span>
+      <button class="btn" id="refreshBtn" title="Refresh all sectors (uses API quota)">🔄 Refresh all</button>
       <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
       <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
     </div>
     <div class="pills" id="pills"></div>
   </header>
 
-  <div class="toolbar">
-    <span class="updated" id="updated">—</span>
-    <div class="spacer"></div>
-    <button class="btn" id="refreshBtn" title="Fetch fresh news (uses API quota)">🔄 Refresh</button>
-    <button class="btn primary" id="pdfBtn" title="Download 1-page LinkedIn digest">⬇️ Digest PDF</button>
-    <button class="btn" id="carouselBtn" title="Download multi-page LinkedIn carousel">🎠 Carousel PDF</button>
-  </div>
-
-  <div class="chips" id="chips"></div>
-  <div class="source-errors" id="sourceErrors"></div>
-
   <main>
-    <div class="grid" id="grid"></div>
+    <div class="dash" id="dash"></div>
   </main>
 
   <footer>
@@ -362,19 +405,16 @@ const CORS_PROXIES = [
 ];
 
 const state = {
-  sector: SECTORS[0],
-  items: [],                 // current sector's rendered items
-  activeSources: new Set(),  // source-filter chips currently ON (empty = all)
+  data: {},                  // per-sector: { items, ts, loading } keyed by sector.id
   backend: false,            // true if a Netlify function is available
-  loading: false,
 };
 
 /* ---------------------------------------------------------------------------
    3. DOM refs & tiny helpers
    --------------------------------------------------------------------------- */
 const $ = (id) => document.getElementById(id);
-const gridEl = $('grid'), pillsEl = $('pills'), chipsEl = $('chips'),
-      updatedEl = $('updated'), modeBadge = $('modeBadge'), errBox = $('sourceErrors');
+const dashEl = $('dash'), pillsEl = $('pills'),
+      updatedEl = $('updated'), modeBadge = $('modeBadge');
 
 function getKeys() { try { return JSON.parse(localStorage.getItem(LS.keys)) || {}; } catch { return {}; } }
 function hasAnyKey() { const k = getKeys(); return APIS.some(a => k[a]); }
@@ -539,13 +579,16 @@ function mergeItems(...lists) {
 }
 
 /* ---------------------------------------------------------------------------
-   9. ROTATION — spread quota: call only 2 APIs per refresh, cycling which two.
+   9. ROTATION — spread quota: call only `n` APIs per sector load, cycling which
+   ones so that across the 10 sector boxes the load is spread over all keys.
    --------------------------------------------------------------------------- */
-function pickTwoApis(available) {
-  if (available.length <= 2) return available;
+function pickApis(available, n) {
+  if (available.length === 0) return [];
+  if (available.length <= n) return available.slice();
   let rot = parseInt(localStorage.getItem(LS.rotation) || '0', 10);
-  const pick = [available[rot % available.length], available[(rot + 1) % available.length]];
-  localStorage.setItem(LS.rotation, String((rot + 2) % available.length));
+  const pick = [];
+  for (let i = 0; i < n; i++) pick.push(available[(rot + i) % available.length]);
+  localStorage.setItem(LS.rotation, String((rot + n) % available.length));
   return [...new Set(pick)];
 }
 
@@ -559,65 +602,72 @@ function writeCache(sid, items) {
   try { localStorage.setItem(LS.cache(sid), JSON.stringify({ ts: Date.now(), items })); } catch {}
 }
 
-async function loadSector(sector, { force = false } = {}) {
-  state.loading = true;
-  errBox.innerHTML = '';
+// Load ONE sector's data (cache-first) and re-render just its box.
+async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
   const cached = readCache(sector.id);
   const fresh = cached && (Date.now() - cached.ts) < CACHE_TTL;
 
-  // Use cache immediately when fresh and not forced.
+  // Fresh cache → use immediately, no network.
   if (fresh && !force) {
-    state.items = cached.items;
-    renderSector(cached.ts);
-    state.loading = false;
+    state.data[sector.id] = { items: cached.items, ts: cached.ts, loading: false };
+    renderBox(sector);
     return;
   }
 
-  renderSkeletons();
+  // Mark loading (keep showing any prior cached items behind the scenes).
+  state.data[sector.id] = { items: cached ? cached.items : [], ts: cached ? cached.ts : 0, loading: true };
+  renderBox(sector);
 
   const errors = {};
   let apiItems = [], rssItems = [];
 
-  // ---- Layer 1: APIs (backend or client), 2 rotated sources ----
+  // ---- Layer 1: APIs (backend or client), `apiCount` rotated sources ----
   if (state.backend) {
-    const two = pickTwoApis(APIS);
     try {
-      const res = await backendFetch(sector, two);
-      apiItems = res.items;
-      Object.assign(errors, res.errors);
+      const res = await backendFetch(sector, pickApis(APIS, apiCount));
+      apiItems = res.items; Object.assign(errors, res.errors);
     } catch (e) { errors.backend = e.message; }
   } else {
     const keys = getKeys();
-    const available = APIS.filter(a => keys[a]);
-    const two = pickTwoApis(available);
-    await Promise.all(two.map(async (api) => {
+    const apis = pickApis(APIS.filter(a => keys[a]), apiCount);
+    await Promise.all(apis.map(async (api) => {
       try { apiItems = apiItems.concat(await clientFetch[api](sector, keys[api])); }
       catch (e) { errors[api] = e.message; }
     }));
   }
 
-  // ---- Layer 2: RSS — only as a backfill when the APIs came up short (or in
-  // RSS-only mode). The proxies are slow, so we skip them when APIs delivered
-  // enough, and use just one feed to keep it fast. ----
-  if (apiItems.length < 6) {
-    const feeds = rssFeedsFor(sector).slice(0, 1);
-    const results = await Promise.allSettled(feeds.map(fetchRSS));
+  // ---- Layer 2: RSS backfill only if the APIs came up short (or RSS-only mode) ----
+  if (apiItems.length < 4) {
+    const results = await Promise.allSettled(rssFeedsFor(sector).slice(0, 1).map(fetchRSS));
     results.forEach((r, i) => {
       if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
       else errors[`rss${i+1}`] = r.reason?.message || 'failed';
     });
   }
 
-  // Merge new results with any prior cache (so we accumulate across rotations).
   const prior = cached ? cached.items : [];
   const merged = mergeItems(apiItems, rssItems, prior);
+  const items = merged.length ? merged : prior;
+  if (merged.length) writeCache(sector.id, merged);
 
-  if (merged.length) { writeCache(sector.id, merged); state.items = merged; }
-  else { state.items = prior; }
+  state.data[sector.id] = { items, ts: Date.now(), loading: false, errors };
+  renderBox(sector);
+}
 
-  renderSourceErrors(errors);
-  renderSector(Date.now());
-  state.loading = false;
+// Load ALL sectors for the dashboard, in small concurrent batches so we neither
+// hammer the APIs nor block the UI. Boxes fill in as each sector resolves.
+async function loadAllSectors({ force = false } = {}) {
+  const batchSize = 3;
+  for (let i = 0; i < SECTORS.length; i += batchSize) {
+    const batch = SECTORS.slice(i, i + batchSize);
+    await Promise.all(batch.map(s => loadSector(s, { force, apiCount: 1 })));
+  }
+  updateFooterStatus();
+}
+
+function updateFooterStatus() {
+  const total = Object.values(state.data).reduce((n, d) => n + (d.items ? d.items.length : 0), 0);
+  updatedEl.textContent = total ? `${total} stories across ${SECTORS.length} sectors` : 'no stories yet';
 }
 
 /* ---------------------------------------------------------------------------
@@ -633,103 +683,79 @@ function hexToSoft(hex) {
     ? `rgba(${r},${g},${b},0.22)` : `rgba(${r},${g},${b},0.14)`;
 }
 
+const BRAND = '#2563eb';         // fixed accent for global chrome (logo, buttons)
+const BOX_ITEMS = 5;             // headlines shown per sector box
+
+// Build the 10 sector boxes once; each has its own accent (--sc) and a PDF button.
+function buildDashboard() {
+  dashEl.innerHTML = '';
+  SECTORS.forEach(s => {
+    const box = document.createElement('section');
+    box.className = 'sbox';
+    box.id = 'box-' + s.id;
+    box.style.setProperty('--sc', s.color);
+    box.innerHTML = `
+      <div class="sbox-head">
+        <span class="sbox-ic">${s.icon}</span>
+        <span class="sbox-name">${escapeHtml(s.name)}</span>
+        <button class="sbox-dl" title="Download ${escapeHtml(s.name)} infographic PDF">⬇️</button>
+      </div>
+      <div class="sbox-list" id="list-${s.id}"></div>`;
+    box.querySelector('.sbox-dl').onclick = () => downloadDigestPDF(s);
+    dashEl.appendChild(box);
+  });
+}
+
+// Quick-jump pills scroll to a sector box (they no longer switch views).
 function renderPills() {
   pillsEl.innerHTML = '';
   SECTORS.forEach(s => {
     const el = document.createElement('div');
-    el.className = 'pill' + (s.id === state.sector.id ? ' active' : '');
+    el.className = 'pill';
     el.innerHTML = `<span>${s.icon}</span>${escapeHtml(s.name)}`;
-    el.onclick = () => selectSector(s);
+    el.onclick = () => document.getElementById('box-' + s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     pillsEl.appendChild(el);
   });
 }
 
-function renderSkeletons() {
-  gridEl.innerHTML = '';
-  for (let i = 0; i < 10; i++) {
-    const c = document.createElement('div');
-    c.className = 'item skeleton';
-    c.innerHTML = `<span class="dot"></span><div class="main"><div class="line"></div><div class="line short"></div></div>`;
-    gridEl.appendChild(c);
-  }
-}
+// Render one sector's list of small news rows (thumbnail + headline + meta).
+function renderBox(sector) {
+  const listEl = document.getElementById('list-' + sector.id);
+  if (!listEl) return;
+  const d = state.data[sector.id] || {};
+  const items = (d.items || []).slice(0, BOX_ITEMS);
 
-function renderSourceErrors(errors) {
-  const entries = Object.entries(errors || {});
-  errBox.innerHTML = entries.map(([k, v]) =>
-    `<div class="src-err">⚠️ ${escapeHtml(k)}: ${escapeHtml(String(v))} — other sources still shown.</div>`).join('');
-}
-
-function visibleItems() {
-  if (state.activeSources.size === 0) return state.items;
-  return state.items.filter(a => state.activeSources.has(a.source));
-}
-
-function renderChips() {
-  const sources = [...new Set(state.items.map(a => a.source))].filter(Boolean);
-  chipsEl.innerHTML = '';
-  sources.forEach(src => {
-    const el = document.createElement('div');
-    el.className = 'chip' + (state.activeSources.has(src) ? ' active' : '');
-    el.textContent = src;
-    el.onclick = () => {
-      state.activeSources.has(src) ? state.activeSources.delete(src) : state.activeSources.add(src);
-      renderChips(); renderCards();
-    };
-    chipsEl.appendChild(el);
-  });
-}
-
-function renderCards() {
-  const items = visibleItems();
-  gridEl.innerHTML = '';
-  if (!items.length) {
-    gridEl.innerHTML = `<div class="notice">
-      <p style="font-size:15px;color:var(--text)"><b>No stories loaded.</b></p>
-      <p>Free RSS proxies can be down or rate-limited. For <b>reliable</b> results, add a
-      free <b>Guardian API key</b> in ⚙️ Settings — it works directly with no proxy.</p>
-      <p><button class="btn primary" onclick="document.getElementById('settingsBtn').click()">⚙️ Add API key</button>
-      &nbsp; <button class="btn" onclick="loadSector(state.sector,{force:true})">🔄 Retry RSS</button></p>
-    </div>`;
+  if (d.loading && !items.length) {
+    listEl.innerHTML = '';
+    for (let i = 0; i < 4; i++) {
+      const r = document.createElement('div');
+      r.className = 's-item skeleton';
+      r.innerHTML = `<div class="s-thumb"></div><div class="s-main"><div class="line"></div><div class="line short"></div></div>`;
+      listEl.appendChild(r);
+    }
     return;
   }
-  // Compact list: each headline is a link that opens the full article in a new
-  // tab. No large images in the feed = far faster render.
+  if (!items.length) {
+    listEl.innerHTML = `<div class="sbox-empty">No stories yet. Add a free API key in ⚙️ Settings for reliable results.</div>`;
+    return;
+  }
+
   const frag = document.createDocumentFragment();
   items.forEach(a => {
     const row = document.createElement('a');
-    row.className = 'item'; row.href = a.url; row.target = '_blank'; row.rel = 'noopener';
-    row.title = a.title;
-    row.innerHTML = `
-      <span class="dot"></span>
-      <div class="main">
-        <div class="headline">${escapeHtml(a.title)}</div>
-        <div class="meta">
-          <span class="source-badge">${escapeHtml(a.source)}</span>
-          <span>${escapeHtml(timeAgo(a.publishedAt))}</span>
-        </div>
-      </div>
-      <span class="arrow">↗</span>`;
+    row.className = 's-item'; row.href = a.url; row.target = '_blank'; row.rel = 'noopener'; row.title = a.title;
+    const thumb = a.image
+      ? `<div class="s-thumb" style="background-image:url('${escapeHtml(a.image)}')"></div>`
+      : `<div class="s-thumb ph" style="background:${sector.color}">${sector.icon}</div>`;
+    row.innerHTML = `${thumb}
+      <div class="s-main">
+        <div class="s-hl">${escapeHtml(a.title)}</div>
+        <div class="s-meta"><b>${escapeHtml(a.source)}</b><span>${escapeHtml(timeAgo(a.publishedAt))}</span></div>
+      </div>`;
     frag.appendChild(row);
   });
-  gridEl.appendChild(frag);
-}
-
-function renderSector(ts) {
-  renderChips();
-  renderCards();
-  const mins = Math.round((Date.now() - ts) / 60000);
-  updatedEl.textContent = state.items.length
-    ? `${state.items.length} stories · Last updated ${mins <= 0 ? 'just now' : mins + ' min ago'}`
-    : 'No data yet';
-}
-
-function selectSector(s) {
-  state.sector = s;
-  state.activeSources.clear();
-  applyAccent(s.color);
-  renderPills();
-  loadSector(s);
+  listEl.innerHTML = '';
+  listEl.appendChild(frag);
 }
 
 /* ---------------------------------------------------------------------------
@@ -811,10 +837,10 @@ function cleanText(s = '', max = 150) {
    Sized for LinkedIn / Instagram. Thumbnails are pre-downscaled to data URLs
    so html2canvas never taints, and missing images fall back to a gradient.
    --------------------------------------------------------------------------- */
-async function downloadDigestPDF() {
-  const sector = state.sector, items = visibleItems().slice(0, 6);
-  if (!items.length) return toast('Nothing to export yet — load some news first.');
-  toast('Building infographic PDF…');
+async function downloadDigestPDF(sector) {
+  const items = ((state.data[sector.id] || {}).items || []).slice(0, 6);
+  if (!items.length) return toast('No stories for ' + sector.name + ' yet.');
+  toast('Building ' + sector.name + ' infographic PDF…');
 
   const thumbs = await Promise.all(items.map(a => downscaleImage(a.image, 320, 0.72)));
   const dateStr = new Date().toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
@@ -889,9 +915,9 @@ async function downloadDigestPDF() {
    15. CAROUSEL PDF (1080×1080 pages) — cover + one headline per square page
    + closing "Follow ProfessorSK" page.
    --------------------------------------------------------------------------- */
-async function downloadCarouselPDF() {
-  const sector = state.sector, items = visibleItems().slice(0, 6);
-  if (!items.length) return toast('Nothing to export yet — load some news first.');
+async function downloadCarouselPDF(sector) {
+  const items = ((state.data[sector.id] || {}).items || []).slice(0, 6);
+  if (!items.length) return toast('No stories for ' + sector.name + ' yet.');
   toast('Building carousel PDF…');
 
   const imgs = await Promise.all(items.map(a => downscaleImage(a.image, 600, 0.7)));
@@ -983,8 +1009,8 @@ function saveKeys() {
   localStorage.setItem(LS.keys, JSON.stringify(k));
   $('settingsOverlay').classList.remove('show');
   updateModeBadge();
-  toast('Keys saved — refreshing sector…');
-  loadSector(state.sector, { force: true });
+  toast('Keys saved — refreshing all sectors…');
+  loadAllSectors({ force: true });
 }
 function updateModeBadge() {
   if (state.backend) modeBadge.textContent = '☁️ Server keys';
@@ -995,7 +1021,7 @@ function setTheme(dark) {
   document.body.classList.toggle('dark', dark);
   $('themeBtn').textContent = dark ? '☀️' : '🌙';
   localStorage.setItem(LS.theme, dark ? 'dark' : 'light');
-  applyAccent(state.sector.color);   // refresh accent-soft alpha for the theme
+  applyAccent(BRAND);   // refresh accent-soft alpha for the theme
 }
 
 function wire() {
@@ -1007,11 +1033,9 @@ function wire() {
   $('clearKeys').onclick = () => { localStorage.removeItem(LS.keys); openSettings(); updateModeBadge(); toast('Keys cleared'); };
   $('refreshBtn').onclick = () => {
     const heavy = state.backend || hasAnyKey();
-    if (heavy && !confirm('Refresh will call your news APIs and use daily quota. Continue?')) return;
-    loadSector(state.sector, { force: true });
+    if (heavy && !confirm('Refresh all sectors will call your news APIs and use daily quota. Continue?')) return;
+    loadAllSectors({ force: true });
   };
-  $('pdfBtn').onclick = downloadDigestPDF;
-  $('carouselBtn').onclick = downloadCarouselPDF;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1019,12 +1043,13 @@ function wire() {
    --------------------------------------------------------------------------- */
 async function init() {
   setTheme(localStorage.getItem(LS.theme) === 'dark');
-  applyAccent(state.sector.color);
+  applyAccent(BRAND);
+  buildDashboard();
   renderPills();
   wire();
   state.backend = await detectBackend();
   updateModeBadge();
-  loadSector(state.sector);
+  loadAllSectors();
 }
 init();
 </script>
