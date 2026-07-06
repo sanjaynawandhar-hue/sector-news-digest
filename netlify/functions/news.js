@@ -27,7 +27,7 @@ const SECTORS = {
   retail:     { newsdata:{q:'retail OR consumer'},          gnews:{q:'retail OR consumer'},          currents:{q:'retail OR consumer'},          guardian:{q:'retail OR consumer'},          nyt:{q:'retail consumer'} },
   telecom:    { newsdata:{q:'telecom OR 5G'},               gnews:{q:'telecom OR 5G'},               currents:{q:'telecom OR 5G'},               guardian:{q:'telecom OR 5G'},               nyt:{q:'telecom 5G wireless'} },
   crypto:        { newsdata:{q:'cryptocurrency OR bitcoin OR ethereum'}, gnews:{q:'cryptocurrency OR bitcoin'}, currents:{q:'cryptocurrency OR bitcoin'}, guardian:{q:'cryptocurrency OR bitcoin'}, nyt:{q:'cryptocurrency bitcoin'} },
-  entertainment: { newsdata:{category:'entertainment'},     gnews:{category:'entertainment'},     currents:{category:'entertainment'},     guardian:{q:'Bollywood OR Hollywood'},     nyt:{section:'movies'} },
+  bollywood:     { newsdata:{q:'Bollywood'},                gnews:{q:'Bollywood'},                currents:{q:'Bollywood'},                guardian:{q:'Bollywood'},                nyt:{q:'Bollywood'} },
 };
 
 const KEYS = {

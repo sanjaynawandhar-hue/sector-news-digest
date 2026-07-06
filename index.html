@@ -438,9 +438,9 @@ const SECTORS = [
   { id:'crypto',    name:'Crypto News',          icon:'🪙', color:'#f7931a',
     newsdata:{q:'cryptocurrency OR bitcoin OR ethereum'}, gnews:{q:'cryptocurrency OR bitcoin'}, currents:{q:'cryptocurrency OR bitcoin'}, guardian:{q:'cryptocurrency OR bitcoin'}, nyt:{q:'cryptocurrency bitcoin'},
     rssQuery:'cryptocurrency OR bitcoin OR ethereum' },
-  { id:'entertainment', name:'Bollywood & Hollywood', icon:'🎬', color:'#c026d3',
-    newsdata:{category:'entertainment'}, gnews:{category:'entertainment'}, currents:{category:'entertainment'}, guardian:{q:'Bollywood OR Hollywood'}, nyt:{section:'movies'},
-    rssQuery:'Bollywood OR Hollywood' },
+  { id:'bollywood', name:'Bollywood News',       icon:'🎬', color:'#c026d3',
+    newsdata:{q:'Bollywood'}, gnews:{q:'Bollywood'}, currents:{q:'Bollywood'}, guardian:{q:'Bollywood'}, nyt:{q:'Bollywood'},
+    rssQuery:'Bollywood' },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -479,8 +479,7 @@ const RSS_FEEDS = {
     'https://www.coindesk.com/arc/outboundfeeds/rss/',
     'https://cointelegraph.com/rss',
   ],
-  entertainment: [
-    'https://variety.com/feed/',
+  bollywood: [
     'https://www.bollywoodhungama.com/rss/news.xml',
   ],
 };
