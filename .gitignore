@@ -19,3 +19,11 @@ Thumbs.db
 
 # Dependencies
 node_modules/
+
+# Generated editions and local verification artifacts
+__pycache__/
+.superpowers/
+data/
+_site/
+.previous.json
+*.pdf
