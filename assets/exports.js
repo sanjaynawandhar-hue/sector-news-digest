@@ -175,7 +175,7 @@ async function output(input, carousel) {
           format: carousel ? [720, 720] : "a4",
           orientation: "portrait",
         },
-        pagebreak: { mode: ["css"], before: carousel ? ".pdf-page" : [] },
+        pagebreak: { mode: carousel ? [] : ["css"] },
         enableLinks: true,
       })
       .from(root)
