@@ -1,1425 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Sector News Digest · by Sanjay Navandar</title>
-<meta name="description" content="Latest global news across 10 sectors on one screen — tech, finance, health, energy & more. Curated by Sanjay Navandar (ProfessorSK).">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
-<!-- Link-preview cards for WhatsApp / LinkedIn / etc. -->
-<meta property="og:title" content="Global Sector News Digest">
-<meta property="og:description" content="Latest global news across 10 sectors on one screen. Curated by Sanjay Navandar (ProfessorSK).">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<!-- CDNs (allowed): html2pdf bundles html2canvas + jsPDF; Chart.js for the digest visual -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<style>
-  :root {
-    --bg: #f4f6fb;
-    --surface: #ffffff;
-    --surface-2: #eef1f8;
-    --text: #1a2233;
-    --text-dim: #667089;
-    --border: #e2e7f0;
-    --accent: #2563eb;          /* overridden per-sector via JS */
-    --accent-soft: #dbe6ff;
-    --danger: #d64560;
-    --shadow: 0 2px 14px rgba(20,30,60,0.08);
-    --radius: 14px;
-  }
-  body.dark {
-    --bg: #10131c;
-    --surface: #1a1f2e;
-    --surface-2: #232a3d;
-    --text: #e8ecf6;
-    --text-dim: #9aa4bf;
-    --border: #2a3145;
-    --accent-soft: #24304f;
-    --shadow: 0 2px 16px rgba(0,0,0,0.35);
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.45;
-    transition: background-color .25s, color .25s;
-  }
-  a { color: inherit; text-decoration: none; }
-
-  /* ---------- Header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .header-inner {
-    max-width: 1200px; margin: 0 auto;
-    padding: 14px 18px;
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  }
-  .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
-  .brand .logo {
-    width: 38px; height: 38px; border-radius: 10px; display: block; flex: 0 0 auto;
-  }
-  .brand h1 { font-size: 18px; margin: 0; font-weight: 800; letter-spacing: .2px; }
-  .brand p { margin: 0; font-size: 11px; color: var(--text-dim); }
-  .brand p b { color: var(--text); font-weight: 700; }
-  .brand-ig { color: var(--accent); font-weight: 700; }
-  .brand-ig:hover { text-decoration: underline; }
-
-  /* ---------- Live world clocks (under the byline) ---------- */
-  .clockbar { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-  .clock {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 3px 9px; font-size: 11px;
-  }
-  .clk-city { color: var(--text-dim); font-weight: 600; }
-  .clk-time { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .3px; }
-
-  .icon-btn {
-    border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
-    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 17px;
-    display: grid; place-items: center; transition: background .15s, transform .05s;
-  }
-  .icon-btn:hover { background: var(--accent-soft); }
-  .icon-btn:active { transform: scale(.94); }
-
-  /* ---------- Sector pills ---------- */
-  .pills {
-    max-width: 1200px; margin: 0 auto; padding: 12px 18px 4px;
-    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin;
-  }
-  .pill {
-    flex: 0 0 auto; padding: 9px 15px; border-radius: 999px; cursor: pointer;
-    border: 1px solid var(--border); background: var(--surface);
-    font-size: 13.5px; font-weight: 600; color: var(--text-dim);
-    white-space: nowrap; transition: all .15s; display: flex; align-items: center; gap: 7px;
-  }
-  .pill:hover { color: var(--text); }
-  .pill.active { color: #fff; background: var(--accent); border-color: var(--accent); }
-
-  /* ---------- Toolbar (status + actions) ---------- */
-  .toolbar {
-    max-width: 1200px; margin: 0 auto; padding: 10px 18px;
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-  }
-  .updated { font-size: 12.5px; color: var(--text-dim); }
-  .toolbar .spacer { margin-left: auto; }
-  .btn {
-    border: 1px solid var(--border); background: var(--surface); color: var(--text);
-    padding: 8px 13px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 6px; transition: background .15s, transform .05s;
-  }
-  .btn:hover { background: var(--accent-soft); }
-  .btn:active { transform: scale(.97); }
-  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.primary:hover { filter: brightness(1.08); }
-  .btn[disabled] { opacity: .5; cursor: not-allowed; }
-
-  /* ---------- Source filter chips ---------- */
-  .chips {
-    max-width: 1200px; margin: 0 auto; padding: 2px 18px 6px;
-    display: flex; gap: 7px; flex-wrap: wrap;
-  }
-  .chip {
-    font-size: 12px; padding: 5px 11px; border-radius: 999px; cursor: pointer;
-    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim);
-    transition: all .12s;
-  }
-  .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  /* ---------- Compact news list ---------- */
-  main { max-width: 1200px; margin: 0 auto; padding: 8px 18px 60px; }
-  .grid {
-    display: grid; gap: 8px 20px;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  }
-  .item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 10px 12px; border-radius: 10px;
-    border: 1px solid transparent; border-bottom: 1px solid var(--border);
-    transition: background .1s, border-color .1s;
-  }
-  .item:hover { background: var(--surface); border-color: var(--border); }
-  .item .dot {
-    flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%;
-    background: var(--accent);
-  }
-  .item .main { min-width: 0; flex: 1; }
-  .item .headline {
-    font-size: 14.5px; font-weight: 600; line-height: 1.35; color: var(--text);
-    /* clamp to 2 lines so rows stay compact */
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .item:hover .headline { color: var(--accent); }
-  .item .meta { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
-  .item .arrow { flex: 0 0 auto; color: var(--text-dim); font-size: 14px; opacity: .5; }
-  .item:hover .arrow { opacity: 1; color: var(--accent); }
-  .source-badge {
-    background: var(--accent-soft); color: var(--accent); font-weight: 700;
-    padding: 1px 8px; border-radius: 999px; font-size: 10.5px; white-space: nowrap;
-  }
-  body.dark .source-badge { color: #a9c2ff; }
-
-  /* ---------- Skeleton ---------- */
-  .skeleton { pointer-events: none; }
-  .skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; height: 12px; border-radius: 6px; margin: 5px 0; }
-  .skeleton .line.short { width: 45%; }
-  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-
-  /* ---------- Footer ---------- */
-  footer {
-    text-align: center; padding: 26px 18px 40px; color: var(--text-dim); font-size: 13px;
-    border-top: 1px solid var(--border); margin-top: 20px;
-  }
-  footer b { color: var(--accent); }
-
-  /* ---------- Modal (settings) ---------- */
-  .overlay {
-    position: fixed; inset: 0; background: rgba(10,14,24,.6); backdrop-filter: blur(3px);
-    display: none; align-items: center; justify-content: center; z-index: 50; padding: 16px;
-  }
-  .overlay.show { display: flex; }
-  .modal {
-    background: var(--surface); border-radius: 16px; width: min(520px, 100%);
-    max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 70px rgba(0,0,0,.4); padding: 24px;
-  }
-  .modal h2 { margin: 0 0 4px; font-size: 20px; }
-  .modal .sub { color: var(--text-dim); font-size: 13px; margin-bottom: 16px; }
-  .field { margin-bottom: 14px; }
-  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; }
-  .field .hint { font-size: 11.5px; color: var(--text-dim); font-weight: 400; }
-  .field input {
-    width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
-    background: var(--surface-2); color: var(--text); font-size: 13.5px;
-  }
-  .field a { color: var(--accent); font-weight: 600; }
-  .modal-actions { display: flex; gap: 10px; margin-top: 8px; }
-  .badge-mode {
-    display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
-    background: var(--accent-soft); color: var(--accent);
-  }
-
-  /* Hidden render stage for PDF templates (kept off-screen, not display:none so html2canvas can measure) */
-  #pdfStage { position: fixed; left: -10000px; top: 0; }
-
-  /* ---------- Top area: stories (left) + markets (right) ---------- */
-  .topwrap { max-width: 1280px; margin: 0 auto; padding: 14px 18px 0; display: flex; gap: 18px; align-items: flex-start; }
-  .topmain { flex: 1; min-width: 0; }
-  .topmain h2 { font-size: 15px; font-weight: 800; margin: 2px 0 10px; display: flex; align-items: center; gap: 8px; }
-  .top-grid { display: grid; gap: 11px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
-  .feat {
-    position: relative; height: 132px; border-radius: 12px; overflow: hidden;
-    display: block; box-shadow: var(--shadow); background: var(--sc);
-    transition: transform .12s, box-shadow .12s;
-  }
-  .feat:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(20,30,60,.22); }
-  .feat-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .feat-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,12,20,.93) 34%, rgba(8,12,20,.1)); }
-  .feat-body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; color: #fff; }
-  .feat-badge { align-self: flex-start; background: var(--sc); font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
-  .feat-hl { font-size: 12.5px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .feat-meta { font-size: 10px; opacity: .85; margin-top: 4px; }
-
-  /* ---------- Markets panel (right) ---------- */
-  .markets { flex: 0 0 296px; }
-  .mkt { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
-  .mkt-head { font-size: 14px; font-weight: 800; padding: 11px 14px; color: #fff; background: linear-gradient(120deg, #0f9d58, rgba(0,0,0,.3)), #0f9d58; display: flex; align-items: center; gap: 7px; }
-  .mkt-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 9px 14px; border-top: 1px solid var(--border); font-size: 13px; }
-  .mkt-row.grp { background: var(--surface-2); }
-  .mkt-name { color: var(--text-dim); font-weight: 600; }
-  .mkt-val { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-  .mkt-chg { font-size: 10.5px; font-weight: 700; margin-left: 6px; }
-  .mkt-chg.up { color: #16a34a; }
-  .mkt-chg.down { color: #dc2626; }
-  .mkt-foot { font-size: 10px; color: var(--text-dim); padding: 7px 14px; text-align: right; border-top: 1px solid var(--border); }
-
-  @media (max-width: 860px) {
-    .topwrap { flex-direction: column; }
-    .markets { flex: 1 1 auto; width: 100%; }
-  }
-
-  /* ---------- Dashboard: all sectors as boxes on one screen ---------- */
-  .dash {
-    max-width: 1280px; margin: 0 auto; padding: 14px 18px 60px;
-    display: grid; gap: 18px;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    align-items: start;
-  }
-  .sbox {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-    box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
-    scroll-margin-top: 130px;
-  }
-  .sbox-head {
-    display: flex; align-items: center; gap: 10px; padding: 12px 14px;
-    color: #fff; background: linear-gradient(120deg, var(--sc), rgba(0,0,0,.32)), var(--sc);
-  }
-  .sbox-ic { font-size: 20px; }
-  .sbox-name { font-size: 15px; font-weight: 800; letter-spacing: .3px; flex: 1; }
-  .sbox-dl {
-    border: none; background: rgba(255,255,255,.22); color: #fff; cursor: pointer;
-    width: 30px; height: 30px; border-radius: 8px; font-size: 14px; display: grid; place-items: center;
-    transition: background .12s, transform .05s;
-  }
-  .sbox-dl:hover { background: rgba(255,255,255,.4); }
-  .sbox-dl:active { transform: scale(.9); }
-  .sbox-list { padding: 6px 6px 8px; display: flex; flex-direction: column; }
-
-  .s-item {
-    display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 10px;
-    transition: background .1s;
-  }
-  .s-item:hover { background: var(--surface-2); }
-  .s-item + .s-item { border-top: 1px solid var(--border); }
-  .s-thumb {
-    flex: 0 0 auto; width: 52px; height: 52px; border-radius: 9px; object-fit: cover;
-    background: var(--surface-2); background-size: cover; background-position: center;
-  }
-  .s-thumb.ph { display: grid; place-items: center; font-size: 22px; color: #fff; }
-  .s-main { min-width: 0; flex: 1; }
-  .s-hl {
-    font-size: 13.5px; font-weight: 600; line-height: 1.3; color: var(--text);
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .s-item:hover .s-hl { color: var(--sc); }
-  .s-meta { font-size: 11px; color: var(--text-dim); margin-top: 3px; display: flex; gap: 7px; }
-  .s-meta b { color: var(--sc); font-weight: 700; }
-  .sbox-empty { padding: 20px 14px; font-size: 12.5px; color: var(--text-dim); text-align: center; }
-
-  /* skeleton rows inside a box */
-  .s-item.skeleton .s-thumb { animation: shimmer 1.3s infinite; background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; }
-  .s-item.skeleton .line { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%); background-size: 400% 100%; animation: shimmer 1.3s infinite; height: 11px; border-radius: 5px; margin: 4px 0; }
-  .s-item.skeleton .line.short { width: 50%; }
-
-  /* ---------- Toast ---------- */
-  .toast {
-    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px);
-    background: var(--surface); color: var(--text); border: 1px solid var(--border);
-    padding: 11px 18px; border-radius: 10px; font-size: 13.5px; box-shadow: var(--shadow);
-    opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 60; max-width: 90vw;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  @media (max-width: 560px) {
-    .brand p { display: none; }
-    .grid { grid-template-columns: 1fr; }
-  }
-</style>
-</head>
-<body>
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <img class="logo" src="favicon.svg" alt="Global Sector News Digest logo" width="38" height="38">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#143f36" />
+    <meta
+      name="description"
+      content="A wider view of the news. Explore twelve sectors, read original sources, and create a digest. Curated by Sanjay Navandar."
+    />
+    <title>Sector News Digest · Sanjay Navandar</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script type="module" src="assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#news">Skip to headlines</a>
+    <div class="edition-bar">
+      <div class="wrap edition-inner">
+        <span id="editionDate">THE DAILY PERSPECTIVE</span>
+        <div id="clocks" aria-label="World clocks"></div>
+        <span class="edition-label">INDEPENDENT SOURCES. A WIDER VIEW.</span>
+      </div>
+    </div>
+    <header class="wrap masthead">
+      <a class="brand" href="./" aria-label="Sector News Digest home"
+        ><span class="brand-mark" aria-hidden="true">s<span>n</span></span
+        ><span class="brand-name"
+          >Sector<span>News Digest<span class="brand-dot">.</span></span></span
+        ></a
+      >
+      <nav class="header-links" aria-label="Main navigation">
+        <a href="#news">The briefing</a><a href="#sectorNav">Explore sectors</a
+        ><a href="#about"
+          >About the digest <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+      <button
+        id="themeBtn"
+        class="icon-button"
+        aria-label="Switch to dark theme"
+        title="Switch theme"
+      >
+        ◐
+      </button>
+    </header>
+    <main class="wrap">
+      <section class="intro" aria-labelledby="introTitle">
         <div>
-          <h1>Global Sector News Digest</h1>
-          <p>by <b>Sanjay Navandar</b> ·
-            <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener" class="brand-ig">📸 ProfessorSK</a>
-            · <span id="updated">loading…</span></p>
-          <div class="clockbar" id="clocks"></div>
+          <p class="eyebrow">
+            <span class="line"></span> THE WORLD, IN PERSPECTIVE
+          </p>
+          <h1 id="introTitle">Stay curious.<br />Stay <em>informed.</em></h1>
+          <p class="intro-copy">
+            The stories shaping industries. The context to see what’s next.<br
+              class="desktop-break"
+            />
+            Your daily briefing across twelve sectors, in one thoughtful space.
+          </p>
+          <p class="byline">
+            Curated by <strong>Sanjay Navandar</strong><span> / </span
+            ><a
+              href="https://www.instagram.com/iam_sanjay_navandar"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ProfessorSK ↗</a
+            >
+          </p>
         </div>
+        <aside class="perspective-card" aria-label="Coverage overview">
+          <div class="orbit-art" aria-hidden="true">
+            <span class="orbit o1"></span><span class="orbit o2"></span
+            ><span class="orbit o3"></span><span class="axis a1"></span
+            ><span class="axis a2"></span><span class="orbit-dot"></span>
+          </div>
+          <span class="card-label">A CONNECTED WORLD</span>
+          <h2>Different sectors.<br />One bigger picture.</h2>
+          <div class="perspective-stats">
+            <div><strong>12</strong><span>sectors covered</span></div>
+            <div>
+              <strong id="sourceCount">—</strong><span>news sources</span>
+            </div>
+            <span class="arrow-circle" aria-hidden="true">↗</span>
+          </div>
+        </aside>
+      </section>
+      <section class="news-section" id="news" aria-labelledby="sectionTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR READING ROOM</p>
+            <h2 id="sectionTitle">
+              The latest briefing<span class="brand-dot">.</span>
+            </h2>
+          </div>
+          <div class="update-controls">
+            <div class="update-copy">
+              <span id="statusLabel" class="status-label">Loading edition</span
+              ><span id="lastUpdated">Checking the latest published news</span>
+            </div>
+            <button
+              id="refreshBtn"
+              class="refresh-button"
+              title="Check the latest published edition"
+            >
+              <span aria-hidden="true">↻</span> Refresh
+            </button>
+          </div>
+        </div>
+        <p
+          id="notice"
+          class="notice"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></p>
+        <nav id="sectorNav" class="sector-nav" aria-label="News sectors">
+          <button
+            class="sector-tab active"
+            aria-pressed="true"
+            data-sector="all"
+          >
+            All sectors
+          </button>
+        </nav>
+        <div class="filter-bar">
+          <label class="search"
+            ><span aria-hidden="true">⌕</span
+            ><input
+              id="search"
+              type="search"
+              placeholder="Find a story, topic or publisher…"
+              aria-label="Search headlines and publishers"
+            /><kbd aria-hidden="true">/</kbd></label
+          >
+          <div class="filter-actions">
+            <label class="sr-only" for="publisher">Filter by publisher</label
+            ><select id="publisher">
+              <option value="all">All publishers</option></select
+            ><button id="resetBtn" class="text-button" hidden>
+              Reset filters</button
+            ><button id="exportBtn" class="export-button" disabled>
+              <span aria-hidden="true">↓</span> Create a digest
+            </button>
+          </div>
+        </div>
+        <div class="results-line">
+          <p id="resultCount" aria-live="polite">Preparing your briefing…</p>
+          <span>NEWEST FIRST <span aria-hidden="true">↓</span></span>
+        </div>
+        <div id="featured"></div>
+        <div id="articleGrid" class="article-grid" aria-busy="true">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+        <div id="emptyState" class="empty-state" hidden>
+          <span class="empty-symbol" aria-hidden="true">↗</span>
+          <h3 id="emptyTitle">Your briefing is on its way</h3>
+          <p id="emptyCopy">We’re checking the latest published edition.</p>
+        </div>
+        <div class="load-more">
+          <button id="loadMore" class="outline-button" hidden>
+            More stories <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+        <details class="source-status">
+          <summary>
+            Edition & source status <span aria-hidden="true">+</span>
+          </summary>
+          <p>
+            Headlines are collected about every 30 minutes. Scheduled updates
+            can be delayed. Refresh checks the latest published edition; it does
+            not contact publishers directly.
+          </p>
+          <div id="sectorStatus"></div>
+        </details>
+      </section>
+      <section id="about" class="about">
+        <span class="about-kicker">A NOTE FROM THE CURATOR</span>
+        <h2>Less noise.<br /><em>More perspective.</em></h2>
+        <div>
+          <p>
+            Good decisions start with a wider view. This digest brings together
+            reporting across industries, so you can connect the dots without
+            opening a dozen tabs.
+          </p>
+          <p class="about-small">
+            Headlines link to their original publishers. Publication times and
+            collection status are shown separately. All reporting belongs to its
+            respective source.
+          </p>
+          <span class="signature">Sanjay Navandar</span>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap footer">
+      <span>SECTOR NEWS DIGEST <span class="brand-dot">●</span></span
+      ><span>Curated with perspective. Read with curiosity.</span
+      ><a
+        href="https://github.com/sanjaynawandhar-hue/sector-news-digest"
+        target="_blank"
+        rel="noopener noreferrer"
+        >View the project ↗</a
+      >
+    </footer>
+    <dialog id="exportDialog" aria-labelledby="exportTitle">
+      <div class="dialog-heading">
+        <p class="eyebrow">TAKE THE PERSPECTIVE WITH YOU</p>
+        <button
+          id="closeExport"
+          class="icon-button"
+          aria-label="Close export dialog"
+        >
+          ×
+        </button>
       </div>
-      <span class="badge-mode" id="modeBadge" title="Data source mode">…</span>
-      <button class="btn" id="refreshBtn" title="Refresh all sectors (uses API quota)">🔄 Refresh all</button>
-      <button class="icon-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
-      <button class="icon-btn" id="settingsBtn" title="API key settings">⚙️</button>
-    </div>
-  </header>
-
-  <main>
-    <div class="topwrap">
-      <div class="topmain" id="topMain"></div>
-      <aside class="markets" id="markets"></aside>
-    </div>
-    <div class="dash" id="dash"></div>
-  </main>
-
-  <footer>
-    Curated by <b>Sanjay Navandar</b> &nbsp;|&nbsp; <a href="https://www.instagram.com/iam_sanjay_navandar" target="_blank" rel="noopener">📸 Follow ProfessorSK · @iam_sanjay_navandar</a>
-  </footer>
-
-  <!-- Settings modal -->
-  <div class="overlay" id="settingsOverlay">
-    <div class="modal">
-      <h2>⚙️ API Keys</h2>
-      <p class="sub">Paste your free API keys below. They're stored only in your browser's localStorage.
-        Leave all blank to run in <b>RSS-only mode</b>. If you deploy on Netlify with server-side keys, the app uses those automatically and ignores these.</p>
-
-      <div class="field">
-        <label>NewsData.io <span class="hint">— <a href="https://newsdata.io/register" target="_blank" rel="noopener">get key</a> · 200/day</span></label>
-        <input type="password" id="key_newsdata" placeholder="pub_xxxxxxxx">
+      <h2 id="exportTitle">Create your digest.</h2>
+      <p>
+        Five latest stories from one sector, with source links and publication
+        dates. Search and publisher filters do not affect exports.
+      </p>
+      <label for="exportSector">Choose a sector</label
+      ><select id="exportSector"></select>
+      <div class="export-choices">
+        <button id="digestPdf">
+          <strong>Reading digest ↗</strong
+          ><span>A4 PDF · five headlines</span></button
+        ><button id="carouselPdf">
+          <strong>LinkedIn carousel ↗</strong
+          ><span>Square PDF · cover + five stories</span>
+        </button>
       </div>
-      <div class="field">
-        <label>GNews.io <span class="hint">— <a href="https://gnews.io/register" target="_blank" rel="noopener">get key</a> · 100/day</span></label>
-        <input type="password" id="key_gnews" placeholder="xxxxxxxxxxxxxxxx">
-      </div>
-      <div class="field">
-        <label>Currents API <span class="hint">— <a href="https://currentsapi.services/en/register" target="_blank" rel="noopener">get key</a> · ~600/day</span></label>
-        <input type="password" id="key_currents" placeholder="xxxxxxxxxxxxxxxx">
-      </div>
-      <div class="field">
-        <label>The Guardian <span class="hint">— <a href="https://open-platform.theguardian.com/access/" target="_blank" rel="noopener">get key</a> · free & generous</span></label>
-        <input type="password" id="key_guardian" placeholder="xxxxxxxx-xxxx-xxxx">
-      </div>
-      <div class="field">
-        <label>New York Times <span class="hint">— <a href="https://developer.nytimes.com/get-started" target="_blank" rel="noopener">get key</a> · ~500/day</span></label>
-        <input type="password" id="key_nyt" placeholder="xxxxxxxxxxxxxxxx">
-      </div>
-
-      <p class="sub" style="margin-top:4px">Even with no keys, the app pulls live headlines from 12+ free RSS feeds
-        (BBC, CNBC, TechCrunch, The Verge, Economic Times, Mint, Google News…).</p>
-
-      <div class="modal-actions">
-        <button class="btn primary" id="saveKeys" style="flex:1">Save keys</button>
-        <button class="btn" id="clearKeys">Clear all</button>
-        <button class="btn" id="closeSettings">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="pdfStage"></div>
-  <div class="toast" id="toast"></div>
-
-<script>
-"use strict";
-/* ============================================================================
-   GLOBAL SECTOR NEWS DIGEST
-   Vanilla JS. Layered data strategy with graceful degradation:
-     Layer 1: free News APIs (NewsData, GNews, Currents, Guardian)
-              — via Netlify function if deployed, else via localStorage keys
-     Layer 2: RSS fallback (Google News RSS etc.) through a CORS proxy
-   Every source is wrapped so one failure never breaks the page.
-   ============================================================================ */
-
-/* ---------------------------------------------------------------------------
-   1. SECTOR CONFIG
-   Each sector maps to the right query/category per API + RSS search terms,
-   plus an emoji icon and accent color used across the UI and the PDF.
-   --------------------------------------------------------------------------- */
-const SECTORS = [
-  { id:'tech',      name:'Technology',           icon:'💻', color:'#2563eb',
-    newsdata:{category:'technology'}, gnews:{category:'technology'}, currents:{category:'technology'}, guardian:{section:'technology'}, nyt:{section:'technology'},
-    rssQuery:'technology' },
-  { id:'finance',   name:'Finance & Markets',    icon:'📈', color:'#0f9d58',
-    newsdata:{category:'business'}, gnews:{category:'business'}, currents:{category:'finance'}, guardian:{section:'business'}, nyt:{section:'business'},
-    rssQuery:'stock market OR finance' },
-  { id:'health',    name:'Healthcare & Pharma',  icon:'🏥', color:'#e11d48',
-    newsdata:{category:'health'}, gnews:{category:'health'}, currents:{category:'health'}, guardian:{q:'health OR pharma'}, nyt:{section:'health'},
-    rssQuery:'healthcare OR pharma' },
-  { id:'energy',    name:'Energy & Oil',         icon:'⚡', color:'#f59e0b',
-    newsdata:{q:'energy OR oil'}, gnews:{q:'energy OR oil'}, currents:{q:'energy OR oil'}, guardian:{q:'energy OR oil'}, nyt:{q:'energy oil'},
-    rssQuery:'energy OR oil OR gas' },
-  { id:'auto',      name:'Automobiles & EV',     icon:'🚗', color:'#7c3aed',
-    newsdata:{q:'electric vehicle OR automobile'}, gnews:{q:'electric vehicle OR automobile'}, currents:{q:'electric vehicle OR automobile'}, guardian:{q:'electric vehicle OR automobile'}, nyt:{section:'automobiles'},
-    rssQuery:'electric vehicle OR automobile' },
-  { id:'realestate',name:'Real Estate',          icon:'🏢', color:'#0891b2',
-    newsdata:{q:'real estate OR housing'}, gnews:{q:'real estate OR housing'}, currents:{q:'real estate OR property'}, guardian:{q:'real estate OR housing'}, nyt:{section:'realestate'},
-    rssQuery:'real estate OR property' },
-  { id:'agri',      name:'Agriculture',          icon:'🌾', color:'#65a30d',
-    newsdata:{q:'agriculture OR farming'}, gnews:{q:'agriculture OR farming'}, currents:{q:'agriculture OR farming'}, guardian:{q:'agriculture OR farming'}, nyt:{q:'agriculture farming'},
-    rssQuery:'agriculture OR farming' },
-  { id:'defence',   name:'Defence & Aerospace',  icon:'✈️', color:'#475569',
-    newsdata:{q:'defence OR aerospace OR military'}, gnews:{q:'defense OR aerospace'}, currents:{q:'defense OR aerospace'}, guardian:{q:'defence OR aerospace'}, nyt:{q:'defense aerospace military'},
-    rssQuery:'defence OR aerospace OR military' },
-  { id:'retail',    name:'Retail & Consumer',    icon:'🛍️', color:'#db2777',
-    newsdata:{q:'retail OR consumer'}, gnews:{q:'retail OR consumer'}, currents:{q:'retail OR consumer'}, guardian:{q:'retail OR consumer'}, nyt:{q:'retail consumer'},
-    rssQuery:'retail OR consumer' },
-  { id:'telecom',   name:'Telecom',              icon:'📡', color:'#4f46e5',
-    newsdata:{q:'telecom OR 5G'}, gnews:{q:'telecom OR 5G'}, currents:{q:'telecom OR 5G'}, guardian:{q:'telecom OR 5G'}, nyt:{q:'telecom 5G wireless'},
-    rssQuery:'telecom OR 5G' },
-  { id:'crypto',    name:'Crypto News',          icon:'🪙', color:'#f7931a',
-    newsdata:{q:'cryptocurrency OR bitcoin OR ethereum'}, gnews:{q:'cryptocurrency OR bitcoin'}, currents:{q:'cryptocurrency OR bitcoin'}, guardian:{q:'cryptocurrency OR bitcoin'}, nyt:{q:'cryptocurrency bitcoin'},
-    rssQuery:'cryptocurrency OR bitcoin OR ethereum' },
-  { id:'bollywood', name:'Bollywood News',       icon:'🎬', color:'#c026d3',
-    newsdata:{q:'Bollywood'}, gnews:{q:'Bollywood'}, currents:{q:'Bollywood'}, guardian:{q:'Bollywood'}, nyt:{q:'Bollywood'},
-    rssQuery:'Bollywood' },
-];
-
-/* ---------------------------------------------------------------------------
-   1b. RSS FEED CONFIG — all no-key feeds in ONE place, mapped per sector.
-   Fixing a dead feed is a one-line edit here. Google News + Bing keyword feeds
-   are appended automatically (see rssFeedsFor) for broad + India coverage.
-   --------------------------------------------------------------------------- */
-const RSS_FEEDS = {
-  tech: [
-    'https://techcrunch.com/feed/',
-    'https://www.theverge.com/rss/index.xml',
-    'https://feeds.arstechnica.com/arstechnica/index',
-    'http://feeds.bbci.co.uk/news/technology/rss.xml',
-  ],
-  finance: [
-    'http://feeds.bbci.co.uk/news/business/rss.xml',
-    'https://www.cnbc.com/id/10001147/device/rss/rss.html',   // CNBC markets
-    'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms',
-    'https://www.livemint.com/rss/markets',
-    'https://www.thehindubusinessline.com/feeder/default.rss',
-    'https://www.moneycontrol.com/rss/latestnews.xml',
-  ],
-  health: [
-    'http://feeds.bbci.co.uk/news/health/rss.xml',
-  ],
-  energy: [],
-  auto: [],
-  realestate: [],
-  agri: [],
-  defence: [
-    'https://www.aljazeera.com/xml/rss/all.xml',
-  ],
-  retail: [],
-  telecom: [],
-  crypto: [
-    'https://www.coindesk.com/arc/outboundfeeds/rss/',
-    'https://cointelegraph.com/rss',
-  ],
-  bollywood: [
-    'https://www.bollywoodhungama.com/rss/news.xml',
-  ],
-};
-
-/* ---------------------------------------------------------------------------
-   2. CONSTANTS & STATE
-   --------------------------------------------------------------------------- */
-const LS = {
-  keys: 'gsnd_keys',
-  theme: 'gsnd_theme',
-  cache: (sid) => `gsnd_cache_${sid}`,
-  rotation: 'gsnd_rotation',
-};
-const CACHE_TTL = 30 * 60 * 1000;      // 30 minutes
-const MAX_ITEMS = 20;
-const APIS = ['newsdata', 'gnews', 'currents', 'guardian', 'nyt'];
-// CORS proxies tried in order for RSS. All free proxies are flaky/rate-limited
-// (allorigins often 503/520s; corsproxy.io & cors.sh now need paid keys), so we
-// keep several anonymous fallbacks and move to the next on any failure.
-// `json:true` means the proxy wraps the body in JSON under a `contents` field.
-const CORS_PROXIES = [
-  { build: (u) => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`, json: false },
-  { build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,        json: false },
-  { build: (u) => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,        json: true  },
-  { build: (u) => `https://thingproxy.freeboard.io/fetch/${u}`,                          json: false },
-];
-
-const state = {
-  data: {},                  // per-sector: { items, ts, loading } keyed by sector.id
-  backend: false,            // true if a Netlify function is available
-};
-
-/* ---------------------------------------------------------------------------
-   3. DOM refs & tiny helpers
-   --------------------------------------------------------------------------- */
-const $ = (id) => document.getElementById(id);
-const dashEl = $('dash'), topMainEl = $('topMain'), marketsEl = $('markets'),
-      updatedEl = $('updated'), modeBadge = $('modeBadge'), clocksEl = $('clocks');
-
-// Live world clocks shown in the header, updated every second.
-const CLOCKS = [
-  { city: 'India',    flag: '🇮🇳', tz: 'Asia/Kolkata' },
-  { city: 'Dubai',    flag: '🇦🇪', tz: 'Asia/Dubai' },
-  { city: 'New York', flag: '🇺🇸', tz: 'America/New_York' },
-  { city: 'London',   flag: '🇬🇧', tz: 'Europe/London' },
-];
-function startClocks() {
-  clocksEl.innerHTML = CLOCKS.map((c, i) =>
-    `<div class="clock"><span class="clk-city">${c.flag} ${c.city}</span><span class="clk-time" id="clk-${i}">--:--:--</span></div>`
-  ).join('');
-  const tick = () => {
-    const now = new Date();
-    CLOCKS.forEach((c, i) => {
-      const el = document.getElementById('clk-' + i);
-      if (el) el.textContent = now.toLocaleTimeString('en-GB', { timeZone: c.tz, hour12: false });
-    });
-  };
-  tick();
-  setInterval(tick, 1000);
-}
-
-// Route thumbnails through the free wsrv.nl image proxy: upgrades http→https,
-// resizes small (faster + smaller), sets CORS headers (also fixes PDF canvas),
-// and sidesteps hotlink blocking. `params` are wsrv query options.
-function weserv(url, params) {
-  const clean = String(url).replace(/^https?:\/\//, '');
-  return `https://images.weserv.nl/?url=${encodeURIComponent(clean)}&${params}`;
-}
-
-function getKeys() { try { return JSON.parse(localStorage.getItem(LS.keys)) || {}; } catch { return {}; } }
-function hasAnyKey() { const k = getKeys(); return APIS.some(a => k[a]); }
-function toast(msg) {
-  const t = $('toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2600);
-}
-function escapeHtml(s='') { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-// Relative "x hours ago"
-function timeAgo(dateStr) {
-  const d = new Date(dateStr); if (isNaN(d)) return '';
-  const s = Math.floor((Date.now() - d.getTime()) / 1000);
-  if (s < 60) return 'just now';
-  const m = Math.floor(s/60); if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m/60); if (h < 24) return `${h}h ago`;
-  const dd = Math.floor(h/24); return `${dd}d ago`;
-}
-
-/* ---------------------------------------------------------------------------
-   4. NORMALIZERS — every API returns a different shape; convert to a common
-   article object: { title, url, source, image, publishedAt, description }
-   --------------------------------------------------------------------------- */
-const normalize = {
-  newsdata: (j) => (j.results || []).map(a => ({
-    title: a.title, url: a.link, source: a.source_id || a.source_name || 'NewsData',
-    image: a.image_url || null, publishedAt: a.pubDate, description: a.description || '' })),
-  gnews: (j) => (j.articles || []).map(a => ({
-    title: a.title, url: a.url, source: (a.source && a.source.name) || 'GNews',
-    image: a.image || null, publishedAt: a.publishedAt, description: a.description || '' })),
-  currents: (j) => (j.news || []).map(a => ({
-    title: a.title, url: a.url, source: a.author || 'Currents',
-    image: a.image && a.image !== 'None' ? a.image : null, publishedAt: a.published, description: a.description || '' })),
-  guardian: (j) => ((j.response && j.response.results) || []).map(a => ({
-    title: a.webTitle, url: a.webUrl, source: 'The Guardian',
-    image: (a.fields && a.fields.thumbnail) || null, publishedAt: a.webPublicationDate,
-    description: (a.fields && a.fields.trailText) || '' })),
-  // NYT has two shapes: Top Stories (results[]) and Article Search (response.docs[]).
-  nyt: (j) => {
-    const nytImg = (mm) => {
-      if (!mm || !mm.length) return null;
-      let u = (mm.find(m => m && m.url) || {}).url || null;
-      if (u && !/^https?:/.test(u)) u = 'https://www.nytimes.com/' + u.replace(/^\/+/, '');
-      return u;
-    };
-    if (j.results) return j.results.map(a => ({
-      title: a.title, url: a.url, source: 'The New York Times',
-      image: nytImg(a.multimedia), publishedAt: a.published_date, description: a.abstract || '' }));
-    if (j.response && j.response.docs) return j.response.docs.map(a => ({
-      title: (a.headline && a.headline.main) || '', url: a.web_url, source: 'The New York Times',
-      image: nytImg(a.multimedia), publishedAt: a.pub_date, description: a.abstract || '' }));
-    return [];
-  },
-};
-
-/* ---------------------------------------------------------------------------
-   5. CLIENT-SIDE API FETCHERS (used when NOT on Netlify).
-   Each builds the correct URL from the sector config + user's key, fetches,
-   and normalizes. Any failure throws and is caught by the caller.
-   --------------------------------------------------------------------------- */
-async function fetchJSON(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
-}
-const clientFetch = {
-  async newsdata(sector, key) {
-    const c = sector.newsdata, p = new URLSearchParams({ apikey:key, language:'en', image:1 });
-    if (c.category) p.set('category', c.category);
-    if (c.q) p.set('q', c.q);
-    return normalize.newsdata(await fetchJSON(`https://newsdata.io/api/1/latest?${p}`));
-  },
-  async gnews(sector, key) {
-    const c = sector.gnews;
-    let url;
-    if (c.category) url = `https://gnews.io/api/v4/top-headlines?category=${c.category}&lang=en&max=10&token=${key}`;
-    else url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(c.q)}&lang=en&max=10&token=${key}`;
-    return normalize.gnews(await fetchJSON(url));
-  },
-  async currents(sector, key) {
-    const c = sector.currents;
-    let url;
-    if (c.category) url = `https://api.currentsapi.services/v1/latest-news?category=${c.category}&language=en&apiKey=${key}`;
-    else url = `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(c.q)}&language=en&apiKey=${key}`;
-    return normalize.currents(await fetchJSON(url));
-  },
-  async guardian(sector, key) {
-    const c = sector.guardian, p = new URLSearchParams({ 'api-key':key, 'show-fields':'thumbnail,trailText', 'order-by':'newest', 'page-size':'12' });
-    if (c.section) p.set('section', c.section);
-    if (c.q) p.set('q', c.q);
-    return normalize.guardian(await fetchJSON(`https://content.guardianapis.com/search?${p}`));
-  },
-  async nyt(sector, key) {
-    const c = sector.nyt;
-    // Section → Top Stories; keyword → Article Search.
-    const url = c.section
-      ? `https://api.nytimes.com/svc/topstories/v2/${c.section}.json?api-key=${key}`
-      : `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(c.q)}&sort=newest&api-key=${key}`;
-    return normalize.nyt(await fetchJSON(url));
-  },
-};
-
-/* ---------------------------------------------------------------------------
-   6. RSS FALLBACK (Layer 2). No key needed. Fetched through a CORS proxy and
-   parsed from XML. We use Google News RSS search per sector plus a couple of
-   sector-agnostic quality feeds.
-   --------------------------------------------------------------------------- */
-function rssFeedsFor(sector) {
-  const q = encodeURIComponent(sector.rssQuery);
-  // Google News (India-weighted) + Bing are keyword-targeted and reliable, so
-  // they lead; the sector's named feeds (BBC, CNBC, ET, TechCrunch…) follow.
-  return [
-    `https://news.google.com/rss/search?q=${q}&hl=en-IN&gl=IN&ceid=IN:en`,
-    ...(RSS_FEEDS[sector.id] || []),
-    `https://www.bing.com/news/search?q=${q}&format=rss`,
-  ];
-}
-// fetch with a timeout so a hung proxy can't stall the whole sector load
-async function fetchWithTimeout(url, ms = 5000) {
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), ms);
-  try { return await fetch(url, { signal: ctrl.signal }); }
-  finally { clearTimeout(t); }
-}
-async function fetchRSS(feedUrl) {
-  // Race ALL proxies at once and take the first that returns valid RSS. This
-  // makes latency ≈ the fastest proxy instead of the sum of the slow ones.
-  const attempt = async (proxy) => {
-    const r = await fetchWithTimeout(proxy.build(feedUrl), 6000);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    let text = await r.text();
-    if (proxy.json) { try { text = JSON.parse(text).contents || ''; } catch {} }
-    if (!text || !text.includes('<item')) throw new Error('no items');
-    return text;
-  };
-  let xml;
-  try { xml = await Promise.any(CORS_PROXIES.map(attempt)); }
-  catch { throw new Error('all proxies failed'); }
-  const doc = new DOMParser().parseFromString(xml, 'text/xml');
-  return [...doc.querySelectorAll('item')].slice(0, 12).map(it => {
-    const g = (t) => (it.querySelector(t)?.textContent || '').trim();
-    // Google News titles look like "Headline - Source"; split the source out.
-    let title = g('title'), source = g('source') || 'RSS';
-    const dash = title.lastIndexOf(' - ');
-    if (!g('source') && dash > 0) { source = title.slice(dash + 3); title = title.slice(0, dash); }
-    // try to dig an image out of media/enclosure/description
-    let image = it.querySelector('enclosure')?.getAttribute('url')
-             || it.getElementsByTagName('media:content')[0]?.getAttribute('url') || null;
-    if (!image) { const m = g('description').match(/<img[^>]+src="([^"]+)"/i); if (m) image = m[1]; }
-    return { title, url: g('link'), source, image, publishedAt: g('pubDate'), description: '' };
-  });
-}
-
-/* ---------------------------------------------------------------------------
-   7. BACKEND (Netlify function) detection + fetch.
-   If /.netlify/functions/news responds, keys live safely server-side.
-   --------------------------------------------------------------------------- */
-async function detectBackend() {
-  try {
-    // Short timeout so a non-Netlify host (e.g. GitHub Pages 404) never stalls startup.
-    const r = await fetchWithTimeout('/.netlify/functions/news?probe=1', 3000);
-    if (!r.ok) return false;
-    const j = await r.json();
-    return !!(j && j.ok);
-  } catch { return false; }
-}
-async function backendFetch(sector, sources) {
-  const j = await fetchJSON(`/.netlify/functions/news?sector=${sector.id}&sources=${sources.join(',')}`);
-  return { items: j.items || [], errors: j.errors || {} };
-}
-
-/* ---------------------------------------------------------------------------
-   8. DEDUPE + MERGE + SORT
-   --------------------------------------------------------------------------- */
-function keyOf(a) {
-  // normalized title used to detect duplicates across sources
-  return (a.title || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
-}
-
-// Social / aggregator / non-news domains to drop — they clutter a professional
-// digest and rarely carry usable images (e.g. Reddit posts like /u/username).
-const BLOCKED_SOURCES = [
-  'reddit.com', 'redd.it', 'twitter.com', 'x.com', 't.co', 'facebook.com',
-  'youtube.com', 'youtu.be', 'tiktok.com', 'instagram.com', 'pinterest.',
-  'quora.com', 'medium.com', 'substack.com', 'blogspot.', 'wordpress.com',
-];
-function isBlocked(a) {
-  const url = (a.url || '').toLowerCase();
-  const src = (a.source || '').toLowerCase().trim();
-  // Reddit items often surface with a username/subreddit as the "source"
-  // (e.g. "/u/chromate", "/r/technology") rather than a reddit.com URL.
-  if (/^\/(u|r)\//.test(src) || src === 'reddit') return true;
-  return BLOCKED_SOURCES.some(d => (url + ' ' + src).includes(d));
-}
-
-function mergeItems(...lists) {
-  const seen = new Set(), out = [];
-  for (const list of lists) for (const a of list) {
-    if (!a || !a.title || !a.url) continue;
-    if (isBlocked(a)) continue;                 // drop social/aggregator noise
-    const k = keyOf(a);
-    if (k.length < 6 || seen.has(k)) continue;
-    seen.add(k); out.push(a);
-  }
-  // Recency first, but nudge items that have an image slightly ahead when they
-  // were published within the same ~3-hour window (nicer visual feed + digests).
-  out.sort((x, y) => {
-    const dt = new Date(y.publishedAt || 0) - new Date(x.publishedAt || 0);
-    if (Math.abs(dt) < 3 * 3600 * 1000) return (y.image ? 1 : 0) - (x.image ? 1 : 0) || dt;
-    return dt;
-  });
-  return out.slice(0, MAX_ITEMS);
-}
-
-/* ---------------------------------------------------------------------------
-   9. ROTATION — spread quota: call only `n` APIs per sector load, cycling which
-   ones so that across the 10 sector boxes the load is spread over all keys.
-   --------------------------------------------------------------------------- */
-function pickApis(available, n) {
-  if (available.length === 0) return [];
-  if (available.length <= n) return available.slice();
-  let rot = parseInt(localStorage.getItem(LS.rotation) || '0', 10);
-  const pick = [];
-  for (let i = 0; i < n; i++) pick.push(available[(rot + i) % available.length]);
-  localStorage.setItem(LS.rotation, String((rot + n) % available.length));
-  return [...new Set(pick)];
-}
-
-/* ---------------------------------------------------------------------------
-   10. LOAD A SECTOR — orchestrates cache → APIs (2, rotated) → RSS fallback.
-   --------------------------------------------------------------------------- */
-function readCache(sid) {
-  try {
-    const c = JSON.parse(localStorage.getItem(LS.cache(sid)));
-    if (!c || !c.items) return null;
-    c.items = c.items.filter(a => !isBlocked(a));   // re-filter old cached items
-    return c;
-  } catch { return null; }
-}
-function writeCache(sid, items) {
-  try { localStorage.setItem(LS.cache(sid), JSON.stringify({ ts: Date.now(), items })); } catch {}
-}
-
-// Load ONE sector's data (cache-first) and re-render just its box.
-async function loadSector(sector, { force = false, apiCount = 1 } = {}) {
-  const cached = readCache(sector.id);
-  const fresh = cached && (Date.now() - cached.ts) < CACHE_TTL;
-
-  // Fresh cache → use immediately, no network.
-  if (fresh && !force) {
-    state.data[sector.id] = { items: cached.items, ts: cached.ts, loading: false };
-    renderBox(sector);
-    return;
-  }
-
-  // Mark loading (keep showing any prior cached items behind the scenes).
-  state.data[sector.id] = { items: cached ? cached.items : [], ts: cached ? cached.ts : 0, loading: true };
-  renderBox(sector);
-
-  const errors = {};
-  let apiItems = [], rssItems = [];
-
-  // ---- Layer 1: APIs (backend or client), `apiCount` rotated sources ----
-  if (state.backend) {
-    try {
-      const res = await backendFetch(sector, pickApis(APIS, apiCount));
-      apiItems = res.items; Object.assign(errors, res.errors);
-    } catch (e) { errors.backend = e.message; }
-  } else {
-    const keys = getKeys();
-    const available = APIS.filter(a => keys[a]);
-    const apis = pickApis(available, apiCount);
-    await Promise.all(apis.map(async (api) => {
-      try { apiItems = apiItems.concat(await clientFetch[api](sector, keys[api])); }
-      catch (e) { errors[api] = e.message; }
-    }));
-    // Resilience: if the assigned API returned nothing (empty query result or a
-    // transient error), try one more distinct API before falling back to RSS.
-    if (apiItems.length === 0) {
-      const extra = available.find(a => !apis.includes(a));
-      if (extra) {
-        try { apiItems = apiItems.concat(await clientFetch[extra](sector, keys[extra])); }
-        catch (e) { errors[extra] = e.message; }
-      }
-    }
-  }
-
-  // ---- Layer 2: RSS. The CORS proxies are SLOW (each feed can take many
-  // seconds), so we only touch RSS when we truly need it:
-  //   • RSS-only mode (no API keys)         → pull 3 named feeds for diversity
-  //   • have keys but a sector got 0 items  → one feed as a last resort
-  // When the APIs deliver, we skip RSS entirely — that's what keeps it fast. ----
-  const rssOnly = !state.backend && !hasAnyKey();
-  if (rssOnly || apiItems.length === 0) {
-    const feeds = rssFeedsFor(sector).slice(0, rssOnly ? 2 : 1);
-    const results = await Promise.allSettled(feeds.map(fetchRSS));
-    results.forEach((r, i) => {
-      if (r.status === 'fulfilled') rssItems = rssItems.concat(r.value);
-      else errors[`rss${i+1}`] = r.reason?.message || 'failed';
-    });
-  }
-
-  const prior = cached ? cached.items : [];
-  const merged = mergeItems(apiItems, rssItems, prior);
-  const items = merged.length ? merged : prior;
-  if (merged.length) writeCache(sector.id, merged);
-
-  state.data[sector.id] = { items, ts: Date.now(), loading: false, errors };
-  renderBox(sector);
-}
-
-// Load ALL sectors for the dashboard fully in parallel. Each box fills in as its
-// own request resolves (renderBox inside loadSector), and the hero refreshes as
-// each sector lands — so one slow sector never blocks the others.
-async function loadAllSectors({ force = false } = {}) {
-  await Promise.all(SECTORS.map(s =>
-    loadSector(s, { force, apiCount: 1 }).then(renderTopStories)
-  ));
-  updateFooterStatus();
-}
-
-function updateFooterStatus() {
-  const total = Object.values(state.data).reduce((n, d) => n + (d.items ? d.items.length : 0), 0);
-  updatedEl.textContent = total ? `${total} stories across ${SECTORS.length} sectors` : 'no stories yet';
-}
-
-/* ---------------------------------------------------------------------------
-   11. RENDERING
-   --------------------------------------------------------------------------- */
-function applyAccent(color) {
-  document.documentElement.style.setProperty('--accent', color);
-  document.documentElement.style.setProperty('--accent-soft', hexToSoft(color));
-}
-function hexToSoft(hex) {
-  const n = parseInt(hex.slice(1), 16), r = n>>16, g = (n>>8)&255, b = n&255;
-  return document.body.classList.contains('dark')
-    ? `rgba(${r},${g},${b},0.22)` : `rgba(${r},${g},${b},0.14)`;
-}
-
-const BRAND = '#2563eb';         // fixed accent for global chrome (logo, buttons)
-const BOX_ITEMS = 5;             // headlines shown per sector box
-
-// Build the 10 sector boxes once; each has its own accent (--sc) and a PDF button.
-function buildDashboard() {
-  dashEl.innerHTML = '';
-  SECTORS.forEach(s => {
-    const box = document.createElement('section');
-    box.className = 'sbox';
-    box.id = 'box-' + s.id;
-    box.style.setProperty('--sc', s.color);
-    box.innerHTML = `
-      <div class="sbox-head">
-        <span class="sbox-ic">${s.icon}</span>
-        <span class="sbox-name">${escapeHtml(s.name)}</span>
-        <button class="sbox-dl" title="Download ${escapeHtml(s.name)} infographic PDF">⬇️</button>
-      </div>
-      <div class="sbox-list" id="list-${s.id}"></div>`;
-    box.querySelector('.sbox-dl').onclick = () => downloadDigestPDF(s);
-    dashEl.appendChild(box);
-  });
-}
-
-// Featured "Top Stories" hero: the newest image-backed story from each sector,
-// then the 6 most recent of those — so it's fresh, diverse, and visual.
-function renderTopStories() {
-  const picks = [];
-  SECTORS.forEach(s => {
-    const items = (state.data[s.id] && state.data[s.id].items) || [];
-    const best = items.find(a => a.image) || items[0];
-    if (best) picks.push({ a: best, sector: s });
-  });
-  picks.sort((x, y) => new Date(y.a.publishedAt || 0) - new Date(x.a.publishedAt || 0));
-  const top = picks.slice(0, 6);
-
-  topMainEl.innerHTML = '';
-  if (!top.length) return;
-
-  const h = document.createElement('h2');
-  h.textContent = '🔥 Top Stories Right Now';
-  const grid = document.createElement('div');
-  grid.className = 'top-grid';
-
-  top.forEach(({ a, sector }) => {
-    const card = document.createElement('a');
-    card.className = 'feat'; card.href = a.url; card.target = '_blank'; card.rel = 'noopener';
-    card.title = a.title; card.style.setProperty('--sc', sector.color);
-    if (a.image) {
-      const img = document.createElement('img');
-      img.className = 'feat-img'; img.loading = 'lazy'; img.decoding = 'async'; img.alt = '';
-      img.src = weserv(a.image, 'w=520&h=360&fit=cover&output=jpg&q=72');
-      img.onerror = () => img.remove();   // fall back to sector-color background
-      card.appendChild(img);
-    }
-    const shade = document.createElement('div'); shade.className = 'feat-shade';
-    const body = document.createElement('div'); body.className = 'feat-body';
-    body.innerHTML = `
-      <span class="feat-badge">${sector.icon} ${escapeHtml(sector.name)}</span>
-      <div class="feat-hl">${escapeHtml(a.title)}</div>
-      <div class="feat-meta">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>`;
-    card.appendChild(shade); card.appendChild(body);
-    grid.appendChild(card);
-  });
-
-  topMainEl.appendChild(h);
-  topMainEl.appendChild(grid);
-}
-
-/* ---------------------------------------------------------------------------
-   MARKETS PANEL — live indices + forex + crypto, all free / no key:
-     • Bitcoin  → CoinGecko (direct CORS)
-     • USD/INR  → open.er-api.com (direct CORS)
-     • Indices  → Yahoo Finance chart endpoint via CORS proxy (raced)
-   Every source is wrapped so one failure never breaks the panel.
-   --------------------------------------------------------------------------- */
-const MARKETS = [
-  { name: 'Sensex',      symbol: '^BSESN' },
-  { name: 'Nifty 50',    symbol: '^NSEI'  },
-  { name: 'Dow Jones',   symbol: '^DJI'   },
-  { name: 'Nikkei 225',  symbol: '^N225'  },
-];
-
-// Race the CORS proxies for a JSON endpoint; each attempt must parse or it's
-// rejected, so a proxy that returns an error page never wins.
-async function proxyJSON(url) {
-  const attempt = async (proxy) => {
-    const r = await fetchWithTimeout(proxy.build(url), 6000);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    let t = await r.text();
-    if (proxy.json) t = JSON.parse(t).contents || '';
-    return JSON.parse(t);
-  };
-  return Promise.any(CORS_PROXIES.map(attempt));
-}
-
-function fmtNum(v, prefix = '') {
-  if (v == null || isNaN(v)) return '—';
-  const dec = Math.abs(v) < 1000 ? 2 : 0;
-  return prefix + Number(v).toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
-}
-function chgHtml(chg) {
-  if (chg == null || isNaN(chg)) return '';
-  const up = chg >= 0;
-  return `<span class="mkt-chg ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${Math.abs(chg).toFixed(2)}%</span>`;
-}
-function mktRow(name, valHtml, grp = false) {
-  return `<div class="mkt-row${grp ? ' grp' : ''}"><span class="mkt-name">${name}</span><span class="mkt-val">${valHtml}</span></div>`;
-}
-
-async function loadMarkets() {
-  marketsEl.innerHTML = `<div class="mkt"><div class="mkt-head">📊 Markets</div>
-    <div class="mkt-row"><span class="mkt-name">Loading live data…</span><span class="mkt-val">⏳</span></div></div>`;
-
-  // Indices: prefer the Netlify function (server-side Yahoo fetch, reliable);
-  // fall back to the public CORS proxy when there's no backend (GitHub Pages).
-  let idx = null;
-  if (state.backend) {
-    try { const j = await fetchJSON('/.netlify/functions/news?markets=1'); idx = j.indices; } catch {}
-  }
-  if (!idx) {
-    idx = await Promise.all(MARKETS.map(async (m) => {
-      try {
-        const j = await proxyJSON(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(m.symbol)}?interval=1d&range=2d`);
-        const meta = j.chart.result[0].meta;
-        const price = meta.regularMarketPrice;
-        const prev = meta.chartPreviousClose ?? meta.previousClose;
-        return { name: m.name, price, chg: prev ? ((price - prev) / prev) * 100 : null };
-      } catch { return { name: m.name, price: null, chg: null }; }
-    }));
-  }
-
-  let usdinr = null, btc = null, btcChg = null;
-  try { const j = await fetchJSON('https://open.er-api.com/v6/latest/USD'); usdinr = j.rates && j.rates.INR; } catch {}
-  try {
-    const j = await fetchJSON('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
-    btc = j.bitcoin.usd; btcChg = j.bitcoin.usd_24h_change;
-  } catch {}
-
-  const rows = idx.map(m => mktRow(m.name, `${fmtNum(m.price)} ${chgHtml(m.chg)}`)).join('')
-    + mktRow('USD / INR', fmtNum(usdinr, '₹'), true)
-    + mktRow('Bitcoin', `${fmtNum(btc, '$')} ${chgHtml(btcChg)}`, true);
-
-  marketsEl.innerHTML = `<div class="mkt">
-      <div class="mkt-head">📊 Markets</div>
-      ${rows}
-      <div class="mkt-foot">Updated ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
-    </div>`;
-}
-
-// Render one sector's list of small news rows (thumbnail + headline + meta).
-function renderBox(sector) {
-  const listEl = document.getElementById('list-' + sector.id);
-  if (!listEl) return;
-  const d = state.data[sector.id] || {};
-  const items = (d.items || []).slice(0, BOX_ITEMS);
-
-  if (d.loading && !items.length) {
-    listEl.innerHTML = '';
-    for (let i = 0; i < 4; i++) {
-      const r = document.createElement('div');
-      r.className = 's-item skeleton';
-      r.innerHTML = `<div class="s-thumb"></div><div class="s-main"><div class="line"></div><div class="line short"></div></div>`;
-      listEl.appendChild(r);
-    }
-    return;
-  }
-  if (!items.length) {
-    // Key-aware: only nudge for a key when there genuinely isn't one.
-    const msg = (state.backend || hasAnyKey())
-      ? 'No stories returned for this sector right now.'
-      : 'No stories. Add a free API key in ⚙️ Settings for reliable results.';
-    listEl.innerHTML = '';
-    const box = document.createElement('div');
-    box.className = 'sbox-empty';
-    box.textContent = msg;
-    const btn = document.createElement('button');
-    btn.className = 'btn';
-    btn.textContent = '🔄 Retry';
-    btn.style.cssText = 'margin-top:10px;padding:6px 14px;font-size:12px';
-    btn.onclick = () => loadSector(sector, { force: true });
-    box.appendChild(document.createElement('br'));
-    box.appendChild(btn);
-    listEl.appendChild(box);
-    return;
-  }
-
-  const frag = document.createDocumentFragment();
-  items.forEach(a => {
-    const row = document.createElement('a');
-    row.className = 's-item'; row.href = a.url; row.target = '_blank'; row.rel = 'noopener'; row.title = a.title;
-
-    // Thumbnail: real image via proxy, falling back to a colored icon tile.
-    let thumb;
-    if (a.image) {
-      thumb = document.createElement('img');
-      thumb.className = 's-thumb';
-      thumb.loading = 'lazy'; thumb.decoding = 'async'; thumb.alt = '';
-      thumb.src = weserv(a.image, 'w=104&h=104&fit=cover&output=jpg&q=72');
-      thumb.onerror = () => thumb.replaceWith(makeThumbPlaceholder(sector));
-    } else {
-      thumb = makeThumbPlaceholder(sector);
-    }
-
-    const main = document.createElement('div');
-    main.className = 's-main';
-    main.innerHTML = `
-      <div class="s-hl">${escapeHtml(a.title)}</div>
-      <div class="s-meta"><b>${escapeHtml(a.source)}</b><span>${escapeHtml(timeAgo(a.publishedAt))}</span></div>`;
-
-    row.appendChild(thumb);
-    row.appendChild(main);
-    frag.appendChild(row);
-  });
-  listEl.innerHTML = '';
-  listEl.appendChild(frag);
-}
-
-// A colored tile with the sector icon, shown when there's no image (or it fails).
-function makeThumbPlaceholder(sector) {
-  const d = document.createElement('div');
-  d.className = 's-thumb ph';
-  d.style.background = sector.color;
-  d.textContent = sector.icon;
-  return d;
-}
-
-/* ---------------------------------------------------------------------------
-   12. IMAGE DOWNSCALING for PDFs — shrink to a max dimension and re-encode as
-   JPEG q0.6 so the exported file stays small (< 1 MB target). Returns a data
-   URL, or null on CORS/parse failure (caller then uses a colored placeholder).
-   --------------------------------------------------------------------------- */
-function downscaleImage(url, maxDim = 120, quality = 0.6) {
-  return new Promise((resolve) => {
-    if (!url) return resolve(null);
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    const done = (v) => resolve(v);
-    const timer = setTimeout(() => done(null), 5000);
-    img.onload = () => {
-      clearTimeout(timer);
-      try {
-        const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
-        const w = Math.max(1, Math.round(img.width * scale)), h = Math.max(1, Math.round(img.height * scale));
-        const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
-        cv.getContext('2d').drawImage(img, 0, 0, w, h);
-        done(cv.toDataURL('image/jpeg', quality));
-      } catch { done(null); }   // tainted canvas (no CORS headers)
-    };
-    img.onerror = () => { clearTimeout(timer); done(null); };
-    // Load through the wsrv.nl proxy: sends CORS headers (so the canvas isn't
-    // tainted) and pre-resizes, making PDF thumbnails reliable and small.
-    img.src = weserv(url, `w=${maxDim * 2}&output=jpg&q=75`);
-  });
-}
-
-/* ---------------------------------------------------------------------------
-   13. AUTO-VISUAL helpers for the digest: a "stories by source" donut (Chart.js)
-   rendered off-screen to a data URL, and a top-keywords list.
-   --------------------------------------------------------------------------- */
-function sourceCounts(items) {
-  const m = {};
-  items.forEach(a => { m[a.source] = (m[a.source] || 0) + 1; });
-  return Object.entries(m).sort((a,b) => b[1]-a[1]).slice(0, 6);
-}
-async function makeDonut(items, accent) {
-  const counts = sourceCounts(items);
-  if (!counts.length) return null;
-  const cv = document.createElement('canvas'); cv.width = 360; cv.height = 260;
-  $('pdfStage').appendChild(cv);
-  const palette = [accent, '#7c3aed', '#0f9d58', '#f59e0b', '#e11d48', '#0891b2'];
-  const chart = new Chart(cv.getContext('2d'), {
-    type: 'doughnut',
-    data: { labels: counts.map(c => c[0]), datasets: [{ data: counts.map(c => c[1]), backgroundColor: palette, borderWidth: 0 }] },
-    options: { responsive:false, animation:false, cutout:'58%',
-      plugins:{ legend:{ position:'right', labels:{ font:{ size:12 }, boxWidth:12 } } } }
-  });
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-  const data = chart.toBase64Image('image/png');
-  chart.destroy(); cv.remove();
-  return data;
-}
-const STOPWORDS = new Set(('the a an and or of to in for on at by with from as is are be this that after over into new says will amid up down out '
-  + 'his her its their our your you we they it he she what how why who not no more most less than about across can could would should may').split(' '));
-function topKeywords(items, n = 5) {
-  const freq = {};
-  items.forEach(a => (a.title || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).forEach(w => {
-    if (w.length > 3 && !STOPWORDS.has(w)) freq[w] = (freq[w] || 0) + 1;
-  }));
-  return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0, n).map(x => x[0]);
-}
-
-// Strip HTML/entities from an API description and truncate for the card summary.
-function cleanText(s = '', max = 150) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = s;
-  let t = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-  if (t.length > max) t = t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
-  return t;
-}
-
-/* ---------------------------------------------------------------------------
-   14. DIGEST PDF — social-media infographic (1080×1350 portrait).
-   Styled like a "Top News" grid: themed header banner + a 2×3 grid of six
-   numbered news cards (thumbnail + headline + short summary) + branded footer.
-   Sized for LinkedIn / Instagram. Thumbnails are pre-downscaled to data URLs
-   so html2canvas never taints, and missing images fall back to a gradient.
-   --------------------------------------------------------------------------- */
-async function downloadDigestPDF(sector) {
-  const items = ((state.data[sector.id] || {}).items || []).slice(0, 6);
-  if (!items.length) return toast('No stories for ' + sector.name + ' yet.');
-  toast('Building ' + sector.name + ' infographic PDF…');
-
-  const thumbs = await Promise.all(items.map(a => downscaleImage(a.image, 320, 0.72)));
-  const dateStr = new Date().toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-  const cards = items.map((a, i) => {
-    const summary = cleanText(a.description, 150) || 'Tap the card in the app to read the full story.';
-    const media = thumbs[i]
-      ? `<div class="g-img" style="background-image:url('${thumbs[i]}')"></div>`
-      : `<div class="g-img g-ph" style="background:linear-gradient(135deg,${sector.color},${sector.color}99)">${sector.icon}</div>`;
-    return `
-      <div class="g-card">
-        <div class="g-top"><span class="g-num">${i+1}</span><span class="g-title">${escapeHtml(a.title)}</span></div>
-        ${media}
-        <div class="g-desc">${escapeHtml(summary)}</div>
-        <div class="g-src"><b>${escapeHtml(a.source)}</b> · ${escapeHtml(timeAgo(a.publishedAt))}</div>
-      </div>`;
-  }).join('');
-
-  const el = document.createElement('div');
-  el.innerHTML = `
-    <style>
-      .ig{width:1080px;height:1350px;background:#0f1626;color:#fff;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;flex-direction:column;overflow:hidden;}
-      .ig-head{background:linear-gradient(120deg,${sector.color},${sector.color}bb);padding:40px 48px 34px;position:relative;}
-      .ig-head .ic{font-size:64px;line-height:1;}
-      .ig-head h1{margin:6px 0 0;font-size:66px;font-weight:900;letter-spacing:.5px;line-height:1.02;text-transform:uppercase;}
-      .ig-head .date{display:inline-block;margin-top:14px;background:rgba(0,0,0,.28);padding:9px 20px;border-radius:999px;font-size:22px;font-weight:600;}
-      .ig-head .by{position:absolute;top:44px;right:48px;text-align:right;font-size:20px;font-weight:700;opacity:.95;}
-      .ig-body{flex:1;padding:30px 48px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:22px;}
-      .g-card{background:#1a2438;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;overflow:hidden;border:1px solid #263248;}
-      .g-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
-      .g-num{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:${sector.color};color:#fff;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;}
-      .g-title{font-size:23px;font-weight:800;line-height:1.18;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-      .g-img{width:100%;height:150px;border-radius:12px;background-size:cover;background-position:center;flex:0 0 auto;}
-      .g-ph{display:flex;align-items:center;justify-content:center;font-size:70px;}
-      .g-desc{font-size:17px;line-height:1.4;color:#c7d0e0;margin-top:12px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-      .g-src{font-size:15px;color:${sector.color};margin-top:10px;font-weight:600;}
-      .g-src b{color:#fff;}
-      .ig-foot{background:#0a1020;padding:22px 48px;display:flex;justify-content:space-between;align-items:center;}
-      .ig-foot .l{font-size:22px;font-weight:700;}
-      .ig-foot .l span{color:${sector.color};}
-      .ig-foot .r{background:${sector.color};padding:12px 22px;border-radius:999px;font-size:20px;font-weight:800;}
-    </style>
-    <div class="ig">
-      <div class="ig-head">
-        <div class="by">Curated by<br>Sanjay Navandar</div>
-        <div class="ic">${sector.icon}</div>
-        <h1>Top ${escapeHtml(sector.name)} News</h1>
-        <div class="date">${dateStr}</div>
-      </div>
-      <div class="ig-body">${cards}</div>
-      <div class="ig-foot">
-        <div class="l">Curated by <span>Sanjay Navandar</span> · Follow ProfessorSK</div>
-        <div class="r">📸 @iam_sanjay_navandar</div>
-      </div>
-    </div>`;
-
-  $('pdfStage').appendChild(el);
-  const filename = `${sector.name.replace(/[^A-Za-z0-9]+/g,'_')}_Digest_${new Date().toISOString().slice(0,10)}.pdf`;
-  try {
-    await html2pdf().set({
-      margin: 0, filename,
-      image: { type:'jpeg', quality:0.72 },       // keep the file small for social upload
-      html2canvas: { scale:1.8, useCORS:true, backgroundColor:'#0f1626' },
-      jsPDF: { unit:'px', format:[1080,1350], orientation:'portrait' },
-    }).from(el).save();
-    toast('Infographic PDF downloaded ✅');
-  } catch (e) { toast('PDF failed: ' + e.message); }
-  finally { el.remove(); }
-}
-
-/* ---------------------------------------------------------------------------
-   15. CAROUSEL PDF (1080×1080 pages) — cover + one headline per square page
-   + closing "Follow ProfessorSK" page.
-   --------------------------------------------------------------------------- */
-async function downloadCarouselPDF(sector) {
-  const items = ((state.data[sector.id] || {}).items || []).slice(0, 6);
-  if (!items.length) return toast('No stories for ' + sector.name + ' yet.');
-  toast('Building carousel PDF…');
-
-  const imgs = await Promise.all(items.map(a => downscaleImage(a.image, 600, 0.7)));
-  const dateStr = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-
-  const cover = `
-    <div class="cpage cover">
-      <div class="c-ic">${sector.icon}</div>
-      <div class="c-kicker">SECTOR NEWS DIGEST</div>
-      <div class="c-title">${escapeHtml(sector.name)}</div>
-      <div class="c-date">${dateStr}</div>
-      <div class="c-swipe">Swipe →</div>
-    </div>`;
-
-  const pages = items.map((a, i) => `
-    <div class="cpage">
-      ${imgs[i] ? `<div class="c-photo" style="background-image:url('${imgs[i]}')"></div>` : `<div class="c-photo c-noimg">${sector.icon}</div>`}
-      <div class="c-overlay">
-        <div class="c-index">${i+1} / ${items.length}</div>
-        <div class="c-headline">${escapeHtml(a.title)}</div>
-        <div class="c-src">${escapeHtml(a.source)} · ${escapeHtml(timeAgo(a.publishedAt))}</div>
-      </div>
-    </div>`).join('');
-
-  const closing = `
-    <div class="cpage closing">
-      <div class="c-ic">🙌</div>
-      <div class="c-title">Thanks for reading</div>
-      <div class="c-follow">Follow <b>ProfessorSK</b> on Instagram<br>@iam_sanjay_navandar</div>
-      <div class="c-by">Curated by Sanjay Navandar</div>
-    </div>`;
-
-  const wrap = document.createElement('div');
-  wrap.innerHTML = `
-    <style>
-      .cpage{width:1080px;height:1080px;position:relative;overflow:hidden;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#0f1420;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-      .cover,.closing{background:linear-gradient(150deg,${sector.color},#0f1420);}
-      .c-ic{font-size:130px;margin-bottom:20px;}
-      .c-kicker{font-size:30px;letter-spacing:6px;opacity:.85;font-weight:600;}
-      .c-title{font-size:88px;font-weight:900;line-height:1.05;margin:18px 60px;}
-      .c-date{font-size:34px;opacity:.9;margin-top:10px;}
-      .c-swipe{position:absolute;bottom:70px;font-size:32px;font-weight:700;opacity:.85;}
-      .c-photo{position:absolute;inset:0;background-size:cover;background-position:center;}
-      .c-noimg{display:flex;align-items:center;justify-content:center;font-size:200px;background:${sector.color};}
-      .c-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,18,.92) 42%,rgba(6,10,18,.25));display:flex;flex-direction:column;justify-content:flex-end;padding:80px 70px;text-align:left;}
-      .c-index{font-size:30px;font-weight:800;color:${sector.color};background:#fff;display:inline-block;align-self:flex-start;padding:8px 20px;border-radius:999px;margin-bottom:26px;}
-      .c-headline{font-size:64px;font-weight:800;line-height:1.14;}
-      .c-src{font-size:32px;opacity:.85;margin-top:24px;}
-      .c-follow{font-size:46px;margin:20px 60px;line-height:1.3;}
-      .c-follow b{color:${sector.color};}
-      .c-by{position:absolute;bottom:70px;font-size:30px;opacity:.8;}
-    </style>
-    ${cover}${pages}${closing}`;
-
-  $('pdfStage').appendChild(wrap);
-  const filename = `${sector.name.replace(/[^A-Za-z0-9]+/g,'_')}_Carousel_${new Date().toISOString().slice(0,10)}.pdf`;
-  try {
-    await html2pdf().set({
-      margin: 0, filename,
-      image: { type:'jpeg', quality:0.82 },
-      html2canvas: { scale:1, useCORS:true, backgroundColor:'#0f1420' },
-      jsPDF: { unit:'px', format:[1080,1080], orientation:'portrait' },
-      pagebreak: { mode:['css','legacy'], before:'.cpage' },
-    }).from(wrap).save();
-    toast('Carousel PDF downloaded ✅');
-  } catch (e) { toast('Carousel failed: ' + e.message); }
-  finally { wrap.remove(); }
-}
-
-/* ---------------------------------------------------------------------------
-   16. SETTINGS + THEME + wiring
-   --------------------------------------------------------------------------- */
-function openSettings() {
-  const k = getKeys();
-  $('key_newsdata').value = k.newsdata || '';
-  $('key_gnews').value = k.gnews || '';
-  $('key_currents').value = k.currents || '';
-  $('key_guardian').value = k.guardian || '';
-  $('key_nyt').value = k.nyt || '';
-  $('settingsOverlay').classList.add('show');
-}
-function saveKeys() {
-  const k = {
-    newsdata: $('key_newsdata').value.trim(),
-    gnews: $('key_gnews').value.trim(),
-    currents: $('key_currents').value.trim(),
-    guardian: $('key_guardian').value.trim(),
-    nyt: $('key_nyt').value.trim(),
-  };
-  Object.keys(k).forEach(x => { if (!k[x]) delete k[x]; });
-  localStorage.setItem(LS.keys, JSON.stringify(k));
-  $('settingsOverlay').classList.remove('show');
-  updateModeBadge();
-  toast('Keys saved — refreshing all sectors…');
-  loadAllSectors({ force: true });
-}
-function updateModeBadge() {
-  // In server-keys (Netlify) mode there's nothing for a visitor to configure,
-  // so hide the mode badge AND the settings button for a clean shared site.
-  if (state.backend) {
-    modeBadge.style.display = 'none';
-    $('settingsBtn').style.display = 'none';
-    return;
-  }
-  modeBadge.style.display = '';
-  $('settingsBtn').style.display = '';
-  modeBadge.textContent = hasAnyKey() ? '🔑 API + RSS' : '📡 RSS-only';
-}
-function setTheme(dark) {
-  document.body.classList.toggle('dark', dark);
-  $('themeBtn').textContent = dark ? '☀️' : '🌙';
-  localStorage.setItem(LS.theme, dark ? 'dark' : 'light');
-  applyAccent(BRAND);   // refresh accent-soft alpha for the theme
-}
-
-function wire() {
-  $('themeBtn').onclick = () => setTheme(!document.body.classList.contains('dark'));
-  $('settingsBtn').onclick = openSettings;
-  $('closeSettings').onclick = () => $('settingsOverlay').classList.remove('show');
-  $('settingsOverlay').onclick = (e) => { if (e.target === $('settingsOverlay')) $('settingsOverlay').classList.remove('show'); };
-  $('saveKeys').onclick = saveKeys;
-  $('clearKeys').onclick = () => { localStorage.removeItem(LS.keys); openSettings(); updateModeBadge(); toast('Keys cleared'); };
-  $('refreshBtn').onclick = () => {
-    const heavy = state.backend || hasAnyKey();
-    if (heavy && !confirm('Refresh all sectors will call your news APIs and use daily quota. Continue?')) return;
-    loadMarkets();
-    loadAllSectors({ force: true });
-  };
-}
-
-/* ---------------------------------------------------------------------------
-   17. INIT
-   --------------------------------------------------------------------------- */
-async function init() {
-  setTheme(localStorage.getItem(LS.theme) === 'dark');
-  applyAccent(BRAND);
-  startClocks();
-  buildDashboard();
-  wire();
-  state.backend = await detectBackend();
-  updateModeBadge();
-  loadMarkets();          // markets load independently of the news sectors
-  loadAllSectors();
-}
-init();
-</script>
-</body>
+      <p id="exportStatus" role="status" aria-live="polite"></p>
+    </dialog>
+    <noscript
+      ><p class="notice">
+        JavaScript is needed to display the news edition. Please enable it and
+        reload.
+      </p></noscript
+    >
+  </body>
 </html>
