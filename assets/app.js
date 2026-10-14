@@ -1,3 +1,4 @@
+import {loadConfiguration,exportableSectors} from "./edition-loader.mjs";
 import {
   validateSnapshot,
   filterArticles,
@@ -10,6 +11,7 @@ import { exportDigest, exportCarousel } from "./exports.js";
 const $ = (id) => document.getElementById(id);
 const state = {
   config: [],
+  configError: false,
   snapshot: null,
   sector: "all",
   publisher: "all",
@@ -182,7 +184,7 @@ function renderStatus() {
   );
   const partial = available.filter(([, x]) => sectorFreshness(x) === "partial");
   $("statusLabel").textContent = state.offline
-    ? "Saved edition"
+    ? (state.snapshot ? "Saved edition" : "Edition unavailable")
     : outdated.length
       ? "Updates delayed"
       : partial.length
@@ -198,12 +200,13 @@ function renderStatus() {
   let notice = "";
   if (state.offline)
     notice =
-      "The latest edition could not be reached. You’re reading saved headlines; their original collection times are unchanged.";
+      state.snapshot ? "The latest edition could not be reached. You’re reading saved headlines; their original collection times are unchanged." : "The latest edition could not be reached. Please try Refresh again shortly.";
   else if (outdated.length)
     notice = `${outdated.length} ${outdated.length === 1 ? "sector is" : "sectors are"} waiting for a fresh update. Available stories remain readable with their original publication dates.`;
   else if (partial.length)
     notice =
       "Some sources are temporarily unavailable. Headlines from working sources are still being collected.";
+  if (state.configError) notice = "Sector navigation could not load. Refresh will retry. Exports are unavailable until it recovers. " + notice;
   $("notice").textContent = notice;
   $("notice").hidden = !notice;
   $("sectorStatus").replaceChildren(
@@ -242,7 +245,7 @@ function render() {
     `${articles.length} ${articles.length === 1 ? "story" : "stories"}${state.sector === "all" ? " across all sectors" : ` in ${sectorFor(state.sector).name}`}`;
   $("resetBtn").hidden =
     state.sector === "all" && state.publisher === "all" && !state.query;
-  $("exportBtn").disabled = !total;
+  $("exportBtn").disabled = !exportableSectors(state.config,state.snapshot).length;
   $("featured").replaceChildren(
     ...(articles.length ? [featured(articles[0])] : []),
   );
@@ -279,6 +282,17 @@ async function fetchEdition() {
   state.loading = true;
   $("refreshBtn").disabled = true;
   try {
+    const hadConfig = state.config.length > 0;
+    state.config = await loadConfiguration(state.config);
+    state.configError = !state.config.length;
+    if (!hadConfig && state.config.length) {
+      for (const s of state.config) {
+        const button = el("button", "sector-tab", s.name);
+        button.dataset.sector = s.id;
+        button.setAttribute("aria-pressed", "false");
+        $("sectorNav").append(button);
+      }
+    }
     const response = await fetch(`data/news.json?t=${Date.now()}`, {
       cache: "no-store",
       signal: AbortSignal.timeout(15000),
@@ -346,9 +360,8 @@ function setTheme(theme) {
   } catch {}
 }
 function openExport() {
-  const available = state.config.filter(
-    (s) => state.snapshot?.sectors[s.id]?.articles.length,
-  );
+  const available = exportableSectors(state.config,state.snapshot);
+  if(!available.length) return;
   $("exportSector").replaceChildren(
     ...available.map((s) => new Option(s.name, s.id)),
   );
@@ -431,21 +444,6 @@ async function init() {
     const button = e.target.closest("button[data-sector]");
     if (button) chooseSector(button.dataset.sector);
   });
-  try {
-    const response = await fetch("config/sectors.json");
-    if (!response.ok) throw Error("Configuration unavailable");
-    state.config = await response.json();
-    for (const s of state.config) {
-      const button = el("button", "sector-tab", s.name);
-      button.dataset.sector = s.id;
-      button.setAttribute("aria-pressed", "false");
-      $("sectorNav").append(button);
-    }
-  } catch {
-    $("notice").hidden = false;
-    $("notice").textContent =
-      "Sector navigation could not load. Please reload the page.";
-  }
   state.snapshot = readCached(storage);
   if (state.snapshot) {
     state.offline = true;

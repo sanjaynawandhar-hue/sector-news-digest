@@ -192,3 +192,15 @@ test("PDF artwork fills the paper instead of leaving a blank side strip", async 
   assert.deepEqual(ex.exportPageSize(true), { width: 960, height: 960 });
   assert.deepEqual(ex.exportPageSize(false), { width: 794, height: 1122 });
 });
+
+test('a failed sector configuration request is retried and exports stay unavailable until recovery',async()=>{
+  let loader;try{loader=await import('../assets/edition-loader.mjs')}catch{loader={}}
+  assert.equal(typeof loader.loadConfiguration,'function','recoverable config loading missing');
+  const failed=await loader.loadConfiguration([],async()=>{throw Error('offline')});
+  assert.deepEqual(failed,[]);
+  assert.deepEqual(loader.exportableSectors(failed,snapshot),[]);
+  const recovered=await loader.loadConfiguration(failed,async()=>({ok:true,json:async()=>[{id:'energy',name:'Energy & Oil'}]}));
+  assert.equal(recovered[0].id,'energy');
+  assert.equal(loader.exportableSectors(recovered,snapshot).length,1);
+  assert.deepEqual(await loader.loadConfiguration([],async()=>({ok:true,json:async()=>({wrong:'shape'})})),[]);
+});
