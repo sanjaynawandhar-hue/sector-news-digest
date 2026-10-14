@@ -81,9 +81,7 @@
     },
     "rssQuery": "healthcare OR pharma",
     "query": "healthcare OR pharma",
-    "feeds": [
-      "https://feeds.bbci.co.uk/news/health/rss.xml"
-    ]
+    "feeds": ["https://feeds.bbci.co.uk/news/health/rss.xml"]
   },
   {
     "id": "energy",
@@ -302,8 +300,6 @@
     },
     "rssQuery": "Bollywood",
     "query": "Bollywood",
-    "feeds": [
-      "https://www.bollywoodhungama.com/rss/news.xml"
-    ]
+    "feeds": ["https://www.bollywoodhungama.com/rss/news.xml"]
   }
 ]

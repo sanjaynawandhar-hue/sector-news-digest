@@ -1,166 +1,83 @@
-# 📰 Global Sector News Digest
+# Sector News Digest
 
-A single-page web app that aggregates the latest global news by **sector** from
-multiple free news APIs + RSS feeds, de-duplicates and sorts it, and lets you
-export each sector as a **LinkedIn-ready PDF** (a one-page infographic digest
-_and_ a multi-page 1080×1080 carousel).
+A modern, mobile-friendly news reader curated by **Sanjay Navandar · ProfessorSK**.
 
-**Curated by Sanjay · ProfessorSK · [@iam_sanjay_navandar](https://www.instagram.com/iam_sanjay_navandar)** (Instagram)
+**[Read the website](https://sanjaynawandhar-hue.github.io/sector-news-digest/)**
 
----
+## What changed
 
-## ✨ Features
+The website reads a published news edition instead of relying on unreliable public CORS proxies. GitHub Actions collects RSS directly, then deploys the website and its JSON snapshot together. No news API keys are required.
 
-- **10 sectors**: Technology, Finance & Markets, Healthcare & Pharma, Energy & Oil,
-  Automobiles & EV, Real Estate, Agriculture, Defence & Aerospace, Retail & Consumer, Telecom.
-- **Layered data strategy** (all free tiers):
-  - **Layer 1 — APIs:** NewsData.io, GNews.io, Currents API, The Guardian, New York Times.
-  - **Layer 2 — RSS fallback (no key):** Google News + Bing keyword feeds plus named
-    feeds — BBC, CNBC, TechCrunch, The Verge, Ars Technica, Al Jazeera, Economic Times,
-    Mint, Moneycontrol, The Hindu BusinessLine — all in one editable `RSS_FEEDS` config
-    at the top of `index.html`. Used when a key is missing or a quota is exhausted, so
-    the app **works with zero keys** in RSS-only mode.
-- **Quota safety:** 30-minute localStorage cache per sector, only **2 APIs called per
-  refresh** (rotated), and a refresh confirmation when it would spend quota.
-- **Two key-handling modes:**
-  - **Browser mode** — paste keys in ⚙️ Settings (stored in `localStorage`).
-  - **Server mode (recommended)** — a Netlify Function holds keys as env vars so they
-    are **never exposed in the browser**. The app auto-detects and prefers this.
-- **Modern UI:** dark-mode toggle, source-filter chips, loading skeletons, per-source
-  error states, thumbnails, source badges, and "x hours ago" timestamps.
-- **PDF export** with html2pdf.js + Chart.js: header banner with per-sector accent,
-  Top-5 headlines with thumbnails, a "stories by source" donut, trending-keyword chips,
-  a quick-stats row, and a branded footer (Instagram @iam_sanjay_navandar). Images are downscaled to ~120px JPEG q0.6 so
-  the file stays **under ~1 MB**.
+Browse Technology, Finance & Markets, Healthcare & Pharma, Energy & Oil, Automobiles & EV, Real Estate, Agriculture, Defence & Aerospace, Retail & Consumer, Telecom, Crypto News and Bollywood News. Search titles/publishers, filter sources, switch themes, and export an A4 reading digest or square LinkedIn carousel. Exports contain the five latest stories for the selected sector, independently of search filters. They deliberately use text and clickable source links, so blocked news images cannot break the PDF.
 
----
+## Freshness and availability
 
-## 🚀 Quick start (no keys, RSS-only)
+- Collection is scheduled at **17 and 47 minutes past every hour**, UTC. GitHub scheduling is best effort and can be delayed. Public-repository schedules can be disabled after 60 days without repository activity; check Actions if updates stop.
+- **Refresh** checks the latest published edition. It does not trigger a new collection or spend visitor API quota. A visible page also checks every five minutes and when brought back into focus.
+- Collection timestamps and article publication times are different. A successful collection can return the same articles as before.
+- After 90 minutes without a successful collection, a sector is marked delayed. Partial feed failures are shown in source status. A failed refresh never renews the last-success timestamp.
+- If all sources fail, the workflow fails and leaves the live edition intact. If only some sectors fail, their previous headlines and original timestamps are retained.
+- Browser cache allows a previously read edition to remain visible if the news request fails. This is not a fully offline application: an uncached page still requires a connection.
 
-Just open `index.html` in a browser — or serve the folder — and it will pull headlines
-from Google News RSS. That's it. Add API keys later for richer results and images.
+## Local development
 
-> RSS is fetched through a public CORS proxy (`api.allorigins.win`, with a fallback).
-> If both proxies are down, the page still loads and shows a per-source error notice.
+Python 3.12+ and Node 22+ are used in CI. The collector uses only Python's standard library; there is no frontend build or dependency installation step.
 
----
-
-## 🔑 Getting the free API keys
-
-You only need the ones you want — the app blends whatever is available.
-
-| API | Free tier | Where to get the key |
-|-----|-----------|----------------------|
-| **NewsData.io** | 200 credits/day, commercial use OK, good India coverage, image URLs | <https://newsdata.io/register> → Dashboard → API Key (`pub_…`) |
-| **GNews.io** | 100 requests/day, keyword + topic, images | <https://gnews.io/register> → Dashboard → API token |
-| **Currents API** | ~600 requests/day, category filtering | <https://currentsapi.services/en/register> → API key |
-| **The Guardian** | Free & generous, section filtering, high quality | <https://open-platform.theguardian.com/access/> → request a **developer** key (emailed) |
-| **New York Times** | Free developer tier, ~500 requests/day | <https://developer.nytimes.com/get-started> → create an app, enable **Top Stories** + **Article Search** |
-
-### Add them in the browser (Settings)
-1. Click **⚙️** (top-right).
-2. Paste any keys you have.
-3. **Save keys** — they're stored only in your browser's `localStorage` and the current
-   sector refreshes immediately. Use **Clear all** to remove them.
-
-The mode badge in the header shows the active mode:
-`📡 RSS-only` · `🔑 API + RSS` · `☁️ Server keys`.
-
----
-
-## ☁️ Deploy to Netlify (recommended — keys stay server-side)
-
-This repo includes `netlify/functions/news.js` and `netlify.toml`, so keys can live in
-Netlify environment variables instead of the browser.
-
-### Option A — drag & drop
-1. Zip the project folder (or use the CLI below for functions support).
-2. Go to <https://app.netlify.com/drop> and drop the folder.
-   > Note: drag-and-drop deploys **do not** build functions. For the serverless proxy,
-   > use Option B (Git) or the Netlify CLI.
-
-### Option B — Git + Netlify (full features)
-1. Push this folder to a GitHub repo.
-2. In Netlify: **Add new site → Import from Git → pick the repo**.
-   - Build command: _(leave empty)_
-   - Publish directory: `.`
-   - Functions directory: `netlify/functions` (already set in `netlify.toml`).
-3. **Site settings → Environment variables**, add any of:
-
-   ```
-   NEWSDATA_KEY   = pub_xxxxxxxx
-   GNEWS_KEY      = xxxxxxxxxxxxxxxx
-   CURRENTS_KEY   = xxxxxxxxxxxxxxxx
-   GUARDIAN_KEY   = xxxxxxxx-xxxx-xxxx
-   NYT_KEY        = xxxxxxxxxxxxxxxx
-   ```
-
-4. **Deploy.** Visit the site — the header badge should read **☁️ Server keys** and the
-   app will proxy all API calls through `/.netlify/functions/news`, keeping your keys
-   private. No keys are ever sent to or stored in the browser in this mode.
-
-### Local dev with functions
-```bash
-npm install -g netlify-cli
-netlify dev        # serves index.html + the function at /.netlify/functions/news
+```sh
+python3 scripts/collect_news.py --output data/news.json
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
----
+Open `http://127.0.0.1:8765/`. Use HTTP, not a `file://` URL, so ES modules and JSON load correctly. Generated `data/` is ignored by Git.
 
-## 🧩 How it works (architecture)
-
-```
-Browser (index.html, vanilla JS)
-  │
-  ├─ detectBackend()  → is /.netlify/functions/news reachable?
-  │      ├─ yes → SERVER MODE: call the function (keys in env vars)
-  │      └─ no  → BROWSER MODE: call APIs directly with localStorage keys
-  │
-  ├─ Layer 1: 2 rotated APIs per refresh (quota spread)
-  ├─ Layer 2: Google News RSS via CORS proxy (backfill / RSS-only)
-  │
-  ├─ mergeItems(): de-dupe by normalized title + sort by recency (max 20)
-  ├─ 30-min localStorage cache per sector
-  │
-  └─ PDF export (html2pdf.js + Chart.js), images downscaled via <canvas>
+```sh
+python3 -m unittest discover -s tests -v
+node --test tests/news-model.test.mjs
+node --check assets/app.js
+node --check assets/exports.js
 ```
 
-Every source is wrapped in try/catch and `Promise.allSettled` — **any single source
-failing never breaks the page**; it just shows a small per-source notice.
+## GitHub Pages setup
 
----
+1. In the repository's **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
+2. Keep `.github/workflows/news-pages.yml` on the default `main` branch.
+3. Open **Actions → Collect news and publish → Run workflow** for the first edition or a manual collection.
+4. Check both the **collect** and **deploy** jobs. The workflow must be allowed to write repository contents; its deployment job needs Pages and OIDC permissions.
 
-## 📄 PDF exports
+The `news-data` branch contains only `news.json` and its history. Do not edit or force-push it during a collection. A first run creates it only after successfully collecting news. Authentication/network failures are not treated as a missing branch. Workflows are serialized to avoid competing writers.
 
-- **Digest PDF** — A4 portrait, one page, `< 1 MB`. Header banner (sector color + icon),
-  Top-5 headlines with tiny thumbnails, a "stories by source" donut, trending-keyword
-  chips, quick-stats row, branded footer.
-  Filename: `SectorName_Digest_YYYY-MM-DD.pdf`.
-- **LinkedIn Carousel PDF** — multi-page, 1080×1080 squares: a cover page, one headline
-  per page (photo + overlay), and a closing "Follow ProfessorSK · @iam_sanjay_navandar" page.
-  Filename: `SectorName_Carousel_YYYY-MM-DD.pdf`.
+The artifact contains only `index.html`, `favicon.svg`, `.nojekyll`, `assets/`, `config/` and `data/news.json`. Source scripts, tests, local settings and credentials are not published. All asset paths are relative so the existing `/sector-news-digest/` URL works.
 
-> Image note: thumbnails are re-encoded through a `<canvas>`. If an image host doesn't
-> send CORS headers, that image is skipped and a colored placeholder (the sector icon)
-> is used instead — the PDF still generates cleanly.
+## Optional API keys
 
----
+RSS works with zero keys. To supplement it, add any of the following under **Settings → Secrets and variables → Actions → Repository secrets**:
 
-## 🛠️ Tech
+- `NEWSDATA_KEY`
+- `GNEWS_KEY`
+- `CURRENTS_KEY`
+- `GUARDIAN_KEY`
+- `NYT_KEY`
 
-- Vanilla JS, no build step. CDNs: [html2pdf.js](https://github.com/eKoopmans/html2pdf.js)
-  (bundles html2canvas + jsPDF) and [Chart.js](https://www.chartjs.org/).
-- Optional Netlify Function (Node 18+, uses global `fetch`, zero dependencies).
+The collector rotates one configured API per sector per run and falls back to RSS on failures, empty responses or quota errors. With 12 sectors and up to 48 scheduled runs per day, enabling just one key can use up to 576 requests/day; check your provider allowance. No provider plan or quota is assumed. Keys are read only in the collector process and never published to the browser or included in errors.
 
-## 📁 Files
+Keys entered into the old site's browser settings were local to that browser and origin. They are not automatically imported. Do not commit keys or paste them into source files. The old `netlify/` backend is retained for historical reference but is not used or included in the Pages artifact.
 
-```
-index.html                   # the whole app
-netlify/functions/news.js    # optional serverless API proxy
-netlify.toml                 # Netlify build/functions config
-README.md                    # this file
-```
+## Files
 
----
+- `config/sectors.json`: shared sector names, RSS feeds and provider queries.
+- `scripts/collect_news.py`: parsing, validation, deduplication and outage-safe collection.
+- `scripts/news_providers.py`: optional API adapters.
+- `scripts/persist_snapshot.py`: data-only branch persistence.
+- `assets/news-model.mjs`: snapshot validation, filtering and freshness rules.
+- `assets/app.js` / `assets/styles.css`: reader interface.
+- `assets/export-model.mjs` / `assets/exports.js`: printable digests and carousels.
 
-Curated by **Sanjay** · Follow **ProfessorSK** on Instagram → **[@iam_sanjay_navandar](https://www.instagram.com/iam_sanjay_navandar)**
+PDF export loads html2pdf.js from cdnjs on demand. Fonts use Google Fonts with local fallbacks; article images come from their original hosts. PDF export does not require news images. No analytics or user accounts are included.
+
+## Troubleshooting and rollback
+
+If updates stop, check the latest workflow run and whether scheduled workflows are enabled. If a provider fails, inspect sanitized source status or remove/replace its optional secret; RSS remains available. If all feeds fail, retry the workflow after network recovery. Avoid deleting `news-data` to fix a source outage—it preserves the last useful edition.
+
+For a code regression, revert the offending commit on `main`; its push will build and deploy a new edition. To restore a specific data version, use the history of `news-data` and a normal new commit rather than rewriting history. Keep source and data restoration separate.
+
+All headlines and reporting belong to their original publishers. The digest links to original sources and does not generate news stories.
