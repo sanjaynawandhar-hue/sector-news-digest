@@ -1,17 +1,35 @@
 {
   "schemaVersion": 1,
-  "attemptedAt": "2026-10-25T17:51:43Z",
+  "attemptedAt": "2026-10-25T20:48:38Z",
   "sectors": {
     "tech": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
-          "id": "d3af009c9272fec02ccd",
-          "title": "Tech firms should pay the creators whose work they use",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNLW1hZEU5VVFjWncybnRXamZ1c2NHd0l0MW84SnhJWlM4OVc1ekZYZnJtT0xCT1pqWXB6Z004RGF6Q2FSRlFPeG1oblNudTJUN1lWYkVLeHhtdllqdm1acTk0eTRNQzRodlVoNElOTUJ3TzdMN3NOdTZ3T3l2Z2FBS0lXYi1UUTFUSTRFaF9yRDNyTE9QR01ka0h2NVRQWF9kTkZMVDVGaFA?oc=5",
-          "publisher": "The Guardian",
-          "publishedAt": "2026-10-25T17:13:00Z",
+          "id": "3c9d363221abcabae388",
+          "title": "‘Cyberselfish’ author takes aim at Silicon Valley libertarians as her book returns from the dead",
+          "url": "https://techcrunch.com/2026/10/25/cyberselfish-author-takes-aim-at-techno-libertarianism-as-her-book-returns-from-the-dead/",
+          "publisher": "TechCrunch",
+          "publishedAt": "2026-10-25T20:20:08Z",
+          "image": null,
+          "sector": "tech"
+        },
+        {
+          "id": "f1bdc0fa3bc1297514ae",
+          "title": "A YouTuber dissected an iPhone Duo and thinks he found the cause of crackgate",
+          "url": "https://www.theverge.com/tech/1018290/dissected-iphone-duo-crackgate-hinge-screen",
+          "publisher": "The Verge",
+          "publishedAt": "2026-10-25T20:16:19Z",
+          "image": null,
+          "sector": "tech"
+        },
+        {
+          "id": "2a0fff49437a2a00620a",
+          "title": "Zen Browser is the Arc replacement I was looking for",
+          "url": "https://www.theverge.com/tech/1018275/zen-browser-arc-replacement",
+          "publisher": "The Verge",
+          "publishedAt": "2026-10-25T19:24:50Z",
           "image": null,
           "sector": "tech"
         },
@@ -151,6 +169,15 @@
           "sector": "tech"
         },
         {
+          "id": "fc805c70c9de92782e16",
+          "title": "SoftBank’s Son Plans $50 Billion Malaysia Tech Outlay, PM Says",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPWnRvdXVNYVNad2VNN2RZdjNZeVlTcXhiaEszOWZxOEx3a1NhZ0JwVWRIV05LODVtaV9BYi1oT3o2Rk9GenF3czBIcmxMMmpKT18zbEVEVGtYZ3FUYnF1bVBhZmtRNHp3X0JLME9BMzhRZG5BUkxhdDBOdFdtUE9ETGMzSVNWQmNhN1lmcV9UdHBpdUFyQ1phMHl5aDl6Z3FqX2JFelNVUG5yZWszc3VWOA?oc=5",
+          "publisher": "Bloomberg.com",
+          "publishedAt": "2026-10-25T07:42:28Z",
+          "image": null,
+          "sector": "tech"
+        },
+        {
           "id": "c34220249d0c37946ee4",
           "title": "Zimbabwe wants digital payments to build trust in its newest currency. Why technology alone won’t be enough to save the ZiG",
           "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPS3R5U1RKanBqRGNETUtFM0xGaEl5Tkw3SjVJTEZQUElLSEozMEx5VkxRYVM4bTNyM0ZDa1Z5UE5QRnpTU2xLR3hfTzd3Mk45ME5oR0Z0UEcza0JmVXhKaGxSUkp3ek52bmFQNy12V3QzRF9HNjc2TnV2anhaZjI3Y1hsVmFlODNXMWN2VlRTa1hxdlNYVTJGaExkWFM5bzY1S3hTakdzcl9KazVVUEF4Y1ZkLUI0S2JhSm5WR24xc0JZYkdkUEpXM0dGV1huUzlpLXhUdTJPdEFoOC1mMTc4QWNuOE92ejh1ZHVvMg?oc=5",
@@ -248,41 +275,32 @@
           "publishedAt": "2026-10-24T16:30:00Z",
           "image": null,
           "sector": "tech"
-        },
-        {
-          "id": "61ceba6cfe4981597ca2",
-          "title": "Block’s new voice model sounds eerily human",
-          "url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
-          "publisher": "TechCrunch",
-          "publishedAt": "2026-10-24T16:00:00Z",
-          "image": null,
-          "sector": "tech"
-        },
-        {
-          "id": "2829b6d867987bf473e5",
-          "title": "PHP-ocalypse: How two critical web bugs almost broke the internet",
-          "url": "https://techcrunch.com/2026/10/24/php-ocalypse-how-two-critical-web-bugs-almost-broke-the-internet/",
-          "publisher": "TechCrunch",
-          "publishedAt": "2026-10-24T15:30:00Z",
-          "image": null,
-          "sector": "tech"
-        },
-        {
-          "id": "0b2d6cf7f7c34f259814",
-          "title": "These clever apps show off the iPhone Duo’s potential",
-          "url": "https://techcrunch.com/2026/10/24/these-clever-apps-show-off-the-iphone-duos-potential/",
-          "publisher": "TechCrunch",
-          "publishedAt": "2026-10-24T15:00:00Z",
-          "image": null,
-          "sector": "tech"
         }
       ],
       "errors": []
     },
     "finance": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
-      "status": "ok",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
+      "status": "degraded",
       "articles": [
+        {
+          "id": "d0a83a67c8ff662b2a5d",
+          "title": "Futures Due; It's A Doom-And-Bloom Market",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOQnVjTUhHNlhCR3diSDlXVTI4c082YmNhWmRrdGJqWW9yeGxsa0ZKSFBfa1RDUVBRS202amNuT3loOXdtTzdOWUpNTjA3VjlnWVczak1rU3NjYUg0YnF6R1JlcUdVRi1NOEdya0I1ZU4xZlNzUmRKU2U1ZlJkcVRCNF90clE4QjJNRmVOOGJ4Ymp5QzdHVEp3WFgtLXYyS09KbGtvNi1ucWgtZnlJbUpmVXVyaE9fZ0pPeUJUQg?oc=5",
+          "publisher": "Investor's Business Daily",
+          "publishedAt": "2026-10-25T19:17:30Z",
+          "image": null,
+          "sector": "finance"
+        },
+        {
+          "id": "5c1e9bf7e5a920c73a0a",
+          "title": "US Stock Markets this week: Wall Street gears up for Fed rate decision; Q3 earnings from Alphabet, Microsoft, Amazon",
+          "url": "https://www.livemint.com/market/us-stock-markets-this-week-wall-street-gears-up-for-fed-rate-decision-q3-earnings-from-alphabet-microsoft-amazon-11792944787786.html",
+          "publisher": "mint - markets",
+          "publishedAt": "2026-10-25T18:00:39Z",
+          "image": "https://www.livemint.com/lm-img/img/2026/10/25/1600x900/nyse2_1792945465984_DOPv_1792945490357_v2JE_e5901926-5ed7-4dc7-987a-0639319dd1b5_3Zaw.jpg",
+          "sector": "finance"
+        },
         {
           "id": "ef51753eb57eedadc535",
           "title": "PSU Q2 results 2026 preview: BEL, Coal India, IGL - Earnings estimate, brokerage target price, returns potential",
@@ -299,6 +317,24 @@
           "publisher": "mint - markets",
           "publishedAt": "2026-10-25T16:19:37Z",
           "image": "https://www.livemint.com/lm-img/img/2026/10/25/1600x900/logo/agh_1792945053136_5j7d_1792945063076_BFsK_ed46de84-870a-419b-b3f9-97ddcea9ebf9_XJjl.png",
+          "sector": "finance"
+        },
+        {
+          "id": "c1a286f1a14f3c9bf718",
+          "title": "Govt cuts wheat allocation in weekly auction even as millers ready to pay over ₹31/Kg",
+          "url": "https://www.thehindubusinessline.com/economy/agri-business/govt-cuts-wheat-allocation-in-weekly-auction-even-as-millers-ready-to-pay-over-31kg/article71622933.ece",
+          "publisher": "Business News Today: Latest Business News, Finance News",
+          "publishedAt": "2026-10-25T16:18:17Z",
+          "image": "https://bl-i.thgim.com/public/incoming/jvhral/article71623397.ece/alternates/LANDSCAPE_1200/Data-suggests-bGRJGMVJ1O.3.jpg.jpg",
+          "sector": "finance"
+        },
+        {
+          "id": "dc84395924c0e5ad4da5",
+          "title": "Worst Samvat under Modi era; Nifty down 13% as investors enter new year amid growing caution",
+          "url": "https://www.thehindubusinessline.com/markets/worst-samvat-under-modi-era-nifty-down-13-as-investors-enter-new-year-amid-growing-caution/article71623822.ece",
+          "publisher": "Business News Today: Latest Business News, Finance News",
+          "publishedAt": "2026-10-25T16:05:50Z",
+          "image": "https://bl-i.thgim.com/public/incoming/f3vk1f/article71623876.ece/alternates/LANDSCAPE_1200/463465362.jpg",
           "sector": "finance"
         },
         {
@@ -437,15 +473,6 @@
           "sector": "finance"
         },
         {
-          "id": "c1a286f1a14f3c9bf718",
-          "title": "Govt cuts wheat allocation in weekly auction even as millers ready to pay over ₹31/Kg",
-          "url": "https://www.thehindubusinessline.com/economy/agri-business/govt-cuts-wheat-allocation-in-weekly-auction-even-as-millers-ready-to-pay-over-31kg/article71622933.ece",
-          "publisher": "Business News Today: Latest Business News, Finance News",
-          "publishedAt": "2026-10-25T14:24:37Z",
-          "image": "https://bl-i.thgim.com/public/incoming/jvhral/article71623397.ece/alternates/LANDSCAPE_1200/Data-suggests-bGRJGMVJ1O.3.jpg.jpg",
-          "sector": "finance"
-        },
-        {
           "id": "bd0cea9b134a48b72552",
           "title": "Tata Motors’ €3.91-billion Iveco bid faces make-or-break October 26 test of global ambitions",
           "url": "https://www.thehindubusinessline.com/companies/tata-motors-391-billion-iveco-bid-faces-make-or-break-october-26-test-of-global-ambitions/article71622938.ece",
@@ -525,39 +552,17 @@
           "publishedAt": "2026-10-25T13:28:34Z",
           "image": "https://bl-i.thgim.com/public/news/ic6sae/article71622658.ece/alternates/LANDSCAPE_1200/acharya.jpg",
           "sector": "finance"
-        },
-        {
-          "id": "57fae80b3ad8378ab153",
-          "title": "Ladakh becomes India’s first fully organic union territory",
-          "url": "https://www.thehindubusinessline.com/news/national/ladakh-becomes-indias-first-fully-organic-union-territory/article71623240.ece",
-          "publisher": "Business News Today: Latest Business News, Finance News",
-          "publishedAt": "2026-10-25T13:00:25Z",
-          "image": "https://bl-i.thgim.com/public/todays-paper/tp-agri-biz-and-commodity/cy0xxo/article70952832.ece/alternates/LANDSCAPE_1200/APEDA-extends-dGQCFUUSMK.4.jpg.jpg",
-          "sector": "finance"
-        },
-        {
-          "id": "155752445843074fb6d9",
-          "title": "Distribution reforms: IRDAI extends deadline for feedback till October 31",
-          "url": "https://www.thehindubusinessline.com/money-and-banking/distribution-reforms-irdai-extends-deadline-for-feedback-till-october-31/article71623228.ece",
-          "publisher": "Business News Today: Latest Business News, Finance News",
-          "publishedAt": "2026-10-25T12:34:31Z",
-          "image": "https://bl-i.thgim.com/public/incoming/dgex6i/article68195935.ece/alternates/LANDSCAPE_1200/PO05_Insruance.jpg",
-          "sector": "finance"
-        },
-        {
-          "id": "d686514bb0767c9b4048",
-          "title": "‘Excess’: Insured, but still responsible",
-          "url": "https://www.thehindubusinessline.com/portfolio/personal-finance/excess-insured-but-still-responsible/article71623264.ece",
-          "publisher": "Business News Today: Latest Business News, Finance News",
-          "publishedAt": "2026-10-25T12:22:46Z",
-          "image": "https://bl-i.thgim.com/public/incoming/91jnoh/article71623244.ece/alternates/LANDSCAPE_1200/PO16_Insurance_policy.jpg",
-          "sector": "finance"
         }
       ],
-      "errors": []
+      "errors": [
+        {
+          "source": "www.moneycontrol.com",
+          "error": "invalid or empty response"
+        }
+      ]
     },
     "health": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
@@ -593,6 +598,24 @@
           "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOU1EwbkpTeEZ0YlNTdFpna3M5TXZaS1hhTkQtUmJNWlNUMTQyQzNzRnVDWDlObjV0aUxqY0M3WG83czVUZkRGLXplSWhxTVNvVFE2U1NJdjhDZTl3YS1pbUQtUXBwMFB2N0swQ1U5RkVhTTdyVmFKV0poeVJSaDFjaU9lM3VZajhoMHB4b0VOSVU2Z2o1MnFQaTh1NnZ1d1dGMTRoWUpxMXh2ZG15dE9iblZYWG9ucXNKRlE0dVZVLUNaZ2lkaURzdNIBzwFBVV95cUxNVUgtZUdVTTRsOU5iUGs0WFJIaDZQY2JzWGhUNTEySWtfOV90Uld4Y1RYVHVKYlc4OG1YekEycjFsb2FzZi1wUlFWUXc5QmRJZDFocndfejlCZkpVUWsyN0loYU1Makx2ZGR3UW11Y2hhOEhLaU5DcWNGWEZDSFgwSk9fZGFUei1SM3FwUGlmUDV4dklCdUtFbEROQkptQXd4N09nLW1FMzdLajJFa0YyV0p0dEVVWW1xQVJPSVlaMHU4SGIwUTBtSm9pc3U4SHM?oc=5",
           "publisher": "BusinessLine",
           "publishedAt": "2026-10-25T13:22:58Z",
+          "image": null,
+          "sector": "health"
+        },
+        {
+          "id": "63777e47046d09824e2e",
+          "title": "IPO GMP, subscription race: Reliance Jio Platforms vs Paras Healthcare - Grey market premium, QIB, NII, Retail details",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQX2xaUm9DSTZROHVOeWhmVG9jS0dOb29vOHNKVl9qX3MxSkpueDI5Z1ZNcW12OXUtUG1EdnNrQk1CMXpkbjNCRUViVTI0WmJxV05jSGszSnJYdVAwTTBvemwzTkpwYkpoUWlMUVk5bkNFYWJrWkd5azdPaXBCTGdMd19VV2pwc3lmWGlIUko5eG9WQ0IzVHVISk52S0VPSVFYVS13Wlk3NnA1NWpZck12c2ZhRXBGa3NqWFpwXzBjcV9uYTNuTjJNRWRocDRmVTdpWWI1R3hLdjdidmZGV2JQUUhoTlNqcFd0WGpGX2FuQzFCZTM2WVlHcm5IY9IBgAJBVV95cUxOTjdjb2JON3FxVXc0QzJPbWNTcEZMUTRfQlh2dHV0b2ZoaF9DT0kwR0Z0T28wLVBZSjlZU1hoWGRzcHZxOXdBYTdsdEx6bTN3YVBYSmxDOWc4RkRtd1hSOGdmOEVrYjNsRV9USV91RXFWaS00NE9hT3hHQ1ZWeDA1QTdTNTFROU1WNVNHQmU2MXVVRmFva2Z5N2VHNS0xTlVlVzRzOTVONnFfT1ptQjlGYlJtUjNVc3E4bWJKaWVwa2hFODViOS1VUi1HTTB5elBnZDVrYU9qNFNELTJSWndRNW5QT0FBbTJNdUxfUnhHVTlGU3lqWjhjUVhBQk1hNGlR?oc=5",
+          "publisher": "Livemint",
+          "publishedAt": "2026-10-25T11:56:00Z",
+          "image": null,
+          "sector": "health"
+        },
+        {
+          "id": "31f27f46431808605f71",
+          "title": "Former CJI Chandrachud urges strengthening public hospitals and healthcare infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONVA0bXdFSDZhbWpSU19qQ3NyZU5GazladkpmQWxwLU14VmNQSHBnV0g4SVJjSm9QanVQV1NSVUR4QzBmUktVMktpQmVMVW5mNzhqbFM4c2o5dFdkcU8tSkFPY3VFNVo5a21UdlRZY3lHM1UzWkVfZmU0bFB6V2p2N0M0bEc5bTYwWTFIRnU4N0VWaTdJbElFZk9id3ZkRnpEbVV3STRTMTZ4cXBVbFhhb041QXN6emhfYkVYa0JlVQ?oc=5",
+          "publisher": "The News Mill",
+          "publishedAt": "2026-10-25T08:37:10Z",
           "image": null,
           "sector": "health"
         },
@@ -795,6 +818,15 @@
           "sector": "health"
         },
         {
+          "id": "8a6847014fee88d94ff9",
+          "title": "Human Oversight in Healthcare AI: India’s Accountability Gap",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRmZZMGl2UEp3ZUk5Rm5EZE9fbzRxYWhOX1U3LV9GczMzV041ajdEWlk2TEdXaFYtNU5PXzAzc0QzSUlLbFVBNDY2c1l5TG5VN3ZKV0lxei1Fck8tam5Zbl9NcUZJU2NOQ0M3VkpnQnV4RUNENk80RHd6bHh1cG1sOU5rY0lwc0lGZEV3OFRtTQ?oc=5",
+          "publisher": "The Policy Edge",
+          "publishedAt": "2026-10-24T05:08:32Z",
+          "image": null,
+          "sector": "health"
+        },
+        {
           "id": "9a98cd4a5c02d3dc208a",
           "title": "'Suryaa Aarambh se Ant Tak': Blatant promotion of assault on healthcare professionals- AIIMS resident...",
           "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQd1Q4MmM2TWNYdVJqdDR6M2VYTVZCS0ZYd091M3RxU040SHZXMkJ1YUlmWFRSS0l4SmhReWUtdEpBQ3RUY2FURjBiMHltdkhzaEx2LUwtY0oyN09udGxtcG5CMWc2NmlMZ0x2ZC1PZlNuSlJDMW5VeG9TN2VvN0Fsd01YN0RpVXN6em9XYzZ4SjAwb01PcnJWRjQ1cWYtRGJ4dWxQUGxLZHV6YzIwQjhmS19FT2tpR0N1dnQ3NWVDd3lTcnJWVUlRMG1lM3hVMTRfcFlQTVdQNXZHLXRGSXp0R21oQ0VIVmdwLWdvaUFMUUtXUWFZa2ZkLTRXYlNUVU83eFlGc0lTb3BlaUdPdEdHd3phNmhXeUpNdExJUzd5S1R1T2fSAaMCQVVfeXFMUHdUODJjNk1jWHVSanQ0ejNlWE1WQktGWHdPdTN0cVNONEh2VzJCdWFJZlhUUktJeEpoUXllLXRKQUN0VGNhVEYwYjB5bXZIc2hMdi1MLWNKMjdPbnRsbXBuQjFnNjZpTGdMdmQtT2ZTbkpSQzFuVXhvUzdlbzdBbHdNWDdEaVVzenpvV2M2eEowMG9NT3JyVkY0NXFmLURieHVsUFBsS2R1emMyMEI4ZktfRU9raUdDdXZ0NzVlQ3d5U3JyVlVJUTBtZTN4VTE0X3BZUE1XUDV2Ry10Rkl6dEdtaENFSFZncC1nb2lBTFFLV1FhWWtmZC00V2JTVFVPN3hZRnNJU29wZWlHT3RHR3d6YTZoV3lKTXRMSVM3eUtUdU9n?oc=5",
@@ -802,39 +834,12 @@
           "publishedAt": "2026-10-24T04:00:29Z",
           "image": null,
           "sector": "health"
-        },
-        {
-          "id": "4109c1df90a1f6674711",
-          "title": "India's healthcare GCCs to generate 67,000 jobs in 2026: Quess Corp report",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOQWJKcTcyWHZ5cktadTJXcV96b0ozSml0UGtjeGlud2FhV2pVQUJUVHJ3aGpLZnp1cWpnV21rakN3WGVuRTFBX1ZjSlZ5ZDl6RVFfYnR2Q0ItaDhoNjRGZU54MUZ6TTlZeFRlY2t2OTdHbmE3bm9FM1JRampVNWRFVFNHZnNkS3lXSk96RVo2dmF4c3FKeFhQLUxzb2RncmF1anRPSklGaE5iX2tXUldPMEFlU0ZKc3hWSXpnRWhLVXk?oc=5",
-          "publisher": "BioSpectrum India",
-          "publishedAt": "2026-10-23T22:26:12Z",
-          "image": null,
-          "sector": "health"
-        },
-        {
-          "id": "58d15e1a026161cbb9ee",
-          "title": "Google healthcare leader offers a vision of 'AI with purpose'",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQdzNDc2ZNak9LSWZaVTgwb05Cak5TWTU2T2w3d29XR2hKaG1relJTVGhYTnlDeE1JYWdTQXNDdXJ6ZHg0bmo1QmlqSms1eC1lVDFvMkpUUThoaGItSF9MVHI2aW5BT0lXV2lkV2IwZ2pmVGM0Q29TZk1FQkJGTUtTT2dxSTJySFY0Q205d20wYXM?oc=5",
-          "publisher": "Healthcare IT News",
-          "publishedAt": "2026-10-23T22:08:46Z",
-          "image": null,
-          "sector": "health"
-        },
-        {
-          "id": "3c98ca9ce5c770e6a58f",
-          "title": "GP says she was forced out of job after raising concerns about gender treatment",
-          "url": "https://www.bbc.co.uk/news/articles/cr5ynl415j79o?at_medium=RSS&at_campaign=rss",
-          "publisher": "BBC News",
-          "publishedAt": "2026-10-23T19:23:10Z",
-          "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/81f9/live/dbfea4d0-ce20-11f1-906e-e3128518d85d.jpg",
-          "sector": "health"
         }
       ],
       "errors": []
     },
     "energy": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
@@ -847,29 +852,11 @@
           "sector": "energy"
         },
         {
-          "id": "4bec1cd2586dd55ebff4",
-          "title": "Oil Futures Settle Lower in Volatile Session",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPTUxmM3AtZ2FXSDFNbHBRTVlickI1OXNDdU1BeGZwOHZ6NVd5SW9RaUx0ZFlMTGVTN3J1QXFzUEc2Z3JOaVFzTTRQV1VXVVVpTktIaV9HYnU3Z2U1UmJCZExNdlZiWlhyMzlJRmh3X0Z5bHhNYW02R09JbE1nSWxEVW9hbXFsdTZuOVVuVjVvYlFEazFqR012VU40cTdnS096MmFQY1h0VQ?oc=5",
-          "publisher": "WSJ",
-          "publishedAt": "2026-10-25T11:05:44Z",
-          "image": null,
-          "sector": "energy"
-        },
-        {
           "id": "73b5e8f3c32e0b41f6b2",
           "title": "UAE Shuts More Beaches as It Deals with Oil Spill in Gulf",
           "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQc2VON1NDRWZVcy1CUUVLY2NtdzkzWnVjSnZrSTNISGs3dzJtU3drYkx3S0NuX1JtdmgtUFdfR3hMYVNPcUpYT2FmV01wZkk3bnJxeW11ZllsR2RERG1OampzZG5BWnZSVDU3ZHM3SF9PLURZRThzZU9mdWozWjBzbGM5WmIyMGhKTVIzV1NTamQ2Q2swUWlzNTVZTVNScUNncnhLZ0tWOGlqS3By?oc=5",
           "publisher": "Bloomberg.com",
           "publishedAt": "2026-10-25T05:45:00Z",
-          "image": null,
-          "sector": "energy"
-        },
-        {
-          "id": "94fa9acbb3d8c9dcdfd1",
-          "title": "Suzlon Energy shares crash 39% from 52-week high — can Q2 results 2026 bring a bounce back? Experts' views, target, SL",
-          "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQXzU4dTZhcDF0XzZwU3J6X1E4YW53Y1RNekxQM3RQY3RoQTI2cnFjR2RhMFFpZHp4elBKSVFKQUJqenFYN25SYm9CbmlOeWFZcGhqVjJOYzNncTl1cTlpNkVIaW40VmZjUF82Q0xVMXRUWVhseURYaGwxd3JPVjJlNWdweV92ZzVzOXZHVVhEZWlxS19lQzJvTEtPeXQ3dnM5RHlJZG15RWUxV0M5bW1IUWdvUDFtMks5THpuTG55alNIU09wYnZPNHQ3Q1FDMFVkekI4NjktcVlQZXJ2UC1kNmppcmpTbkNBUzg1M1E5bVIwbmc0eVFyaHRXM0VTN0JVNW05U3ZnMUNRMlgwT0HSAZMCQVVfeXFMTXVDU3BzbDhIR3ZQQjZ6ampvdkpkVTVlMkJ2aHF0aDYySFRRc3FZM3RVSGtFcS14MFhZSFJvM292dHF1SzRLQ1N1OVB2a3dHTl9hVnM5S2lYd1JlWHJUVkZYdHVXT19LcnJYb2lRT0N1TkxMQUhjTFAyYjNDZFJ2REFwVlNkb1ZIM1IwQzk4a3hxcjlqZkhlcUFmclY4Sk14YmYxVjdldW84QmdHa1RRSVcxY0tWdUpQRFNCcjZSaUMyNEpvZTQxYVc3OUpvWmxtWHVyWnVYQkY5a3BaMi1JSEtjemNvNTgyRk1ZZXlHVk9NblpoVEJST2tjNi1SZlI4YjZCU1JrZFNUVzZ1TG94eXZfdWs?oc=5",
-          "publisher": "Livemint",
-          "publishedAt": "2026-10-25T04:08:45Z",
           "image": null,
           "sector": "energy"
         },
@@ -888,15 +875,6 @@
           "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxObHN5amZKSzFMSXI0WWh2Y0ViTnJ5NzdMRUpkYTBidHE1NjVvMmpJWHRmVExiV2tvLVNuclVURGh1b1NqNDJkbVF6VzRwR3k2MklZMUROcktnNUpKVTl2ZW1IVmRFVHNLVkdxZzdfR25Wc0FyVHltMktPSk0yZWowVFV0SnJQZG5WdnZNQVlWYnJPOUZJci1OZWlIanRuOEoxenJGemdRTHZzS2ZEdHFiYTJWeG1VR1A2cTZfR0hmRWLSAccBQVVfeXFMT0NpZUFFa2syZ2ptVnlhQURUc1Jrek91NmZOcXgxWlVSVEFOTFVkTlgtNjEtQXFNWERYcDJQUjJSUmtEaHBrbUJLc25vTWRxRlhTSU5hS0tVRi1TbjMtVWJWTXRnVHdjUlFnVzVqWDJ1UW1Eb3dSdFo0VjFlb3FsVklWRkl1eHdhZ1FkLWNSaExSeWI0dkR5Skd6bVhXUGgyZThaNU5rdHRWb3UteERnd0ZFbWc0ekl3UkVDTHpHM3JhMklqY0FhSQ?oc=5",
           "publisher": "The Hindu",
           "publishedAt": "2026-10-24T22:40:00Z",
-          "image": null,
-          "sector": "energy"
-        },
-        {
-          "id": "b5130eb5c722cc02229a",
-          "title": "Yemen's Houthi rebels claim new attacks on oil facilities and airports across Saudi Arabia",
-          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQTkdyRmpOazU3c2tkT21STG1KNEcxMVUxRmoza0NxX1dZRmhZZlkzRHNBbW81S2NiUnNnb3paWmhSZ0ZRakVvaFprUTN5WnlyZlVBQUpWM1BXTDI0cy1ZUXBlR09CYzJsdWF0SzhCbnZLZmQzZkJiT3RLTnVmNWRJQ3QtWTNlOUNBcFY4TTY2cUtnbDJxaVE1RVFEVktuWGJ5Z2JVcS1SSUZUanZod1dlcXlYZlBPMkR1VkdwYlRvdWFVcE1BYzhkc21OV1pUNE12eGZSd0J3?oc=5",
-          "publisher": "France 24",
-          "publishedAt": "2026-10-24T17:50:25Z",
           "image": null,
           "sector": "energy"
         },
@@ -964,15 +942,6 @@
           "sector": "energy"
         },
         {
-          "id": "403da244f69b3143cb86",
-          "title": "Oil Holds Biggest Gain in Week as Saudi Attacks Fan Supply Risks",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZjR5Ukt1bFQ2cG5CR2xEckxfejgwaHhOLWwyTGFRM0xFOUowbGEyUEphdVZFQ2hjaEFLZ3g0ZndDWUxLNzNUN0ZzQUx6a3NtMjZtTG05WDI5cjh1NzlkLVdBQzNqR05ZQURMeE9GWlRuUXA0MDR5alI0N1JrNmtsenhPcGtZcnJwRk1xWlpTQVpuamwwaHdBenB0cTJTZw?oc=5",
-          "publisher": "Bloomberg.com",
-          "publishedAt": "2026-10-23T19:35:39Z",
-          "image": null,
-          "sector": "energy"
-        },
-        {
           "id": "a899efec1782dcafed73",
           "title": "NASA, Virginia Launch Power Partnership for Energy Security",
           "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQbWhtOWpBOXRtV3piXzBCYUpGbTN3QlIxTExZN0R4VkVQQ08ydnhfVktjQjhaal9rcGV3UXp0eURwSnp6ajZQYWROX29QMFFMVHN2UUdDdk9nLVRSZEFPaXZqdkd1Rm5BbTVkMkZEeHNZVkdHYlF2TnBQMGNGTnhYbUUxcEd2eWFJcXc?oc=5",
@@ -1027,6 +996,15 @@
           "sector": "energy"
         },
         {
+          "id": "04d17f26e2b9c87f022e",
+          "title": "Oil India discovers natural gas in KG Basin's shallow offshore waters",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQSDhaeXpLeERNc19fSnJLNTZqUmlvRjZNWWc4ZEw4UnJwOEJCVzZLbnYza0s1Zzd1MUx4QWZCRzFkVUhzbTRDU0V3YjBnREF0VjZaOFhtMWpDcnhlTUpyRV9jNXpoaHZFTnBOaWlwUTVQOFFZQ1RhZGVRcloxT2FQNVR0cHFTVDZUX2l4T1dVaXJQalozVTF1Z3F0Zzl3clMyaDhnQ3ZIWWlHZDUzdWpMMHVKVU5QcVViQm1aMUcwTnduUVFmc2ZoLVNITC1lRWvSAdQBQVVfeXFMUHRzZ2hrdHVscGowU1NVUmlQME9oNnQ2b1FqVm9SQ2dUTUZSYmxvZzJ0QnAxdGlrX0EtZm4wRlZTMDJwMGg1cEZ0QWVVZGpoaFBfYy1BVUNGMTdzVEYyMWd4ajhza0h5VUtnYThiVmtIQkx5aDZNcVhMVUpaVjgzVFVmSWdRR3BoTGJKeG5KemN3c2xXYnlMLTdydkFaa2l1SnBvSDBNY05WVVFSSTNBeFVWcWwtOFJzUVl6cTItZUt5U1JqYjg2QS1seVVvRTQtajFsZEQ?oc=5",
+          "publisher": "Business Standard",
+          "publishedAt": "2026-10-23T15:09:15Z",
+          "image": null,
+          "sector": "energy"
+        },
+        {
           "id": "1bba9365a8713b0da46d",
           "title": "Gold set for steep weekly loss as rising oil prices bolster Fed rate hike bets",
           "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOWE1LcUgzRWRwVDZmX3FEaWszVHF0cFQ1ekt6M1pyQ0lfc05PQm9DekdZcXprdm1vQk00SlNEZjEwQllCd1VwMUJySnIxcF9ZblFaRHFsV3BzSU52SlJSSi1TeWxoTmdYc1h6UHhPQTFQYU41ZEdQTFRNY3l0N1Q2bnRDV2x1MjlveGtxTk1oQWlGd3ExcUZEd2QzdF9TUkVKcXotUlIycUgtb1RrZjJ3?oc=5",
@@ -1054,9 +1032,27 @@
           "sector": "energy"
         },
         {
+          "id": "9055bc00f45ec28c19f0",
+          "title": "Speed to Power through Accelerated Reconductoring and other Key Advanced Transmission Technology Upgrades (SPARK)",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQRVJqcnRUeENTWEN0eDkyZjAtRnVCQW9YZEJoZFIyV2J3RzA2LXJYZENaODNnQlhoZUh2VHhpQVFLYUFjWW5vci1PTFZJeWplT0RsUklBNTJXVWRtZ19EalhGSzJFZXRqRDBGMVhJUXhRZERFbHR3djhmTUk0aXF1OHo4S1puelNHY19zOW1uVXg1UGdpdmpHOVNqTmxQYzVsNFlLOW9iUU1wUFowTjNPSmh5OElDSW5KcW9Z?oc=5",
+          "publisher": "Department of Energy (.gov)",
+          "publishedAt": "2026-10-23T14:00:32Z",
+          "image": null,
+          "sector": "energy"
+        },
+        {
           "id": "3e92f4a96d2c62d01b6a",
           "title": "Hydrogen and Fuel Cell Technologies Multi-Year Program Plan",
           "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOaXhuSTU1UFgweHZjRGlaMmkxellVTVQ5YzJHNW1jbEhKWGxnWWtqS3c3QXIwX0tuZ1NKRHJNejFJZ1dzc1lNUzY4VTFGRWlzQjlPVlo0dDg3TzlUc05TamlsR3hzUU5LWU5RNDBsY09CYlBYMy1vaWd6Z0lYbHVvcjJfdHRPUHl4QjFlMFBpbU1BRmVJMl8yMQ?oc=5",
+          "publisher": "Department of Energy (.gov)",
+          "publishedAt": "2026-10-23T14:00:32Z",
+          "image": null,
+          "sector": "energy"
+        },
+        {
+          "id": "b15995f02323fae8b6ba",
+          "title": "Solar Integration: Solar Energy and Storage Basics",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPZEdnanZLWS1hVW1CYXc5M2ZycnNEOUVpLUUwUTAzbFU0UlpEYUk5LV9kNUJaZnoyVzdCLXdLUEFub2JQeFhpaGlGODQ2S2FodldwOWFmeTRWZjN0VzBIbUVmYXJjT3hUOGpFY3ctZGd4aHhtRVB5Zk9GOHdxN0dBX0x0LWc1NmtkakxEb1FR?oc=5",
           "publisher": "Department of Energy (.gov)",
           "publishedAt": "2026-10-23T14:00:32Z",
           "image": null,
@@ -1081,20 +1077,29 @@
           "sector": "energy"
         },
         {
+          "id": "492da7dc145fda7992f7",
+          "title": "SSL Forecast Report",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1hbWpzU1B3d29ja3BYU3U0SW5YSHk3dUQ5bWFvZXRvMmh6STNZN01QbHRDV3FFWG9RRTNXeWZRNFFQamRPOVZKUE8tUjY5dGx6ajgydkh5aTFkSWFNbGc2bw?oc=5",
+          "publisher": "Department of Energy (.gov)",
+          "publishedAt": "2026-10-23T14:00:32Z",
+          "image": null,
+          "sector": "energy"
+        },
+        {
+          "id": "045ea77c92d8a32d72d4",
+          "title": "Clean Energy Resources to Meet Data Center Electricity Demand",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNS3BpVTdBYWozS0QzbFdJakhBcUltUHd6T3RDQ0ZJZ3VYZjFNejEwWlR6MUlLdklGdlMycXpQbkhGcHBXRVFiVDhSQ3J1dWdJT0RxT3AzdXhnRFlWcEJUdzA1Vzdmb3cwbGQ0eWR6aWVUWTNuYlc3Y3BuUzRiRHVwOEdrN0dkUnIzQW9tYQ?oc=5",
+          "publisher": "Department of Energy (.gov)",
+          "publishedAt": "2026-10-23T14:00:32Z",
+          "image": null,
+          "sector": "energy"
+        },
+        {
           "id": "58595b4dc8354560bd68",
           "title": "Buildings",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5Gdk1UZERXWnR1RVNPczNVVEFqTURXS0dwX1BhdVdXMkIyNDNyUEVqRE04eFlnbF9pNHpDMklwcFh2RTNXTy1tNmRjS1pOaGpPUnc3Z3g3ZXNxRmpSbzU1Yg?oc=5",
           "publisher": "UNEP - UN Environment Programme",
           "publishedAt": "2026-10-23T13:55:05Z",
-          "image": null,
-          "sector": "energy"
-        },
-        {
-          "id": "ac3688aa4d14a1e66068",
-          "title": "Surging oil prices drag Indian shares to weekly losses",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOeVk5bXN2THRVWVBubnpudHpPQ2dreFhuVUxXSUFqZWJLa2psTU1rbjl3UktXTlVabEpvVEM0YUpuZVBUWkJQSjB4X1o1QlI5OEZYNE1fNE5QREZ1RjZqeURTcEFZSm5DbkFGYkFCLVNVYkpRNXRCQ3RMTDExMGVJdS1lUjUtdlBFVkJQY1VXdVBZTF9qVklpbU1YRXp6dHpXNWhqcHVFVFNsZUtQeXV6SGNBTnJYaHBzWlE5SF9EeFpiYllha3c?oc=5",
-          "publisher": "Reuters",
-          "publishedAt": "2026-10-23T12:36:27Z",
           "image": null,
           "sector": "energy"
         },
@@ -1111,60 +1116,33 @@
       "errors": []
     },
     "auto": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
-          "id": "8e8bfe9feaa61fc6dd05",
-          "title": "Promising Electric Vehicle Stocks To Add to Your Watchlist - October 25th",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOWE03aW9UTDdXR1ZQdUJ5WVFBQlVKZWZSaHNyWjdRcklHYmdHeFBFTDlueFlpUUxfT1VOVHRzYlEtN1pTR2xMQkY1ekI5bmZHYjRTaXRPZGFkTDNjN2U3OXNtYVRLZ1JWVUFlUElSUHk3Ulhrd1k5SmJPVmthSkdZWnFaeGt5SzBfbDZCYXVVdDdOMmVkcGdJdVVra2RiR3RXVVRoTlNCSXQ4SnNfRktCMmdCN0pZdUtLRlA5NEJGNTRGWGp6WFVkMGJn?oc=5",
-          "publisher": "MarketBeat",
-          "publishedAt": "2026-10-25T16:15:16Z",
+          "id": "f8269b43cab2167fce01",
+          "title": "Nagpur EV Registrations Rise as Charging Gap Widens",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUkdBSU5hZldWR1U0T3ZFM1ZRNno1RXJaNDBMZEpQZHJsNFlOc0xZSmdRUnE5MXJaZy1pYWE5YzJ3ajJ0TnJ3cHFLWHV5bnZHZ0xhQjFFMmZFWU51Z1Y4aTRSbUgyY2phVWpjVGNLLTM2LXpUREF1TldVbkN6ZUc0QXo2RQ?oc=5",
+          "publisher": "Urban Acres",
+          "publishedAt": "2026-10-25T19:59:14Z",
           "image": null,
           "sector": "auto"
         },
         {
-          "id": "f7604e6c9bbfe025a4d4",
-          "title": "VW sub-brand Jetta launches M6 electric sedan in China from $11,950",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPdnU2OUo1UDJaNG5XaDJMVG9lM3ZBY0NLS2RhY0YwWlg5R1JfRXBCbUdEMGxCMFp4cW9ZaGxWLVp5ZWJQZ2FBZk12UzZZZ0tyakVxYU9OM0w5UkJ4OEMtUVJHX0VJR0NQYTlfUVotZVpwNktnak93al9KWUh1M2o4Njh4S1ZtWUxTSVhXQXhseTZrQ1plZHZVWjVfSm5oM19vbHY3c1d0WHhQTnU4dVo0ZA?oc=5",
-          "publisher": "Notebookcheck",
-          "publishedAt": "2026-10-25T14:25:10Z",
+          "id": "d600bc4d1674da76fc2f",
+          "title": "Electric Car Sales September 2026: Tata Punch Tops EV Charts, Mahindra XEV 9S Takes Second Spot; Dispatches Rise 62%",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPUjYzZm53ZGVCQkJ1V2xPd3FyOGt5aGhoc0pxQzZPNFRRWm52eXpSbndEQzVyNXdfa08wZlRLZC16QzdXOUZGNjlkOHZoS0tSM1U3ckNtZk9Fd1M2MEhDXzNiYlAzRXp4dHlIMnNsbnItLURPQnp6VVRLN2ZCdG5ESnU5aDVKV2Q0V0lfbEhYdEdwTzQ?oc=5",
+          "publisher": "Autopunditz",
+          "publishedAt": "2026-10-25T19:38:23Z",
           "image": null,
           "sector": "auto"
         },
         {
-          "id": "df03a62c2d6a90394e75",
-          "title": "Mid Ulster Builder hits milestone with first smart electric home",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQc3ZEVmNXeXhsdmQ5YXNrTnBJMWNiWHBCX2VWblM1d25oRzBheTFuSTdMeTlNaFA4Q2tKcWZsMTVKc09SU0dhMnY4NmpTYWQ2LWZ5djE4N3NseHdsSW8yV2pDajdhYm96Q1ZRNzJQV0o4QlU4dG9XSDV1bDB0cjgzUE5hU0h5Sk9fUUtNeGVFbk0wbUxQU2RuSDg2NkxkUUhONkl3a3ExODR1bGoxMjlVcw?oc=5",
-          "publisher": "Derry Now",
-          "publishedAt": "2026-10-25T14:00:00Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "20588ee52ead0fea2936",
-          "title": "UK drivers can save up to £300 by installing 1 thing at home after major government change",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPcUdiTTlIRFpUN2twQmtIS3BROGpYam1BR1ZxRlh4a2xfVUVELWFSOTNHcmVTUjNoTEtMWHYzWkNqU241RFpBdXVQTGdMcVBIX3IxRVRuUkdzNnVSYTJYN21YOEw5aVRoMEFheGZtdGswb0N3Sk5BOUp3MDgxUWFNQzl3?oc=5",
-          "publisher": "AOL.co.uk",
-          "publishedAt": "2026-10-25T13:38:00Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "43352b5b3cd483f872d0",
-          "title": "Oxford study reveals what drivers really feel in electric cars",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZWdEVF9rV0R4ZFl2UmFYSmdUa0ZTNXVOemI3MnR6akdScWhBcmJ2Mkk3X1RSMzZ3ZG9lMWJRWkhFNTdQNEdDb1ZEcHJDdndEVURDYVZhaThKV2RMVWoxeUNpTDlkUFhwNllVRnMwUlFyN1ZRblJhM1ZUR1dhWnBoczFsRF9GajdpYXZ6cENQYWFqczlFZkNxci1IWGRxTS03?oc=5",
-          "publisher": "Oxford Mail",
-          "publishedAt": "2026-10-25T12:30:00Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "d6ab4d79bdff672f6b6f",
-          "title": "Survey seeks islanders’ views on practical and financial barriers to electrical vehicles",
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQTl9udHN6TnRKM2ZYWWhBcDVDRzI3dEJiUDlpcE9yeWNBT0NzMHJmeWkxMkhxd0pyOG5mRWVZblkxZ3FaandqWWpyRkZsYlpKQ0pUdkV1VktyQmtpRWFnd3Z1ZDkzVzAxcEZRS3hjWTlVamNIdVg3MTVuMGpVWFZWcUhGa2tEX2J0S2lkRm9nb25mc0l6VE5OVWZyTmxDRWFCMVZjVzlkTTR2bDNPdGc?oc=5",
-          "publisher": "Shetland Times",
-          "publishedAt": "2026-10-25T12:15:00Z",
+          "id": "69c079ffbbf9cc4ef471",
+          "title": "Used EV Sales Hit a Record Share While New EV Sales Fell 40.7%",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQM0doYlpaOTBhWUwwYVAyZ3pZWVctVUxlV0hWVHBzLUtKZldfR2d2TW5uSjRzamEtYWNTY1NCYnlaYmItX0VqZ21jMjVGMWdwMkxSdXo4RmZpTW4wdUhQLTlkY2piMXhIUjdlQ2tWNFdCSkhMRU0tTG43RnhFc0NYY3NjRkJGc1VxZlNweGlqUHR1UQ?oc=5",
+          "publisher": "Road Ethos",
+          "publishedAt": "2026-10-25T18:30:00Z",
           "image": null,
           "sector": "auto"
         },
@@ -1187,47 +1165,20 @@
           "sector": "auto"
         },
         {
-          "id": "c7fd8ad661e44b31eafe",
-          "title": "VW Polo Vivo beaten by South Africa’s most affordable electric car in almost every category",
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNLXJMYk9rNVBPSkQzV1lpVWg2THYtM2cxV3ZCSWgtRFBSektaZE1LMk9VVXBIOFJiTlBEdGtGeS04M0d1dU14QWUyRlc3RGJUMmlOTzVRc2ZiUTJILUZEa1V2Z1EwT3o3bTlKUGc4a05kUXNXMGNjbnYzMFZXdmlmWFJ4T2pEYjF3T1YyYzl0cXE1ZEdjaGFPb2pvTnowazZSTml3S3BZQjRxcnVKN0I0MnUtbEhMYjBjUUF2SU5PcXpfZWhUdFBiV1FVVzA5X0lEUGNhNE4zTTR6UQ?oc=5",
-          "publisher": "MyBroadband",
-          "publishedAt": "2026-10-25T12:00:00Z",
+          "id": "7ea7cb0e9eee6ebbb90a",
+          "title": "HDFC Bank launches flexible EV car loan with longer battery repayment",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxORzRfNnplY3AyWllFcmZuVGR2akxRNVlNa0ctcWQ0NlBLSDgwYnhEZkhkYkk0ZWJBODFtOWVBcENTejlGUGczU1RmeE1nOHJqTWU1eG1ySTRGcldzUUFmVTRvbWJrZFlFaXRQRDEtNFZMWURSWEJNMTF6aGNtTlQ0bEMydzBjUHExcVRVeDl4NkRxUGtUbWpQT1FRMmE1bzJqMllWTlp1YmNVcVVhLWprM1VXR3NqSzMxMEQ1TTIyTm9tSkkzeXYyMktpMDdRU0pTT0tQdNIB2gFBVV95cUxPbk9NX2M1WTI1aHVXWjlGSnZ1NXMyOGt3emdHN2NDWmxHb3BjYlY1V0R0Y2ZzRUVqWUhSdUs3NUZadzNhRUhodUUwRjFESzE5RlZmVUtsbHNOZHVpbUdvbGE4WVhpRFpOaWZsbjluaTJtZEJRTlBPakxUbjdSZkpvVkJWX3JCN2VRaFBWM0xlbFkxRkd0cEh5LXJsYXc5S25YcGNRQ2JuaURyT29OTEUxRFZoNlc1dlVQNFVabXV3ZmJ2R0FjYUpEdml0eGZLc1E1Q1lMeVVtX1MzQQ?oc=5",
+          "publisher": "Business Standard",
+          "publishedAt": "2026-10-25T10:56:55Z",
           "image": null,
           "sector": "auto"
         },
         {
-          "id": "013367f8dafe15a2c5d6",
-          "title": "As BYD Cuts Electric Vehicle Charging Times to Under Nine Minutes, Rivals Answer With 1.44-Megawatt Systems in a Fierce Battle Over Battery Speeds",
-          "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPV3RMWVNwMFBmM0xkYlRyZmlSZDk2YnlHMGJPbXQxWlVNR3RsN0NrZVdfcVJnYjBSWDQ5Vzkxc0MwUU9hSmk0U05WYjFnVGFPWTVIRGVoMnZYYmljakRFNFdqS1BoWTBYSDd0aVNDajdZcm1sNUlMVVNOVUNJbXNQbHhFNHFqMERxUG5OOUZRT19STDFDbzluYVBqREpxVUFtZkl5S29NZWZRc2NGb0VzdUkxSWNwSWJlZl9ZSHV4X0FCU0pwQnF0YW5RV3ZMMXloQ01MbUdoVFphRUwybTV1MldQQ1NnNWNlVkVodXo3QVE2b1pmRlEtbTM2OVZFTXRfRFVodk9ZcGVSVGM?oc=5",
-          "publisher": "Istituto Impariamo",
-          "publishedAt": "2026-10-25T11:57:25Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "50cb36b31d5bd4929c41",
-          "title": "Tata Motors Expands EV Charging Network Across 200 Cities",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOeW5DREcwWWFfV1dqNTBiUjF2cEs1QnNoQUpQMC1URVJ4OW82b1lBdkIwNjZiWldhSlhFYkJobndnT2Z6YlBYcmppWWJmaVE1WjgxQUpYeFQ2MWFSQnlvLTZUY2s1dGhWT0tSRkJDbzdpM1ZZYk1BcnUycHdwX2tSRnl2SGsxZm9tVXgw?oc=5",
-          "publisher": "Udaipur Kiran",
-          "publishedAt": "2026-10-25T11:51:41Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "32e7318a7d6c538a5833",
-          "title": "Maruti Suzuki Set to Launch Five New Cars Soon",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1TRmtaSldpdXpEWnBFWmhKVV9JckM1XzUwWDBJcjFpb2p1b0RKQ3lYd2xjdEkxVFhYRUZHdkxIc1hIS2g1dGxEdl9HbGFROFNyMVRuQjRNSDZFMnk3YzczcmVhaU1KRzctdllLbWxzU01UWDNKdmZwMXZONXcwUlU?oc=5",
-          "publisher": "Udaipur Kiran",
-          "publishedAt": "2026-10-25T11:50:30Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "4f796769f4c7091b6ff4",
-          "title": "Liquid vs. Air Cooling: How Electric Vehicles Manage Battery Temperatures?",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPaEduV1phYVpuenUxSnhhdTYwUGFDa1RscWEyRkN2UG1TRzQ3X0tfdmp5bTNlLWQxalZDTlJpdWUtMDlVOTRWcHpfb2x6UTlYNzFuVEpoT29NSnlGaEVINk0zZHh2Z0pNQWcwNGtLTnFnaS02WUI0QVFjYmhYMXBYZnlfRE9jQl93MnEwUnlsZnAycjhLb0tqWFJfME96YWsya2FmWURn?oc=5",
-          "publisher": "Innovation Village",
-          "publishedAt": "2026-10-25T09:53:46Z",
+          "id": "9fdf00d864c0148e0d54",
+          "title": "HDFC Bank introduces electric car loan, offering differential loan proportions for the body and battery of the EV",
+          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNaTJ2MG9VaHZUOERyTVpiajJIc0JKUVlvZFBDZ3VwN1lobXBnSV9rY3UxSFgycUkwUkJJc1l6NnRkOGtCeV9YTmtXeXlRcEladkx1ZG5tb1c4TTRfNnBweHRxZmxVYXIzSFNXVDM1YVNpcUdwdEE5MW42NkRZc3E2Y0l4YnpJYnpxNFBNSWNuNWRCSDhidk9FX2twaHJsY1hIa19FMlhHMHpHT2NnQ3lZSmdIUWhWRDJ0RURUQ0JaNTJaendhV3lGVWNCcy00bW51TngzNEwwMzZDbGVDdExRWDZ3N2RuYXhkQThqMVlOQnJodk5lOUU0UXJxdEc2Zw?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T10:08:59Z",
           "image": null,
           "sector": "auto"
         },
@@ -1241,47 +1192,20 @@
           "sector": "auto"
         },
         {
+          "id": "1ae0c0867b3520ba7135",
+          "title": "HDFC Bank launches flexi (green) electric car loan, offering differential loan proportions for the body and battery of EV",
+          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxQYk1PNFZRbmtMdTkwSUhRSUdFRXA4N2R1MnlkalVWVHJ1aW9KVTk5NHI5QnczY2VvYlA0N2RGdXd3QVdmM25raE1SSE53djNzSXJ5TmczN1lyRENNcVllMFY4c2FtVkoxYXZGMnpsUWR6WDZPWmRUeWprbWNKdjl0MXFZcndtTUNyaUQ4QUlsVWRyVHNJUW9oai1iNjZlSm5PaFo0RGhaM3ZzUU16OU4taWJzcmFjZkMxeTQ0NVFwS3VhS3hDQTJ4MTFjRnRxQnMyaXFvVk9nekJ4VHJzX09WYXdHWjNaRGsycldOLWtpNWZvelVqaTI4MDktZ2RrSl9JWnpLVUo0UTR6T0xacWNlY0NwWjkwbHZEUVHSAZoCQVVfeXFMUGJNTzRWUW5rTHU5MElIUUlHRUVwODdkdTJ5ZGpVVlRydWlvSlU5OTRyOUJ3M2Nlb2JQNDdkRnV3d0FXZjNua2hNUkhOd3Yzc0lyeU5nMzdZckRDTXFZZTBWOHNhbVZKMWF2RjJ6bFFkelg2T1pkVHlqa21jSnY5dDFxWXJ3bU1DcmlEOEFJbFVkclRzSVFvaGotYjY2ZUpuT2haNERoWjN2c1FNejlOLWlic3JhY2ZDMXk0NDVRcEt1YUt4Q0EyeDExY0Z0cUJzMmlxb1ZPZ3pCeFRyc19PVmF3R1ozWkRrMnJXTi1raTVmb3pVamkyODA5LWdka0pfSVp6S1VKNFE0ek9MWnFjZWNDcFo5MGx2RFFR?oc=5",
+          "publisher": "BusinessLine",
+          "publishedAt": "2026-10-25T08:26:38Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
           "id": "2a2a5bd4dd7e5262313c",
           "title": "Business Insights",
           "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOZjBmc2pad2N4ZlEybHpMa29UZDFWZGV5NkJCUnJqOEZ1SlV4UXFOTlR6MlpqTlRnQVY4bjMtMGNNdW5YaEVJWE1iYVJpT0ZlN1BWdW9oYVQ4cnlHcUstYjgxdm1lRHI3WkZobG0yM2p6alJVMjVXOG9nQ19Uc2FoY2NqNWxQSjRFd0ZaRGtGbGlUeHdXREVuNy1VVkk?oc=5",
           "publisher": "Spherical Insights",
           "publishedAt": "2026-10-25T07:36:43Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "d53ba9da47e4873d2e5c",
-          "title": "2027 Maruti Nexa Electric MPV Spied: New Front Design, Rear Styling and Interior Revealed",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQmZjbXA3TmdpRHNwVy1vS2tqem5OeDdrNWdaZFNvb21MVUtOQ2RHdWt0SG1vOWF4RVk4dUhXMjJ0MGtZTkM3YVFxZG9CNFhCaUNtRFI1ZjlyX2ZtSW9sRWIwbmF5bUNYbXlxU3lCVWN3UnpfeThJdW0wRTh4dUNiaTRPbGRzVVVXWU9RSTdKUkhZd3c0blRmN0gzVmtkb1U0ZnR3Z2poWTlYMlVSeExaRmZR?oc=5",
-          "publisher": "Trak.in",
-          "publishedAt": "2026-10-25T07:30:25Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "caa4fdec535c9a566f5b",
-          "title": "Lexus has released the 8th generation completely changed sedan ES. Analysts say that it has presente..",
-          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1MT19Wb1cwZ1h0VDB1WjNhY0E0WXJ0R0gtRVQyUE5RTXJfMmdibkdxeWtaNHBaWGVjZHFOMy1QSkc5Z2J3WG0zRFY4ZzdDdzBfYl9N?oc=5",
-          "publisher": "매일경제",
-          "publishedAt": "2026-10-25T07:20:39Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "5940e17a525c739b6a25",
-          "title": "Volvo Cars Korea is aiming to increase its market share with electric sports utility vehicles (SUVs)..",
-          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBBenpneC1OV3BIVzkzTUlKNS1wdUlZUnpNZmZ3YVVrRFFTMGVJcnZndkFkSFV1S1lsR2ZyTnYwWW9INVpBdjNmUUR3bTVZODhhQi13?oc=5",
-          "publisher": "매일경제",
-          "publishedAt": "2026-10-25T07:17:28Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "9af1e030ebadc6a58edf",
-          "title": "Alpine CEO Philippe Krief on new, electric A110: ‘It has to be perfect’",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yWkdsUC1YaEQ5SFpzZ242aTVIcGxnQWJEaTlsTGU1RWlyVVplRWtGWTdlcWRxVGxCeWs5X2h5SHZPYVZpQTRyamNpczBNRHV1WXBoVWtwRXdrek5MNHRicUpqd19za3ZTMGJMTENvY1VIUmhK?oc=5",
-          "publisher": "Automotive News",
-          "publishedAt": "2026-10-25T07:00:00Z",
           "image": null,
           "sector": "auto"
         },
@@ -1295,29 +1219,11 @@
           "sector": "auto"
         },
         {
-          "id": "44b319e7287dfaf5f106",
-          "title": "Lviv Region Surpassed Kyiv in Electric Vehicle Registrations — Which Models Are Bought Most Often",
-          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNaHRMR1JIMW1jbThLTHRrR2RCSjlubE4xaVY2VXVuLWludmRRMTU2X08tU2ZwQV9YdG1KblpVbklTaS1jR3pJc2pxNlRmWWJySjBGSmdUT0R2WHlVSmVjSEROS1BTQlFPMDNicExCYkRLdnBrNFFUMUZMZlE2RGtTMUFmcXlpLUdabWhGNUtwa29vaGlrYm9Pc2dTYXY5dVlaUlNBa1A0ZWNQNkl6TDA0NmJJeUo2ekktQ0xFLWcyemM0a09VY21LM2RGTjU?oc=5",
-          "publisher": "Судово-юридична газета",
-          "publishedAt": "2026-10-25T06:29:00Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "5f3b11def38e7af03ac7",
-          "title": "Bakers shifts logistics into high gear with 67 electric trucks",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPejBob2xYaVNhai16TllrRGl2T3U5cG5QWU1qcVhuQkk5bWlBSWszSGItYW9EUjVSM0VvOEFsRDRFWGpHMFdYSlRwNUlnYjlkZFNfd3BrQW9zaXRoQzdnSEM2NXo1YXByUldBMkhQanhmWjhmT0FFVkhvS1lxOWFWV0loWUdQdHlKRWFKaGt5c3l1b2lRSUlNMy1MR29XWlRnVFF0UjRR?oc=5",
-          "publisher": "African Insider",
-          "publishedAt": "2026-10-25T06:19:10Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
-          "id": "1d600ada2cbf2db4e8dd",
-          "title": "US bars BYD electric cars from Japan air base",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOQW9KSHpFV3RfVllwUjNIR2Q4dXlIakktc2s3cUdnS1oxRVdqSHhHMEsxYXBLZlhseVR6VG1pUEhXMWgtUHh6WFZOY2R1WXJzNzRVdzBzYjVvWE1sRl9UMFl6cEpXclJYbEN0cnRQNnRGSUtlZ1V2UDd4OUIxVmE3U2kxUXhWYlVEN0RGTVlGNA?oc=5",
-          "publisher": "IDNFinancials",
-          "publishedAt": "2026-10-25T03:00:00Z",
+          "id": "141436a1a91b52a981e0",
+          "title": "I Was Worried When My Parents Went Full EV, But They Proved Me Wrong",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBpV3NZdEhYSlhIV2FrdlljTFgtMUNJN2RfN0hxLWVPOG9meFlBQjNsMEtwQy0zc2FTdW42akxnM2JXM0tveFJnX1ljZjNIb2hOLUF4WlNJZWQ0VjZMajB5bklTVk1TcWhRT1h6LWRhZ3hfbUdFM2pZNDlQV281UQ?oc=5",
+          "publisher": "InsideEVs",
+          "publishedAt": "2026-10-25T05:10:45Z",
           "image": null,
           "sector": "auto"
         },
@@ -1331,19 +1237,10 @@
           "sector": "auto"
         },
         {
-          "id": "47203b52087fbf6cc4b7",
-          "title": "Landsman Introduces Bill to Make Electric Vehicles More Affordable, Reduce Gasoline Costs",
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPZnBZZHlwWlRyLTVXcnpFaFJERUlKUTVCMlNUT3FPSU4wdmJjQW0xby1ISnJRRFE0TjVMS2ttUmpNc3Q1dWIybWQ4bG11MGU0OXNsYnhLSl9ZYnVTUnBfRWYzbFJGa1JjbHhFempSanVUN1YxdzlJVDR1TGpnT05zNkpSVkJBTHFjRllKazJHVGVTb3FhYmVqd2xEanJyTWkxZE9xS1R4RUtjVF9na29oTlB0SHJUbjhPSmwyNDdR?oc=5",
-          "publisher": "Warren County Post",
-          "publishedAt": "2026-10-25T01:34:27Z",
-          "image": null,
-          "sector": "auto"
-        },
-        {
           "id": "024a4e838f81c9d94b4b",
           "title": "\"No Repair Only Replacement\" Warranty Battery Packs Trapping First Batch of Early Electric Vehicle Owners",
           "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5kdWI1bEdYWlZqWE0zZzBYMGZha2JXR1BmQldLd1NEaHJmWVJNYlpOSGxLQk5IbnlfZUoxVW1nQjQ3cXVjNG9oTmU4LVJIN2pHcFUw?oc=5",
-          "publisher": "eu.36kr.com",
+          "publisher": "36Kr",
           "publishedAt": "2026-10-25T01:23:06Z",
           "image": null,
           "sector": "auto"
@@ -1358,29 +1255,137 @@
           "sector": "auto"
         },
         {
-          "id": "ec41ebbc11a7272289ec",
-          "title": "Air district gives Boys and Girls Club new electric van",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQMGpkUUJoeW9oWF9PMnQtbU1Uc1J1bjI3UEZoMlNqQm9UUkVVSjZsWXhCZ1RDNWpiWThkSllFN3paSTA5RG1pdnAyMUlSMWN5LThtN21fZC1Xdkh3OGxJb0RtOGN3eEg1MFVuNnlZQVZOam1LZy1EVkl1X2QzYW4ydWdxV28wbnE4SXFBN2poUk5fR0FjZ2UzZmdQRQ?oc=5",
-          "publisher": "The Vacaville Reporter",
-          "publishedAt": "2026-10-24T21:55:43Z",
+          "id": "167884335e1f42daea4c",
+          "title": "Electric Vehicle (EV) Trainers: Why YALONG Leads New Energy Automotive Education",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPSnlSWFMzWnlnVFRzYk9BWjNVa1cwMUoyWDkxVGQwNDB0b2pCVEZiSUlRVTF3cHVIU252Y0lETG1ORGE4aTJBeVRZb1AzdUl5V195QlpQTGJDUXBkZHhnaE1pSVMxUE9TdEdUWEFoX2U2SnB6VkIwaTJOSTREb3IwYWxxVmFYb2lzbEExN3JaVEVPbGQ2bHNPck1DV0s4QUc0ZkwzT3ltTlpNbmNFODFOM1ZEcFp3UElwYXFrQkJXaWZiUQ?oc=5",
+          "publisher": "EIN Presswire",
+          "publishedAt": "2026-10-24T18:16:00Z",
           "image": null,
           "sector": "auto"
         },
         {
-          "id": "c7abf9a1ef8c514aca26",
-          "title": "Pakistan to set up 3,000 electric vehicle charging stations",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNOVlSaVIwbUx5ZklSb21MRkFiakVOMW5uLTRlWDl1eXVZbHliajBBcXlBRlptTjVTMnpFLWRqOFBRSVlaMElrRFlJUEFVREpQVVpQc3R5eW9Ta3czaVF1REhJY2lQRTVGMEFqMkV1NE5UVDRFcHNoQ1FSMWJrR0JKRA?oc=5",
-          "publisher": "Pakistan Connect",
-          "publishedAt": "2026-10-24T21:12:17Z",
+          "id": "f60caa268fc75e740c09",
+          "title": "Lotus Technology Targets EBIT Profitability Before 2030 as Deliveries, Margins Improve",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPdWtDbm1hTlJEUzhva2lVWjNYUnNONVBMVWNtdFA3SlpYRy1IODlNVmtid0NmZGxVanRWcnYxLUxOQTRVOGo1MlVEQTEyVEwwM3NpSEExSm94SGhiX05jWnB3R1hQX1RSVmFpWTN3UWptNHhWVWhjZ0liQ3A3SVV6RFdjMmRDY0dyXzZ4TGdKZDJTaWFDNnh4eDRXME83V2lnNFdPQlRiYU9wUUQ3emQ0cWdPNTJZeDk5QUd4c3J2NEhhZnE0TVdpYTJrRHQzUGtUVnBkR1FCZWxkWDN2RUJJ?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T18:02:05Z",
           "image": null,
           "sector": "auto"
         },
         {
-          "id": "ac3c851707f75e45872b",
-          "title": "Arlington raises its EV charging fees by 72%",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQTVBtRmhhV0pvTVJyWnhlRVY5TlVhb3JxbWZhY2NQN2ZRQ2syRDgyMUF0QXhhaXo0dE1xcU8xUE1qbk1PcjdTX1pWSW1DN2kwaGs1TTlfbmJ3WFN2eUp4MXRRM2p3OEFWMHN0MVNQOTNJVDFVU1FYWml4aGt0Y1o3VlBLV3M?oc=5",
-          "publisher": "WTOP News",
-          "publishedAt": "2026-10-24T20:33:44Z",
+          "id": "62b221ba2bdb59a451ab",
+          "title": "This Chinese crossover drove 742 miles on one charge and one tank",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdVltRHdWMUhSQWVXdkRhZDA1emo2aF9vNVo4d1BsRExLRlZnaVpnZnBfeEZaeDNmSTVYVHNVaGYxOWZFMFVJRFo1VkYwWGRNdXZlb0Y3V3lqaHJ6NzZNQ0FxMDlMX3JIZGo2NllEdkpZNmVWckJpaXRRT2w1dzRxUFdNUzl3SFNzY3ZvZnh1SVRXQQ?oc=5",
+          "publisher": "Interesting Engineering",
+          "publishedAt": "2026-10-24T17:51:00Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "df30f59f7446b196fb8c",
+          "title": "Electric vehicle sales are plummeting. Will they soon become too niche?",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQWnQ4MU9nSmRuMHRYZHhjbGxEN3BFSTBRZHRYVUlCa2xQZk9fY28zVzhVQnhVQzZRWDZFSWFfUTVvN0NzTDhwUUtJV0ZSRDVwNDRTdEhsbFBYcHN4T3l2R1lrNVJtZUR2Tk53dDVPTDFYTXN6QU8tamVobDNUN0E1NktCYmtmMl80RWpQZlJzb3hRLTBYZExPTm930gGfAUFVX3lxTE1hbE1BZFZUcFQ1Vk9JOExLM3JBY1lLZFNMOTRVR1hJZEVjT0Myenc2dnZOcDBYTU9XNm5uVXUxemtHY0JURnlrbjU0NWZlVVJ2aXZ2VFk1SURhRHBZaDVFaGVjV3dKWFp5Vlowc3BZeHN5QldqNG1jWTNmOE52enB1V2gta1lJcV9ZSmhYVmdVcWhvWGFVUklJNldMRVFtRQ?oc=5",
+          "publisher": "ABC News - Breaking News, Latest News and Videos",
+          "publishedAt": "2026-10-24T17:24:55Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "a5e66bd21e79bb5eec26",
+          "title": "Volkswagen freezes India EV investment amid JSW talks: What the pause means for its electric car plans",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOZWd5eGkxTlN2T2ZoZkczZzVKT3dNSDBzd1V3am42OTU3WnVOclF3cGRDaFVCTG1yRUN3aGJkVUlqTTdUVkpFN3JMUjE4TndhTmhTdjE1Qmhqd0lTdEhkMzhUUVlaTE5mc0dFRER4eEwtRE9pQmI3YVJsRHpZN3RYdHc1UFB1MzF0dVRiNndYcG0tclJHUkg0bm5qVzBmOXhVSXNfcHBLdDJBZVBmNTV3b3hqbHVUcXVNTjRfV3VoUVd6dE1wMXVfcDc5bF9qSFhVOEZpZnFBaFppS09KVWlSOENwRFZZd2VtS21xempjLTZwTmfSAfgBQVVfeXFMT2NsYmU5ZzN3cGpXS1c2SEhZdUV3Zk1sUlZ1OFZwLW5nWmNXRDVrSHhVYnVCSDhQektrYVdvVUltdVN1LWRaeGFkVWZ2Yl9YSDhlSVJfeEtTaWZNRnFRT0FCZEZ3ZGNGNWZ3aEVlVEhiV0Q5RmU1Q1dibVlzOTZVWjNlT0RRT1o1WHFwaHdvVUp2dUk5S0RNc2hRQm8xYUFOMTlTY09QUDY2LVJjZkUzZ093THl0MVBVUWpSTXZVdU0ySGp5NjZFNmhQcS1LWHE2VnA2LWhfdFVtOExDS2lnVFRGcmtMOFBrMjlINWd1SGFKYldRRnVLM2w?oc=5",
+          "publisher": "Livemint",
+          "publishedAt": "2026-10-24T11:51:38Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "95d1667de1323cebe066",
+          "title": "Electric vehicle plant in Bishkek expected to launch in late 2026 or spring 2027",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNc3lJVTYxTms5T1hPcUlWSENhT2ZQakJuMFM3eERGSVFFTTAwTHVYYUVPUEJmVVVSN2p2cXlzNGZ0Z0NZd3dpQjdhbktKMjZGSVQ5aGx5MzZreGwySjBsREt4OFJCSXV3RzBRMEUwbERVajZVakFrbElmRTVyRElYSm5ka2pSYmUtVlhFeHVLbUYtcXQwdkNNSUlIMGs4dWlBYU9BSm8waTFMVDRaT2Q2aDVWMWs?oc=5",
+          "publisher": "AKIpress News Agency",
+          "publishedAt": "2026-10-24T10:15:00Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "228d8c97c75c17c6fefe",
+          "title": "Vietnam-based electric vehicle maker VinFast has filed another electric scooter design patent in India, marking its fifth two-wheeler design filing in the country. Unlike earlier designs, the latest scooter does not closely resemble models sold in Vietnam, suggesti",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE0zWkxLZTliZlpFR0hxeldOYmI0X2tKQlZ1YVBuYU11X3dCNEpjMjBnVjNpc1ZfZDdsLWQ3V2h3TjdWQVRPQXI1Z3RGR2MyV194YUE?oc=5",
+          "publisher": "Instagram",
+          "publishedAt": "2026-10-24T08:40:19Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "b2b8e16d897a4c9b252c",
+          "title": "Volkswagen Pauses India EV Investment, Awaits Clarity On JSW Partnership",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQUkdTaGhVX1AzTWNtdEZZbnRSZnNpVXlpR3VscWJZUERrOTVnYXU3cEozNmpyN0lBZFY1bjdsN2JoczEtNHRPZkpqazN1V1BsSng3RWhJWU9kOTZ6cldfUGlrb1hUZnJWTjhpR0RJWHRFOXJjYWdSU1YyRndMSGZLbUpwOUhzMUI3cGZhMnhDWQ?oc=5",
+          "publisher": "Cartoq",
+          "publishedAt": "2026-10-24T08:37:20Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "12b36bfbd4fd8f05af51",
+          "title": "Uno Minda Targets Rs 40,000 Cr Revenue By FY30 On EV Push",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPaGtnWkZhc1c3S0UyMlVNR0Z2d1Fxd2I1ZWJSYjdpa2pTeThMelpPbFo0NWp0X3lrWnFZMHZzTFhFTEFzYmhBWHFGTGxxOURDVE9RdUtwMl91T0ZEcnVzWU9hRTNJNWVHNTFydjN5WXJWMm1RYUc5eThBQ0k1aEVCWVZ4NkZyY21sM1hHZEpwNDNyTUF3Vm1ZRWtmZk9XZmJjeGg5UEM3TGpEQTVCMTB2bjZ2Qkc?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T06:07:00Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "4b343d1a9132eab7b454",
+          "title": "11 New Affordable Electric Cars Launching Soon: Hyundai HE1i To Honda Zero Alpha",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQSnljeFB6bXhjT0VKcDdDS0lIV3J1c3duY1R0SDNUMHdJNWxWS2pUN1J3akpSalRycFVoclU4czdqdTVQcnFuSTlJWUw0WjVwMXVtNXVxLXh2RlJPdDJQVjFYVm1TN1Jxb2d0ZTBXWWVTOFd4X09tcmFlY1ZoZjVwb1FR?oc=5",
+          "publisher": "Cartoq",
+          "publishedAt": "2026-10-24T03:23:53Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "3168a9e41e9e6bbe0cfa",
+          "title": "Volkswagen freezes India EV investment as JSW partnership talks continue",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOMG5kajR2UWtHZDRCR2tOVTN4S2d1UXlWLXEwOU9DLVh1V2tkdzVwNEw2UDFzaEdxZFBhMy1Ud29hS1VpckF6Q3Y4b1hhRW0xT3Bndk4wZFF0cDRDb0d5akpwdExiV0VLMFdUczY4TEZDR0NzQ1ctQ3pIMXFza0M0ZFNvMHEyQXpPR054elpBb0xRT2YyOTQ0N2JyX0M4S3l1STJGODRlTUNPUjFPX0FvODRvMmd5Z0R6c0Q4YjFwc1l0bDNmUEVZOGdQb3RLNW5MX3JGd1pKU0lrdU5rY3REbGFkRzfSAeoBQVVfeXFMTktVY2NqQVJ2aHFfamlpU3NtdFVkRWhaSmhTLVh1d2ZudlBDV19Fd21KV3BHVUZLMnV4VjNFR213WXJEUzRJTlN3MXhCMmd1cWt1WjlxY1JUeEJET2tTWDdHTDFfdEVEU1hCQ1NzMjVmbzhtM241UkVaYkRLcHl2SDYxUllZME1oN2tLalhCRGNFR1NyTEliN3lSa1ItX2FkREw3XzQ2Z1FIS0pQczc2SzRjTFRjUEQtTE9tcW1QTTVFNjEwSWlYWFYtZ1hOY0VaaGpsMlV1QmlKSldTNTBwV3dDX0FkUzFSNDNn?oc=5",
+          "publisher": "The Economic Times",
+          "publishedAt": "2026-10-24T02:28:36Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "edda39c6e93e934e4fbc",
+          "title": "The EV Brands That Win When It Comes To Battery Health",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBTSFlwaVhndHRFQ3pLN1BUMFM0U0ZzNW5jRVN0TFdydmE4NVBNSlpYbVNNQVVieEdwSURtcnhrU3IxcDFKcnZMNmljSHFUSVNCOTF6akhGb0R0MUZZM2pXb3V0ZFNwandHem5xVkpVNA?oc=5",
+          "publisher": "BGR",
+          "publishedAt": "2026-10-23T23:47:00Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "9365e42dce38a83420d5",
+          "title": "Cuba’s fuel crisis cripples public transport, accelerates EV shift",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOU2l4aUw1cXh1SEV2YXA0V3NwTGpFTWRYaHFoSnR5cEdYZEN5YkJxbEZYRUtRNzJ3RkEzRHE3em40VXYteWF4MXQ2amRTZTBaV0J6ZXZxUjZaR2NmUXJzMlZpVlg1UGs5M3ZHVlNPUHRvT0R0OUpqQTBVT3pLYWZmeDdqbnoxUkxqR2pCa3hJUDJaQUZ4UjlBeEhEUllJLVUyOUUydGlLb3g2V2UzOVprZnNWTTB5cXVDTl9kUEdPUlgxY21lcEtSTkFXZmZnb2_SAc8BQVVfeXFMTlNpeGlMNXF4dUhFdmFwNFdzcExqRU1kWGhxaEp0eXBHWGRDeWJCcWxGWEVLUTcyd0ZBM0RxN3puNFV2LXlheDF0NmpkU2UwWldCemV2cVI2WkdjZlFyczJWaVZYNVBrOTN2R1ZTT1B0b09EdDlKakEwVU96S2FmZng3am56MVJMakdqQmt4SVAyWkFGeFI5QXhIRFJZSS1VMjlFMnRpS294NldlMzlaa2ZzVk0weXF1Q05fZFBHT1JYMWNtZXBLUk5BV2ZmZ29v?oc=5",
+          "publisher": "ET Auto",
+          "publishedAt": "2026-10-23T19:54:24Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "6ba288b0e58b68a568c2",
+          "title": "Electric or Fuel, Urban or Off-Road: iCAUR V25 Combines Golden REEV Powertrain and i-AWD System",
+          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQLTA3SE5lMmE5SlB3Mlc0VlktODdsajNuQ3lnZmV1bGlxNl9MN0xsenRsNHhmR3JCXzFHQndOQjIwdVUtLWsyTXVnMWpYUEQ4NEUzU05UcGd6SldDVlBfVFlKcmpuSjNIR1JuY3ptYk1Vd2NxaGlCelYyUnIxamVZY1dCSTFpczdrangtUERYdWpzNklsVmdGakRQanBIN3ptTlR2M1FOR1ZiSFBtNmpHcWl2aUVvLUIyNloxR2Y4N1drcDZIT2dfTGFxaUd1VjV2aHJHNnRwTlVvdWxlOFM3Nk04aU5aaFU?oc=5",
+          "publisher": "markets.businessinsider.com",
+          "publishedAt": "2026-10-23T19:24:49Z",
+          "image": null,
+          "sector": "auto"
+        },
+        {
+          "id": "3512b0fbb1e22ffe21d0",
+          "title": "Volvo plans to launch a more affordable electric vehicle in 2027 — Electrek",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQX1Aza3Q1MXNsdThpRFBWOHljRHJHdWRfX1RpNkhheklJNGxRQXpWWHJzM3k3dFE2ZERwUDlJaVJUX09vM0thVFF1QjRuSHNXTkJfd0J5OWxwM1o1bkRwZTFSclFwTDN4TGYtN0VQTGdLUmN0X1B3cy01V0ZGOGN4UzBCVGJLQ3NYa21nQ1ZlTk1aOVpsOVJkZGpzTnd5aEdE?oc=5",
+          "publisher": "UA.NEWS",
+          "publishedAt": "2026-10-23T16:35:21Z",
           "image": null,
           "sector": "auto"
         }
@@ -1388,9 +1393,45 @@
       "errors": []
     },
     "realestate": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
+        {
+          "id": "d05243bea674eab3b7a5",
+          "title": "Aqar Real Estate Investments Company (K.S.C.P) Estimates – KSE:AQAR",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE15UGgwVmhEY2owclJPOGNuYlNvNTV3MzhPaktMclhPMlZSaHJmNHVwR3ZybGZSTmN5VG9rUEUwdEtqbTZRQk1SamJVZlZKMjZhQUZYWTdoRHJkVnZpSnRBYnViRVh1ZWRYVlR5SWNSc0RvQ3E2?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T19:14:18Z",
+          "image": null,
+          "sector": "realestate"
+        },
+        {
+          "id": "558ef43db68943f92a93",
+          "title": "Dar Al Arkan Real Estate Development Co. Estimates – TADAWUL:4300",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1qRWh0dzBzRlNRYVhEajBhTGJULTVJbmR3YzhnQXJUUUtadlhvaTA1VHBvV3ZzVFNSaVM2bXI1djQxMlcxU1BGWnViNUxRbDNUcEVUSUl2WnVEYnJqQnNDdG40djhJR1lMaWRNa1ZHUnRzN0dQWUxtcWlB?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T18:07:57Z",
+          "image": null,
+          "sector": "realestate"
+        },
+        {
+          "id": "dae83add0964161e8126",
+          "title": "Trivium Real Estate Socimi SA Estimates – BME:YTRI",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBnLUdJQi1KQXNOQlJ1bWo3bnVMMWQ5MXdFeWhoRmI3NDliOEt6R0R5WFFGckdXOTBqT2NzRVBoTzJ2WkNjUFI1dmJ0RFR1OTU1ZXFTY21nR0R1LWIteUg1VV9telM5V2EyZXNlb292bGpyREhU?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T17:37:46Z",
+          "image": null,
+          "sector": "realestate"
+        },
+        {
+          "id": "b6ae6c9a0e8719f8404c",
+          "title": "PARADIGM REAL ESTATE INVESTMENT TRUST Estimates – MYX:PARADIGM",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1GSlNvV0NqbDNMejZ4VHhTem0zUjFHd0pCVTJENUlXZVR6WDItM2o4ZVFKR2VXcGJQZmx0b19yN2RGcmpzZ251UUlWa01zS2MycmllX3h0dWplU1lyWXlGSGpyOUJXU2lKNkt6VDNSTzVyNzE0bHJ3MHR3?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T17:35:07Z",
+          "image": null,
+          "sector": "realestate"
+        },
         {
           "id": "9b4f0b1655c3f733d350",
           "title": "Barwa Real Estate Sells Plot Of Land In Jabal Thuaileb Area Of Lusail City",
@@ -1624,65 +1665,56 @@
           "publishedAt": "2026-10-24T16:59:43Z",
           "image": null,
           "sector": "realestate"
-        },
-        {
-          "id": "960a4b8cc0c528dde202",
-          "title": "Munshaat Real Estate Projects Co. K.S.C.C. Estimates – KSE:MUNSHAAT",
-          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1GZzV0cWM0cTc4cWE1V3NTZE52cG5NbVdmXzR1S0c4aHczVVVLblU0UUZWakRxX2FHRE5wME90aW8ta2ZnVDZvWC0zQ0Jfdk5DODdlcUpnczRRa0g0U0JTYWtvRHBhQUV1NDJ0TmtiRTNXVG01ajl4bkJn?oc=5",
-          "publisher": "TradingView",
-          "publishedAt": "2026-10-24T16:52:16Z",
-          "image": null,
-          "sector": "realestate"
-        },
-        {
-          "id": "a5b5e936f7e934d9f82d",
-          "title": "Real estate stocks trade mixed as earnings releases pick pace",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQUzM3ZjU4Rmp6dGZ6SnFFYno1ZFBDa2UzaGp1S3liM0NBdFdmQ3ZHdVQ2VzBrQTVXaWpxUjV5bmpUNDZRdkh6bURRTkR5bjZjNk9NTVh4VDFYZ3VxZ1dFOTRuRzNqd1VlSV9ZZFZlbTZxN0hKb2hnLTVZVUJRYlg0UFU1Y3FudkNRd1UzRzB4Z1NoQ3owbFJ3Wmk5aFlTZHpXdVhxeXVnVVFmYzktWEdQMmRQVVM2eTZrMGlJSTJhM1Q?oc=5",
-          "publisher": "TradingView",
-          "publishedAt": "2026-10-24T16:00:35Z",
-          "image": null,
-          "sector": "realestate"
-        },
-        {
-          "id": "ace0e48fcabd3ac22f61",
-          "title": "PT Jaya Real Property Tbk Estimates – IDX:JRPT",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9Qc09BYzJRRnAyNTl3TU9HZjBkZ1YxZGxvR0p5SEpGMl94NEg3dnRXRndOWmJ6Sm94anZGRl9IT1BpRk5WRks3bkdvZ2cwRzhMM3NzRUVheXBYb1FRVUxaSHRiU0FfMWVRdE1fYl9nM1VsQjFN?oc=5",
-          "publisher": "TradingView",
-          "publishedAt": "2026-10-24T14:26:01Z",
-          "image": null,
-          "sector": "realestate"
-        },
-        {
-          "id": "4966ec769d511b2f72a1",
-          "title": "Form 13D/A CLARION PARTNERS REAL ESTATE INCOME FUND INC. For: 24 October",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNVJQa0Z2cmdhMVAxMFR4MHN4bjFEU2k0UlpoUmxQYXVtXzBpWXR4NnIwN184SUtYbFBtNnZOVFo4aUFCWVFoZi1tZ1ZDODRCbmFLSHpxWmhNcEJRM3pkOXVXd05TYndxZmpReUwtMWlaVGgwaldycU9xbTlTbm9TeDdxYndxNldCZzRQNkxEU3l3R3kzX1Y1VEV0UWpKN0lZWWwyVGZMcDhCYnJSWVJzVFlyT0RGNGdOMzUwSTdvR2plRjcxYlMwdm5n?oc=5",
-          "publisher": "Investing.com India",
-          "publishedAt": "2026-10-24T13:47:35Z",
-          "image": null,
-          "sector": "realestate"
         }
       ],
       "errors": []
     },
     "agri": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
-          "id": "dd3c6156d6c48f10bea7",
-          "title": "Centre prioritises farmers’ dignity and better earnings, says Agriculture Minister Shivraj Singh Chouhan",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNzdxN3R1UmRRZWpqQ1pnajZNN1pWSnhROGNSNzVfUWxKNUM1NlJROTJVdUR3Q2JUc04xTWVFcG9EZUVzSWROQ2p3ZGRrMUFwYkxHUHowY244TXlaaHZuOFQ5bUJuNnlMbG4zWFN6VmRyc2h1RzVmLWxOb1l0cGtUdTNjVTBhNV9tZGYwNVNPVVBNTkJ6X1FYNkVFTUgyUVJBWGFnaExNUW9YbnNkZ3BRb0lXRDh2SElUM2ZSMHlxbTExYkJ4bHEw?oc=5",
-          "publisher": "News On AIR",
-          "publishedAt": "2026-10-25T14:45:38Z",
+          "id": "740b89500a3c69ad4a4b",
+          "title": "Khet Bachao Abhiyan brings natural farming push to villagers",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNNk9QM0Vzdld1dVF4eTkyZFVNVDBYTXZSUEZyUUdtMlZlZDdya1BqbXNfbVpxa2VxWnV1U0JNekw3M1FsUG1vbnRPZDUyMDNZX1Q4b1FLaTNXazdlbkEtQXVvZndNdGVOYzFPc0h3ckU3M0JDaXVjMTJKZk5QN2NROXVHSEpfQjdZcC1LVVJMaEh2SFVMRmtDUktXc2FTZHEwb25kbWpYMGVTT3RKSTN0eEJ2OFo3TThGekgxQzlrNWxpT2xUNno1UlpQUdIB0AFBVV95cUxPLTRJT094MVcwM2dIcV9JWUdRWGptUFBNV00wZk9BcWVDT0JGdnBtSXdYT005S3VZWFFaS1ZlY0pBUi05QnJzcUFqYkpaZXhnWDRPOG4xUkMzSldVT0RhWXpVdVI1Yk1VMHBVb19ZQzU3b2FxU1lSTFlscWd4UFRZamp1OXpaSWloWVZFN0dFXzBKaGpVZDROaGZJRFdhUUNmUlo0LVRQMktjMUpySUdxa003WS1TRks2Z3JtUkhXVVVZZWp2aE5IZFJwY0EyYmoz?oc=5",
+          "publisher": "The Times of India",
+          "publishedAt": "2026-10-25T18:58:00Z",
           "image": null,
           "sector": "agri"
         },
         {
-          "id": "dfe47da8b4e04928fefd",
-          "title": "The Ministry of Agriculture supports farmers in Tubas and the northern Jordan Valley by providing agricultural production inputs to strengthen their resilience",
-          "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE00eFJUdXRCSE5oMW5hbmQ3WHRhR1RCNkI1Ujg0SHVmZlA2NlVRVHpFZlpoVVZRWmFfaFJ5T2NfMmR3MHozcGRqS1hlN0o0YWRw?oc=5",
-          "publisher": "شبكة يافا الإخبارية",
-          "publishedAt": "2026-10-25T14:36:27Z",
+          "id": "0af05a4a4c69dbfafedc",
+          "title": "SAMETI, MANAGE conduct training on public-private partnerships in agriculture",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdG9qcFprYlJoeE5OaGx2eC01WGlGVjF6SS05SjFmZlpQX1VBaGFjV1NOOXhJNC01M2hIX2daRVBDQmszLWdCUW82WTFabjFkclZlLUJLeW5zTlJVcW1HNFc0ei1qQmVTUm83UmprQzMtSjRkWnQtZlZFdGpSa0QwUF9JVFJxOU10Q0c2WUxHdUZIdDdFR2hOMTBKcjB0QTlfallDUEVRb3JHbDdrUWJqR09Bb08?oc=5",
+          "publisher": "Eastern Mirror",
+          "publishedAt": "2026-10-25T14:44:12Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "398c27bada49ec4b653a",
+          "title": "A 7-inch well nearly 3,000 feet deep on an Australian farming peninsula pumped 14,000 barrels of water a day, seven times its two narrower sister wells, and the helium in that water was purified and bottled beside the rig, the first helium bottled in Australia in t",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOenlteFNpZExJOEVkMWFubURCaGNZeVE2bzNZYkVaUHpMRjhOanFnOV9UXzdPQWs2WkdpRUdpYkk4bHJMQktnemNwWDZfOHdLTUR1eUoyb1ZnYUlyekFxLV8zOWJ0aF9hakVCVXYyT3pURFRLUjdNV2lEQTVCT0x6ZGFkRUpac2xM?oc=5",
+          "publisher": "Autonocion.com",
+          "publishedAt": "2026-10-25T14:00:00Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "2878a3af4ca830466f64",
+          "title": "Punjab Govt to compensate farmers for unseasonal rain damage: Agriculture Minister Khuddian",
+          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPYnVIeWdqcHBQbGtvckhRVmdsMVlEU1FveHdvTVJOUEVaSnRUYWcxTkJnTUFCQ2hoQi1uU3pLXzdrMzBIb1QtekszNFRpSGFFay1tUnNOQldZVktzd3VhUnJOS3I0bURfSWNlNVE2TGIyanZzcC1QNmJLZS1ubldEMUo2STlBczg5d1dtZ1N3bU9IZVl3ZVA1QnpXcjVVdnllUG9PM1UwcDFJTXAtNkwzVXY0aDZ2OHVfTVdmVzhZVFRpY3ZQX2RUTjl3SGNuaXQ2X1VRd0dKSWQzMXVVdTBrTFVGVFN0RWpCT1pDS0Nhd9IB7wFBVV95cUxPYnVIeWdqcHBQbGtvckhRVmdsMVlEU1FveHdvTVJOUEVaSnRUYWcxTkJnTUFCQ2hoQi1uU3pLXzdrMzBIb1QtekszNFRpSGFFay1tUnNOQldZVktzd3VhUnJOS3I0bURfSWNlNVE2TGIyanZzcC1QNmJLZS1ubldEMUo2STlBczg5d1dtZ1N3bU9IZVl3ZVA1QnpXcjVVdnllUG9PM1UwcDFJTXAtNkwzVXY0aDZ2OHVfTVdmVzhZVFRpY3ZQX2RUTjl3SGNuaXQ2X1VRd0dKSWQzMXVVdTBrTFVGVFN0RWpCT1pDS0Nhdw?oc=5",
+          "publisher": "The Tribune",
+          "publishedAt": "2026-10-25T13:04:44Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "63df1206ddad7aa64b4c",
+          "title": "Gloucestershire backs four-year plan to boost farming and food production - South West",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQN1E5a1pqYmI3dWZiUGJDa3B6dGtic0F3MEZpaXNyX3hjUWhVQjZuZmlJbEFTQjZwY1ZTaW00OWk2dDZpenFBVmU3TkRrZjJZcVdwenN0SnNpS1NNbVRrcnRfVXpmZS1ZRmN3QmpBOVVuTUE5Z1B5U1c4bTJodWlhLWRDOTFzSnliX0ZscVNWUklhejZCZFVyV1FBOURXU0Z3aUJHcmoyY3ZaR0xUeG95TExnMXo5Vzg5OU1IdzJvaEF5VWg3bnc?oc=5",
+          "publisher": "TheBusinessDesk.com",
+          "publishedAt": "2026-10-25T12:06:57Z",
           "image": null,
           "sector": "agri"
         },
@@ -1696,11 +1728,20 @@
           "sector": "agri"
         },
         {
-          "id": "6ee816954b71c7b4aa21",
-          "title": "PM Modi highlights millet farming initiatives in Meghalaya and Nagaland in Mann Ki Baat",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQZTQwWjBUdkhWTTdab0V0T0ZIRHZJVVlkal8zaFNub0tmdkpmNEJtUzFBczZPVXBwWWdvMk00dzNUS21QRGp4SVBaR1VGb1hybDZNbTV0TEdwNWMyX1VPT1hGWmduSTV3S0h3VUFpRGxuc2xhdll0djVJVmtJSmhMQUNRRWJxU0NKX0xTMHBfaUZJZTVBRWpNOTU5c0l4b21nYmM1Q3E1eG1qM3JVLW1FWHVqZVBrWHd3VXRZaXBKOE5MRUVoeV9pUG1oYVhPcm5pY19OSFhOM2w1Mkh4dzB1THk1ODDSAeoBQVVfeXFMTzhtWjJhM2wwNldnSk5PVjRCRG82aS11Ri0yamM4SVdaLUVHbjEtOHNqMUJEckdPSzhNVGpKZVBEb0tMMHRTTTVXUHllcks1Rld6TXMxd0xqSlM2UjBoUkNjZ0JJM0VWRUVPenhtTnJ6U0F0UkU0UTBiWGJzOTd4WHRaVVppRkVzQ3lTeXE5MlFreGhHc3hTS05SUjkwVGgzcS03bklMMTQtQ0xnaUJvVXhPZUhlcll5b3o3RlNoT20wWU8wUHlaYkZkUW5YeS0yNlhfYy15SVNyUjRLaDVJVVNnVC0zdEFMNDlR?oc=5",
-          "publisher": "India Today NE",
-          "publishedAt": "2026-10-25T07:10:48Z",
+          "id": "3e79d49ce6dfe9c3d819",
+          "title": "Natural Farming Shows Promise for Climate-Resilient Soils, but Evidence Gaps Remain",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOb091ZW1GNXUzakVLQTBwQjN2UW9BUk53cEZIcVFld25GZ1VnZmN2MHhZWlNPeU1yWXBWcllpZHdjSEdyNlVSUlNrOE45aVFnN2Qxb1ZiWl9TRUppa2dMYmRTOXhaeUdTR0Jsa0JsR2FkMUwzdVFwYnR6eGUxV2lTZmNNZFdfbGs4TUJwNGxUV1VqRm44WUJkWW1sbGx1bTJCZGxibE5tM2ZKYkE?oc=5",
+          "publisher": "Bioengineer.org",
+          "publishedAt": "2026-10-25T08:58:41Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "3479def49da34bfd8516",
+          "title": "End of Mobile Phone Signal Weakness Problem in the Faculties of Agriculture and Natural Resources of Lorestan University | University News List",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOS1ZRUFB1S05yS2Z3MWNrOGVQb1lCNExXVVc2aEVmTEZkNXJVRW0xbXpYTE1pYTJEOUx1N0xHQkR4M0xTdG9yeGlSMEJ3WGFQbDJqU2l6TEpSU2RPTnpyVnltSmlINWk0YldYd01RQk5rNzd1NVREWmxYYkE4R3VRU2JQakxIT0prRUhRRk90YUNfS04wZS13b2JMQlB5NjVRSXhwMWU2SkF6dW5sZ2paU0F2eDBDQ1F2X2V2Z3E3VzhZNnhtRlphdGQ5WkJvaXB6SHdoLUsxa0E1Rmtlbm1KdjlRSENIRW1NZXFyWG9LVm1XNkNoQ2Vra1lB?oc=5",
+          "publisher": "دانشگاه لرستان",
+          "publishedAt": "2026-10-25T08:47:02Z",
           "image": null,
           "sector": "agri"
         },
@@ -1732,29 +1773,65 @@
           "sector": "agri"
         },
         {
-          "id": "ff8cb0747feb64d06c6d",
-          "title": "Farmer ID Scheme: Digital Agriculture & Key Benefits",
-          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5Vc1otTjNPOVhpdG1nQ1J0WWJMR2RLZWxHZ195eGNlNnBKaTdEMTBCdExJUkVMM0tlcGQzT0FTT0FKQldfZlFCeWdLWDM2aWhHM2taWmNCWnF5R0Z5bE1xS2NGdDlMaDVLSlBFV0NTNzNKX0VtTm1uWmtB?oc=5",
-          "publisher": "Vajiram & Ravi",
-          "publishedAt": "2026-10-25T04:57:07Z",
+          "id": "3dbb0e1fc92f9c04b7bf",
+          "title": "Innovation and partnerships key to transforming BD agriculture",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPejAtSVIwb2FZRl82WEVlLURPTW80QmdOb09mZnB2MVg0UlZZSGxTYU4tQlFBcHJpOS12c2kwUlU5NVA2RXdJbThWTU9RZUtDWEdNd21zSHBDb1dxM0NfdGJQWGRGeVZTS3BjeUxsQ1R5Mm1WRmhZZDl1ejhOUFQ4MUhWckFTaFNGRlhBX1lLVlRnQm9UbDZIdFhMb21qUWhscFd6MFlB?oc=5",
+          "publisher": "The Financial Express",
+          "publishedAt": "2026-10-25T02:07:42Z",
           "image": null,
           "sector": "agri"
         },
         {
-          "id": "7736526a7f48af8468d2",
-          "title": "Beyond traditional farming: How solar energy is transforming India’s agricultural landscape",
-          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNa3FoaGRLTnhabVYzWmt5TlY4OG9PQUZoWjVpT2ZpRmRJTTlLajZtOXpkMWRGb0I1eW5nLXJrYkxkR0F1VjJwSEZvMVB3WXMxZDJ2elVFSmNkbXotRXhUdkpBbVBLbVQydVVwaVk0SHlia2tWLVFMYXV2bVZKSXAzWU9BR1VnZmFGRzMtaGhnRHdJMTRRWGlUbWdzUEJhY2NrSWpBanR0NWZJY1dvR1JkcEwzSU9XZzU5TWcyMXBVU1hTSE9PNDExWTZmbkpUcVBTaklpZ0VOZW91X0QzWl9uRllrM1FQN0J0NTJubnVZTzI2NzJnMkRFVG15T07SAYMCQVVfeXFMUFJYOHZTb3pyQXQxZFpvTzh0UXZYVUVqdUZGQ2ViVjBUMV8tUENTOVdfZU81RnFac1pENlNRb1J0UDVUOFBsTkJjVHY2ZlFMSVBvNzhYVHZtVnZQTWo5TDhDWGpWelAxT0hZNWxOVjJXVi10ankzYjRnTkNJWjgtdFpOT1loUDFpWE9paERCUXNVczNWVWdtb3FkN2VjUUVEVW9XSFRsa2RCSExneHoybU1MZC1TZjV4MVZkTXhDeFZuMDlyRnpoOVk2UE5mLXpseTFpSUZaak05SnBha1JMS0ZndGpPUE11cjY1TWF4eHRIUlhIWmhSdG9vV1FFTm14WkIzUQ?oc=5",
-          "publisher": "BusinessLine",
-          "publishedAt": "2026-10-25T03:30:00Z",
+          "id": "9c4c6208e3946cc54d5a",
+          "title": "Australia's red-tipped bananas are its first 'ecoganic' export",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNUFlDVXM5MVBzcVZWTE9wcGVjS215ZlNSSGxCMUNHUU1adWFKS0VucFU1ZlpZaWVKOEJENVZKMzhwYThLei12X1JiZVRITXl5dExsVl9meXFtcmp0ODJYY3llNEZRRmozWFYtRGh6V0tUajdUUWg5cmFWN2F3NlE0N0tpZnMzRXgzRmJac3lxLUJUSW9FMXRDX25YS0JYR0pRS3hON2ZzSDk?oc=5",
+          "publisher": "Nikkei Asia",
+          "publishedAt": "2026-10-25T01:14:00Z",
           "image": null,
           "sector": "agri"
         },
         {
-          "id": "0478b0032a17ab0b1a84",
-          "title": "50K agriculture power connections soon, Tamil Nadu to bear Rs 127 crore",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNS1LeU5wVm5GNldyQnJCTHNGdm5KTUNKSk9DaEJIT25yeDRsU3FrczdzYUFyNzdUMVA0VU1va2JXSXdSaXZ4QVZXT3ZpbFE0TF9qNHBBLWdRNndCYnhpTElWSzBjV0UzNTNWR2EyZE83b0VqOGdZYlFIZXZDaVVhWm1ONHJKTXNHa0RqTFNtd3czYm1qTFQ0ZUZFNWV3cFZJUlpFMFZMQW52YkxOVW5LQTE4NFllenNoZ2RkWTQwV2FSQ01jWnFtWHkxVEZHUdIB2wFBVV95cUxPRVpBT2xsOEVvYVZnNmpSWXRtQ216VWFuTFFLSGZwT1Y1OVVxMDBtalRXTFNpM2Nsbl85dEV1RU5XaXdGNVVLLWstUjlUZ2JJeGlHTnRJa3RnNFJET0piMWxtNVJPQUhXRGxJLWJMTHlFX1JzUWpTeFFMNUhlTXF4OE51aWdYX2JyVzhKd3ZpZ0FMaGhJcWFvVWpQSlRtbVlxOUNoRmI2dllDZ0pqRlJYVnBkR3o1eGxWZTNHTG5ONkV5Y3ZTUjFVUVVucjVyRzFnREJTcVFlNXpXMG8?oc=5",
-          "publisher": "The New Indian Express",
-          "publishedAt": "2026-10-25T03:12:16Z",
+          "id": "004ad1f0c37308c57912",
+          "title": "Agricultural zones boost commercial farming in Tanahun",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1mU0hXekR5TVluYW4ya2tjMnNsOXZrQVBNY1FvcU1LZWNWV1JkaDN2dmhIRjcwVXZvU1NLTkc1YXpnQWUwbE5TM01DLTRGT0prT0I5ajdRRzc?oc=5",
+          "publisher": "Khabarhub",
+          "publishedAt": "2026-10-24T23:53:46Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "fb5a8664d064cb8e0d66",
+          "title": "Young farmer schemes help bring fresh approach to farming",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQZkVCdVo5THQxek9hV2RUanRXeUIxV0RQemd1NUtJZ2dybmtqanlEcDFIUlJIVjBPajVLVllSZjVtNk9ibWpHaUltZXZJaXo0ek5SN0NJUFhFRmFzbm5XNVE2TENYc1JTMXBGVGp6cm5uNTFHQ3Qybnd2R2doay1sV1dXaVlVTnRnVVJ0Wk1ZdE5rLTRQdm1SNVQzQ1hTcjBWRXZyMkN3?oc=5",
+          "publisher": "Farmers Weekly",
+          "publishedAt": "2026-10-24T23:33:59Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "387a39123b96969f2c26",
+          "title": "Upcoming biennial Hawai‘i Agriculture Conference bringing industry leaders together in Waikōloa",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQd2hqNGpiVEYzRkI3V1lOZ20yMWFzN3c4RURjaVd5NzV1SEs3N1RuMjFETkNzLWlGV1daQ1dVZ080cERJU2hLWlAxZHpMVTEzaS1xQUJsaTYwZW5TczRaZjVvZ18teHRkQUFCZ2lIUUprNGF3MFRNVTVLY21JdmF6bnhYUnk0SFhGX0dhbGNxYTZmTHc4UzA1dngtZFZVazBic3oxRVJ0SXp6dXVkckRsa19UNEtzWjE5WkR2UWFkeHFaQkJsYzRPTnFrRQ?oc=5",
+          "publisher": "Big Island Now",
+          "publishedAt": "2026-10-24T23:29:28Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "26479f01c4d2e5b41179",
+          "title": "Agriculture dept to review holy basil registration bid",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUV80YUhJNDhoSmZHRC1NMDZOR3FNMHN6UG5GcVhidkVPdURYQ3BRT2dtTVkybU9Pb2I4SFUtdmxaT3pteHNaQjN2bm5fVV9RSzNyYzlmOWJlUDBDSUcxdnM5NlNlM1BMb0xmSWxKR0dIaHNnblA1djU4YjZ0RVZvNDRELXliY3p1OEFudEFWVHlaUDNZNFFOcTlGeHY5NWhsZU4tT050TndPb3c?oc=5",
+          "publisher": "Bangkok Post",
+          "publishedAt": "2026-10-24T21:52:00Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "7f094c71a8d92c266ee2",
+          "title": "Feature: Returning farmers in Syria's Afrin struggle to restore livelihoods through olive farming",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1aQ3p3MkJNUmotdmhxYUZsZmZCZi1mYUxiVzdUX0QxYmZwcGc3UGVCdTd6MWY0TjVTNWJRTWRRQXkxcnlkdVRnRFdNUjNsaWdPSWFDc3VMdlExTnpTTjAtZk83eVlwdzd4ZGczalUwRjRGeERWVnM5d0Vic3Y?oc=5",
+          "publisher": "Xinhua",
+          "publishedAt": "2026-10-24T21:49:30Z",
           "image": null,
           "sector": "agri"
         },
@@ -1764,6 +1841,24 @@
           "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPTTdVQWNsWlhYMm5mT0FxN190M1FfcTlhbFdzQXZoc2FCOHZYWFZkWDN0dl9hT0RueDlLdGFnQ3BKTkxVblpuOS04WnpkOUJVRng1RUJ6MVhjQ2xQWkp6dEpTWklPN2lDWm9Relk5RWJyQlNvRDl2UmtzQ2VQTW9VNXQ3VzdvRGowRlV1NGVIQnlyVTUzQ1RxZllGTmpOVDBCLWlTWFhDbnFSczZlYk5KSTZqZw?oc=5",
           "publisher": "TRIPURA STAR NEWS",
           "publishedAt": "2026-10-24T20:50:49Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "b9776b2dea71cad77a25",
+          "title": "Sukhu launches Pangi brand apple produced through natural farming",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUEJQdHZQX2pNQVpfSnVUVmtPaFVvMXRNMzU5aW1zV1RPX0RWcXluSWg3d0RBb19TakxET3R4V1JONlZMc3gxbkg4VXg2VUpBV2tMdHU2SUZIcDRlN3JwZW1pZGN2MFAyazhKck9TM2trRnotN1lVUXpGdDhncEFWM2VxU3dKQkxid0tNMEtvUHNsUlZzREFjNGc2RmhBYWJVd1dZMGs2N2dURTNHMktPOVlnemZTLVpPVEFNby1VUFBsa1lBeGx4RTBEWWswUdIBzgFBVV95cUxQUEJQdHZQX2pNQVpfSnVUVmtPaFVvMXRNMzU5aW1zV1RPX0RWcXluSWg3d0RBb19TakxET3R4V1JONlZMc3gxbkg4VXg2VUpBV2tMdHU2SUZIcDRlN3JwZW1pZGN2MFAyazhKck9TM2trRnotN1lVUXpGdDhncEFWM2VxU3dKQkxid0tNMEtvUHNsUlZzREFjNGc2RmhBYWJVd1dZMGs2N2dURTNHMktPOVlnemZTLVpPVEFNby1VUFBsa1lBeGx4RTBEWWswUQ?oc=5",
+          "publisher": "The Tribune",
+          "publishedAt": "2026-10-24T19:51:54Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
+          "id": "ed601efc6b886b5ff4c0",
+          "title": "Vattavada Vegetable Farming Crisis Exposes Irrigation Gaps",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQUVMzc29PUlJZRnlTYTR3Qjl2NjFXVWg4VTBRX3lQUUowMy1CWEh6SnJPejQxM3YyNmt1NzdXMUM3Smh6LXprS2VwRjJOdjlZeGw1b1I4Y2lHYTZTall2OXRaVk42aWhWVERza0RfUHVWM2Y5eGYxWEhhY3ZyUnlzX0hIcF9OeXBmSGxEaW5MRlQ?oc=5",
+          "publisher": "Urban Acres",
+          "publishedAt": "2026-10-24T19:49:28Z",
           "image": null,
           "sector": "agri"
         },
@@ -1795,6 +1890,15 @@
           "sector": "agri"
         },
         {
+          "id": "250d277838b533204234",
+          "title": "‘You have to work twice as hard’: meet the women defying sexism in farming",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSk4zMWtjcWZSbVlCd1duV2haRXBYZ2p3Wmc4WGJkLVJHeDRsc3pROThqT2tMYW00T0ZUOGpBLXJOMGRTTE9kVFZqMGVEY3NrN3BWejI0VERNR2hFRkhITHRwbGVrRmdxLThPU3BsZnpTS3ZBbTBEdG1EN3NLRXBQNTNNeGNWRGpObHZ0dzV1QlpndHNSXy1kVVhuQUtQYzJia3JvMnRWVk93LXBFU0hQY1dGUVhSaGY0UjU5M2FB?oc=5",
+          "publisher": "Luxembourg Times",
+          "publishedAt": "2026-10-24T16:00:00Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
           "id": "a20e318f303e8e12c467",
           "title": "Taro farming transforms Süngratsü’s rural economy",
           "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaUtEdTVIZ0hJcEtubDVBUTBEaENRS2tPRFM5eWZDOE9GVWVZdkVicFZpN3phYUNpcGpZamlvX2d1N2xDYXN0VXMyUjl6QzhXY0FDaHdVbklhaVBBNzVGVHNDY2lpVzkzQVhqYmh5UDl2RmlRSFBWeFRLS1V5SEZCbnhyWVc4V3FUWGdzVA?oc=5",
@@ -1813,6 +1917,15 @@
           "sector": "agri"
         },
         {
+          "id": "99c57d022b1420caa6fe",
+          "title": "Environment: Agriculture continues to be a significant source of greenhouse gases",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOdzdZV19vS01fWkM4TWM1OUpQRDh2RHB4aVBnWlJSU09tMXQ5TnhTVWVmWkJKMjZyTXNvOFZlSUlrb1VEOU95RlNIYTJqZFl3SGlxNUMxR3UxRGtzbkU5cXVmNTkwMjFRV0NFV3YzQ3gyN2hRN0hyWjlCY2RZY2tpcy1HZFJRRTVyVmlYLWJKTG5jaThoWUs5aUpWMFhhR25LTGlwU19IQzFsMVgwSWVpUEp0djVlbUJia2c?oc=5",
+          "publisher": "Pearls and Irritations",
+          "publishedAt": "2026-10-24T13:49:36Z",
+          "image": null,
+          "sector": "agri"
+        },
+        {
           "id": "17f49e342b26ccd3c1fd",
           "title": "CM Sukhu Launches 'Pangi Apple' Brand, Boosts Natural Farming",
           "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQRjVtREZMQUUtNUdNUmVMR2owamFlam0xWVM4UXdranY5T2U1T0dGTzB4a3dxTjFkVUFMYkQ5Y0pkay1xS0ZpNEdJV2pYSXNlVW9ZMk5EbmdlM056Q2hWbzRfcTcyNmYybllVdWRxTGJaSjA3bjlpeVhiQ1VWcFBDd2VRV1JuYnpuRzB0V1pzN1R1M2JZSUpPcnR6QXdmU18zLTRGVkRjM1pYSU9MVnQ40gG0AUFVX3lxTE1nMVlSa2ItYzFhZWxtYVJVOTFqQnVmb0picW9SbVgtYXQ1Vk5URmhuaFBIM0NrbFl6Si1ITTFwaTB3MGhfU1RDUVhTT1psZXVuOUJxYVJPUzdSTHowLWxrTkphUy03VFZKdENRelZfWUdZTkpiZ0NnSldmWEhoZFVQYmIyZFJyaGFmODZuTDJ0djVqc3QtZS1HLUFVNEJ4Yy05YndiLVN5SkxUUHp4VF9JMm00Uw?oc=5",
@@ -1822,119 +1935,11 @@
           "sector": "agri"
         },
         {
-          "id": "65046f4c04beb8517d41",
-          "title": "In major digital agriculture push, 11 crore farmers get unique IDs",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZzFYYU1pREh1ZHNSV2tfdEh5S2Z0ejdZUkMzcUxBNVl0cnlsUGFvT3ZydFBtcFplWldmT2lEdmx6Mmx6akw2cWdIM2x0MmFnZDZDYVVibEpjVS1TRHI2Q25NZGZlVXcwWS1nU1FUUzV2Z0dnaG9VbkpCQi16a1FCaWMxdkoyX2Z0ejBnZXVmODdTbE45NVB3c1BCeTd2d9IBpAFBVV95cUxOYmtXa0NKa0dqc0RiZjljcWpJODhHSnVNQml2S3BQRTFVMXNxUDg0RGtCWU1LV2FXSVBFYUUzcmJrZDJ5NE5DVEFLNmtCNjZoc1NvR0J5dVhkMFhQWXJGaU9lODVhVHVKM011clJSTFhGeDNxQzNMWE1aZEY0cGVQUkJIVHVxUWZTMkpRR3JsNXJkVHcyd1VPUlF1S04zeTlMQmE5MQ?oc=5",
-          "publisher": "The Indian Express",
-          "publishedAt": "2026-10-24T13:07:55Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "b016236d611d94aba47e",
-          "title": "ICAR campaign promotes soil health, improved farming practices in Meghalaya",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNaVg5bVBwdkprWUVZcU1NLVhFZ05WT2N5QVRWN1FiU2MtVG91QkZnMUVhai1Cd3k1V3d3NFZBWG9oZ0E2UnB1eGJQYndSeXlsLVQxU1VfdVE1bmg4Yk5iYUhNcGxWXzBJMHBxNGx5dUVTcnBVRVdPSzk2bERtSUpiR0VGOTBKOHI5aER5RzFXc1pEeHdUaEhnQVV6OVBOQQ?oc=5",
-          "publisher": "Hub News",
-          "publishedAt": "2026-10-24T11:47:21Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "272271bc9eb3c9a9e4f4",
-          "title": "BIRC 2026: Experts Highlight Carbon Credits, Climate-Smart Practices for Sustainable Rice Farming",
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOWHJhWkp3LXlmUG1ua0VaWFBzQXlBMng4Y0dBaXduQXhFMmNnaFYybEgtaklZVmlSakNYT2ZDazBpYVhxWlBnZXdMT0w4LXBUVFEwNnB6azBZMW4wMlNUbzdzb0VsUENHeGJaTEJmN1BaajdYa0xIajRIOGE2WHJ2cHVITmNPRm8tUnkwUkY2Z0xYbjN0UjM0aTdQengwMXR0LXFpZ1BmWC1FWkFPeGZ3emVfdzBma3pBb1VKd2N6cGIyVFRaaVdVUjZnM25GQVJaMmxNczhEekZBbG1l?oc=5",
-          "publisher": "AgroSpectrum India",
-          "publishedAt": "2026-10-24T11:38:36Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "763d522276e0cf21e1fa",
-          "title": "Carbon credits, sustainable farming can boost Indian rice farmers' incomes: Industry experts",
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQdU4yZGJBN3NzaXZfem9nZUVoVVh2MGo2X2RDcm04N25fdV8zZlFrYVRfemlnWUFmVmF0TUFSN3RJTjc1ODdwb01GdjBXdnJ5SlY4ZTU0WnNhMVdoU2Vqd1FiSTl1ZU40c3pwRG5CWFYteEstU0NsMjFrWm1tWlBOUnpOYU9sTDlGRU1SQ0dTMWRodUVKenB1VURnQXR2Q2t0b3UxdGhfM2ZHRExJWVNFaXR1RE85NXRnOTM0aGhndGZCWTNTQ0VrckI1QjRfaXZYQ19EbWFJcw?oc=5",
-          "publisher": "ANI News",
-          "publishedAt": "2026-10-24T11:25:00Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "3848458af95bbda4db56",
-          "title": "Himachal Pradesh CM launches ‘Pangi Apple’ brand to boost farming",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQeHZQZnFQei11RHJhdmpjb3AwdEtXd1JKYVVkRVBxZDZCWExNRFRhdHdtdzNaYnNhZ0NGekZiNlJfaWIzSkgxOWtJTWJqOUhoWVRaNDZiYmdUY2ZNa3ZuSzBSSHp1eTF0SFZfUTdGRjIzM21ZVVJqR3Y4dGxnS1IxVGs2NUF6LUJIYU0wb2VzN2FjckNTWkpwWTFFUUw?oc=5",
-          "publisher": "The News Mill",
-          "publishedAt": "2026-10-24T10:57:09Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "b936c4d75fffe8b13c50",
-          "title": "Campo de Dalías and the “Almeria miracle”: a cautionary tale of the value of water in agriculture",
-          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mM21Pa2t0NzJ4SUQ5cHRuTmRiWk5BZi04TmhpNmNfaUZEelczT0xDU2xBSWVkY1ZPZTBuUUhMYzJ6UWdIc2lBVV9aVWluQ2NxSXkwYUxZa0dOcENtLVNN?oc=5",
-          "publisher": "Nature",
-          "publishedAt": "2026-10-24T10:13:01Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "982e305bde6b6a2fdd76",
-          "title": "Digital Agriculture Mission Crosses 11 Crore Farmer IDs, Five Months Before March 2027 Deadline",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQOWZGSmNwYnlNREZQRmhSS0JfMDh1NEJldWt3SE9hZGg0cGpWYjNtcW5JVjlMelltalA1SUFsaFJnUzB5X3R1cHBZbU42VWJQRW56Mk9xa0FkcWxhNy11VkVyX0pUUEQ1WllxeXJRWFFPcXk4aFRVbTZxSEdFRXhiV3RDaEJCZV9adnozVkVzQ05wRldSZzh4X2lkM2VFd0FXbFM5RHRxeUhGUkVDVTM2RDlwdGFfeGNGLWRMTll0SW9wblctM01TZtIB2AFBVV95cUxON19SZVU4cFhIMlZBMDdKRjdoU3hKSjNoRzhoWGRUNVA3RVVqYzRTNngyYWZ3SmQ3bzN2ZWRNaUZERlFPdjJvQzhqdHB1eF9XSFZJUFRzdWMteld5QlNjc3RuYnlvNnVjUVBZWnlUd09kN1BjMDkwdUFEM3BYNS0wRFFnRDZKQlp4RVZkYjZ6WThQWjFXSUYtdUtyam9KR1JNeHlmb2t4WW9GMjRGVHRnbTNZUzl3c0ZFZFluYTNtUndiNl81WUIwSEVTMU84aGZBNkJERjE1MHM?oc=5",
-          "publisher": "Swarajya",
-          "publishedAt": "2026-10-24T09:59:57Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "b309c937458dea0c2869",
-          "title": "India Creates 11 Crore Farmer IDs Five Months Ahead of Deadline Under Digital Agriculture Mission",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOU2dtcnRQZ2Fram95SF83TWdwR1ZjLUdMVVhuM2NvT2t1LWJtQklyTXMwY3dLVzdBTnlqNHMyZUhfR3FLWXJWNWlXcEZwc2hVeS1leVZZcUpTdUpWNjlzU1NoTVBIeHVYSlhFZUxrVTRrVEl0SEMxMkhqcDd6cEpDdWs2SnJyVkhlSFcxaEtjMXozaGlCN0k4aVhxanZyUkdzNUJjRkZpeHY2Tk92WlpLMHg4Z0RqZEJxQ1hYeFFOZ28?oc=5",
-          "publisher": "DD News",
-          "publishedAt": "2026-10-24T09:40:54Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "817760cb676a7377088e",
-          "title": "PM Modi’s digital agriculture mission achieves historic milestone: 11 crore farmer IDs created five...",
-          "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPX0U4NnN3bnVTOEFkTDloOHlrcHgzWjI4NEZabklNOXJTTTNJcGhvcVFOS0RHbFoxQjMxUUIwelpsV3hjWmREdXU2SlJzU2FyUlVDYzZMWTFzWHZKMGlEN05sRmhaXzYzeGVVQlpZTmMzSklwemlmVUZhdFgxSTNJZm5IRUZYQkRCSUtseXJOY0tCb3BnZk44R1p3ZEQ2NnF3ekdSb0ZDeEdLRXVBc1hkZjZJOVlyY20yR0MzSmpxbExJYjN1bGFfOEVxbzM0eTlkLXJQenBjbi1Id3p1bkF5aHd0WW1GMUxBYWlDYXpzSU92VXk4dGx5QmhHQWpLakg2Q2wxRGhURVZYU03SAZACQVVfeXFMT1V1VDdzZXVLY1p5Rm5xMHJKaHZocHR2OUw4Um9iejBOZWNjUFBRMWxIRlBBdXZISWtMRDJ5eE94M0o0V2U5SVQ5dXNGc0Vac2JXa3dGZ3hQS2FEa3EyeE9XQjJXT0VEMWotcHJOUFpSMVBXdFQ4ajZjbGZFcDJpTjNuZTRnQVdDU0oyaXQzblF2YVozY1EwUDFPUmhSUkZlTFp0ZTItOU00VER4M241Ym4wUGdLenJRWDBZREotUHVlLVlUamIxS0RDSk1GSU16NHlNRkcycUEzOVRkUzd1WXMwRWJKRV8tLUdIbkZCSWdQaV9MMVhvSFRzdlNsRGloY0xYa0RyZnRVdFJ6MEJMTjU?oc=5",
-          "publisher": "Moneycontrol.com",
-          "publishedAt": "2026-10-24T08:35:10Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "91412b6e2ec27d673f99",
-          "title": "Shri Shivraj Singh Chouhan Interacts with Farmers at Kisan Chaupal in Haryana’s Karnal, Calls for Balanced Fertiliser Use and Natural Farming",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQZDV1M050TDhzX1FsdEdzRWY5YVpGbXlYWm5RYkdaRHpWOGtEajBvMVpDT2lySmpOUTQwOWttMzI4dXRGWkN0UGJxTm1sbmxwaHc5dEVxRVdLMFdyRUtMejB6MUg0N2NtZFg2MW1QN2dVd3BfME9vUFZRWERvVTFOa09ZUzZGZlNvYUhBbG42ZHpxbGFUUWVqVkxpWnJCaFZ2WjBRaWhaS3E0elkwenVUakp3?oc=5",
-          "publisher": "Indian Council Of Agricultural Research",
-          "publishedAt": "2026-10-24T08:34:59Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "d376079729c986aeba2d",
-          "title": "Wheat acreage likely to remain steady despite weak monsoon rainfall",
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNcjRyOFBSTjNqSWh2LVQ0MFdKb2x3bmhzZmxwbUFJQjJaOW16M0dsU3BtWUFXS081X3pITFNaODlHSUFRV2x6a21VVkZMMlVMU0Jud1JJZFZsaTE4dC1hcTd5UEh6cTJ4OXN5OFUtM3did29aTFBpdTFWS25xZk8wUE9nMWFfMFh4VmkzMGJvZHcxb0J1ajROc1Y5WWY2ZHRxT3BOdDlCT1Z1aUkyUndVQWRwUUJsUWNnckdEemxZSFBubzdKYWlKN3VTZld6cVFrMWFvd016SzNVQdIB3wFBVV95cUxPSlJaT2k5cXpHdktTdDY3Mm1LUmNMbTZ1bnhleWJpcjhnVWUwbHlaQzZhemlSUFZxUWx2OWh6NHdmckY2N2gzdjQxVWZxSFRZS1BtMEFFVUdYN0h1ckNXWWdOa2NPZ19ZR04tRmpCV0dnbkc5NVJDVWdVY1l6MHNnTHJEWDFhN1lGMzdjNnJBNW53N0ZkWm00UTVwV0RHcWM2aHB4Z280VFB6QzVYTWxuLXNnUGEtTXM5OVFuMDg5ZkQxUTBhYUZBWHpsRVpFNjFqRGZfZDgtY2lzbmpmQTl3?oc=5",
-          "publisher": "Business Standard",
-          "publishedAt": "2026-10-24T08:21:38Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "a65acb64b1bb4d9c2b28",
-          "title": "US agriculture industry at risk as drought conditions worsen",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQbU5uWFE2alliSG4ycGdMOE5ZUlNYRndxelBzbG52UlRJNm1HelNkbGNHSW5RTXR1MTBuVWEza0RNMklNazRhbjNadVJjY1VibmUxS29adndiTWZPWlRwYmEySnlmMnphWm12bUZzLThtellZcmhac2NiN1ZteURJU3lDaGhXaFZXSzlkZjdjeS1pZlhDTTRWajhIS0jSAaIBQVVfeXFMUDg0VFZkaTd2d2trTzF1cjFuRlNSVTJtUFd6a3Q1WFVUNnc1QkFFeUxVX3N5YjlQeUZPSmtaVnBTeXFCbWoyYnV0SW5XbldNWDU2OW0yVHR4d19yLWdBVllrMWpKcmFRRnlMZlFNVWMyN091bnRqVjZhQTg2MFR3X0tJbFlMM25JaDY0c3hQS2VjLUV5dURfN1F4bk5aU3JtZ25R?oc=5",
-          "publisher": "ABC News - Breaking News, Latest News and Videos",
-          "publishedAt": "2026-10-24T08:10:29Z",
-          "image": null,
-          "sector": "agri"
-        },
-        {
-          "id": "d79d317022b302039afe",
-          "title": "Agrivoltaics: How Combining Solar Power and Farming Could Boost Farmers’ Income and Support Clean Energy in India",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNSUtvaTZFMFQtZjNrMW5TUmJ1QlNqT2NFVml6cFNxYmhRU3Q1NG9jeldaU1l4VE85RmFoazhWSUtvcXlkWmJncURUNVUzb1pfZm9ldkMxTllPSER4cE01SFFVbzBxWTR6RTFJS0MtYW05dU5Xd0JrNXlLNXZJQmxPSDQ1SmdYTXFPUDFNVmhYXzdUT1J5Z1ZXSG1GNi1nOGhaVm1nQi1KVVQzNEMwMGszVzRSRzU0MnVCbGVvZ2JFc3ZKaEdPSDlHUmdkQ3RrTENiVVphUUtIbGI5eEE?oc=5",
-          "publisher": "India Education Diary",
-          "publishedAt": "2026-10-24T07:55:03Z",
+          "id": "8e15f1fb53948bbba3fe",
+          "title": "Odisha braces for Cyclone Arnab: Govt cancels leaves of Agriculture officials, issues farmer helpline number",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOSkE5NzBwc3FuZzNnalVpaWJreERwTXNUU05Pa2Q5U0V1Y2ZNbHBkc1NIQlNPX080eVlmeC1tVXQwMnlsLTFnSWw2d2tyNGx2aWNrR2tJUEttRUxZWEhrcnFUZWk0d1h5M3VsLUdoX2NfTjdVN2M1RkxmVkMxLVBDSEIwSTQ3b3Nyeld3WFl4UWRGeEp1bDV5OEhSR3MxXzVjZ0lOYjJZS1Q3dURmdF9nYVlKTGNWRndvamVUTFJ3VVpRRTc5U2gtbjNKOFNZRUxE?oc=5",
+          "publisher": "prameyanews.com",
+          "publishedAt": "2026-10-24T13:29:15Z",
           "image": null,
           "sector": "agri"
         }
@@ -1942,9 +1947,36 @@
       "errors": []
     },
     "defence": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
+        {
+          "id": "6e3364002fafd16cbe01",
+          "title": "India Emerges as Third-Largest Arms Exporter to Europe: Defence Secretary",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPU1k4UzY5a3RHV01oMGw3YnN5eUktYVNFVWNjTUdGSERsT0hGLXBNX1dPdV9iNmV2M2R5WVZpRWFTYWdfNjdyUTl6UTNWWUdhOS04b1E3WldKbWp5QjlOVV9iN3BkMmMyWG5PNkwxZG8xVFRxTDJUM2RMdEtQMUxjUTZBcE14WUp3TmZlWkhfTkJiX1liWXV2VXdaZThCUGs?oc=5",
+          "publisher": "News On AIR",
+          "publishedAt": "2026-10-25T18:55:45Z",
+          "image": null,
+          "sector": "defence"
+        },
+        {
+          "id": "215ea46676ae227e50c9",
+          "title": "Israeli forces turn Hebron homes into military posts amid lockdown",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObUxpOEpEUjBRdm9oSnlpTDZqQ2dEc2piT1ZTUU9DdVRRN3ROa0ZrN1BiLVY2bG84QUtETl9jWERQQ0I3QnJvU2NIRk84T2JxM3JwWFloMGJ3c01NQ3lfMk5OWmx1Z1pZcVhROUlSMm9IM1hXM2FTT19uZjJzaWZkWm15Z21HbDE2UFNKTUhIMndCM2xBR25TbV9OZE50eG45OW55Vk9Ba21EMWFE0gGyAUFVX3lxTE8xNlI4SDQ5WktNelFkWDIyYmJzbWR1TUpuQm1BVzRaYjNndTBESnpTNTVlb1kwRkNRWGxfWEliWUNwclRwTGxhY2NDQXhCM1ZQWEhYVTFrcWx2M2JwanhYbFFKaDIyZ2QyMlVJN1Nha2pJcWtFbHZ5dU9DRFRoSFJ2WWxkX2lRUU5sdnRHcE5ZZFhXTnpJM1NINjY2ZjNDaUtyU1JLeUwzRlpaS1RUM3BjdHc?oc=5",
+          "publisher": "Al Jazeera",
+          "publishedAt": "2026-10-25T18:45:00Z",
+          "image": null,
+          "sector": "defence"
+        },
+        {
+          "id": "bb5e97287eecd2c79735",
+          "title": "1,200km reach, Western parts: How Russia’s new Filin missile adds to Ukraine’s air defence woes",
+          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNZnFVeWxTZ3lFclJna0tzSXlVaW80ZmNUZVhoZEl0WklPYldZRW05THZCYkh0RGJpMmU1SHBGUXN1SWU5bkl6N0p4dS1KYlRQd1J0N08tNzhOWGFPQVk4TmZma2dWUDFDRmFoNGxvZ3Q0a1R6ZVhTOWNka3R6YTlMRGlKMElNeVkzYlI1cV9yMG02WDFra2FqMzh2M3ZRUXBJVTA5elV1UnQwTXl2QVNqMm9QeThiNEZ3eHVRek5lTElZNk14N05lcUNQRjRrTmNPazFaLU44VndSV28yZThfRGoxSDA0Ul9sbUNNcENyTGlWeUtZRDlGUnRkNDU5UXdPNE9aNNIBigJBVV95cUxOVHJPTkFaaVNHU1ZUVGJUNWVOMDZiR3lPd0lYanpURHlUV0g1MDBZZzVjZWN4c0E3UzJpRzM1YWw3SFdZQW1XOVFJM0xBNkZxMjU2LVlBRkNudkdDN3ZRZTNuVlJhbV9QTkJDQ1czWDg5YkluZUlMdms1OHZ0N1dvSkdIcnVpWUF3Y3FLNjY5b1duVnB6MWxBQkxEWnA0NGxuUGNsTktNREcyWU5oZHd3WjdpX2hCODNveTdzTWZWRDZ0SjlUUjVqM3c5aUhGRmJDdnFrQkFISWxqS3BlWV92S0RGUlpVWG5kdFIyZjU1eFBMRlRjZENvNHU4V3BnSVpiVGdhSmEzMXgyUQ?oc=5",
+          "publisher": "The Times of India",
+          "publishedAt": "2026-10-25T17:56:00Z",
+          "image": null,
+          "sector": "defence"
+        },
         {
           "id": "9990367998cf5ddeb569",
           "title": "Home Ministry to build civil defence network of around 60,000 volunteers in 12 states and UTs",
@@ -1955,11 +1987,29 @@
           "sector": "defence"
         },
         {
-          "id": "6e3364002fafd16cbe01",
-          "title": "India Emerges as Third-Largest Arms Exporter to Europe: Defence Secretary",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPU1k4UzY5a3RHV01oMGw3YnN5eUktYVNFVWNjTUdGSERsT0hGLXBNX1dPdV9iNmV2M2R5WVZpRWFTYWdfNjdyUTl6UTNWWUdhOS04b1E3WldKbWp5QjlOVV9iN3BkMmMyWG5PNkwxZG8xVFRxTDJUM2RMdEtQMUxjUTZBcE14WUp3TmZlWkhfTkJiX1liWXV2VXdaZThCUGs?oc=5",
-          "publisher": "News On AIR",
-          "publishedAt": "2026-10-25T12:48:25Z",
+          "id": "9f4a8777bcf7a65d36f8",
+          "title": "Nuclear reactors, 90-day survival plan: How US is preparing for a global war",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNRG93enZITW85VVNBSFpPRmdoeUp3VmhjQWdnaGpTU1NEQVdMMmxYSmU3TFdCX0tYMlF4bzVCMzJwb1J3d0lGMVZJcWhLeEgtN0FjcVFaTlhiRTlKRFZxRzNFc1lXT2xXV2c5bU5iZmVhRmY2SVhfd1dvbV9wZ09wb1VQWmliMXMxWm9DbWtDTFFselF1QUItUktkajZkaTgyNzdIbEZPZ3l4Yzc1RGxnUGlXZGJNaFJISzlKWF96bThLOGRmMFlEeHFZYTNMcjZ6bkpUWkRPb2NMQ3EtRUHSAeMBQVVfeXFMUFkyT2hsM1JKamtsNWNkNTFPdnhNa1gxXzY0WWFmLTV2RmJIQmNpcXJ0bjRnMXdlajB2Q2xPQjZ6SVdYa3JCUVdueFN0UWVFNUtUWW9GcEg3dUFjZDNDdW9EeUwzX2ZXem52RTNpU01pZ2pvWkJMZy14NV9JRHhKaWpZRkpDYzVNaGZ5OGhlS1ZTYm9SbktCLVo1VDkya1YzNi1ZRkhhTmhsdFAzLTIxcGxiMFVTWFdLSVExb1M1ZmdiVHhBdUdBZmRKWWJjem05SW00X0pLRnVKY3owdGx2X3dxbmM?oc=5",
+          "publisher": "The Times of India",
+          "publishedAt": "2026-10-25T14:55:00Z",
+          "image": null,
+          "sector": "defence"
+        },
+        {
+          "id": "9e1c3d643a18379b4a4e",
+          "title": "Algerian parliament’s upper house approves troop deployment to Niger",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNeW1MVnNJcGktN0x6czZ0dFdDX2hkYjMtcHVHZXRIYWRHMmY4TWx4Tm5iWUExeXpSOExkcWJLdkVZSXE4cVRKN1RZcWh3M3RZUmQ4UmM2alRjMTl0bXYxVTl1ODA0cmxwc2stckdtUnVfcE1Tbkl0eUdMQ21zdnhycGZfWHBRclRKU2lKZXVwWE95T1VCVTB1dGlCQXdCeVVMNXZqSjdmbnBBTTJNUlHSAbMBQVVfeXFMT25MNXRlbXIydnZEQjhSZ00tLWVTRklmT0xYcjNMS0wzdjctOW5lMkt2QzFnWUVHRy11YnZ0M2RsYWNHcEVQSDRWakRrd1lDbHdxSjd6WnZad3lvWk5McVU4d0otUUI2MHRlWllScnFnajducEJlRkdFOEVBRWgxbUhGRU9nWkNZYTZCVjNtUy01dTc1TXN0Vk1ZYV95dDhCODFwZmlVTEtRTTVUNFJxNVVuUGM?oc=5",
+          "publisher": "Al Jazeera",
+          "publishedAt": "2026-10-25T12:22:02Z",
+          "image": null,
+          "sector": "defence"
+        },
+        {
+          "id": "43cd7ea4091ba4026d66",
+          "title": "US military gives Elon Musk’s SpaceX access to sensitive tracking data",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQa1dzVjhxa0VTU2tZZ3MxbjVHM2std2Z3MkVNOGxvRlE5WVdXem02eWs5amhZdHNPXzg0d1EtbVl6WlBXNGFTem9ydWVobkJPMmpMVVNvdy1YQW9nRGZuR0JHaElvS094RERfZVZ5OXJvdVB4b0hCdHVRZnFUOWUyYTN0QVlpTVlWU0Zhd1B3?oc=5",
+          "publisher": "The Guardian",
+          "publishedAt": "2026-10-25T12:01:00Z",
           "image": null,
           "sector": "defence"
         },
@@ -1969,24 +2019,6 @@
           "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQMm1vWk9MNGFPcnhPNUVEOTVfdFBFMFVxb3NXNDZTOUYyRHR5QXJlSXNvZEZnLVQ2SmlOdktCSkJHT3FtOFp4M1VtNzQ0WUVnVEhnRGQ5TldjZG5DVmNSMDNhYnpncWx6M3ROLVpMOHZDRVBPa21HbFhEVUpkdnB1bUUzSm1DSnRKRXp4M2NHMXlGQ2lNX3N6T25kd00zUlY1c2E5YTd2cmVpQmpLOEhYekk5b2FYNW5PamFzeVMwQlU0NzRSdGgtcDd3Yl9nanFiMHI00gHaAUFVX3lxTE5mb0kxM0hKTFVURm1wUHBMTDRIam1BNk9jX3FsS1MwR1FRTURWLWpmWU1GUXdsdHRiVkZYbUM5Q0toT1JLMGR0bUZ5ZnpKN1R0RU84LUJ3SGQ4bGJYblFVMVJ3bDJNVVZwYU5JYTlsSnBDdDlwQmRPQTVHelZaTWpFQUlVSW96MzVKMllqWXN4bzg0MTVxSlpxOHNXVHlHWndTbjF3cjlQZzlXcUFJZmJGNFRrTnA4ak05LXNkVmdnNE9xcEZaMEVBLUVoX0lyWUp0am0wWUJCOXF3?oc=5",
           "publisher": "The Hindu",
           "publishedAt": "2026-10-25T11:49:50Z",
-          "image": null,
-          "sector": "defence"
-        },
-        {
-          "id": "7785e5e89e66fda1555a",
-          "title": "Army Air Defence Centre Gopalpur Wins Best Clean, Green and Sustainable Regimental Centre Award 2026",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQTXd4bTY2NUxDbG5RcGhmY0VBQW1VWE9EM2NxcW8wWERTSUVncV9ab1psVmJ3VHdIN0ZFdkVSNXNuV0ZlbWFTS1cwR2ZkQURsZ0daUVJiTTVtTVhYMzdyeTJPRGZQWTVNQnNnWVdsa3RBSFR6ZG9hdUpzUm9FaVUyYlF4Y2hQalpnYUFpbGJETC1kOXR2VkNteDd0dkR6MHFfaUtyTEY0My12U3RETkwxclo3aFppaWwzRU5RTHl3aGtWcGdQalgxcnBKNGppTnRKVXVv?oc=5",
-          "publisher": "SSBCrack",
-          "publishedAt": "2026-10-25T11:39:27Z",
-          "image": null,
-          "sector": "defence"
-        },
-        {
-          "id": "215ea46676ae227e50c9",
-          "title": "Israeli forces turn Hebron homes into military posts amid lockdown",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObUxpOEpEUjBRdm9oSnlpTDZqQ2dEc2piT1ZTUU9DdVRRN3ROa0ZrN1BiLVY2bG84QUtETl9jWERQQ0I3QnJvU2NIRk84T2JxM3JwWFloMGJ3c01NQ3lfMk5OWmx1Z1pZcVhROUlSMm9IM1hXM2FTT19uZjJzaWZkWm15Z21HbDE2UFNKTUhIMndCM2xBR25TbV9OZE50eG45OW55Vk9Ba21EMWFE0gGyAUFVX3lxTE8xNlI4SDQ5WktNelFkWDIyYmJzbWR1TUpuQm1BVzRaYjNndTBESnpTNTVlb1kwRkNRWGxfWEliWUNwclRwTGxhY2NDQXhCM1ZQWEhYVTFrcWx2M2JwanhYbFFKaDIyZ2QyMlVJN1Nha2pJcWtFbHZ5dU9DRFRoSFJ2WWxkX2lRUU5sdnRHcE5ZZFhXTnpJM1NINjY2ZjNDaUtyU1JLeUwzRlpaS1RUM3BjdHc?oc=5",
-          "publisher": "Al Jazeera",
-          "publishedAt": "2026-10-25T09:36:44Z",
           "image": null,
           "sector": "defence"
         },
@@ -2014,15 +2046,6 @@
           "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOY2VtRTc2RXBJbFRyS08yYzRzVDRIZWEzVWpQSnBYS3NSb2pMN1JDbjVHeFpyZmVXRDAtX2w3d1lWNVJMTUlZWmJTcmluN1ROeDdsZHlkcHl0NTUtNHNEWUlOczRmTHVfaXZvWXgxaEZJTmFFV29tVWtYZTZDSWFvMDRtdXJ6N3FFWi1qZjY3dU45emVGal93dFNfalZvQVNERHZGMHdjbGlLQWxVUzBWcFNralR4d0hua0EyWWMwNlo0ak0tRFV3dGJVUjBDUTdSbkh1YVpjWlNMcGl2SV9OMnY0d3JCZ9IB6wFBVV95cUxQQWRxSGNzUFBYTEQtOVl4MHc2N1FlZjQ2bklIQjZaZGgxT2RpUkdmdTRzMmc2dG9WeWwwcDhWRXFzVmJMcWRWTHMxeVZJU1NQZ2pCNk0xRWpGaUVYTmRSdUNaV0JtRk5XcG5NQUlxWlhtck1nMDF2YzZSRVpaMG1BRTA0MlNyMjV1TUpqVEFXRXFENUl5a0EwNG1rVGNSZ3VNVzlHZmxRUEpwMG9xRXlJZXFDSmlmblU1MXozM3dFUjNTSDRJZmxnWC1iVDBZemlwa0FPcERpOWNubnA3R3hQUkRueHpsTHFDR2Jn?oc=5",
           "publisher": "The Times of India",
           "publishedAt": "2026-10-25T00:02:00Z",
-          "image": null,
-          "sector": "defence"
-        },
-        {
-          "id": "a9614172b34003d6b1f1",
-          "title": "Defence Minister Rajnath Singh calls for unified action to dismantle ecosystem of terrorism at SCO meet",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTlQ4Tmp4RVZpdGRzMDVVcEZKQ2pLT09DZy1Ud3hDcG16VUZzN094WkNIU0tPRWU3R3Y3cmFHRUNHYXJQbERYbWNKbVY4TlRtaWhhbkcxYUtnT3NHUWtuYXJIZzlEM05QYlBsVnlubkhQMkJCbkVqWTZKZXpOa2xOVkprR29KbWdfeUhBeXJWSjVLMEtVV2ZvdTFnRktCWWp0TktnQUhJWkJqMjJlaFZZZkFBNmlaV1ZULUVsZnN1MmpjZlRTcXFJSFJDU2dicWFoLW50cmlYTl8wa2tuUnc?oc=5",
-          "publisher": "News On AIR",
-          "publishedAt": "2026-10-24T23:37:21Z",
           "image": null,
           "sector": "defence"
         },
@@ -2095,15 +2118,6 @@
           "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPNkQ4bDZ0eFJGR2R0c291ZG1ERm1KaE12UFc5TXJhdXBVOEh3b2tIX1RmZEtRM0JqUXRhZjhWUnJ6QXZmQ2Q4dV9GWWtSQXJEaFpCR1E5eUN2cHZ0dE1IZlBaalk4UmlXdGliMjlUTGtPS2I0ejhYamJQV09sNmc5LWRON0tjTEkwcl90a0x4ZThZRWYwV0FBVjJkOXVuX183eTRKaUl2c1VxWWtCN0g5bDMyWXlsMy1GZFMyeElxUEQyLUxGQ05fTU91M0RTTURBdHYtdUJHeURwTjhCTU1YUTg5Tm9wY3c4RVBuSzNhNDRtX3IwZGF2NnVHUmhmR0FtSXVOUE1kTU56dE0y0gGSAkFVX3lxTE1URC1qTm1UY0dMaENKNW1pVGRqTXhsVTMtbzZVZ2dXaUNWRk0tQ1Z0a0VoVmY4N2g5ZnU0NnhQbFlydTFDRTRuS2JGcGZkeVQ3RTlrMUFGbWQ5M1VMTmotb0x2azBlZjVMeDk1R0FuYjE1WVJILXlSeTJHMHJjcmZBQXpJNnREdFFoaFhIbFZFRHFPVEN2dzM4WUNTamQzOU1mMFFvUG9QenpRbFNReEUxUDlXc0lQbjBlSjM5UC1SVy1BeWQzVWpuSkZVMVcyTXFNdVBLN2ZmbkNQYmUxa204bG15SVYyUlZ4X3VxSi1hZTRraUNlQlZkZTFiMFpRcGVhSmFZRm9Gc2dnQkFOLTIwQ1E?oc=5",
           "publisher": "The Times of India",
           "publishedAt": "2026-10-24T14:09:00Z",
-          "image": null,
-          "sector": "defence"
-        },
-        {
-          "id": "e7cb19f947e466a8c648",
-          "title": "US contractor accused of leaking classified defence info to journalist girlfriend who runs Substack newsl",
-          "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQZy1MaDlicjZVZUNQalYtSTRaRUlTZHNSNUtpeGZnS0MwX2Itc1dOSU9qVjdVMWU0SzRyTHpGTTh2UEUzNGxyRms1WklEWjhWR2JySTU2ZFFkMnpYZWExYlpUYU1OdnZUZVIycWM3MUdkYUFLYnZ3dTN6aFZrNVRHQnVKRUZZMnZBVlU0Tl9Pd0N4bVRiRkdzQUh0UzBZWHA3SGpWWHpWZVh1S0NfOEdGTTk0S2JjREY4d3hVOXV3MEtUM3g0OGxYZ2drTUs5V2dqY3FPNjRkRlRyRHppa1l0V29CNWFmM2JDTTdXdzZHVUxfVUdHR1BueF9rd3BlQ2tOSVVTcm9vcUNiQ1NfSFHSAZMCQVVfeXFMTzJqaTNZZ0YxNDdjem1RR3VPeEV0THcxYU1BTjVPYkkzRzJpLTM5aEVEQ3NlWGxhcmhfdnNhelAtcjRZQVYxWlRualNrUlg0N29RdHJ2enYyUDRvaFMza3BYdjVhZEwtSW53U3BkS0duNkxwbXVXcjRZektmTTFjMFpWZnlaY1dDTzhxRDlsR0NQX3BHVzZZU1hQRzBXTXh3X0t6SXdvMTBwMlIyY0FFeEg0bW9NYUNfT2NhaUpmdFdpTVFNQzBmdGZXVHBVT2Q0WFI2U3FiOUYyMWpHQ05rWlZwdnk4QUQzc3VkWDZqVVRDVWFtbmNpMl9iZmxKWTlyM3JhMjRhVmRMX3laY09qVmZXRW8?oc=5",
-          "publisher": "The Times of India",
-          "publishedAt": "2026-10-24T11:19:00Z",
           "image": null,
           "sector": "defence"
         },
@@ -2205,32 +2219,14 @@
           "publishedAt": "2026-10-23T10:32:24Z",
           "image": null,
           "sector": "defence"
-        },
-        {
-          "id": "3adc65ec75614e33b6fa",
-          "title": "Grenade exercise sparked deadly fire at Canada military base, army says",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOb2JZakhBd0REdzZBMlZ0cE5JQnRqekZaazl5VWNiRzVCR1hDMVpvY2M2Q3c1cXU4QnhrYmNhdmJyQklwNGo3Um9kLW8zUENqMUo0ai0zOVFUcDFrbDN0SDJ4ZGlMcjY5UVpzTkEyZ3ZSWjRqbjB1bU5BUW1KVFFhQTZSRkhDQWtOTkJTWThZbUFTZFZjMl8xYWFCejBBUDBRdVRxM1ZDY1VqQTRrUjhDMTJB0gG3AUFVX3lxTFBkMlpCM1JiWS1ENkJ4WHNjRXlDTkltd3dKYzlkUW1EY1dpWmdIMUp5RU40OHFUb1d5d1A2UGxYZjAtdFo0RGVoT1pldE1wNjJLVE8teDF1dlpXV3gycDBkR3gzdHk2bVVZR2JzODBhcHJOWjRPRWFDRnhmYVdDNnktX1M4SkFXMEQ2U3huOTRsWUgwY2NwSFp4U2RDSDlKcmxCREF4NVA2Z1djb1MwRzA0cVl3elRrQQ?oc=5",
-          "publisher": "Al Jazeera",
-          "publishedAt": "2026-10-23T04:55:57Z",
-          "image": null,
-          "sector": "defence"
         }
       ],
       "errors": []
     },
     "retail": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
-        {
-          "id": "155f2c4fa1f0264f35b4",
-          "title": "Okita Toenail Fungus Pen Reviews Consumer Reports - View e2sL95JBH",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPTzFUeEdTZnoyY09Lc05fU3pXSWZZX0ZIbGZNZ1l4Q1VSMngwZ3Z1R1QyWWJEQ0pXUlYxNTVOWnJqY0IwUDdKMkZ0U2w5ZVdINTZiNFJRbWh1ZlhxNmsxVXhFMUphRUxVb0xZVzI2bGtyekxiY3ZXVFFsZm9hempMWWMtaUs4WjZhT1dxaGp6RGR0MkFZUzczSzdfZGV0RTVkcHpKMjczMHVLV3B1b0FjREZ6bHJoeVhNaDF6TVZvY0drdmJsWVM0amdsTEpjRmVnLUtHbGhzNzZOSkNmVXZoZ2pSeHZOTE55S1E?oc=5",
-          "publisher": "Universitat de Barcelona",
-          "publishedAt": "2026-10-25T15:53:02Z",
-          "image": null,
-          "sector": "retail"
-        },
         {
           "id": "8006f54690c8ea2c4935",
           "title": "Luxury groups’ value drops by €250bn as Chinese consumer demand fades",
@@ -2277,6 +2273,24 @@
           "sector": "retail"
         },
         {
+          "id": "a3fe4384f49e50ab1ea3",
+          "title": "Annamalai Calls for MDR Exemption for Retail Traders",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPdUZQQTdPX05DZWJFREJwQnZKVW1uVE91V3ZRRVNFanpNcTI3WV9VLVBrTVRSR1lyNzdLVzJJN1p1MWk3MlNPOTFJZmZVLXBhVThwLVBNVGRURkJnalZtTHVSY0RuR0JaRkdGeUIyOE5NVnZxczVaaFpXMlF2bmhQTmF2N0p1WW9TUFJha0VGSEVMNE1LbWJRaA?oc=5",
+          "publisher": "Mangalore Today",
+          "publishedAt": "2026-10-25T04:12:48Z",
+          "image": null,
+          "sector": "retail"
+        },
+        {
+          "id": "02ea9e4db364d132d2c7",
+          "title": "Next major wave in retail broking will originate from smaller towns and villages: SEBI chief",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQV1VUR1hEamlVT1lyTW10X3BhTjNEUGhHU3NnTEY2QVpjWWltQmx2aS1RTm9faDRScFFMYUt6QnRndEZ0ZFRWYnJLZXI5VEF6Y1RvemxxSC14SVlHOTQ4bmxQTjROMVMtZVBwRUFwTzd0dXFhbnRVenl1djF4R29MTHY4c3dONlYxaUxkS1piNzA1VUpGS3IwNHl4T2doSS1EbzRHWmZTU3JDRS1EdG1nOVdwaFBjRkdYZmdPUjl5S0VYb3hpeFNMcTJfWVhYZEh2ckszMjQxbDhsU1JSNnRvYTBtZEXSAeoBQVVfeXFMT05CODcxRmY0a0YwTkIwdGhSa2dYRGNOLXdtQU5QVHlDXzV5STdBbk9aQlJWY2hwNTNPdHJJblVxN1czUk82c2FvVVV0bW9naUdHcU9GeXdJRXZQTXFnZTAtSVQ5bWZoZXIyRHZMZUhZMWR6dTRtOVdpSENmWlkwbGVJUnVOTHpHTjhmc3YwazBNa3N4ZnBQdWUxdk5CaFRKdmpDeVB2eUVCRno0ZnpjSlpNdGU0UWVMeGlOY0t1aWRaekREUG9pZEEzUWJ3WnVSS3lqNWRKM2cxQUpuX0lLZW9MWVptcXRVazJR?oc=5",
+          "publisher": "Business Today",
+          "publishedAt": "2026-10-25T03:32:37Z",
+          "image": null,
+          "sector": "retail"
+        },
+        {
           "id": "16e14d0d8bbdd6524184",
           "title": "Customer Receives Lifebuoy Soap Instead Of Realme Mobile Phone; Delhi Consumer Commission Holds Flipkart...",
           "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPU1FhYTVsbmZIN19kZ0RvbHRKVXpYbkxFLUhKWkEyX2lBMzljNHRKeDhqQ2I2Z3R0VDRUbnpKZVVpRVYzdnlDekY2VHJCaWxYZ0gwQ3EwLUptRmtjT0FyOUI5elJURXozTTdwZWFLSVlJT2FIV3BZQThLYU11aDlodHVLc2tzODE1a0tsX3Q4QlpkLU10NEJhQWNlb2J0SGNISUFzaWdPUFFsUThyMlk4dEp3dzRXeWlaWGhNb0NXN0JfaHBzLWFZNW4tRng5ZmZldkxCOU9BeWxUaEpBSUo5bW1Vd1ZCNi14Qjk00gHwAUFVX3lxTE1yWUFVeFhHcm5BUWNkSy1rMy1hN1FTdWprVEx6ZExIYlBJNV9nNWxkb3ZVbWlzUnBKSWFzOTZfR21CZUYzY0ozcjFuSWZHVEhOc2JCVTlMbkx3THhRdVZBODMxZE9fSkhOamhkNHpmWENkTnBxNmtkRWtZUVNEVjBpaVNDVGNsTVBaR2ZBbEFQRWYtazJDaGJFXy1RaVk0T2dSemNYTVdkcGVDSTRMSHRvOFQ4MTZreTgtMk5GODlJUU9VNTYzZzlUdHJsekNNS3FqS0FHa3lZNjJyX2ZPS09wcUZpZEVmUTBrb1NQRXB1Vg?oc=5",
@@ -2313,15 +2327,6 @@
           "sector": "retail"
         },
         {
-          "id": "ad06cb9df70e289116bc",
-          "title": "Beyond Metros: How Tier-2 and Tier-3 Cities Are Reshaping India’s Retail Growth Story",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOMWs1VzhaWmU2MEx3UkpaS1pXR0FLYk9xZ2F2TnRzOG9FNkdkQVo2T2RVVGdrSktzUkdnUkR4T2Y5VzJEV3o5clJMLWgwamQ1dGFmMW5DbUduNUtXUlpxVXlGNHNUYmN2Z1FTeWxySW1ZNmMzTlNSRVhyenVnYUJyem1OY2g2OW9idmdjTGh0T3R6ZVcwY0hJNVNjLXA4Q3ZTZFRBcEx4V1gyVXFBUHVVWTBLQXBFdGFYdWFBQXhjdWQ5c1E?oc=5",
-          "publisher": "Indian Retailer",
-          "publishedAt": "2026-10-24T16:43:56Z",
-          "image": null,
-          "sector": "retail"
-        },
-        {
           "id": "16064a9389d381a10187",
           "title": "UPI Merchant Charges: Know Your Rights As A Consumer Before Heading For Diwali Shopping",
           "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPUVgzWTExRVNyNnlydjJBWUZ4MFVkZE8xejhadExKUTBIYjNRZk5nLVhKdk5oSzJXV3VVWlh0eHI3RHZKTmJlTmhFdHI1TEFrbGJnVm5aOVhqVHMtOFBSdXljZndkdUVNZVJUcjktenAzQmotQUEyQzF1N2ktaDNEOFA1STJWVElmaGMyOTZQc0pqTHpXWk9hSXVmdjNobnVYYmpBeHl5TnFJenU3VXlfY3pDMUpLVEMyTmxQS2VkWTVRNjlPOVFsT09JWFNfbFUwR3hETl9n0gHeAUFVX3lxTE0xT0JFTXFoV044VzlVa0JrcGVOaERNSHlveFp0UHFXb3RtR0dHV25wZE9SSmpYRUdjRkFKbDNUVnA4dXRlZ3VaRGJEeWl0T2d2c1ZiZ09OTkdEc2VNb0tQOXhYYXJIcUdYUGVJT0RFMmt0T0xuTzhvS1BBeWRoVkNObkJGbzF4bFIzeWFCNlM4bW0xdXA5QnFSRHVhckVJN2RBejRmZmQtdjBHSmc0eHR1SGgteXpTeVVOZnpvdVdfUkhXU1Fhem90NVJ2M0hYbnd3eGJHV21SNmhVS1hIZw?oc=5",
@@ -2349,11 +2354,11 @@
           "sector": "retail"
         },
         {
-          "id": "79decae6cab6871f50d5",
-          "title": "Raymond Lifestyle CBO Neeraj Nagpal on Retail Expansion Strategy",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPVGc2enQ4dUpPenRETTY4d01xMU1NY0xpNnljR2xHRnNuSTFaOVA2U3BHNk5MT1hQdEJidjdJV0RZSTJKblJrVlNDOXEwdS0tU0NVcDlNck5faktoN09BYzRJekc1UzgtYWdYdzdUQnJHdkI0TnYtbHl3UHV1Skh0dkk5NGwtcE9MQW0zQWd0VXQwYmVmNEJkMjZYRDgyRF9lWVg1WUxXeHo2b1ZzZUUydGtZdHA1TWd6c1p30gHAAUFVX3lxTE9ocGhLajFUX0I4dDQ5MW9UTmJsTTBVLUExMnVQcHFqUFB3eXhZM1BkdEp6ZUlTUFNuU0JwV0JIZ3I0TVR0X2N6TjIwb2NRaGc5dHN3ZUlvaVVEUUdkWF9Zak8yeWw3N3pTUC1TLXdfUjlNQ19rTXZZVGJWaVlMbEF6NGNQNmstbDFrVDRyd1NnS2I3ZTVEVHl0RXlycXYwbE42MURoakNBeE4zT3Z2b3ZJTXROM0ItVUVZWk5QQS1XZA?oc=5",
-          "publisher": "Storyboard18",
-          "publishedAt": "2026-10-24T08:31:02Z",
+          "id": "b1766b057c613bab1738",
+          "title": "Tanishq Strengthens Its Gold Exchange Promise With Consumer-First Solutions Rooted in Regional Needs",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNdTVGWVNnWEhHMFZxUE9BLXJDWFJxNTdpNnMxa1JlU1lQd3N4b0xuMmxYa1BNM0JxMFRYNFRuVnlEYmZ4c3NnQUhuaVluZFNXSUxEQW1UenhLM0lPRUJRNmJJRS1wZnhvUE02dkJKcGRfVWVBWWtHakdiQnBJUnVUTThNSTRULUZZUWYwSUstMVBVTUJuejhmLTFGNDJPSWp3d0hfX2JrNDhUaFdIOEJIaUZGS2xLYzFwZHdxdHM5aUFNM3I1SFVxT2RGNkxaNW5sWUNlSVBn0gHbAUFVX3lxTE5jRGhNNkpMTE4xUjJmQlNPdThuZTlzYWo2ZmlrMnVRd1JRMXQ5czdxeFYxTVViWnFFMjdkZ0oxTHdiZ2JJQTlubXZQWWwzOHAxQ21TcEdVZ3NhV01CQ0gxN1RadEEwckplNGFUU244US11QkY4S2pJRXFudlZaWENBbVlBak5sVVRRcWRiVDRHWTVUSFpzMlNYa3dxVUhWMmpIMDU1RVotZ2xOczJuSTdCRVNIaXA0MktNT3VCWm0yTWpRdV9LZUJqcm51ZlBWalFRVE1iT2hpaGFGdw?oc=5",
+          "publisher": "TheWire.in",
+          "publishedAt": "2026-10-24T09:21:56Z",
           "image": null,
           "sector": "retail"
         },
@@ -2496,42 +2501,51 @@
       "errors": []
     },
     "telecom": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
-          "id": "2e39709765dfbab36644",
-          "title": "C-DOT Opens Sixth Centre of Excellence at IIT (BHU) to Advance India’s 6G, AI and Quantum Telecom Research",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQjNiRTVBdXRFNW02YmxoWVc5NEVZanhMczZzc0V2cjYzYU5HVWRvSDNlYW5PSTBxUzNCQ2VoblFMMjZwOVdhZi1PRHIxeDRVWS1CU3RXSVVSMnczRHNyb0JrTVd5VWZRTFk1SGYwYUp3Q09WMmM3VzJhdE5rUDlKR2VOdU5PNkdNc21HVldUTDRUQThPa0QwOWhJVG1OYnc?oc=5",
-          "publisher": "www.nationpathindia.com",
-          "publishedAt": "2026-10-25T10:17:59Z",
+          "id": "30436ff6951855effc0b",
+          "title": "Telecom firms told to enable roaming before cyclone",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQT0g2MDgwWmE3cUYtR0lZYjh2ZjNkWUJ0bGNyT0VXSkd4dHpPUkR3VjlGbGpKaDZXZHFYcUl5cUNTWXQ4REU2X3RUQUdLdzlzQWU1bzc3YnVVZEItZmpqUDRET0dHVFdIVkFOSWVaYXVwYkRfYTMzQnJFcGdFRjZRYkNLVkZnRkloOHkzZTVnc2VIVjNhQUVaUEZnSHVzLS1OLUdyN1pvYWVUSDZ4aUlnaGhQYU5BYlVZWmhsenctN1NXMFE3Zy1vWmVB0gHPAUFVX3lxTFBBNk1jV0ltMldHT2VtOFpBWTBFQldVdmFHQk9SaXg0TE5adktma2RBMjBvX3k1ZklscU5qNm5GUVA1WVdrYjhVSnJySUZiNTk1QVZvSHhzTkNJLUdpbXBkNWRRVTNfU0p0MmhINTRHcFpJZ3Q1ZGxnMXU0VzhUekZBZlJ4dnRGbGF6QkFCTFJNTUQxbEFVTG5YNXVpcm9lcmV4S2YzUTBWcklmcjZEaE56MGU1OVhQenhxUlpwNjFCSXRXa0tlUksyeXhzc3oxcw?oc=5",
+          "publisher": "The Times of India",
+          "publishedAt": "2026-10-25T18:39:00Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "1d5be3e9245f1af61e59",
-          "title": "France asks telecom operators to prepare to suspend social media during protests",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdVVaOUp3MENmYkF2a0FqelFTZ21LOHprbGpHTWl3MERJOE9JMmd2WERBV1hBS1NrWFNrNjI5dE9UaWE0TWtmTEdnSGZYNUhZb0VJMS1ISUxhOFFGaldNcTMzVGdOQ0cyaWFoMTh4WTkxdGRkTzF2NHdDWHpMSlRYVC1wSFNILTdJOVFVWFRSUUQtelRzU0JRaWROakpmWmVocmlkYlFsZzhBSWRjanFCbW9LUHRqU1NkN3dvTWlqZ2hzdw?oc=5",
-          "publisher": "Türkiye Today",
-          "publishedAt": "2026-10-25T08:46:04Z",
+          "id": "580b77608c53c40436ec",
+          "title": "Altius Telecom Infrastructure Trust Estimates – BSE:ALTIUSINVIT",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBCYUtzNWFMakhPMW9ZZ1dwa29kYTVMMUpaQnFMaHl6NDcwRGJ6a094cThNUzA0dF91ekMySG1nbDN6SV81VzBwOEFhUk1XNFczMm53djZWYXdRNjV0Z2Y4X0pVNWdEc0gtbDJXTHIzTnVXYjQtTTUtVFFrR3ZqQQ?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T17:49:30Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "dabbd5bfb782d359a439",
-          "title": "Samsung Galaxy A17 5G drops to £159 at Amazon: Android budget phone with 6 years of updates",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQdU1EQnl5ajY0eDI4UDZYQVpIeEw0a1lNWmEzZXBQNEx4QjlZOVJ0aFpYcXJEdFNleWF1UzlkQUlhclNSckxyWl83Y0cxSmxxQUpiaERfdGF5NVpXdk5GelFZanNWYS1FZGtmZkFBMDFpekJDT2ZBMzV4MEdSSVF2ZUVrbEJSaW04cWZfeGFfcHl3S3QyNlVBUHlUN3FOckRNQ3ZmbktscHc?oc=5",
-          "publisher": "Tech Advisor",
-          "publishedAt": "2026-10-25T08:36:09Z",
+          "id": "67fd4cef19374e628335",
+          "title": "Low Current -Telecom Joint Stock Company Estimates – UPCOM:LTC",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBaVkFsRG9qVzZxU2otWWlpRDZpVVdEeV9IMGxkNERKeUo4WWEza1JhZDFiZW1ZNHhfYk91OC11c2NCa1ZuNU5YT2dZWlAtZWhuTEUyUko3eUtXTi1yWHNQTEhRSUdXRHIyXzluNGRjV2tMaFpZb3c?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T15:40:12Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "459221ca3ede41961d75",
-          "title": "NIT Rourkela's 'GaurdNET' earns recognition at 5G Innovation Hackathon during 10th India Mobile Congress (IMC) 2026",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNSmJRMV96ei1fam1ZVGFvVWRTNW1ubjRmT1hvcWJXNm95WkhCa1ByQjlhRUM4RG5MZ0RiTWZjNnlPejRRYUo5QXhkZ2NMNWN2SHRvQUVKUlFpanpmWGFyalRrallXQzAzTG0xM3V6b2pVREJBMFhfd0RfaTZaQTNuc3VKemJhQ2owMGl2OWtqTElZTVRyNWgzcElEc28tTVNRU094Rnl1LXZFaUNKTy0zM2lvWVZ5cndiQzJhWk80T3U1TGkzbW44N1NoY0pUdmVaYWlwag?oc=5",
-          "publisher": "prameyanews.com",
-          "publishedAt": "2026-10-25T07:54:04Z",
+          "id": "306d21746b6146a1eefa",
+          "title": "Telecom rules alone can't stop online scams, entire ecosystem must act: GSMA chief",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOd0FkNm1rbUJGTHlxX1RKMm1ZeFotVTRVYlljY1c1NUdBenYzY3hvMFdsTVVtX1hWOFVCaExRVm9YaVVyeE5DY0FKQi1tMlFKMkprUmlheFJTNUMycGE3d0lUd0xNUEFaNm1mODQ1VUJpVWJGelpTVUZITUxkazlwSjByLXUtNFNJSDdqQ2hXV0dyNkpqMUtJV2ZHVG1yUzV6Vm5BVVA3eHZNVnhqWG8zSHFzZW1tVjFEci0xaks4ZEF5bnlTbHRSYXRKR3otbGFvMGRzdFVSbm5GcTRIU2Q1Q1g0eG9scjNjVGlPQVJRMUNjZktJS2pFetIB_gFBVV95cUxOM2huN29wel9zZ095OUJiYzU3dG00UUsxRlozdlR1Tjh4d2FWVlFpdVhzVHBwY3QxS29JSUxSX083bXptSnZtVUVlLXhESXFiRDcxck96bDNxUnVKRXdXQ3JHYk9WQUVnNHVXeVlOYUc2al9MZm4xVnBYSXBSdFU1ZGdnX1RGWENpT2UxbGRrVFpiQmZrR0Z0SG9BN3B4WVFuMWgxZTBWTF9kZGJlS1BvcEpreDIyQmRLSWlhRDZXNmgySnRXTHlPTkpKbVZzZDMtbzN4NE1BeklaYXZrVUMyTmdPWTNnV1VqUlpTaTV2VGdNM20tQVpvVzVEUlVDZw?oc=5",
+          "publisher": "The Economic Times",
+          "publishedAt": "2026-10-25T14:20:49Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "b3ee193a12912fc03f49",
+          "title": "Sejong Telecom Inc. Estimates – KRX:036630",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9BVVVCNVIzcW5QNExaS3NESmVwemszR29QQTZScml2YzhkXy1GYVNGYWZiUWV2RWVaaU9ySThJWkxMWUc5QTRPZ3lwclZfd0ZxanJYRmxRalBHY0JNNGVfYXc3cU9zSnlWWUxla1ZKS0dsVDBPeXVB?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-25T13:05:23Z",
           "image": null,
           "sector": "telecom"
         },
@@ -2545,11 +2559,20 @@
           "sector": "telecom"
         },
         {
-          "id": "a7c5c59571b5506ed411",
-          "title": "Jio IPO GMP today: All eyes on telecom major’s mega listing this week. What is grey market signalling?",
-          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPaUljUkY4ZEQ2Q0JrUWdXYjlJMGFqWkRja0JQMVpqOUlkSS02RjFfNm5nODhLQzNPbVZOTmZ2eXptX0FNb09QOHhqY3ZEZ2o3bTFYN2tWOTdaMTZWUlF0VjRxUTFFQXVBU09LbjVMV0RveFg5Q1lGcHAtZHBWSEtqUEJFeG5PS3YzSk1sbzFRQ0NPRFFPVDFCNzNHZW9HbWRONURXM1F5bUtCNTh2a2IwdE5zNHhoUlNQaGhVYUlMQ1V1M0o3Q1dJbVRVQXZzS3ZtdE1xTmtlMWU3dEFUbHFlbTBIWVBkYWpIM1FzSGtkTlk0LXBBTWfSAfsBQVVfeXFMTm5yM1dkZm9XUHNWdHFPOE05MkxsbUNMdEZlclBYVTBRUEg1YzZDLUpHQmhYcEktN0xkX1V4UGZ0U0pOc2c0cnNLZUFKWUt5SE9LVUlsM3VmNTI0RWFuLWRteWNmUzBVTUhQRU5haDhDeW91VVZTQ3RfYXRpYy1RNi00djRuSUhEc1p4eHRMY0FVYVpxWVpnNHJBLXAwLXpWTHB3UkJheGNCRHphcFdENjhjVzJlZG9vcmNvbWlkMFFQX2p1VHNaa1BQblJHdDItbFpzX2dObzlVQ1pUVUNYT1Z3alZlajlrYWM4NnZuckJGaGtwR3d6U29EMGc?oc=5",
-          "publisher": "The Economic Times",
-          "publishedAt": "2026-10-25T04:40:04Z",
+          "id": "4da5a14c25373d9a02d8",
+          "title": "Poco C75 5G vs Realme P1 5G – Compare Specs, Price & Features",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE4yY3FDeE8tNlJ5UHctdjNOREh4VzNiR1B4bjVTZFBDOXlTX1RXTGlIM2NCWm9MZXU1RXJESmhHZjJEWFlLeTk0dXJ3TXVVZ3VCdUFSZEFFSnhBMFFxQ2Q3QVRIS0xDSjY3cmYxZ2o3TQ?oc=5",
+          "publisher": "Beebom Gadgets",
+          "publishedAt": "2026-10-25T03:42:42Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "47a8017c78d3d3b176ea",
+          "title": "Compare Samsung Galaxy S22 Ultra 5G vs. Oppo Find X10 Pro Max",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE4yZjBuOXpCYzJfVUF2STIwSVVoZUJKcmxoZ1dOaVR2RzhRTUxpaFRXNWRVOGtVOGEzeVNWMnluUGtyNTExZkNFZ0tCcW02bzRyWDdsN1djY21QZlB0MGVRUEFNU0tEUWJETXVSem11NDJxcjJQR1E?oc=5",
+          "publisher": "GSMArena.com",
+          "publishedAt": "2026-10-25T01:12:29Z",
           "image": null,
           "sector": "telecom"
         },
@@ -2572,29 +2595,56 @@
           "sector": "telecom"
         },
         {
-          "id": "3c38be0239a7dd0a643b",
-          "title": "New shape of telecom market",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9NOVMyRlhpMlBjNUdpeDB4V2lVQmFuWG9GSjFmZUNTelpwaUstelJuQmlacVVmV1JiZHZWMHdwZWNhdC14b1VqT3FpdGdpU1phQWJxYTZYNDFCZHBjYi0yYy1IUy10OUlGUDdUdHBzRTBWb0VkS3M2TGFoS0J5Zw?oc=5",
-          "publisher": "eKathimerini.com",
-          "publishedAt": "2026-10-24T21:04:35Z",
+          "id": "7613526b6b7eae4373d6",
+          "title": "Compare Oppo Find X10 Pro Max vs. Samsung Galaxy S20 Ultra 5G",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9sVHAxTnVaY3N5eVlmOWl6ZmRpWFNlU0NiNU9MSFhnSlZYb3dNZE9wQl9EUDFweGRJX3BOS2FmWUFXQUZFX2tJeVFudVJ5NXVVQ0pVd2JaWVpHTzhhUWxxYnd6UE5DN3JkWTkxbmxUM0Z4eGg5ZkE?oc=5",
+          "publisher": "GSMArena.com",
+          "publishedAt": "2026-10-25T00:08:24Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "ffe83d13ddaa96ac32f7",
-          "title": "Jio Platforms Reaches Fourfold Bookings in $3.2 Billion Mumbai Offering",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQV1ZWR3dicmsySHFwbHhRWnA2dEx1eThQUFRZVXltU2lUVFRURDNyU3VRaVpxajhzLXVMYXVZLTZTQTY3ckNLd0Y1QWoyRl9uT0J0M0ZBc3E3OGZnSWtLYkx1V3N4N1B4V3NQZlM1V0JlbEZneUZKOTdSeUJkVWN0UnlZclRNZThKYTRFNUY1b2ZsUEk1MC1ZRUlB?oc=5",
-          "publisher": "Retail News Asia",
-          "publishedAt": "2026-10-24T12:07:20Z",
+          "id": "70ce131c4f585aa3ee45",
+          "title": "UK Consortium Secures £3.1m for Integrated Private 5G Solution",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYlJwT2dLeUEwTy11ZUpLVWI2LXpyUTEzZ01ZVUpQeW5IWnFtUXlwelBidlZKWkFERlVMTV96d2w2VkpaZDlwYWxhX0dsR2x2ZGF2VXJOTTNjUHFDa0YzbkQtblo3b0lnbDNlWThsd2s2MDZUUE1OOHdXWENteEFjTmtmY1E2YUVlSWdpNW11dGNXOElRMXp2X1h5VmYtVlBCeGlrMkdjX01mcTdpdlE?oc=5",
+          "publisher": "The Fast Mode",
+          "publishedAt": "2026-10-24T21:56:57Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "943986b91456adfbec52",
-          "title": "'It's not something that gets done overnight': SpaceX's telecom ambitions will be hard-won, CEOs and analysts say",
-          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNM1FKRmdWRVNBWUVGTTBXM3ROQk5kamlLT1F4bGpST1k0cnFlZW1BQnllSTl4a0k5TDdELWZNd0hHaUxRWV9UVlVoVTJxUGZSM1pyUHVLU1hiT2VoU0hqQnBHRzZ5aWF4cVdlMHRGdkxsbm1rWlp1VWRSUEhwZEpDMEhWVHhPSW5ubW5wOXhYQ0t6WEVMcHg1THIzTHc5bEpOTlo0OVlBY3MxeFFxM0hYMFU3LTByZFg0TjU5RW5rbVotcFFsSDlIOTdYRU5xaDZUVTZFYXRBTXZINS1rREhBQzIyLXhZd2JYMEtkTWtxd1VuY1RmQTVWMFVnZUtsb255?oc=5",
-          "publisher": "Yahoo Finance",
-          "publishedAt": "2026-10-24T12:03:48Z",
+          "id": "48d9e23931bcef61929e",
+          "title": "Rama Telecom Limited Estimates – NSE:RTL",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9aTEMyQ2dNdEpCbU81R2RIS29kMk5tYTJCQlF4ZWxyVGF2M284cTBWU1hXcno0b3ZCeERKRGU3bG13aHFWRGdHY3RGa1lIUTh5UGxaTHdoMEQtZ2J3NnZZbDRmMGQzMEVId2lOQWxCVnNVQnc?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T20:35:22Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "188da574a3bbfa0be567",
+          "title": "Sri Lanka Telecom Plc Estimates – CSELK:SLTL.N0000",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB4Y1dsRDdKdXdoaDRxTnp2c05fVFNHSlBaTnNSY0JNSHhKNHFFVXp6d0NSa2lQbGZXVV9MSmQ4aUY4WlpWUnE3NzUwUGh4RlFDUEpQZXltSEdjeU5kUi1feThqZ0Nha1NBcUdPc2l4WmVPZ1ZvNHhGalZNUDBIMzQ?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T14:32:55Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "4719913890a4bc51e258",
+          "title": "5G Networks Limited Estimates – ASX:5GN",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPWUFLUWhlRnRDdlQwRDUwaDQ2dlQ4Q0R2VldYalIzNEF2MWctN0xQQ2pORVE2dWtNX216TGhnM2s1QnpoRV9OXzROTHFNRUxTTTVQMEhPT1FtRnVRb2lzS3g0SjVJR0J2Y3ByWGxwaGFqaUQ3eTZpZzg5OG1iLUpqUFlhbjdEMm94d2NtdHJLaEpIZw?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T10:37:53Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "ccd9edab3f6cc3d52d84",
+          "title": "Saudi Telecom Co. Estimates – TADAWUL:7010",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1mcmFsbkxiTFVHZTZKbS16R2VXQ0VFaWRrOE5XdjlnVnpLclBqNVZaV2pTMi00TmwwR25aMnAyTHlER3BhcGdlVlFfN3QwaWo0Z3pPWjUxekJ6WlJBM0ZnRWZFclpRc2VURmRTU0ZzeDhKRVhYNk1BaTVR?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T10:13:41Z",
           "image": null,
           "sector": "telecom"
         },
@@ -2617,11 +2667,65 @@
           "sector": "telecom"
         },
         {
-          "id": "d2bdc15f54cdd7d8c6ee",
-          "title": "NVIDIA B300 China Telecom: 32 GPUs Spotted [2026]",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5TMGVIaTZWdkhvdVE4Q0RZTEk3cnZZblFMWFhVTmQ4OXZSam53YWpCdVk5YUNMTU1GUlZGVWQwVjJpOUNNdjc2VUlWRnd6enRsbUZaWENqN2FFeWQ1U1U4NFNfYWlTQ0lnQjhTcDE0Rk5RanhhM1VrR1g1U0M?oc=5",
-          "publisher": "https://tech-insider.org/",
-          "publishedAt": "2026-10-24T04:08:07Z",
+          "id": "423b106d8d9596c44b52",
+          "title": "Telecom Digital Holdings Ltd Estimates – HKEX:6033",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9iamVzT1FUbnliT1JsOWVXLUh3ZDlQR2pxRVVnY0x6VlBNdWk3SzdPUDZhRngyNndlaGp5SjFjNUZtRlJ6cEhueHZJQlRxb3c0dmt2VnYzaUlzd1RyVVQ2TlVfSC1MMXUxdkJiSm9aTXo3N2pOMVE?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T03:03:01Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "86d953c3b700e9596daa",
+          "title": "5G SA adoption lags, Bharti Airtel deploying RedCap, says GSA: Report",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOemdxWDFvcy1xU0ZIWGl5UnR0TmZBbGVpQlZYUWlDa3lIejZUakZIejZCbEg3VXNuQWhPSWFhOWNNOWtvYWNiMHRyMXJUWDZIMGdocGFSWlFoZFlYRHBHenUtWFVuek9tZ1BvU19ZRWRRbHkwbkpMcnl4RDR6OExOLXF5WS1NaFJyRDlXUzJ0RDVXY3pPSTBSM3hkTGFkd29yUXpOY2JmUVVRdG44aXJJRjZIWE5XVnlTbThrVzV2QzhzU3ZQeklPZ0JxOUFMTnVq0gHWAUFVX3lxTE5pWktCVlgxaVYyZlBVbUpaWG5zaWhQRjJreDU2ZjRrMndBOU1fVXpnOUdrUUF0MHhDdkVrTjFsd1BkOUFtMkhvNEF0dlNKXzRjZ0w0S3Fwd196dWZwU2FqVVFkR1ZPWVpLMEpvNHRnNDk5WDB6bGplQ1JrY2x4c3k1OFMtalRMMUg0U3Y5YkVYbGZEWlZOb3ZOamhOZHFYWElaV01kbVFsTjB1UTFlQ3VFQVBSRjBOdFlJdGhsSUxnT28zMy0yVGhNa0pGbk93ZmNVelFZN3c?oc=5",
+          "publisher": "ET Telecom",
+          "publishedAt": "2026-10-24T02:45:15Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "a1b15dd6303274035d19",
+          "title": "Ericsson Canada and ÉTS Partner to Develop Scalable Variational Quantum Algorithms for Telecom Network Optimization",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQQk4tc2VtTHEtRUl1M2YxM3hUSFBwOXNTMWRMQWlPR2VKV3NpcE9WWFBmOWZnbzRMMENvUDNpZXNZb2dyWHlXYnBSaF9rTFZRZk5CQl9GSzdyQWg1TktKUTdNbXZMMDhqVzByR3FTUFpmVVJSS2p6dkxBbWdOSzg1bHdQdFEtRXlMd2puSXV3eG9nUjM1Y3Q4dDc2NWt4ODRhQVZLQ0xuZnQtV0ZFUDNLczBiRmRZaFd4dGJncDhJZkIzTVF1V2YzWk9kbVA0WVYxcWVuWjZwYnZjU0V2ZnVtb0tQbG9Xd9IB6wFBVV95cUxPSjZvRi1wdm9mT1kxTGYzS1V0MlJvekEwM1U4T3Z2LTA3MTE3T3p6R3RpVWlHRUNZTE9MM0VJT0FnT25wZzZpM0cySzc3cmF3cVhxZXNrczRnLUJGTmhTV3NTbTNSdnJ5a3JiUlBtSUxCQXgyVmljTVdtZWw3Sk9jUkJ1XzcwaU05dEc1X2ttczVLT2FETVN6U2RwMGZ6ekRMRVFiRmxoTmZBWnNpcnlDQ29QVDNwMnlWcE4tQjR4UzV4aGpuYzUxMnlsMExES2I2OEw2VmNjaXpiMVhNdjBUWmQtMTlPbURKNEI4?oc=5",
+          "publisher": "Quantum Computing Report",
+          "publishedAt": "2026-10-24T02:43:26Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "889d4903a0dcc97ca7eb",
+          "title": "Sichuan Tianyi Comheart Telecom Co., Ltd. Class A Estimates – SZSE:300504",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE02RWQxV2tYWWlQZE9ZcHhQekU4d3YwWHRrNlFMZWQzbm5DbVcwa2lROFpCR2tLVHB0Xy02b0pzWGo5YVVXbTVPM25MNGQtYU5rdG9IMGtBWjFDVVZaV2hBWktXWVNIMjByeXVqYS15YXBBekROcDU5UQ?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T02:26:11Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "d4df518021587aa2109f",
+          "title": "Cellnex Telecom S.A. Estimates – BME:CLNX",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBYZml1YlBIZ2pPaFc1YlQ0S3hHTGpZalZSblhVOW1XS3VyUHkxNkFseGlYVUtpV1FjSDJPMko4b0ZDdHdiWHZHa3RUUlFERk5uNlY4TFlhbEV1aEJDX043VzZUeWJYUTdxV18tM3VUaHFpOGdt?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T02:04:45Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "05dfb7ff16a49d06dae3",
+          "title": "Mehul Telecom Limited Estimates – BSE:MTL",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE50dUNkdDdTek5FUWU5dUZTWTNYN05iVzd6djlmalVlYmM1Y2I3aVRld00yZktTS0tLX0tiRWIxVHpKc3FyMWxaZ1NrWnJubEptaGN3ZjJ1enZsdXpfRXR2MjNlWVJWMnR0b2RmX0tmcDU4ems?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T01:23:08Z",
+          "image": null,
+          "sector": "telecom"
+        },
+        {
+          "id": "d5231a3d9ee3869ae625",
+          "title": "PT XLSMART Telecom Sejahtera Tbk Estimates – DUS:E5F",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBtaUVJcUtUaFJaVDEyakhiRkNTM2RweGZiZ1h5YzJ5MW03bERPWHRuQmhzbUczZDJxUnpLTTRpa3drWXkzei1QR21aWFVXVWR5UXhSTlZNNEVhWW1aQnBsYXNvTU1veExLVFVVYUQ1VXJlZjg?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-24T01:17:43Z",
           "image": null,
           "sector": "telecom"
         },
@@ -2635,38 +2739,11 @@
           "sector": "telecom"
         },
         {
-          "id": "36dbe8b0482b54e47334",
-          "title": "Starlink Vs. 5G Home Internet: The Cheaper One Might Actually Be Faster",
-          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFB6T2VSTm1tNGxUSHlRakFYU3FhR0VPYWR2aUllRWNZOFZVNURsS0tiVHpKNHJJS2ZaMlRKOWx6TTYzSGNJaGZEX1luQ2xmVy1jLVJRQTg1RzFCU3dQUndoNFhZNFlCd25lb3A2a3BRMkl0QXUwaS1ZZEFQemU?oc=5",
-          "publisher": "BGR",
-          "publishedAt": "2026-10-23T21:32:00Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "280406beef90048c7184",
-          "title": "The mobile ambitions of SpaceX are hitting telecom stocks again. Here’s what the latest developments mean.",
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQSVU5OHZWNDBTRE40bzRMTnpYS3NrMlRkSWJmNDE3NWQwQk52N3BfLWpSU2xjWUh0cGtOVmphNm85V2hCY3pDNV9wTXk1Sktrc0xVdFhOSm12UGo5b21weElPVWZCUDdLYnEzbTU0QWZlTjRidVFiNVNmNkJoTkZHLTdGaGJlcjUzYVhUbzUxazYxdVhOYTdmeUVibnFWSzZ4VWhtU2pvWlJjd20xMWNhejNRNVl6bnp0LTZkczcxQ3h0OXRKeEZhdDYxZVR4TEV5RUtGLUZ4RQ?oc=5",
-          "publisher": "MarketWatch",
-          "publishedAt": "2026-10-23T21:11:00Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "6f87234c39b140a71772",
-          "title": "Watch SpaceX Shakes Up Telecom Stocks | Closing Bell",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMHA5UkNBdElzSU9vNVJWVUZ4eGlpTGhuWUdtS29HalJ6S2p1bWdSVG5EeWxFN3gzMlVlUlM0MXhBZ3NhT2ZxcFZkdjhhMVVHXzNqTWhLNXZjSm1MNnVSUjVYY0ltRXlOV0pjVWVBbjdQaEU3MFFGYjdXd29tOGVVU0lvMnNwVms5TVdiU2ZvN3NRUTRPU1AtWENtYTFMc3lq?oc=5",
-          "publisher": "Bloomberg",
-          "publishedAt": "2026-10-23T20:27:15Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "d271e70a86813afcb008",
-          "title": "A Veteran of the Telecom Bust Navigates the AI Boom",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNN3JKcms5UjVjeV93TWhFU29SaHUzU2pRUVdvOTFWVnhqYjBJenBUY1BKWlM5RnlJbFF6TkZnM3BhUnZ6alVhY1dPbWtoN1AzVUpRSC1pWDBuTF9OWXh4dVFBYlpMcl92SGZSN0JjWTMxXzdtSHhOeTl3Q3dtMDNQV1diTEJ0SWNnb2ZvMHR2RldHa0J6SEdn?oc=5",
-          "publisher": "WSJ",
-          "publishedAt": "2026-10-23T19:23:00Z",
+          "id": "b527f250bcd1087c1d2a",
+          "title": "Avenir Telecom SA Estimates – MUN:AW5",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1hdmlqeWtlOTNLeWJ2cmRjdm11QUNFd1RhSmUxNmZPMDNVUE9GeEVmZTRtTnQ4elpCUjFmOG91cEJjeG5zQzBUZXh6Q0JaTUgwZFhZYVExY2Z1VVpXOVFfZmc4NkFIdnRCUHQzRDB4cWpJT3c?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-23T21:32:52Z",
           "image": null,
           "sector": "telecom"
         },
@@ -2680,92 +2757,20 @@
           "sector": "telecom"
         },
         {
-          "id": "240371ccc06a8629a946",
-          "title": "US telecom operators wobble after report SpaceX in talks for cell sites By Reuters",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOQXZ0SzYtQ1pJMHZxR2doa1hzeDI2SmQ3NkVYTTJIUGVnZmNkNGx3WmVINUdRSVgtcDFFYlhYY09yelg1U1gwcmhFbE9RWHNYOVo1OGZvWnIyeFNWSmxiNzVZaDJBNkRheGg5VnNqU0g4eDVkVWlHYjlNdXdZM0tTbUo0QkRkb1o5YWR4WEZBblZDNnJUR3MxbjdycXdZNTdkdmFwNVpHSlNXMlQ5QWJIR0lsM0NLNzJ6MW52aUh3QXN0NXpqLUZv?oc=5",
-          "publisher": "Investing.com",
-          "publishedAt": "2026-10-23T17:02:11Z",
+          "id": "0cd5976ec3a96fe52dfe",
+          "title": "Top telecom shares to buy: Bharti Airtel, Vodafone Idea, Indus Towers by Ambit Capital with new stock target price",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQSUY4WENOWG5tVjBfYWVHZWFwQ2cweDJzMFBCYXNYTFI1VFFtNW5ham84T3dtQm9QczJlRGlKR29IWEJ4SWxkTFNISGZWcnRHRDRXc1IyTC1VTjlKY2NuazBBWWVkSlpFTUJOa3BLQVp3LVlDWkZKQ1pIOXB4NE5IS3hnekFKSTRDM3lWREJaWWpQYVVRWTZIbHJfVEIxV0VpMzFqRzlkbHRyTGVTZkw4cFZYRk9hRkplLWxYUTFJekJ6dFhCbUR6a0NLclFJbGowcGJ6Q0JpWHVIUGo0cXN5RzgzMURKb0dHN0NJekNFM09IbWdqV2NwZk9iY1I?oc=5",
+          "publisher": "TradingView",
+          "publishedAt": "2026-10-23T17:46:15Z",
           "image": null,
           "sector": "telecom"
         },
         {
-          "id": "b8d7420947695628a986",
-          "title": "US telecom operators wobble after report SpaceX in talks for cell sites",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNRl9aOXcyWXhEc3FKR0VIU0Y4NGg3eTlrYWg0N3VIMVJIejJ5N1V3U3RRQllVV1NOaEJ2a2FNcEExNHQ2ZzlOY1NJWFhNR1hVN2F6anR5MjZsRWRpWHBVVXAwOEZ1LUdzbWJCb2RTX0hIaVVodlFKUDhxX0FQT0hlTHB2SEZzRTl2ak1nLXFtNHJnQ0FlRU1wYkNvdXcyc1NvMi1YcVRpc2VRUUVxYjkwakVEMUZOME1yTjFja2JpRTI?oc=5",
-          "publisher": "Reuters",
-          "publishedAt": "2026-10-23T16:36:41Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "ed566958c6b9ebdb2c39",
-          "title": "Japanese telecom firm sorry over huge Mongolia wildfire",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZGNmN3h6bjAxSUF2Q2I3YjQ0a3prWmtOVHdRWmRSYWJwWHoyTjZfRGxZTEtETjNJRHZucE96S0hGcWh6U0FaOEpQNFdSVTNWWVlmUDRobmhvUWFPcVZQQkllRlJtSXNBZ2U5VGwwOHhCYWc5N082N1lBZU14dkJoZFdobXhYckhhOGc?oc=5",
-          "publisher": "Macau Business",
-          "publishedAt": "2026-10-23T16:26:56Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "017dfeb05cd04b403473",
-          "title": "AT&T, T-Mobile tighten AI guardrails as autonomous networks remain years away",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTnJxMlJVRDdVNzdiREI2czZJbktFVDI2LXY0RkYzeUh5bmFGLUN0aDhpNU02S3E2dmJtUm5LMU5SdGpQdE51MzhjZEdXM19QaFJNVDBMX2ZqODN5OTVITUc5SGRmM04tSUotUlh0ZHl0UXpkeFhfQU5rWWRWdXNsM296Nmx4RFV2Mkl5UDU0NW12N1VSeU9IVEYzeGY0Q2EyV1VublBFRXNIVTZPVGR3Z2M5R1gyNlYwMVZ3aEdGSzZUdkk?oc=5",
-          "publisher": "Reuters",
-          "publishedAt": "2026-10-23T16:19:44Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "beb85f67515eaeb43028",
-          "title": "New Libyan telecom firm to launch data center in 2027",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNRmh1OTZQbGtmNjRPSldLNE82bnd0Y3RiNzVjNzg1aEd6dUoyQ05FdnhpZFNkWFFXZUl6djBYUkNENGN0TDNUaVBaVmhmaEl5THpqUFhWMEtnVTROdGxBcHNaUjJ2NGtmbzNKblVsdnpOTXF6b3VZUS1Yb1JlWFZqOV9pVFlxZFZRM1RGRkE5M1JrSlJHcExkcnJLREVJQQ?oc=5",
-          "publisher": "Data Center Dynamics",
-          "publishedAt": "2026-10-23T16:12:51Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "a956af8fb8298df8df17",
-          "title": "OnePlus 16 India Launch: Top 3 Reasons Why You Should Wait",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcC1nMlA3WHdCTjlIdlgyaWdCOTRsRzVXYWFyUUxfQlZadVltMXBtaWZnUEF5TUEwV1B5NnNCQnpGczZqY0RMdjhnbUFPaDZHdXlNdEFRWkwtWVdiV1BBV3ZJNTR2alMwUFFnSjUza0RMN2FsXzZjTWszdmlCMmdqRWhacnF0SXlTS3lwME43TW0?oc=5",
-          "publisher": "TelecomTalk",
-          "publishedAt": "2026-10-23T15:56:31Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "852a569f9d621ef2a51a",
-          "title": "The Five Nine: How AT&T and GSMA are building AI for telecom networks",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOUmplbFBlUFJVNWZWWE5COFlzNGhVMGhLQUhxLTdHQ3lUQkMzSjhPWkt4MjZBdGhNX1JWbDFPYXAzeDZ6SkhEdXVfTVU5elk3N1VuMWg2d1BkY3QyUkQyQ3hZMk5LYl82UGVmTjRGdnFLU2Y0SktmTzdVM0VHZlJMRnpkb3BBYnRSV0VyRjdJalltSm80UUZTQlJmZUh6ckZv?oc=5",
-          "publisher": "Fierce Network",
-          "publishedAt": "2026-10-23T15:37:00Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "7b568d836d817b7b9c1f",
-          "title": "The Standalone Fifth-Generation (5G) Network Market Is Projected to Grow at a 56.2% CAGR Through 2030",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOb2FKT0psRlJ4T25yMjFSeEFQb29yTTdTakJVWTR6eFBnNFlLV2tUR2pjZmVBRmJPb005TFJ1ZDIzc1J0VUpQWnhwYW94S1RKMnc2QU1maGZkdjRBT1UwOUlKNy0tNzl2NGx3b0doQXdZcWpCTlBRdEl1VEhtZDVBYXdxU19EcmhfVGczUFJyYnZ4VEVCNV9TM01UOWpBNVA3eUtGREcwdHc3d0tXWFdtQ2p4d0RUTUVfR09fNlZPckc4TXJBeElvS21CVGxoVzFsa1ZzTExUYTEzU2RfT0E?oc=5",
-          "publisher": "EIN Presswire",
-          "publishedAt": "2026-10-23T15:00:00Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "d5ec19c1c6a7ea47faf1",
-          "title": "5 Telecom Stocks That Can Survive the Musk Threat—and 1 Reason to Buy SpaceX",
-          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOR3U2ZkkxX2RGY1p4aEg0ZTVNWkNWUXdGSXNLQ25KaUZjcldVbU9PdExpSXdxcVlFYzNZRF8wRzlfb0Vsb2JRdERpcW80RkdhU2NJMVBCZG5ZdEd5b2o1XzhjMXVOTTFNMi1meXdTY2JtWDQtbXlLY3JCYmZkOE54czZBZVpURFE?oc=5",
-          "publisher": "Barron's",
-          "publishedAt": "2026-10-23T14:48:00Z",
-          "image": null,
-          "sector": "telecom"
-        },
-        {
-          "id": "0ed4dc39d2d48eecbfe7",
-          "title": "AT&T and Telecom Stocks Tumble as Musk Muscles In",
-          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPeWRuQk5fMUpGNC1oSGdHcFdnSWtHMVJzRDZWZTJTblpwdXZoWFlZVmsxVU0xRzl1TTN3a2EtRVoxeG5kRzR3SWljdWp6Y01RaHZmZGlHMmNKU1hCdXY5dGoyMWtaeVc3Z3prVVVrSXNZQ2dkMzJVLWhYcDgxV3RTZkJBWQ?oc=5",
-          "publisher": "Barron's",
-          "publishedAt": "2026-10-23T14:25:00Z",
+          "id": "6b7371f84707c9eb0e7f",
+          "title": "Mexico Advances Industrial 5G, Tech Talent: The Week in Tech",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQRTNBV3g3WGdpM0NjaFBnSDBvVXBnWjNOWkpTNk1tZ0lvR2FjN0tnWnJsRVF5NjJ1bG9ZWlR4ZmEtZjVEMVlXeUdpaGtBcE81UjN2ZURiN3AxY2UxNktkOWR0QmUteC1jQkN6YVk2VEtMTU5VenJJcjZzZm1MRGQyOFJxV1hOQlRpYnUyU2VMTlZTZUE?oc=5",
+          "publisher": "Mexico Business News",
+          "publishedAt": "2026-10-23T17:26:59Z",
           "image": null,
           "sector": "telecom"
         }
@@ -2773,15 +2778,42 @@
       "errors": []
     },
     "crypto": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
-          "id": "fe6ea09bdd79e5938c87",
-          "title": "Bitcoin Analysis: BTC Slipped Below $80,000 Again. Is $77,600 the Next Stop?",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQLXFPRFZTWWlraFpwdHo4ZEF1NjdBYXZuODFING9XUFh4ekpSMkxtbndLcGpfcWg3NVdEQXhxdkZ5d25tWEtXT0hqMXVaekZmcjBGbEVVdW1Hanh6eW9NdmMydlp2c1ZVUExXOVdVZ2syUEwxenRod3BLc2VTbVp0azBpdGJlbmNkR1B4S1dyUTVuWW44RnJXZk5XQ25sR0FMUmJ2Y2JSYnZOQlh4cHdfQ09ZOE15SkRnNElKZjVvWE9GZkJzQVJj?oc=5",
+          "id": "5dffe34724ed2df50a5e",
+          "title": "Bitcoin Is Down 3% in October and Ethereum 12%. Which Should a First-Time Buyer Pick?",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOZ0pvOE9HMy04NTRHMnlKdHBwS3VSdjR5aHRxUVlxc2d1QnVzYnBvekJVNVFHUVJGMXNsaktVRGZ5ZWluVTc2cW5oQlRTS210MEF3TF9WSGZqUjVBdmdQVGI5SXhDZE9kWHdMRzBKb1lBUmN3WlhFTGFzeWVIU0M2MTd0Uk4ySm1UTk5sTzkwb0o5MzZkSjEyMmQzTGUyRFRNMk9sQ05qQzczZ3J1S09hMDA3Tk9WcVQtRHc2RGFadlloMTFYZ09BS202M0hjbjBTaXhGTnFMZw?oc=5",
           "publisher": "24/7 Wall St.",
-          "publishedAt": "2026-10-25T16:34:37Z",
+          "publishedAt": "2026-10-25T19:02:37Z",
+          "image": null,
+          "sector": "crypto"
+        },
+        {
+          "id": "e3239ea8f013ebd14fe0",
+          "title": "JPMorgan Has Nearly $900 Million in Tokenized Funds on Ethereum and Solana. Which Chain Benefits More?",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOZDU2amNrM09INFZtb0pRUXNOQkV1c29IRmdDNGNHdzlFd1BaZE8yWERqZ1pjeVFmSFE2R3NVeFQtbkJiSkVrVE5Ec0JTbkM2OVhjZDF4X3VfWlV0cHpKejBJMkVyS0dQTHBvWUtkVFU5bDlMbGNaNlJ4S2MxX3dyUVV0MUdJaDZmeGVUdEQwQ3haMG1lWHVHcGF0QnA3Ynl3aUw0Qg?oc=5",
+          "publisher": "Yahoo Finance",
+          "publishedAt": "2026-10-25T18:30:43Z",
+          "image": null,
+          "sector": "crypto"
+        },
+        {
+          "id": "05a23ef52fb62a3e61ee",
+          "title": "Bitcoin Analysis: BTC Slipped Below $80,000 Again. Is $77,600 the Next Stop?",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUldzQTQycWptZDdQUVJrcVJLckw1cWNlTUtZQTgtREY3SVVmQzZaXy1IeTF6RG1sTGlQc0xMcWJpZXFIZDlONVFBb1NPbWF4QVd6dkxNQ1oxR0VyVWxreE5uQWEzUTVBbm0xTWJJZ1VmM1BSczIyTkFsNnZhcW1mQndGbDMzV1BNOHB1eTNRNnpfUDctTTRDcXAzc21OUExm?oc=5",
+          "publisher": "Yahoo Finance",
+          "publishedAt": "2026-10-25T16:32:07Z",
+          "image": null,
+          "sector": "crypto"
+        },
+        {
+          "id": "5453824899a5dd8a6103",
+          "title": "Netanyahu faces backlash over plan to use crypto to bypass potential sanctions",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOOGZEX0wxY1BrT3JvWU5QaVp1VldCdjdIVF9hYlRvLTNvc3JTNW1DaTlkQW9oTGd6Yl9icmNSMFNud0l0MzdiZVpielhSeUJqRGNrMlE0ZUppUVhtQVJEc1drcmwwNDRXcldaNTF2WHNyelBfR1ExUXAyRS1YN2VEbkhOV05YNDVOSGVZenVqTUNXX2owakpNZTIweS1zcEwtNWhjN0pOXzVwTkhRRTZVX1g5aXMtREQ0aGJ5Szhtb9IBxAFBVV95cUxPS1JzMlFvQ3pZNTI5bTVYRUV1U25oSVdOMWZaN2NTUVAwMFg3VEFqYmMzRy1oT1g3Z1FZcUxaT3ZBb3diLWFvQV90VmEwLV9wbWZNMkpPVDl6WHBTOHVMQTFKZl8zdjd1cnJVOTVjTGthUXdrNXVIcEdoVkQ1V1JLUVFKYVVrUEpxOVlsYU1yWXc0R2pjYmFSU0FKNE9NRW8tRWhwTVNkU2JSR0dxcV9zbjh1TmNKWlFOVENXM0lMTTNHSlot?oc=5",
+          "publisher": "India Today",
+          "publishedAt": "2026-10-25T16:09:36Z",
           "image": null,
           "sector": "crypto"
         },
@@ -2867,11 +2899,11 @@
           "sector": "crypto"
         },
         {
-          "id": "315c8e4d3b05647fb2ac",
+          "id": "ca6a517d0319c0e98f33",
           "title": "Bitcoin price today: BTC recovers to $80,800 ahead of Fed meeting",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMmdYNDJsOFg1WUhzV3RhODJLZjdERmFuOFFOUHZHY3Y4QldldWh5NUIzOThRRDRrT1NJMlpfTUxfRHVOT2VSSWlPUkhZWXBuV0NhWXNjYTdmdFNpaVE1bWlUeTFnS0gyMGZrM0Y4Mkg3U0VjZ210U3NpdnhjT1lpakx4eEppTG5C?oc=5",
-          "publisher": "Yahoo Finance Singapore",
-          "publishedAt": "2026-10-25T05:24:00Z",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNU1VXTlI3TmVYNmt3YWRmTDRXXzFkNXJjWWZLRDFPLXhZYTF0RDBhcTBVcUpDRUpMcnBpbzVoTi1xN1dBYk9QNzhTS0w0X3ZaYW15Zy1FbFhOQWpaRTRCVmpGWVBZXzBGb05IYVJoVmJkY3g1ejN6eW1qRGtNVzZCSmdPbXM2RUZzYzlGandSdEkxV1daZVZ1NHJxQmpQZw?oc=5",
+          "publisher": "Yahoo Finance",
+          "publishedAt": "2026-10-25T05:24:18Z",
           "image": null,
           "sector": "crypto"
         },
@@ -2881,6 +2913,15 @@
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNa2pUb1VaQThvM3RscnZLWU93d0ZQSkttNnVLTmhzWUlzSmZ4SVV4Y1hPQlNfNXVySVkxelh5LV9TVnhkUU1uZEQ3TUluYWMwc0xCWDJVVVUyXzdvUUp1aDR5YkJTdnpfSTVtYklTNmRPSVlIU0pwQ3V0bVZCajJuVEEzcEhLWUxmRnhkSVZpTktFVURRM3dEd2luNFFOM3BKQnNqZER0UEt5WlVUSVBab0w5OVJoa3hqOWd0ZUNWcUhGUUtUSnB6ZXJ5STFWVkU?oc=5",
           "publisher": "CoinDesk",
           "publishedAt": "2026-10-24T17:50:02Z",
+          "image": null,
+          "sector": "crypto"
+        },
+        {
+          "id": "7e65fa80c655c0898c5f",
+          "title": "Inflation Is Running Hotter Than Expected. That Could Be Bullish for Bitcoin.",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQX0lBTW5NUUdGY2FiaWF4WFNHMFJsdUdwM1cxdTJ0c1hmZENqa3BtNXAxWEE3bWxkVE45X0F6NHJUN1FwOU9abWN3VjdxaHcwdU1oUUM5YXBHN2drcGwtRV9vZDktN3djLWRjc2pES21BaGhwN2Z1ZkQ2V0tDUDcyM25HYU1XcjFlS01vcmpkV1VkN2xkTWJXclJjWG5YZkVmbkRXTHdzVQ?oc=5",
+          "publisher": "Yahoo Finance",
+          "publishedAt": "2026-10-24T17:28:00Z",
           "image": null,
           "sector": "crypto"
         },
@@ -3009,48 +3050,12 @@
           "publishedAt": "2026-10-24T12:00:00Z",
           "image": "https://cdn.sanity.io/images/s3y3vcno/production/cb2a91ec8eda764f9a0f74f30550a6a716563fda-2517x1416.jpg?fm=jpg&w=800&h=450&crop=focalpoint&fit=clip",
           "sector": "crypto"
-        },
-        {
-          "id": "1f618ee318ed8b2cbe67",
-          "title": "Ethereum Co-Founder Joseph Lubin Predicts the Merger of AI and Crypto. Here's the Most Likely Scenario for Ethereum.",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNNlZramFRZjBYZzk3dlBJeERnNlNZVUZGYkt3M19NYTEtcnFHc242QTlkVVhpRm1VLU9Gc19TYzRhYUg3VWdIYm9NYXc2b0RhSmZSenFwVk8xa012aTNLeTRoZmV6RWNtY0YzVUlkWU5OYlVLQ2thdERlR0hzZTBIdlRBamphOUVuYkRvZnJMTHRmdDUxTkhmTGFnekVfUQ?oc=5",
-          "publisher": "Yahoo Finance",
-          "publishedAt": "2026-10-24T11:42:00Z",
-          "image": null,
-          "sector": "crypto"
-        },
-        {
-          "id": "beaa7cfa15d56f6843de",
-          "title": "Bitcoin ‘Going To Zero’—Sudden Shock Flip Sparks Imminent Price Crash Fears",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPR2RMVU11Wll4Q2RwVzVXT0lKNUJRSVFLUFVSTndSSWo0WnJNTVpMa2N3RXoxSFhUTzJIUThLMzh6WHNHSW9VazRRalFKWHpzVDkxVk84T2NmZktpUUg3LWVoOE9iMWtreFN3bTRDYUZMcGJJZlNLRkFBZDNDVjBJdnNTWDIwQmVjLTg5WEhRVHEydlBDaDBKTVpnNU1CSVpvWDdoYjB4UGI4MnNwN0d6ZFZZYjNVeUFnOHVTSUZrSDhuU1o5dDlYSA?oc=5",
-          "publisher": "Forbes",
-          "publishedAt": "2026-10-24T11:30:36Z",
-          "image": null,
-          "sector": "crypto"
-        },
-        {
-          "id": "d6ead35d8032abcb137a",
-          "title": "Bitcoin Faces Make-or-Break Weekend as Market Crash Fears Grow",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTkUwU1JWR212NHV1M0loaUpEcnloQmJnVGlvWTV6MUxwR3VFdEFlcGVvOVFIelR4cXlBLUt5c2xlaFp6N1Z3WDVILWdzYVhteXpxN3lydUJvV0pXZjJpZklIaU1ZZGlUM2Iwd2FyMUExQzVzWEV3SFZ2ODFydHBpWXFfY2xUQ1BvbktlTkFya19jZ2lqNkhIaW9obW80R0ND?oc=5",
-          "publisher": "Yahoo Finance",
-          "publishedAt": "2026-10-24T11:05:45Z",
-          "image": null,
-          "sector": "crypto"
-        },
-        {
-          "id": "13c34916d16d1290a20f",
-          "title": "What Happened to Uptober? Bitcoin May Be Down in October, But Here Are 3 Reasons to Remain Bullish on BTC.",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPTlVxTVlUTjRqR3Nha3o3MS1lN25xRjE1Yl9LRmU1UXQ1dHlIV1BkanNmYUJ2WXlDWHNIdmtTS1lWeUdUTkkyNzFhZkUzS29KZnlMaHRmbm85a0ZXWFp5VGxqTzg4QWtUdTU3OUNUZVF4MUZfM3JjSW4xNVFCNTVOeG8zdkR1OEYtZkd1LTd0QVoyZ3FVN2ExQXlBek5kbjA?oc=5",
-          "publisher": "Yahoo Finance",
-          "publishedAt": "2026-10-24T10:32:00Z",
-          "image": null,
-          "sector": "crypto"
         }
       ],
       "errors": []
     },
     "bollywood": {
-      "lastSuccessAt": "2026-10-25T17:51:43Z",
+      "lastSuccessAt": "2026-10-25T20:48:38Z",
       "status": "ok",
       "articles": [
         {
@@ -3135,6 +3140,15 @@
           "sector": "bollywood"
         },
         {
+          "id": "eba08960c6b123bd4ebc",
+          "title": "Shriram Nene On Being Known As Madhuri Dixit's Husband: \"I Am Not Living On Someone Else's Coattails\"",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNVUZTVjdiQnFydGRmX21XcnhQVUlISWU2RXBvb1ZGY21mR3BsRkZQdjFyQ1JITW9XWFZTZ05nWkhFQnZhendNMzZ2VU1DWU10aVRvTm1reDhsZHh1eHBJMHR0dUpxOG9HREhoQ29tY2RQRjQtM1JUbG5jVnF5V1dJQ2RaZVBaSjBISU5adm50aGpINFI1eWRQWGE3bVlZSWhjUWZreC11Y05WN2hrQnlfZXl2elplUEJaTFB0WEE0NmIzVUVKTDQ1a2IyOW5mdUV5ZE5IR3FUS0J0LWdXbFHSAeYBQVVfeXFMTnB4aTlzWktQTlNFRHZIcmJYMVVlNnVob1FmaWpHU0wxTjg5UWt4cm0yamdiT2JTeWlFQ3Y1a2lqT1NtVmp6NVE1UWJCU2pRTjlETWd4RS1FTDk2NmFxa1VWSFV3OFZ4Q3JIV3JSUmRxMzdqYjBnUUlMTTNhaW1DVFBoUXhCTjNYbzdtMzdVaGxLZDhmMHVsZVhCRFRSTjBVT090ckRLWTBTTmswQk5IN2NBa2RMdDMzU1dVR2dGMnRsZ3V2cTR0alJoeUdYSXl1N3NCT2RBS0trc1VXUDlWeURzQWhvbFE?oc=5",
+          "publisher": "NDTV",
+          "publishedAt": "2026-10-25T06:51:52Z",
+          "image": null,
+          "sector": "bollywood"
+        },
+        {
           "id": "5e356ef80e2a064684e5",
           "title": "Bollywood Music Project Apologises After Shilpa Rao’s Performance Cut Short, Mic Switched Off",
           "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOc3kwaVJpQXI0ckRhSTMzbkJLWTRqRHRHV1AyRHBEbUNkYkZjTTZMQURkX2JhdU14ZERyVWJNLVNMZjFEampRVmZHYm90N096dWoyNW1yc0hka1NXc1NMa1BrcmtlVFg0eGJUTGJMa3V2Z1ROVlRhZVp2V05Ob0w5aVpaVU10SVJpOWVaR1NRRFZnWEgxbXBlR0FUUmIwTVo1RXRoLW5CUllBV1hVeWJ1T0dQdGRudmlNOElsWmhubExfN0l4R3RJcTBqajVtdVEtOTVNTDZVY0g5Wnk2Qk05X1U5VVdxb090Tkt30gHwAUFVX3lxTE1qNXhCVkpXd09aVzNVWW1vbzF4N1Y4Y0tUYXU4aVVCU1FKQVQ3RC1UM3hWTW8zZG80Q2FTMTFkc0E5ZkFCemVOTnYwSmt5TWFWV2U4LU1nQU1EbC1QaTM5bnc5MF8tT0NVanJUZElQYjBCYm0wVEhkTk9OSm91Q0sxc0JFdEo5ZVJvSGM3MUFvY0c3YUxTTDExc3o2b2VLd1RCcEc0UnJPSVNaOVF2NUlhRmR4ckNxX3MtakIzVkt5MDNOVzY3eFJYS290QUdWRnVfRWhqVzU3WUZueE94ZWFGeEEwbVhEVy15Y3JkcUVBTQ?oc=5",
@@ -3149,6 +3163,15 @@
           "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxPbmE3NThKR1JVcWVrRlV0T3lsZG1LM1RFZ244aFo4aEdlX0toOGJpY0RUNldvNTZocHRFaUZ5Ri1NN0dsY0tCbUhhdjdGOENjYnc0d2xwS1NIV1h6NFUyVnIxUHBPWmF5SkxYWjUxYld3T0h6TjhsSnNDRHl0TzdTVVVDcjZ2ZDVkUUR1QmZCWHp1cHRFTjZoT3g2SU9zcTJvcW1oaTB4Tm5ybkRwSmxKbXlDTkpISFRXY1RMNXpuVUtncnhady0yQlZWU1VBS0F5VG9ZNjZkcjA5M1lna01hX09UUmNYcVNGSU5sUHlfYlA4M0VGajVqY0YzOEtTcTh5Sm9ZbDVUakk3SG9IUFJiaFlZM29MU3RqMlZud0RvTHB3aXVTbFNpZjZ3Y9IBqwJBVV95cUxPbmE3NThKR1JVcWVrRlV0T3lsZG1LM1RFZ244aFo4aEdlX0toOGJpY0RUNldvNTZocHRFaUZ5Ri1NN0dsY0tCbUhhdjdGOENjYnc0d2xwS1NIV1h6NFUyVnIxUHBPWmF5SkxYWjUxYld3T0h6TjhsSnNDRHl0TzdTVVVDcjZ2ZDVkUUR1QmZCWHp1cHRFTjZoT3g2SU9zcTJvcW1oaTB4Tm5ybkRwSmxKbXlDTkpISFRXY1RMNXpuVUtncnhady0yQlZWU1VBS0F5VG9ZNjZkcjA5M1lna01hX09UUmNYcVNGSU5sUHlfYlA4M0VGajVqY0YzOEtTcTh5Sm9ZbDVUakk3SG9IUFJiaFlZM29MU3RqMlZud0RvTHB3aXVTbFNpZjZ3Yw?oc=5",
           "publisher": "The Times of India",
           "publishedAt": "2026-10-25T05:29:00Z",
+          "image": null,
+          "sector": "bollywood"
+        },
+        {
+          "id": "618ba967840847c9e45e",
+          "title": "Latest News, India News, Breaking News, Business, Bollywood, Cricket, Videos & Photos",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZlNfM3BlcUhrb0x6R29VLUN1MVU0M1NrSEIxaVVqVWRnVWZRYjB2bVlWM0xQdmkwYU8xTUFTZzdtTGtBMjZnT3gxdTJRTXB3aW1kNUF5dVFPTVpONXVGYUVPbmdFVmRCYXRHRFN0dlhpR3dlb1Q0WUc0VXI5UlpvN25JXzJHSGhCZHJaOWZ0N05lYnM?oc=5",
+          "publisher": "NDTV",
+          "publishedAt": "2026-10-25T05:20:00Z",
           "image": null,
           "sector": "bollywood"
         },
@@ -3261,15 +3284,6 @@
           "sector": "bollywood"
         },
         {
-          "id": "4ec4fe23865bba609388",
-          "title": "3 Idiots Sequel In The Works? Aamir Khan Shares Major Update",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNUWh6U0RucURiZENUMEc5VkNHV0IzT042TmMyem1nbFlPZTdmLXNieG81NmpmZ2NiZVkwb2NNWG1DNDJ5aVR2RGtwM0ZoaG1EVEV2Z3djeDFaWEpCc0h1alFxR0lFMTFMS1pOdXJFLV9JZGpyQXlPOXB3U2Jtdm5XYUxfSWtzcVloWGExMHdfOVlqeUNWd2VidGlYbFF4MFVpRHVvRjgzeFhETUxkOFBzQlNjTlpTbFBuc0ozLXlZeVdfcEVXVHFPbUpuRkFDZE0yM19Tdl93U2tPWUJvWHfSAeYBQVVfeXFMT29QVVJoZGJRZDRCNUdCT294bVFYY203bWZZM3VjZmFhbG9Vemw1NUtGdHd5eHpMVDMwaHp1X3VoYVdOT2FOdm93NEJtY09FTW9yRHUzS1djR0RsVkNWUV9sWkEtbWlSa3A1dFZMTzE3VVc1Ukk4akllTjlMNV92LWduS19aYzlucVhDcGVyN21tVm1PdDJONG53SjBkbXV2TUpOdm5TdklnaUl6QXp5M2RXTlZ3cVR4SldMaDNFQnFSLThwOElXdm5CZUttR3lCRHVyc3laNjMtODBVdWhabEc3UGxIeEE?oc=5",
-          "publisher": "NDTV",
-          "publishedAt": "2026-10-24T11:48:29Z",
-          "image": null,
-          "sector": "bollywood"
-        },
-        {
           "id": "c79dacc8c0a345bf3047",
           "title": "Saiyaara fame Shaan R Grover headlines Chand Mohammad’s Junglywood, trailer to drop soon",
           "url": "https://www.bollywoodhungama.com/news/bollywood/saiyaara-fame-shaan-r-grover-headlines-chand-mohammads-junglywood-trailer-to-drop-soon/",
@@ -3311,15 +3325,6 @@
           "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPeDVKQU9peXZRZG0xMWluSEUzSFhsd21nQUNKa2xnZjlPNEZQOEVNSHhDb0Y0VjlUNm80eGp2dUZtSUc1ZnN2V1BQQ3FCbTlKcmhtVU1fbWloYndhTmhuWDczOEdZclhVNHBZQlFUTXhtYjZQbFpuRXlLamJmOUE4dlBfWkppYWczN19fRmlpU2t6clpSbG5Odm55VHBDTkQ3emVLNDFhNVRCQjYwbGxqd3RPYkV6UXJtQm5PSlVJaHpxWWltZ0FrYWptMmluQdIB1gFBVV95cUxNVWpHOHRGUl9FbzF5MVphZmp6SGlTSjNhWlhtNUZZZ0hrbGtZZWxBZkJibU9uMVNZbjE0c0h6WVlGVkJ0Z1lnRDJVM2E1YnVWbERjSHR0U0FrYnl1ODlWTGU0cGVWbmxLeTJmNzQxRGd6dU4xSnRTQzNRR2RnQWpDTXpnT2s5N2tabC0zQkpDSDJSTTFsNF9tbUZnSTByUVhjQlJmUkx5VzByWHNBTV84Q1BFUHN5RVU1Q1lPQ2F1VDhkbzhaRDNFM0NYcGluODIxZnk5YUxB?oc=5",
           "publisher": "NDTV",
           "publishedAt": "2026-10-24T09:10:33Z",
-          "image": null,
-          "sector": "bollywood"
-        },
-        {
-          "id": "30b766ef9869babb751a",
-          "title": "Chunky Panday reveals why Bollywood calls him the 'aloo' of the film industry",
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQX0FKSjFTVlZGMkFHVUFISGVuMXRuRTFaYldoWEZJS3ZiazlvZWVuUHlrZExpdV9UOHM5RXN6Z1UybjVkZ2tsWHk5VFhSLTZBQ0JvOXEwcWowR3UxazlfYVcxYVhNbnE3MHlYUEJGSkJqZE5ULWxuVXVPanZzYmdUMVl0N0czaHlHdWlyRTdyOVV0Qnkwb0lkVFBpNmgzU21qZm9jeUNZdHAwS3VaTHRrRFU0WllaYmVTTGdaUUkyU3NJUmdXLWkzVURSRnQzY0tXVFdRSVFlMmVNMDdqanRCMFZub2VjZ9IB6wFBVV95cUxOWVBmcVZ2N1BMaEYzVkgyN3MtMFozNEtKdmNyWk9na3lER3JkaFBqMjBUZmVJNF9sVTYzQ09LSWNSX2VlTUN4VjdUbmlIS21uWmRhY0t6d1ppcGpsX21ydThrWW42eXBROGg1S1NEMDRSc2piVERURVBMVll0VGxMcWxmMm5MUHhZamNXUFY4Yzg4d1c1eFYyUFRTQnduYXRBZ3RlSDFvRVpQZFFvLUpuckd2Um5Oc0QyQVJPRV9wdV9rbk5QQmc3R2xNTGFhVzJOOTVGbS0zRHdQeHRLSjdzVXFzaTV3SjhyTFk4?oc=5",
-          "publisher": "The Times of India",
-          "publishedAt": "2026-10-24T09:07:00Z",
           "image": null,
           "sector": "bollywood"
         }
